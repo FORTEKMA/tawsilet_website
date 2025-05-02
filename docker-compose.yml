@@ -1,0 +1,26 @@
+version: "3.9"
+name: sheelni-front-stack
+
+services:
+  sheelni-front:
+    container_name: sheelni-front
+    build: 
+      context: .
+      dockerfile: Dockerfile
+      args:
+        GENERATE_SOURCEMAP: false;
+        REACT_APP_GOOGLE_MAPS_API_KEY: AIzaSyA8oEc5WKQqAXtSKpSH4igelH5wlPDaowE
+        REACT_APP_BASE_URL: https://api.sheelni.dev/api
+        REACT_APP_FRONT_URL: https://sheelni.dev
+        REACT_APP_DOMAIN_URL: https://api.sheelni.dev
+        REACT_APP_DASH_URL: https://app.sheelni.dev
+    image: sheelni-front:latest
+    restart: unless-stopped
+    ports:
+      - "4001:80"
+    networks:
+      - sheelni-front-network
+
+networks:
+  sheelni-front-network:
+    name: sheelni-front-network

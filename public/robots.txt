@@ -1,0 +1,10 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+Allow: /about
+Allow: /services
+Allow: /Sidentifierpartenaire
+Allow: /estimation
+Allow: /Conditions
+Allow: /Politiques
+Allow: /CookiesPolitique

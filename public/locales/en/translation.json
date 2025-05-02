@@ -1,0 +1,901 @@
+{
+  "languageSelector.ar-TN": "Arabic",
+  "languageSelector.ar-SA": "Arabic",
+  "languageSelector.ar": "Arabic",
+  "languageSelector.fr": "French",
+  "languageSelector.fr-FR": "French",
+  "languageSelector.en-US": "English",
+  "languageSelector.en": "English",
+  "NAVBAR": {
+    "ACCEUIL": "HOME",
+    "APROPOS": "ABOUT US",
+    "SERVICES": "SERVICES",
+    "CONTACT": "CONTACT",
+    "TELECHARGER": "DOWNLOAD",
+    "DEVENIR": "BECOME A PARTNER",
+    "Connexion": " Login ",
+    "Sinscrire": "Sign Up",
+    "Deconnecte": "Logout"
+  },
+  "Alerts": {
+    "mapalert": "Selected point is OUTSIDE the polygon "
+  },
+  "Step1": {
+    "alert": {
+      "unable_to_get_location": "Unable to fetch your location."
+    },
+    "ServiceUnavailable": "Service unavailable from 10 PM to 6 AM.",
+    "DÉPART": "DEPARTURE",
+    "Adresse-départ": "Departure Address",
+    "Aujourd": "Today",
+    "Heure": "Hour",
+    "Minute": "Minute",
+    "Au-plus": "Earliest (within 2h)",
+    "Accés": "Access",
+    "Aupied": "At the truck",
+    "chezMoi": "At My Place",
+    "rdc": "Ground Floor",
+    "remplir": "Please fill in all fields",
+    "remplirA": "Please select a valid address on the map (street, city, and full details required).",
+    "RDC": "With Elevator",
+    "sansRDC": "Without Elevator",
+    "étage": "Floor",
+    "Info": "Pack your items, our drivers transport them carefully in the truck, secured by straps and blankets.",
+    "Btn-saisire": "Enter Arrival",
+    "detail": " More details ..."
+  },
+  "Step2": {
+    "ARRIVÉÉ": "ARRIVAL",
+    "Btn-saisire-objet": " Enter Your Items ",
+    "Adresse-arrivée": "Arrival Address"
+  },
+  "Step3": {
+    "objets": "Your Items",
+    "desc": "For accurate billing, choose a similar item from the search. If the item is not found, select a similar size from the list. Contact us for any questions.",
+    "obtenir": "Get an estimate",
+    "ex": "Ex: 1 Table",
+    "remarque": "Remark:",
+    "textarea": "Leave your remarks here..."
+  },
+  "Step4": {
+    "info": "Your Information",
+    "PRIX": "PRICE",
+    "camion": "At the foot of the truck",
+    "chezmoi": "At my place",
+    "confirmer": "Confirm",
+    "annuler": "Cancel",
+    "Continuer": "Continue",
+    "sansAide": {
+      "sansAide": "Without Assistance",
+      "desc1": "Ideal for small parcels or boxes you can lift on your own without assistance.",
+      "desc2": "Upon arrival, the driver will place the parcels at the foot of the truck for your convenience."
+    },
+    "avecAide": {
+      "avecAide": "With Assistance",
+      "desc1": "Choose this option if you have heavier or bulkier parcels that require assistance.",
+      "desc2": "2 handlers will be available to help you load/unload your parcels safely."
+    }
+  },
+  "Step5": {
+    "alert1": "Please choose the payment method",
+    "alert": "Please accept the terms and conditions",
+    "Payement": "Payment",
+    "confPayement": "Confirm Payment",
+    "Succès": "Success !!",
+    "description": "Your order has been successfully placed.",
+    "OK": "OK",
+    "PayerL": "Pay on delivery",
+    "PayerLD": "Pay in cash on delivery",
+    "PayerC": "Credit/Debit Cards",
+    "PayerCD": "Pay with your credit/debit card"
+  },
+  "ACCEUILE": {
+    "TRUSTUS": {
+      "title2": "They Trusted Us "
+    },
+    "APROPOSdeNous": "ABOUT US",
+    "EFFICACITE": "Efficiency, Reliability, and Convenience",
+    "descrip": "When it comes to transportation, Sheelni is your trusted partner. We understand the importance of dependable logistics solutions, which is why we prioritize efficiency, reliability, and convenience in everything we do. With cutting-edge technology and extensive experience, we offer seamless transport services you can rely on. Experience peace of mind knowing that your items are in safe hands with Sheelni.",
+    "btnSavoir": "Learn More",
+    "Delai": {
+      "title": "Delivery Time",
+      "desc": "Sheelni ensures short-term delivery for your transportation needs."
+    },
+    "Coût": {
+      "title": " Affordable Cost",
+      "desc": "Sheelni offers transportation services at an affordable cost."
+    },
+    "ÉTAPES": {
+      "title1": "Easy Steps",
+      "title2": "How We Work",
+      "desc": "Contact us through our website or calculate your quote in the 'Get a Quote' section for your transport needs.",
+      "QuatreEtaps": {
+        "etap1": {
+          "title": "BE HAPPY",
+          "desc": "Delighted with our exceptional service, exceeding your transport needs."
+        },
+        "etap2": {
+          "title": "DELIVER",
+          "desc": "Trust our efficient and reliable team for fast and secure delivery."
+        },
+        "etap3": {
+          "title": "PICK UP",
+          "desc": "Trust our efficient and reliable team for fast and secure delivery."
+        },
+        "etap4": {
+          "title": "LOAD",
+          "desc": "Easily place your transport order in just a few clicks."
+        },
+        "commentaire1": "Want to know more?",
+        "commentaire2": " Discover more"
+      }
+    },
+    "JOINUS": {
+      "title1": "Join Sheelni for Seamless Logistics Solutions",
+      "desc": "Sign up on our website or app and discover transparent logistics solutions for all your transportation needs. Join Sheelni today."
+    },
+    "PRESTATION-SERVICE-1": {
+      "title1": "SERVICES",
+      "title2": "Track Deliveries with Technology",
+      "desc": "Stay informed with our mobile app and website. Book your van easily with our online platform. A simple form on the website or app ensures a quick reservation process. Enjoy the convenience of booking with Sheelni and get the transportation you need, when you need it."
+    },
+    "PRESTATION-SERVICE-3": {
+      "title1": "Our Services",
+      "title2": "A bouquet of varied offers",
+      "desc": "Explore the wide range of our customized moving services, carefully adjusted to meet your specific needs."
+    },
+    "PRESTATION-SERVICE-2": {
+      "title1": "SERVICE",
+      "title2": "Providing Excellent Service",
+      "desc": "Experience exceptional service with Sheelni—fast deliveries, attentive support, and peace of mind.",
+      "Cards": {
+        "card1": {
+          "title": "In-Store Delivery",
+          "desc": "Streamlined in-store delivery for efficient logistics."
+        },
+        "card2": {
+          "title": "Small Moves",
+          "desc": "The ideal solution for easily moving one or more items."
+        },
+        "card3": {
+          "title": "Loading & Unloading",
+          "desc": "We're here to help you load and unload your packages."
+        },
+        "card4": {
+          "title": "Labor-Only Moves",
+          "desc": "Don’t lift a finger. We’ll handle your larger furniture and other bulky items."
+        },
+        "card5": {
+          "title": "Apartment Moves",
+          "desc": "Move your apartment stress-free with our reliable moving services. "
+        },
+        "card6": {
+          "title": "Office Moves",
+          "desc": "Move your office stress-free with our dependable moving services."
+        }
+      },
+      "Bulletin": {
+        "title1": "Newsletter",
+        "title2": "Subscribe to our newsletter",
+        "Btn-Envoyer": "Send"
+      }
+    },
+    "TÉLÉCHARGER": {
+      "title1": "DOWNLOAD",
+      "title2": "Download Our App",
+      "desc": "Simplify your transport experience with the Sheelni app. Book, track, and manage deliveries effortlessly. Start now and enjoy seamless logistics at your fingertips."
+    },
+    "CONTACT": {
+      "title1": "CONTACT",
+      "title2": "Contact us",
+      "desc": "Have questions or need assistance? Reach out to our friendly team today. We’re here to help and provide the information you need.",
+      "Adresse": {
+        "addresses": "Yasmine du Lac Building Avenue de la Bourse Berges du Lac 1, La Marsa, Tunis 1053"
+      }
+    },
+    "COMMENCER": {
+      "title1": "Get Started",
+      "desc": "Sign up on our website or app and discover seamless logistic solutions for all your transport needs. Join Sheelni today.",
+      "btn-Comencer": "Get Started"
+    }
+  },
+  "ABOUT": {
+    "Review": {
+      "title": "Recent Reviews",
+      "desc": "Join our community and see what the hype is all about."
+    },
+    "Apropos": {
+      "title1": "HISTORY",
+      "title2": "About Us",
+      "desc": "Providing exceptional transportation services in UAE. Reliable and efficient logistics solutions tailored to your needs.",
+      "btn-obten": "Get an Estimate"
+    },
+    "NOTRE-COMPARE": {
+      "title1": "Our Company",
+      "title2": "We Are a Moving Leader in UAE",
+      "desc": "At Sheelni, we are a renowned transportation company based in UAE. We specialize in transporting a wide range of items, from delicate paper documents to full moving services, to specific locations in the Djerba region. Our services are tailored to meet the transport needs of both businesses and individuals, ensuring efficient and reliable deliveries. With our deep knowledge of the area, we offer customized logistics solutions to meet your specific requirements. Whether it’s a small package or a large shipment, our dedicated team is committed to delivering your items safely and on time."
+    },
+    "DEMENAGEMENT": {
+      "Paragraph": "Fast secure delivery. Very good courteous",
+      "Para": " and polite driver satisfied I will not hesitate to use your services again.",
+      "Nom-Client": "Jean P"
+    },
+    "AGENTSLISTE": {
+      "Header": {
+        "title1": "Our Agent List",
+        "desc": " Dedicated and competent professionals - Committed to providing smooth and reliable transport services."
+      },
+      "AgentCard1": {
+        "Ligne": "Agent 1",
+        "Li": "CEO"
+      },
+      "AgentCard2": {
+        "Ligne": "Agent 2",
+        "Li": "Driver"
+      },
+      "AgentCard3": {
+        "Ligne": "Agent 3",
+        "Li": "Marketing Manager"
+      },
+      "AgentCard4": {
+        "Ligne": "Agent 4",
+        "Li": "Admin"
+      }
+    },
+    "SERVICES-Sheelni": {
+      "Nos-Service": {
+        "title1": " SERVICES",
+        "title2": "Our Services",
+        "desc": "Providing exceptional transportation services in UAE . Reliable and efficient logistics solutions tailored to your needs.",
+        "btn-obten": "Get an Estimate"
+      },
+      "ABOUT-SERVICE": {
+        "title1": "ABOUT SERVICE",
+        "title2": "About Sheelni's Services",
+        "desc1": "We are proud to present our comprehensive range of transport services, designed to meet your varied needs. Guided by our commitment to excellence, we provide reliable and efficient solutions to ensure smooth transport for your shipments.",
+        "desc2": "From collection to delivery; whether you have light, heavy, or specialized parcels, our team is ready to handle everything by adopting the most appropriate logistics strategies. We carefully handle each step, offering much more than just a service."
+      },
+      "ÉTAPES-FACILES": {
+        "title1": "SIMPLE STEPS",
+        "title2": "An Agile and Efficient Process",
+        "desc": "Our approach aims to offer you a fully satisfying experience! Contact us and get a quote in a blink of an eye.",
+        "etap1": {
+          "title": "ORDER",
+          "desc": "Easily place your transport order in a few clicks."
+        },
+        "etap2": {
+          "title": "DELIVER",
+          "desc": "Trust our efficient and reliable team for safe and fast delivery."
+        },
+        "etap3": {
+          "title": "PICK UP",
+          "desc": "Fast and careful collection of items for flawless transport."
+        },
+        "etap4": {
+          "title": "BE HAPPY",
+          "desc": "Delighted with our exceptional service, surpassing your transport needs."
+        }
+      },
+      "SERVICE": {
+        "title1": "Service",
+        "title2": "Ultra-Accessible, Hassle-Free Services!",
+        "desc1": "We strive to create an inclusive experience, where each step of our process is meticulously arranged to ensure an unparalleled level of accuracy. From collecting items to delivery, we put in place rigorous protocols to ensure seamless execution. Whether you have questions, queries, or simply need information, our contact system allows you to reach us seamlessly. Sign up, drop us a line, or just give us a call!"
+      }
+    }
+  },
+  "Historique": {
+    "Status": {
+      "Problème": {
+        "title": "Report a problem",
+        "deja": "Order already reported",
+        "contact": "Please contact support for more information.",
+        "tickettitre": "Title:",
+        "ticketdesc": "Description:",
+        "response": "Support Response:",
+        "responsemessage": "Your issue is being resolved, please wait.",
+        "responsebutton": "Exit",
+        "adresse": "Drop-off/Pickup address",
+        "envoi": "Sending in progress...",
+        "problem": "Problem",
+        "message": "Message",
+        "pieces": "Attachments",
+        "placeholder1": "Enter the problem",
+        "placeholder2": "Enter your message",
+        "selectionner": "file(s) selected",
+        "placeholder3": "Attach files",
+        "button": "Submit report",
+        "alert": {
+          "thank_you": "Thank you for your cooperation.",
+          "message": "We have received your report. Our team will review the issue and contact you as soon as possible.",
+          "button": "Continue"
+        }
+      }
+    }
+  },
+  "Sheelni-CONTACT": {
+    "title1": "CONTACT",
+    "title2": "Get in Touch",
+    "desc": "Contact us today to discuss your transportation needs. Our friendly team is ready to assist you and provide personalized solutions",
+    "btn-obten": "Get a Quote",
+    "ContactForm": {
+      "title": "Contact us",
+      "title2": "CONTACT",
+      "title1": "Get in Touch",
+      "desc": "Contact us directly by phone or fill out the form to receive a free consultation from our enthusiastic staff.",
+      "phone": "Last Name",
+      "nom": "Firsta Name",
+      "emaile": "Your Email",
+      "Adresse": "+216 36 848 020",
+      "email": "contact@sheelni.com",
+      "textAresse": "Any problem ?",
+      "textAress": "You can contact us on :",
+      "btnSend": "Send us message",
+      "placeholder": "Send message",
+      "Message": "When you Free?"
+    }
+  },
+  "FOOTER": {
+    "Menu": "Menu",
+    "FooterLink": {
+      "FooterLink1": "About Us",
+      "FooterLink2": "Our Services",
+      "FooterLink3": "Contact",
+      "FooterLink4": "Get an Estimate",
+      "FooterLink5": "Become a Partner"
+    },
+    "Container": {
+      "HeadingLast": "Stay Connected With Us",
+      "Ligne1": "Yasmine du Lac Building Avenue de la Bourse Berges du Lac 1, La Marsa, Tunis 1053"
+    },
+    "Copyright": "Copyright",
+    "Tous-réservés": "All rights reserved.",
+    "Last1": "Terms of Use",
+    "Last2": "Privacy Policy"
+  },
+  "LoginCard": {
+    "LoginHeader": {
+      "connecter": "Log In",
+      "comptermination": "to your account"
+    },
+    "LoginSection": {
+      "client": "Are you a client?",
+      "Connexion": "Log In",
+      "devenir-client": "Want to become a client?",
+      "SINSCRIRE": "SIGN UP"
+    },
+    "RegisterSection": {
+      "entreprise": "Are you a business?",
+      "Connexion": "Log In",
+      "devenir-entreprise": "Want to become a partner?",
+      "SINSCRIRE": "SIGN UP"
+    }
+  },
+  "SINSCRIRE": {
+    "Inscrire": "Sign Up",
+    "px": "Or log in using",
+    "Titlee": "Sign up now!",
+    "paragf": "easily and quickly discover our services",
+    "para": "Easily access and quickly explore our service offerings",
+    "sidentifier": "LOG IN",
+    "FormInput": {
+      "Prénom": "First Name",
+      "nom": "Last Name",
+      "phone": "Phone Number",
+      "email": "Email Address",
+      "pswd": "Password",
+      "confpswd": "Confirm Password",
+      "accepter": "I accept all",
+      "terms": "terms",
+      "et": "and",
+      "conditions": "conditions",
+      "Inscrire": "Sign Up"
+    },
+    "validation": {
+      "Prénom": "Please enter your first name.",
+      "nom": "Please enter your last name.",
+      "phone": "Please enter a valid phone number.",
+      "testPhone": "Invalid phone number.",
+      "email": "Please enter your email address.",
+      "testemail": "Invalid email address.",
+      "pswd": "Please enter your password.",
+      "confpswd": "Passwords must match!"
+    }
+  },
+  "SIDENTIFIER": {
+    "Identifier": "Log In",
+    "HR": "Or log in using",
+    "Titlee": "Don't have an account yet?",
+    "para": "Sign up in a few easy steps and quickly discover our services",
+    "sidentifier": "SIGN UP",
+    "CONNEXION": "LOG IN",
+    "FormInput": {
+      "email": "Email Address",
+      "pswd": "Password",
+      "confpswd": "Forgot Password?",
+      "errmsg": "Please try again!",
+      "accepter": "I accept all terms and conditions",
+      "Inscrire": "Sign Up"
+    },
+    "validation": {
+      "email": "Please enter your email address.",
+      "testemail": "Invalid email address.",
+      "pswd": "Please enter your password.",
+      "confpswd": "Passwords must match!"
+    }
+  },
+  "SINSCRIREpartenaire": {
+    "Inscrire": "Sign Up",
+    "px": "Or log in using",
+    "Titlee": "Already have an account?",
+    "para": "Log in easily and quickly discover our services",
+    "sidentifier": "LOG IN",
+    "FormInput": {
+      "nomP": "Owner First Name",
+      "nomE": "Business Name",
+      "indivlast": "Name",
+      "indivname": "LastName",
+      "indiv": "Individual",
+      "organisation": "Organisation",
+      "indivre": "Individual Registration",
+      "organisre": "Become a Partner",
+
+      "numPatent": "Patent Number",
+      "photoPatent": "Patent Photo",
+      "Activité": "Activity",
+      "phone": "Phone Number",
+      "adresse": "Address",
+      "postalcode": "Postal Code",
+      "email": "Email Address",
+      "pswd": "Password",
+      "confpswd": "Confirm Password",
+      "accepter": "I accept all terms and conditions",
+      "Inscrire": "Sign Up",
+      "Pièce d'identité recto": "ID Card (Front)",
+      "Pièce d'identité Verso": "ID Card (Back)",
+      "Extrait du Registre de Commerce": "Commercial Register Extract",
+      "Photo d'Attestation d'assurance": "Insurance Certificate Photo",
+      "Photo d'Attestation CNSS": "CNSS Certificate Photo",
+      "Photo d'Attestation Fiscale": "Tax Certificate Photo",
+      "licence de transport": "Transport License",
+      "RIB Société": "Company Bank Details (RIB)",
+      "Adresse": "Address",
+      "Code postal": "Postal Code",
+      "Ville": "City",
+      "État": "State/Province",
+      "Aujourd": "Today",
+      "Date expiration assurance rc pro": "Commercial Register Insurance Expiry Date",
+      "Date expiration licence de transport": "Transport License Expiry Date",
+      "J'accepte tous les termes et conditions": "J'accepte tous ",
+      "et": "and ",
+      "termes  ": " terms",
+      "conditions": "conditions",
+      "Retour": "Back", 
+      "Image obligatoire": "Required image",
+      "Obligatoire": "Required",
+      "télécharger": "Download"
+    },
+    "validation": {
+      "nomP": "Please enter your name.",
+      "nomE": "Please enter the business name.",
+      "numPatent": "Please enter the patent number.",
+      "photoPatent": "Select a file.",
+      "Activité": "Please enter your activity.",
+      "phone": "Please enter a valid phone number.",
+      "testPhone": "Invalid phone number.",
+      "adresse": "Please enter your address.",
+      "postalcode": "Please enter your postal code.",
+      "Required": "Required field.",
+      "email": "Please enter your email address.",
+      "testemail": "Invalid email address.",
+      "pswd": "Please enter your password.",
+      "confpswd": "Passwords must match!",
+      "accepter": "Please accept the terms and conditions."
+    }
+  },
+  "annuler": {
+    "echec1": "Please select a reason before confirming.",
+    "titre": "Cancel the order ?",
+    "confirmation": "Are you sure you want to cancel the order ?",
+    "raisonPlaceholder": "Select a reason",
+    "oui": "Yes",
+    "non": "No",
+    "erreur": "Error",
+    "bouton": "Cancel the order",
+    "raison1": "Change of mind",
+    "raison2": "I found a better price elsewhere",
+    "raison3": "Delivery time too long",
+    "raison4": "Order placed by mistake",
+    "raison5": "Payment issue",
+    "raison6": "Unsatisfactory customer service",
+    "raison7": "Other reason"
+  },
+  "ClientProfile": {
+    "Nouvelle-image": "New Image",
+    "User": "Personal Information",
+    "Contact": "Personal Contact",
+    "Compte": "Account",
+    "Historique": "History",
+    "Réservation": "New Reservation",
+    "passer1ere": "Place your first order ...",
+    "ligne": "lines per page",
+    "of": "of",
+    "Rechercher": "Search",
+    "MTD": "Password",
+    "pswd": "Change Password",
+    "taperpswd": "Enter password",
+    "MTA": "Update",
+    "FormInput": {
+      "nom": "Last Name",
+      "Prénom": "First Name",
+      "cin": "National Identity Number",
+      "phone": "Phone Number",
+      "email": "Email Address"
+    },
+    "validation": {
+      "Prénom": "Please enter your first name.",
+      "nom": "Please enter your last name.",
+      "cin": "Please enter your national identity number",
+      "phone": "Please enter a valid phone number",
+      "email": "Please enter your email address",
+      "testemail": "Invalid email"
+    },
+    "ProfileHistory": {
+      "tab": {
+        "ID": "ID",
+        "adresseR": "Pickup Address",
+        "code": "Code",
+        "adresseD": "Dropoff Address",
+        "date": "Date",
+        "status": "Status",
+        "Actions": "Actions"
+      },
+      "details": {
+        "print": "print",
+        "export": "export",
+        "suivre": "Track your order",
+        "adresse_ramassage": "Pickup address",
+        "adresse_depot": "Drop-off address",
+        "distance_course": "Trip distance",
+        "duree_course": "Trip duration",
+        "date": "Date",
+        "prix": "Price",
+        "mode_paiement": "Payment method",
+        "information_commandes": "Order information",
+        "produit": "Products",
+        "commande": "ORDER",
+        "paiement_a_la_livraison": "Cash on Delivery",
+        "carte_bancaire": "Bank Card"
+      }
+    },
+    "Commande": {
+      "status": {
+        "pending": "Pending",
+        "dispatched_to_partner": "Accepted",
+        "assigned_to_driver": "Accepted by driver",
+        "driver_on_route_to_pickup": "En route to pickup",
+        "arrived_at_pickup": "Arrived",
+        "picked_up": "Picked up",
+        "on_route_to_delivery": "En route to delivery",
+        "arrived_at_delivery": "Arrived",
+        "delivered": "Delivered",
+        "completed": "Completed",
+        "canceled_by_client": "Canceled",
+        "canceled_by_partner": "Canceled",
+        "failed_pickup": "Pickup failed",
+        "failed_delivery": "Delivery failed",
+        "aucun": "Unknown",
+        "loading": "Loading order status... "
+      },
+      "Message": {
+        "pending": "Pending",
+        "dispatched_to_partner": "Order accepted by merchant",
+        "assigned_to_driver": "Driver assigned",
+        "driver_on_route_to_pickup": "Driver en route to pickup",
+        "arrived_at_pickup": "Arrived at pickup location",
+        "picked_up": "Order collected",
+        "on_route_to_delivery": "Driver en route to delivery",
+        "arrived_at_delivery": "Arrived at delivery location",
+        "delivered": "Order delivered",
+        "canceled_by_client": "You canceled this order",
+        "canceled_by_partner": "Merchant canceled order",
+        "failed_pickup": "Pickup failed",
+        "failed_delivery": "Delivery failed",
+        "completed": "Your order has been successfully completed",
+        "merci": "Thank you for working with us",
+        "encours": "Your order is being processed...",
+        "canceled": "Your order has been canceled.",
+        "unauthorized": "You are not authorized to track this order.",
+        "span": "You can only track your own orders.",
+        "button": "Back to the homepage.",
+        "envoyer": "Send",
+        "comment": "Please leave your comment.",
+        "invitspan": "Your feedback matters to us!",
+        "note": "Your rating is:",
+        "invitation": "We invite you to rate our courier once your order is completed.",
+        "ratting": "We invite you to share your feedback on the delivery service and the courier by leaving a small message. ",
+        "passer": "Skip",
+        "dejanote": "You have already rated",
+        "rattinge": ". Your feedback is valuable to us!"
+      }
+    }
+  },
+  "Alert": {
+    "tab": {
+      "title": "THANK YOU FOR YOUR REQUEST",
+      "message": "Please prepare the exact amount for payment upon delivery.",
+      "remerciment": "Thank you for your order and your trust!",
+      "button": "Continue"
+    }
+  },
+  "ImageSlider": {
+    "image1": {
+      "title": "Handled with Care — Delivered with Trust",
+      "description": "Sheelni Team"
+    },
+    "image2": {
+      "title": "From Door to Door, With Care",
+      "description": "Sheelni Team"
+    },
+    "image3": {
+      "title": "Trust Us to Deliver",
+      "description": "Sheelni Team"
+    },
+    "image4": {
+      "title": "Swift, Safe, Reliable",
+      "description": "Sheelni Team"
+    }
+  },
+  "Bulletin": {
+    "title": "Subscribe to Our Newsletter",
+    "button": "SEND"
+  },
+  "JoinSeeelni": {
+    "title": "Join ",
+    "span": "Sheelni",
+    "Sutitle1": "for Seamless",
+    "Sutitle": "Logistics Solutions",
+    "description": " Sign up on our website or app and discover transparent logistics solutions for all your transportation needs. Join Sheelni today.",
+    "button": "Get Started"
+  },
+  "Team": {
+    "title": "Our Exceptional Team",
+    "description": " Dedicated and skilled professionals — Committed to ensuring smooth and reliable transportation services.",
+    "image1": {
+      "title": "Agent 1",
+      "description": "CEO"
+    },
+    "image2": {
+      "title": "Maybelle Willms",
+      "description": "Livreur"
+    },
+    "image3": {
+      "title": "Bridle Ledner",
+      "description": "Livreur"
+    },
+    "image4": {
+      "title": "Missouri Gulgowski",
+      "description": "Marketing"
+    }
+  },
+  "ForgetPassword": {
+    "title": "Account Recovery",
+    "span": "You don’t have an account with this email address",
+    "link": "Create an account",
+    "button": "Next"
+  },
+  "MessagePasswordReset": {
+    "title1": "A password reset email has been sent to your email address. ",
+    "title2": "Please check your inbox.",
+    "description": "OK"
+  },
+  "ConfirmationModal": {
+    "span": "THANK YOU FOR YOUR REQUEST.",
+    "title": "Please prepare the exact amount for payment upon delivery. ",
+    "description": "Thank you for your order and your trust!",
+    "button": "Continue"
+  },
+  "MethodPayement": {
+    "method": {
+      "title1": "Pay on Delivery",
+      "title2": "Pay in Cash on Delivery"
+    },
+    "payement": {
+      "title1": "Credit/Debit Cards",
+      "title2": "Pay with your Credit/Debit Card"
+    },
+    "span": "I accept the general terms and conditions",
+    "button": "Update Password"
+  },
+  "NotFound": {
+    "title": "Sorry, the page you are looking for cannot be found.",
+    "description": "Oops! The page you are looking for seems to be missing. We apologize for the inconvenience. Please go back or contact our support team for assistance.",
+    "button": " Return to the Homepage"
+  },
+  "Conditions": {
+    "heading": "Legal Notice of FORTEKMA",
+    "identity": {
+      "title": "1. Company Identity",
+      "description": "Company Name: FORTEKMA, Legal Form: Limited Liability Company (SARL), Share Capital: 10,000 TND, Registered Office Address: YASMINE Building, Avenue de la Bourse, Berge du Lac 2, 1053, Tunisia, Phone: +216 36 848 020, Email: contact@fortekma.com, Trade Register Number: 1906853H, Tax Identification Number: 1906853H, APE Code: 74.13."
+    },
+    "dataProcessing": {
+      "title": "2. Data Processing Officer",
+      "description": "Name of the Officer: Alaeddine Rezgani, Email of the Officer: alaeddine.rezgani@fortekma.com."
+    },
+    "dataPurposes": {
+      "title": "3. Purposes of Data Processing",
+      "description": "Personal data is collected for the purposes of: Managing orders and contracts, Personalizing services and communications, Improving user experience, Sending marketing and promotional information, Conducting statistical studies."
+    },
+    "legalBasis": {
+      "title": "4. Legal Basis for Processing",
+      "description": "Processing is based on: The execution of a contract (e.g., when placing an order), The user's consent for marketing communications, Compliance with legal obligations (e.g., invoicing)."
+    },
+    "rights": {
+      "title": "5. Rights of Data Subjects",
+      "description": "In accordance with Tunisian Law No. 2004-63 on the protection of personal data, data subjects have the right to: Access their personal data, Rectify inaccurate data, Delete their data under certain circumstances, Restrict the processing of their data, Object to processing for legitimate reasons."
+    },
+    "dataRetention": {
+      "title": "6. Data Retention Period",
+      "description": "Personal data is retained for the duration necessary to fulfill the purposes for which it was collected. This period may vary depending on the purpose of the processing."
+    },
+    "securityMeasures": {
+      "title": "7. Security Measures",
+      "description": "FORTEKMA implements appropriate technical and organizational security measures to protect your personal data against unauthorized access, disclosure, alteration, and destruction."
+    },
+    "dpd": {
+      "title": "8. Data Protection Officer (DPO)",
+      "mrc": "For any questions regarding our legal notice, please contact us at: contact@fortekma.com.",
+      "description": "FORTEKMA has appointed a Data Protection Officer (DPO). You can contact them at the following email address: alaeddine.rezgani@fortekma.com."
+    }
+  },
+  "Maintenance": {
+    "title": "Site Under Maintenance",
+    "description1": "We are actively working to improve our website to serve you better.",
+    "span": "Thank you for your understanding and patience.",
+    "description2": "For any urgent requests or assistance, please contact us via email or by phone."
+  },
+  "Politiques": {
+    "title": "Privacy Policy - Users",
+    "description": "Nous nous engageons à protéger et respecter votre vie privée. Cette politique de confidentialité explique comment nous recueillons, utilisons, partageons et protégeons vos données personnelles.",
+    "personalData": {
+      "title": "1. Commitment to Privacy",
+      "description": "We are committed to protecting and respecting your privacy. This privacy policy explains how we collect, use, share, and protect your personal data."
+    },
+    "applicableLaws": {
+      "title": "2. Personal Data Collected",
+      "title1": "2.1. Lawful and Transparent Processing",
+      "description": "We process your personal data lawfully, fairly, and transparently. Only the necessary information for the purposes specified in this policy is collected.",
+      "title2": "2.2. Purposes of Collection",
+      "description2": "The personal data we may collect includes:",
+      "dataList1": "IP Address",
+      "dataList2": "Approximate Location",
+      "dataList3": "Content viewed on the site",
+      "title3": "2.3. Consent",
+      "description3": "By using our site, you consent to the automatic collection of certain data. You have the right to withdraw this consent at any time."
+    },
+    "lawfulBasis": {
+      "title": "3. Legal Basis for Processing",
+      "description": "The processing of your data is lawful when based on one of the following legal grounds:",
+      "dataList1": "Your explicit consent",
+      "dataList2": "The performance of a contract",
+      "dataList3": "Compliance with a legal obligation"
+    },
+    "dataUse": {
+      "title": "4. Use of Personal Data",
+      "description": "Your data will only be used for the purposes specified in this policy, without unauthorized use or disclosure."
+    },
+    "dataSharing": {
+      "title": "5. Sharing of Personal Data",
+      "description": "We may share your data with third parties only when necessary to achieve the objectives outlined in this policy. We ensure that these third parties respect the confidentiality of your data."
+    },
+    "dataRetention": {
+      "title": "6. Data Retention Period",
+      "description": "We retain your data for as long as necessary to fulfill the purposes for which it was collected and in compliance with applicable laws."
+    },
+    "minors": {
+      "title": "7. Protection of Minors",
+      "description": "Users under 15 years old must obtain consent from a legal representative before using our site."
+    },
+    "userRights": {
+      "title": "8. Users' Rights",
+      "description": "In accordance with the GDPR, you have the right to:",
+      "dataList1": "Access your data",
+      "dataList2": "Rectify incorrect data",
+      "dataList3": "Request data deletion",
+      "dataList4": "Limit processing",
+      "dataList5": "Object to processing",
+      "desc": "To exercise these rights, please contact us at:",
+      "email": "Email :contact@sheelni.com"
+    },
+    "cookiePolicy": {
+      "title": "9. Cookie Policy",
+      "description": "We use analytical cookies to enhance the site's design and functionality. Please refer to our cookie policy for more details."
+    },
+    "modifications": {
+      "title": "10. Policy Updates",
+      "description": "This policy may be updated to remain compliant with legal requirements. We encourage you to review it regularly."
+    },
+    "contact": {
+      "title": "11. Contact",
+      "description": "For any questions regarding this privacy policy, please contact us at:",
+      "email": "Email :contact@sheelni.com",
+      "mrc": "Thank you for trusting Sheelni with the protection of your personal data."
+    }
+  },
+  "COOKIES": {
+    "title": "Cookie Policy of Sheelni Technologie",
+    "lastUpdate": "Last updated: 1/12/2023",
+    "description": "At <Bold>Sheelni Technologie</Bold>, we take your privacy seriously and are transparent about our use of technologies such as cookies on our websites and applications. This cookie policy explains how we use these technologies and the options available to you to control them.",
+    "whatAreCookies": {
+      "title": "1. What are cookies and similar technologies",
+      "description": "Cookies and similar technologies are small data files stored on your device when you visit our website or use our applications. They help us ensure the proper functioning, analysis, and improvement of our services while personalizing your experience. These technologies also include web beacons, pixels, tags, and SDKs in our mobile applications."
+    },
+    "howDoTheyWork": {
+      "title": "2. How do they work?",
+      "description": "Cookies are small files with a unique identifier that store data when you visit our site. They can be temporary (session cookies) or permanent. Web beacons, pixels, and SDKs work similarly by collecting information about your site usage."
+    },
+    "whatInformationDoWeCollect": {
+      "title": "3. What information do we collect?",
+      "description": "Cookies collect information such as your language preferences, login identifiers, device type, browser used, date and time of your visits, and the pages you view."
+    },
+    "cookieTypes": {
+      "title": "4. Types of cookies we use:",
+      "necessaryCookies": "Necessary cookies: Essential for the operation of the site, they cannot be disabled. They are activated in response to your actions, such as setting your preferences.",
+      "list": [
+        "Functionality cookies: Enhance the functionality and personalization of your use of our services.",
+        "Performance cookies: Allow us to measure and improve the performance of our site by counting visits and analyzing traffic.",
+        "Advertising cookies: Used to understand your interests and serve you relevant advertisements on other sites."
+      ]
+    },
+    "cookieRetention": {
+      "title": "5. Duration of cookie retention:",
+      "description": "Session cookies: Expire automatically when the browser is closed.\nPermanent cookies: Retained for a defined period or until manually deleted."
+    },
+    "howToDisableCookies": {
+      "title": "6. How to disable cookies:",
+      "description": "You can change your cookie preferences at any time in the \"Customize my choices\" section. However, please note that this may affect the proper functioning of our sites and applications."
+    },
+    "cookieList": {
+      "title": "7. List of cookies:",
+      "tableHeader": {
+        "group": "Cookie subgroup",
+        "cookie": "Cookies",
+        "usage": "Used cookies"
+      },
+      "rows": [
+        {
+          "group": "Tawk.io Chat Cookies",
+          "cookie": "Tawk.io",
+          "usage": "Customer Service chat"
+        }
+      ]
+    },
+    "emailAnalysis": {
+      "title": "8. Email analysis:",
+      "description": "The emails we send contain performance cookies to measure the effectiveness of our marketing campaigns."
+    },
+    "consent": {
+      "title": "9. Consent:",
+      "description": "In most cases, we ask for your consent for the use of cookies. Necessary cookies do not require consent, but you can block or delete them."
+    },
+    "moreInfo": {
+      "title": "10. Need more information?",
+      "description": "Please review our privacy policies for more information on how we handle your data. For any questions about cookies, contact our team at: <Bold>contact@sheelni.com</Bold>"
+    }
+  },
+  "Survey": {
+    "title": "How did you hear about us?",
+    "button": "Send",
+    "Facebook": "Facebook",
+    "Instagram": "Instagram",
+    "Google": "Google",
+    "Email": "Email",
+    "Bouche à oreille": "Word of mouth",
+    "Other": "Other"
+  },
+  "Dropdown": {
+    "bonjour": "Hello",
+    "compte": "Account",
+    "historique": "History",
+    "deconnecter": "Logout"
+  }
+}

@@ -1,0 +1,897 @@
+{
+  "languageSelector.ar-TN": "Arabe",
+  "languageSelector.ar-SA": "Arabe",
+  "languageSelector.ar": "Arabe",
+  "languageSelector.fr": "Français",
+  "languageSelector.fr-FR": "Français",
+  "languageSelector.en-US": "Anglais",
+  "languageSelector.en": "Anglais",
+  "NAVBAR": {
+    "ACCEUIL": "ACCUEIL",
+    "APROPOS": "À PROPOS DE NOUS",
+    "SERVICES": "SERVICES",
+    "CONTACT": "CONTACT",
+    "DEVENIR": "DEVENIR PARTENAIRE",
+    "Connexion": "Connexion",
+    "Sinscrire": "S'inscrire",
+    "Deconnecte": " Deconnecte"
+  },
+  "Alerts": {
+    "mapalert": "Le point sélectionné est EN DEHORS du polygone"
+  },
+  "Step1": {
+    "alert": {
+      "unable_to_get_location": "Impossible de récupérer votre position."
+    },
+    "ServiceUnavailable": "Service indisponible de 22h à 6h.",
+    "DÉPART": "DÉPART",
+    "Adresse-départ": "Adresse de départ",
+    "Aujourd": "Aujourd'hui",
+    "Heure": "Heure",
+    "Minute": "Minute",
+    "Au-plus": "Au plus tôt (dans 2h)",
+    "Accés": "Accés",
+    "Aupied": "Au pied du camion",
+    "chezMoi": "Chez Moi ",
+    "rdc": "Rez-de-chaussée",
+    "remplir": "Veuillez remplir tous les champs",
+    "remplirA": "Veuillez sélectionner une adresse valide sur la carte (rue, ville et détails complets requis).",
+    "RDC": "Avec Ascenseur",
+    "sansRDC": "Sans Ascenseur",
+    "étage": "étage",
+    "Info": "Emballez vos objets, nos chauffeurs les transportent avec soin dans le camion, protégés par sangles et couvertures.",
+    "Btn-saisire": "saisir l'arrivée",
+    "detail": "Plus de détails ..."
+  },
+  "Step2": {
+    "ARRIVÉÉ": "ARRIVÉ",
+    "Btn-saisire-objet": " Saisir vos objets   ",
+    "Adresse-arrivée": "Adresse d'arrivée"
+  },
+  "Step3": {
+    "objets": "Vos Objets",
+    "desc": "Pour une facturation précise, choisissez un objet similaire dans la recherche. Si l'objet n'est pas trouvé, sélectionnez une taille similaire dans la liste. Contactez-nous pour toute question.",
+    "obtenir": "Obtenir une estimation",
+    "ex": "Ex : 1 Table",
+    "remarque": "Remarque:",
+    "textarea": "Laissez vos remarques ici..."
+  },
+  "Step4": {
+    "info": "Vos Informations",
+    "PRIX": "PRIX",
+    "camion": "Au pied du camion",
+    "chezmoi": "Chez moi",
+    "confirmer": "Confirmer",
+    "annuler": "Annuler",
+    "Continuer": "Continuer",
+    "sansAide": {
+      "sansAide": "Sans Aide",
+      "desc1": "Idéal pour les petits colis ou les boîtes que vous pouvez soulever seul sans aide.",
+      "desc2": " À l'arrivée, le conducteur déposera les colis au pied du camion pour votre commodité."
+    },
+    "avecAide": {
+      "avecAide": "Avec Aide",
+      "desc1": " Choisissez cette option si vous avez des colis plus lourds ou encombrants qui nécessitent une assistance.",
+      "desc2": " 2 manutentionnaires sera disponible pour vous aider à charger/décharger vos colis en toute sécurité."
+    }
+  },
+  "Step5": {
+    "alert1": "Veillez choisir la methode de paiement",
+    "alert": "Veillez accepter les conditions génerales",
+    "Payement": "Payement",
+    "confPayement": "Confirmer le payement",
+    "Succès": "Succès !!",
+    "description": "Votre commande a été passée avec succès.",
+    "OK": "OK",
+    "PayerL": "Payer à la livraison",
+    "PayerLD": "Payer en espèces à la livraison",
+    "PayerC": "Cartes de crédit/débit",
+    "PayerCD": "Payez avec votre carte de crédit/débit"
+  },
+  "ACCEUILE": {
+    "TRUSTUS": {
+      "title2": "Ils nous ont fait confiance"
+    },
+    "APROPOSdeNous": "Sheelni",
+    "EFFICACITE": "Rapidité, Fiabilité et Sécurité",
+    "descrip": "Sheelni est votre partenaire de confiance en tant que prestataire de service de livraison. Nous sommes engagés pour offrir un service rapide, fiable et sécurisé. Grâce à une efficacité remarquable, nous livrons vos objets en un temps impressionnant. Nous appliquons des normes de sécurité rigoureuses où chaque étape de livraison est soigneusement surveillée pour garantir l'intégrité de vos objets. Avec Sheelni, vous bénéficiez d'une solution de livraison complète, où vos articles sont entre les mains qualifiées de notre équipe.",
+    "btnSavoir": "EN SAVOIR PLUS",
+    "Delai": {
+      "title": "Livraison Rapide",
+      "desc": "Nos Chauffeurs sont à votre service au bout d’une heure selon l'adresse que vous avez recommandée."
+    },
+    "Coût": {
+      "title": "Technologie Avancée",
+      "desc": "Explorez notre expertise technologique et plongez dans l’utilisation de notre application innovante."
+    },
+    "ÉTAPES": {
+      "title1": "ÉTAPES SIMPLES",
+      "title2": "Un Processus Agile et Efficace",
+      "desc": "Découvrez notre service conçu pour vous offrir une expérience de livraison exceptionnelle à chaque fois.",
+      "QuatreEtaps": {
+        "etap1": {
+          "title": "SOYEZ HEUREUX",
+          "desc": "Ravi de notre service exceptionnel, dépassant vos besoins de transport."
+        },
+        "etap2": {
+          "title": "CHARGER",
+          "desc": "Nous vous assurons une collecte rapide et précise d'articles."
+        },
+        "etap3": {
+          "title": "LIVRER",
+          "desc": "Comptez sur notre équipe performante et fiable pour une livraison rapide et sécurisée."
+        },
+        "etap4": {
+          "title": "COMMANDER",
+          "desc": "Facilitez votre Commande de Transport en quelques clics seulement . "
+        },
+        "commentaire1": "Voulez vous en savoir plus?",
+        "commentaire2": " Découvrez davantage"
+      }
+    },
+    "PRESTATION-SERVICE-1": {
+      "title1": "NOS SERVICE",
+      "title2": "Traquer vos objets avec précision",
+      "desc": "Restez informé avec notre appli mobile et le site web. Réservez sans effort votre camion via notre plateforme en ligne. Notre formulaire simple sur l'application ou le site assure une réservation rapide et sécurisée."
+    },
+    "PRESTATION-SERVICE-3": {
+      "title1": "Nos Services",
+      "title2": "Un bouquet d'offres variées",
+      "desc": "Explorez la vaste gamme de nos services de déménagement personnalisés, soigneusement ajustés pour répondre à vos besoins spécifiques."
+    },
+    "PRESTATION-SERVICE-2": {
+      "title1": "SERVICE ASSURÉ",
+      "title2": "Un bouquet d'offres variées  ",
+      "desc": "Optez pour Sheelni et expérimentez une livraison exceptionnelle, livraisons rapides, assistance attentive et tranquillité d'esprit.",
+      "Cards": {
+        "card1": {
+          "title": "Retrait en magasin",
+          "desc": "Vous achetez vos articles, Nous assurons le retrait et le transport."
+        },
+        "card2": {
+          "title": "Petits mouvements",
+          "desc": "On gère le déplacement de vos objets de petite envergure."
+        },
+        "card3": {
+          "title": "Transport de colis",
+          "desc": "Livraison rapide en respectant des délais exceptionnellement courts."
+        },
+        "card4": {
+          "title": "Déménageurs uniquement",
+          "desc": "N'avez-vous besoin que de déménageurs ? Comptez sur nous."
+        },
+        "card5": {
+          "title": "Déménagement d'appartement",
+          "desc": "Chaque famille a des besoins de déménagement uniques. Nos déménageurs professionnels sont là pour vous."
+        },
+        "card6": {
+          "title": "Déménagement de bureau",
+          "desc": "On sait à quel point déménager votre bureau est crucial, mais pas d'inquiétude, on gère tout avec précision."
+        }
+      },
+      "Bulletin": {
+        "title1": "Bulletin",
+        "title2": "Abonnez-vous à notre newsletter",
+        "Btn-Envoyer": "Envoyer"
+      }
+    },
+    "TÉLÉCHARGER": {
+      "title1": "TÉLÉCHARGER",
+      "title2": "Téléchargez notre application",
+      "desc": "Simplifiez votre expérience de transport avec l'application Sheelni. Réservez, suivez et gérez les livraisons sans effort. Commencez dès maintenant et profitez d'une logistique transparente à portée de main."
+    },
+    "CONTACT": {
+      "title1": "CONTACT",
+      "title2": "Contactez-nous",
+      "desc": "Avez vous des questions ou besoin d'aide? Contactez notre équipe amicale dès aujourd'hui. Nous sommes là pour vous aider et vous fournir les informations dont vous avez besoin.",
+      "Adresse": {
+        "addresses": "Immeuble Yasmine du Lac Avenue de la Bourse Berges du Lac 1, La Marsa, Tunis 1053"
+      }
+    },
+    "COMMENCER": {
+      "title1": "Commencer",
+      "desc": "Inscrivez-vous sur notre site Web ou notre application et découvrez des solutions logistiques transparentes pour tous vos besoins de transport. Rejoignez Sheelni aujourd'hui.",
+      "btn-Comencer": "Commencer"
+    }
+  },
+  "ABOUT": {
+    "Review": {
+      "title": "Avis récents",
+      "desc": "Rejoignez notre communauté et découvrez de quoi tout le monde parle."
+    },
+    "Apropos": {
+      "title1": "À propos Sheelni",
+      "title2": "Livrer l'Excellence à Chaque Pas",
+      "desc": "Explorer nos offres de transport exceptionnel en France, des solutions logistiques précises et performantes pour répondre à vos attentes.",
+      "btn-obten": "Obtenez une estimation"
+    },
+    "NOTRE-COMPARE": {
+      "title1": "Notre entreprise",
+      "title2": "Notre Service à Votre Portée",
+      "desc": "Sheelni est une entreprise de livraison spécialisée dans le transport d'une large gamme d'articles, notamment de documents, de fournitures de bureau, de produits emballés, d'objets fragiles, de mobilier et d'équipement. Nous proposons ce service aussi bien aux entreprises de différents secteurs qu'aux particuliers au départ d'Île-de-France. Avec notre équipe compétente et dévouée, nous assurons la sécurité et la rapidité de vos colis. Qu'il s'agisse d'un petit colis ou d'un envoi massif, Sheelni s'engage à livrer vos articles en toute sécurité et dans les délais prévus."
+    },
+    "DEMENAGEMENT": {
+      "Paragraph": "Livraison rapide sécurisée. Très bon chauffeur courtois",
+      "Para": "  et professionnel satisfait je n’hésiterai pas à refaire appel à vos services.",
+      "Nom-Client": "Jean P"
+    },
+    "AGENTSLISTE": {
+      "Header": {
+        "title1": "Notre liste d'agents",
+        "desc": " Des professionnels dévoués et compétents - Engagés à assurer des services de transport fluides et fiables."
+      },
+      "AgentCard1": {
+        "Ligne": "Agent 1",
+        "Li": "CEO"
+      },
+      "AgentCard2": {
+        "Ligne": "Agent 2",
+        "Li": "Livreur"
+      },
+      "AgentCard3": {
+        "Ligne": "Agent 3",
+        "Li": "Marketing Manager"
+      },
+      "AgentCard4": {
+        "Ligne": "Agent 4",
+        "Li": "Admin"
+      }
+    },
+    "SERVICES-Sheelni": {
+      "Nos-Service": {
+        "title1": "SERVICES Sheelni",
+        "title2": "Notre Expertise vous suit à chaque pas!",
+        "desc": "Qu'il s'agisse du coin de la rue ou du bout du pays, notre équipe compétente vous propose une expérience aisée et sans stress. Disponible 7/7 de 7h à 20h.",
+        "btn-obten": "Obtenez une estimation"
+      },
+      "ABOUT-SERVICE": {
+        "title1": "ABOUT SERVICE",
+        "title2": "À propos des services de Sheelni",
+        "desc1": "Nous sommes fiers de vous présenter notre gamme complète de services de transport, conçus pour répondre à vos besoins variés. Guidés par notre engagement envers l'excellence, nous fournissons des solutions fiables et efficaces afin de garantir un transport sans accroc pour vos envois.",
+        "desc2": "De la collecte à la livraison; que vous ayez des colis légers, lourds ou spécialisés, notre équipe est prête  pour tout gérer en adoptant les stratégies logistiques les plus appropriées. Nous prenons soigneusement en main chaque étape, offrant bien plus qu'un simple service."
+      },
+      "ÉTAPES-FACILES": {
+        "title1": "ÉTAPES SIMPLES",
+        "title2": "Un Processus Agile et Efficace",
+        "desc": "Notre démarche vise à vous offrir une expérience pleinement satisfaisante! Contactez nous et bénéficier d’un devis en clin d'oeil. ",
+        "etap1": {
+          "title": "COMMANDE",
+          "desc": "Passez facilement votre commande de transport en quelques clics."
+        },
+        "etap2": {
+          "title": "LIVRER",
+          "desc": "Faites confiance à notre équipe efficace et fiable pour une livraison sécurisée et rapide."
+        },
+        "etap3": {
+          "title": "RAMASSER",
+          "desc": "Collecte d'articles rapide et soignée pour un transport sans faille."
+        },
+        "etap4": {
+          "title": "SOYEZ HEUREUX",
+          "desc": "Ravi de notre service exceptionnel, dépassant vos besoins de transport. "
+        }
+      },
+      "SERVICE": {
+        "title1": "Service",
+        "title2": "Services ultra accessibles, sans tracas !",
+        "desc1": "Nous nous efforçons de créer une expérience inclusive, où chaque étape de notre processus est minutieusement agencée pour garantir un niveau inégalé de précision . De la collecte d'articles à la livraison, nous mettons en place des protocoles rigoureux pour assurer une exécution sans faille. Que vous ayez des questions, des requêtes ou simplement besoin d'informations, notre système de contact vous permet de nous joindre sans heurts . Inscrivez-vous, laissez-nous un petit mot, ou simplement appelez-nous!."
+      }
+    }
+  },
+  "Historique": {
+    "Status": {
+      "Problème": {
+        "title": "Signaler un problème",
+        "deja": "Commande déjà signalée",
+        "contact": "Veuillez contacter le support pour plus d'information. ",
+        "tickettitre": "Titre:",
+        "ticketdesc": "Description:",
+        "response": "Réponse du Support:",
+        "responsemessage": "Votre problème est en cours de résolution, veuillez patienter.",
+        "responsebutton": "Quitter",
+        "adresse": "Adresse de dépose / de ramassage",
+        "envoi": "Envoi en cours...",
+        "problem": "Problème",
+        "message": "Message",
+        "pieces": "Pièces jointes",
+        "placeholder1": "Saisir le problème",
+        "placeholder2": "Saisir votre message",
+        "selectionner": "fichier(s) sélectionné(s)",
+        "placeholder3": "Joindre des fichiers",
+        "button": "Soumettre le rapport",
+        "alert": {
+          "thank_you": "Merci pour votre coopération.",
+          "message": "Nous avons reçu votre rapport. Notre équipe examinera le problème et vous contactera dès que possible.",
+          "button": "Continuer"
+        }
+      }
+    }
+  },
+  "Sheelni-CONTACT": {
+    "title1": "CONTACT",
+    "title2": "Prenez contact",
+    "desc": "Contactez-nous dès aujourd'hui pour discuter de vos besoins en matière de transport. Notre équipe amicale est prête à vous aider et à vous fournir des solutions personnalisées.",
+    "btn-obten": "Obtenir un devis",
+    "ContactForm": {
+      "title": "Contactez-nous",
+      "title2": "CONTACT",
+      "title1": "Prenez contact",
+      "desc": "Contactez-nous directement par téléphone ou remplissez le formulaire pour recevoir une consultation gratuite de notre équipe enthousiaste.",
+      "phone": "Nom",
+      "nom": "Prénom",
+      "emaile": "Votre email",
+      "Adresse": "+216 36 848 020",
+      "email": "contact@sheelni.com",
+      "textAresse": "Un problème ?",
+      "textAress": "Vous pouvez nous contacter à :",
+      "btnSend": "Envoyez-nous un message",
+      "placeholder": "Envoyer un message",
+      "Message": "Quand êtes-vous disponible ?"
+    }
+  },
+  "FOOTER": {
+    "Menu": "Menu",
+    "FooterLink": {
+      "FooterLink1": "A propos de nous",
+      "FooterLink2": "Nos Services",
+      "FooterLink3": "Contact",
+      "FooterLink4": "Obtenir un devis",
+      "FooterLink5": "Devenir partenaire"
+    },
+    "Container": {
+      "HeadingLast": "Joignez-nous aujourd'hui !",
+      "Ligne1": "8 Rue Montesquieu 93700 Drancy"
+    },
+    "Légale": "Légale",
+    "Copyright": "Copyright",
+    "Tous-réservés": "Tous droits réservés.",
+    "Last1": "Condition d'utilisation",
+    "Last2": "politique de confidentialité"
+  },
+  "LoginCard": {
+    "LoginHeader": {
+      "connecter": "Connectez-vous",
+      "comptermination": "à votre compte"
+    },
+    "LoginSection": {
+      "client": "Vous êtes client ?",
+      "Connexion": "Connexion",
+      "devenir-client": "Vous souhaitez devenir client ?",
+      "SINSCRIRE": "S’INSCRIRE"
+    },
+    "RegisterSection": {
+      "entreprise": "Vous êtes une entreprise ?",
+      "Connexion": "Connexion",
+      "devenir-entreprise": "Vous souhaitez devenir partenaire ?",
+      "SINSCRIRE": "S’INSCRIRE"
+    }
+  },
+  "SINSCRIRE": {
+    "Inscrire": "S'inscrire",
+    "px": "Ou connectez-vous en utilisant",
+    "Titlee": "Inscrivez-vous maintenant!",
+    "paragf": " pour découvrez nos services facilement et rapidement",
+    "para": "Accédez en toute simplicité et explorez rapidement nos offres de services",
+    "sidentifier": "S'identifier",
+    "FormInput": {
+      "Prénom": "Prénom",
+      "nom": "Nom de famille",
+      "phone": "Numéro de téléphone",
+      "email": "Adresse e-mail",
+      "pswd": "Mot de passe",
+      "confpswd": "Confirmer le mot de passe",
+      "accepter": "J'accepte tous les",
+      "terms": "termes",
+      "et": "et",
+      "conditions": "conditions",
+      "Inscrire": "S'inscrire"
+    },
+    "validation": {
+      "Prénom": "Entrez votre prénom s'il vous plait.",
+      "nom": "Veuillez entrer votre nom de famille.",
+      "phone": "s'il vous plaît entrer un numéro de téléphone valide",
+      "testPhone": "Numéro de téléphone invalide",
+      "email": "Veuillez saisir votre e-mail.",
+      "testemail": "email invalide",
+      "pswd": "S'il vous plait entrez votre mot de passe.",
+      "confpswd": "Les mots de passe doivent correspondre !"
+    }
+  },
+  "SIDENTIFIER": {
+    "Identifier": "S'identifier",
+    "HR": "Ou connectez-vous en utilisant",
+    "Titlee": "Vous n'avez pas encore de compte?",
+    "para": "Inscrivez-vous en simple clic et explorez immédiatement nos services",
+    "sidentifier": "S'INSCRIRE",
+    "CONNEXION": "CONNEXION",
+    "FormInput": {
+      "email": "Adresse e-mail",
+      "pswd": "Mot de passe",
+      "confpswd": "Mot de passe oublié?",
+      "errmsg": "veuillez ressayer a nouveau !",
+      "accepter": "J'accepte tous les termes et conditions",
+      "Inscrire": "S'inscrire"
+    },
+    "validation": {
+      "email": "Veuillez saisir votre adresse électronique",
+      "testemail": "email invalide",
+      "pswd": "S'il vous plait entrez votre mot de passe.",
+      "confpswd": "Les mots de passe doivent correspondre !"
+    }
+  },
+  "SINSCRIREpartenaire": {
+    "Inscrire": "S'inscrire",
+    "px": "Ou connectez-vous en utilisant",
+    "Titlee": "Avoir un compte?",
+    "para": "Connectez-vous facilement et découvrez nos services rapidement",
+    "sidentifier": "S'IDENTIFIER",
+    "FormInput": {
+      "nomP": "Nom du propriétaire",
+      "nomE": "Nom de l'entreprise",
+      "indivlast": "Nom",
+      "indivname": "Prénom du propriétaire",
+      "indiv": "Individu",
+      "organisation": "Organisation",
+      "indivre": "Inscription Individuelle",
+      "organisre": "Devenir Partenaire",
+      "numPatent": "Numéro de Patent",
+      "photoPatent": "Photo de Patent",
+      "Activité": "Activité",
+      "phone": "Numéro de téléphone",
+      "adresse": "Addresse",
+      "postalcode": "Code postal",
+      "email": "Adresse e-mail",
+      "pswd": "Mot de passe",
+      "confpswd": "Confirmez le mot de passe",
+      "accepter": "J'accepte tous les termes et conditions",
+      "Inscrire": "S'inscrire",
+      "Pièce d'identité recto": "Carte d'identité (Recto)",
+      "Pièce d'identité Verso": "Carte d'identité (Verso)",
+      "Extrait du Registre de Commerce": "Extrait du Registre du Commerce",
+      "Photo d'Attestation d'assurance": "Photo de l'attestation d'assurance",
+      "Photo d'Attestation CNSS": "Photo de l'attestation CNSS",
+      "Photo d'Attestation Fiscale": "Photo de l'attestation fiscale",
+      "licence de transport": "Licence de transport",
+      "RIB Société": "RIB de la société",
+      "Adresse": "Adresse",
+      "Code postal": "Code postal",
+      "Ville": "Ville",
+      "État": "État/Province",
+      "Aujourd": "Aujourd'hui",
+      "Date expiration assurance rc pro": "Date d'expiration de l'assurance RC Pro",
+      "Date expiration licence de transport": "Date d'expiration de la licence de transport",
+      "J'accepte tous les termes et conditions": "J'accepte tous ",
+      "et": "et ",
+      "termes  ": " les termes ",
+      "conditions": "conditions",
+      "Retour": "Retour",
+      "Image obligatoire": "Image obligatoire",
+      "Obligatoire": "Obligatoire",
+      "télécharger": "télécharger"
+    },
+    "validation": {
+      "nomP": "S'il vous plaît entrez votre nom.",
+      "nomPre": "S'il vous plaît entrez votre prénom.",
+      "nomE": "Veuillez saisir le nom de l'entreprise.",
+      "numPatent": "Veuillez entrer le numéro de brevet",
+      "photoPatent": "Selectionez une fichier.",
+      "Activité": "Veuillez entrer votre activité.",
+      "phone": "s'il vous plaît entrer un numéro de téléphone valide",
+      "testPhone": "Numéro de téléphone invalide",
+      "adresse": "Veuillez entrer votre adresse.",
+      "postalcode": "Veuillez entrer votre code postal.",
+      "Required": "Champs requis.",
+      "email": "Veuillez saisir votre e-mail.",
+      "testemail": "email invalide",
+      "pswd": "S'il vous plait entrez votre mot de passe.",
+      "confpswd": "Les mots de passe doivent correspondre !",
+      "accepter": "il faut accepter pour continuer"
+    }
+  },
+  "annuler": {
+    "echec1": "Veuillez sélectionner une raison avant de confirmer.",
+    "titre": "Annuler la commande ?",
+    "confirmation": "Êtes-vous sûr de vouloir annuler la commande ?",
+    "raisonPlaceholder": "Sélectionnez une raison",
+    "oui": "Oui",
+    "non": "Non",
+    "erreur": "Erreur",
+    "bouton": "Annuler la commande",
+    "raison1": "Changement d'avis",
+    "raison2": "J'ai trouvé un meilleur prix ailleurs",
+    "raison3": "Délai de livraison trop long",
+    "raison4": "Commande passée par erreur",
+    "raison5": "Problème de paiement",
+    "raison6": "Service client insatisfaisant",
+    "raison7": "Autre raison"
+  },
+  "ClientProfile": {
+    "Nouvelle-image": "Nouvelle image",
+    "User": "Informations Personnelles",
+    "Contact": "Contact Personnel",
+    "Compte": "Compte",
+    "Historique": "Historique",
+    "Réservation": "Nouvelle Réservation",
+    "passer1ere": "Passer votre première commande ...",
+    "ligne": "lignes par page",
+    "of": "de",
+    "Rechercher": "Rechercher",
+    "MTD": "Mot de passe",
+    "pswd": "Modifier le mot de passe",
+    "taperpswd": "Tapez mot de passe",
+    "MTA": "Mettre à jour",
+    "FormInput": {
+      "nom": "Nom",
+      "Prénom": "Prénom",
+      "cin": "Numéro d'identité nationale",
+      "phone": "Numéro de téléphone",
+      "email": "Adresse e-mail"
+    },
+    "validation": {
+      "Prénom": "Entrez votre prénom s'il vous plait.",
+      "nom": "Veuillez entrer votre nom de famille.",
+      "cin": "Veuillez entrer votre numéro d'identité nationale",
+      "phone": "s'il vous plaît entrer un numéro de téléphone valide",
+      "email": "Veuillez saisir votre adresse électronique",
+      "testemail": "email invalide"
+    },
+    "ProfileHistory": {
+      "tab": {
+        "ID": "ID",
+        "adresseR": "Adresse de Ramassage",
+        "code": "Code",
+        "adresseD": "Adresse de Dépôt",
+        "date": "Date",
+        "status": "Status",
+        "Actions": "Actions"
+      },
+      "details": {
+        "print": "imprimer",
+        "export": "exporter",
+        "suivre": "Suivez votre commande",
+        "adresse_ramassage": "Adresse de ramassage",
+        "adresse_depot": "Adresse de dépôt",
+        "distance_course": "Distance de la course",
+        "duree_course": "Durée de la course",
+        "date": "Date",
+        "prix": "Prix",
+        "mode_paiement": "Mode de paiement",
+        "information_commandes": "Informations des commandes",
+        "produit": "Objects:",
+        "commande": "COMMANDE",
+        "paiement_a_la_livraison": "Paiement à la Livraison",
+        "carte_bancaire": "Carte Bancaire"
+      }
+    },
+    "Commande": {
+      "status": {
+        "pending": "En attente",
+        "dispatched_to_partner": "Acceptée ",
+        "assigned_to_driver": "Acceptée par le livreur",
+        "driver_on_route_to_pickup": "En route vers départ",
+        "arrived_at_pickup": "Arrivé ",
+        "picked_up": "Collecté",
+        "on_route_to_delivery": "En route vers livraison",
+        "arrived_at_delivery": "Arrivé ",
+        "delivered": "Livré",
+        "completed": "Terminé",
+        "canceled_by_client": "Annulé",
+        "canceled_by_partner": "Annulé ",
+        "failed_pickup": "Échec",
+        "failed_delivery": "Échec",
+        "aucun": "Inconnu",
+        "loading": "Chargement du statut de la commande..."
+      },
+      "Message": {
+        "pending": "En attente",
+        "dispatched_to_partner": "Commande acceptée par la société",
+        "assigned_to_driver": "Commande acceptée par le livreur",
+        "driver_on_route_to_pickup": "Le chauffeur se rend au point de départ",
+        "arrived_at_pickup": "Arrivé au point de départ",
+        "picked_up": "Votre commande est collectée",
+        "on_route_to_delivery": "Le chauffeur se rend au point de la livraison",
+        "arrived_at_delivery": "Arrivé au point de livraison",
+        "delivered": "Votre commande est livré",
+        "canceled_by_client": "Vous avez annulé la commande",
+        "canceled_by_partner": "Commande Annulé par la société",
+        "failed_pickup": "Échec de la rammasage",
+        "failed_delivery": "Échec de la livraison",
+        "completed": "Votre commande est Terminé avec succée",
+        "merci": "Merci pour votre collaboration avec nous",
+        "encours": "Votre commande est en cours de traitement...",
+        "canceled": "Votre commande a été annulée.",
+        "unauthorized": "Vous n'êtes pas autorisé à suivre cette commande.",
+        "span": "Vous ne pouvez suivre que vos propres commandes.",
+        "button": "Retour à la page d'accueil.",
+        "envoyer": "Envoyer",
+        "comment": "Veuillez laisser votre commentaire.",
+        "invitspan": "Votre avis compte pour nous!",
+        "note": "Votre Note est:",
+        "invitation": "  Nous vous invitons à noter notre livreur une fois que votre commande sera terminée.",
+        "ratting": "Nous vous invitons à laisser votre avis sur le service de livraison et le livreur en laissant un petit message.  ",
+        "passer": "Passer",
+        "dejanote": " Vous aves déjà noté",
+        "rattinge": "Votre retour est précieux pour nous!"
+      }
+    }
+  },
+  "Alert": {
+    "tab": {
+      "title": "MERCI POUR VOTRE DEMANDE",
+      "message": "Veuillez préparer le montant exact pour le règlement lors de la livraison.",
+      "remerciment": "Merci de votre commande et de votre confiance !",
+      "button": "Continue"
+    }
+  },
+  "ImageSlider": {
+    "image1": {
+      "title": "Manipulé avec soin — Livré avec confiance",
+      "description": "Équipe Sheelni"
+    },
+    "image2": {
+      "title": "De porte à porte, avec soin",
+      "description": "Équipe Sheelni"
+    },
+    "image3": {
+      "title": "Faites-nous confiance pour livrer",
+      "description": "Équipe Sheelni"
+    },
+    "image4": {
+      "title": "Rapide, sûr, fiable",
+      "description": "Équipe Sheelni"
+    }
+  },
+  "Bulletin": {
+    "title": "Abonnez-vous à notre newsletter",
+    "button": "ENVOYER"
+  },
+  "JoinSeeelni": {
+    "title": "Rejoignez ",
+    "span": "Sheelni",
+    "Sutitle1": "pour des solutions",
+    "Sutitle": "Logistiques transparentes",
+    "description": "Inscrivez-vous sur notre site ou notre application et découvrez des solutions logistiques transparentes pour tous vos besoins de transport. Rejoignez Sheelni dès aujourd'hui.",
+    "button": "Commencer"
+  },
+  "Team": {
+    "title": "Notre équipe exceptionnelle",
+    "description": "Des professionnels dévoués et compétents — Engagés à garantir des services de transport fluides et fiables.",
+    "image1": {
+      "title": "Agent 1",
+      "description": "PDG"
+    },
+    "image2": {
+      "title": "Maybelle Willms",
+      "description": "Livreur"
+    },
+    "image3": {
+      "title": "Bridle Ledner",
+      "description": "Livreur"
+    },
+    "image4": {
+      "title": "Missouri Gulgowski",
+      "description": "Marketing"
+    }
+  },
+  "ForgetPassword": {
+    "title": "  Récupération de compte ",
+    "span": "Vous n'avez pas un compte avec cette adresse email",
+    "link": "Créér un compte",
+    "button": "Suivant"
+  },
+  "MessagePasswordReset": {
+    "title": "Un e-mail de réinitialisation de mot de passe a été envoyé à votre adresse e-mail. ",
+    "title2": "Veuillez vérifier votre boîte de réception.",
+    "description": "D'accord"
+  },
+  "ConfirmationModal": {
+    "span": "MERCI POUR VOTRE DEMANDE.  ",
+    "title": "   Veuillez préparer le montant exact pour le règlement lors de la livraison. ",
+    "description": "Merci de votre commande et de votre confiance ! ",
+    "button": " Continue"
+  },
+  "MethodPayement": {
+    "method": {
+      "title1": "Payer à la livraison",
+      "title2": " Payer en espèces à la livraison "
+    },
+    "payement": {
+      "title1": "Cartes de crédit/débit",
+      "title2": "Payer avec votre carte de crédit/débit"
+    },
+    "span": "J'accepte les conditions génerales",
+    "button": "Mettre à jour mot de passe"
+  },
+  "NotFound": {
+    "title": "Désolé, la page que vous recherchez est introuvable.",
+    "description": "Oups ! La page que vous recherchez semble être manquante. Nous nous excusons pour le désagrément. Veuillez revenir en arrière ou contacter notre équipe d'assistance pour obtenir de l'aide.",
+    "button": "Retour à la page d'accueil"
+  },
+  "Conditions": {
+    "heading": "Mentions Légales de FORTEKMA",
+    "identity": {
+      "title": "1. Identité de l'entreprise",
+      "description": "Raison sociale : FORTEKMA\nForme juridique : Société à Responsabilité Limitée (SARL)\nCapital social : 10 000 TND\nAdresse postale du siège social : Immeuble YASMINE, avenue de la Bourse, Berge du Lac 2 1053, Tunisie\nTéléphone : +216 36848020\nE-mail : contact@fortekma.com\nImmatriculation au Registre de Commerce : 1906853H\nNuméro d'identification fiscale : 1906853H\nCode APE : 74.13"
+    },
+    "dataProcessing": {
+      "title": "2. Responsable du Traitement des Données",
+      "description": "Nom du responsable : Alaeddine Rezgani , Adresse e-mail du responsable :alaeddine.rezgani@fortekma.com ."
+    },
+    "dataPurposes": {
+      "title": "3. Finalités du Traitement des Données",
+      "description": "Les données personnelles sont collectées aux fins de : Gestion des commandes et des contrats, Personnalisation des services et des communications, Amélioration de l 'expérience utilisateur, Envoi d 'informations marketing et promotionnelles, Réalisation d 'études statistiques."
+    },
+    "legalBasis": {
+      "title": "4. Base Juridique du Traitement",
+      "description": "Le traitement est fondé sur : L 'exécution d 'un contrat (par exemple, lors d 'une commande), Le consentement de l 'utilisateur pour les communications marketing, Le respect d 'obligations légales (par exemple, facturation)."
+    },
+    "rights": {
+      "title": "5. Droits des Personnes Concernées",
+      "description": "Conformément à la loi tunisienne n°2004-63 relative à la protection des données personnelles, les personnes concernées ont le droit : D'accéder à leurs données personnelles, De les rectifier en cas d'inexactitude, De les supprimer dans certaines circonstances, De limiter leur traitement, De s'opposer au traitement pour des motifs légitimes."
+    },
+    "dataRetention": {
+      "title": "6. Durée de Conservation des Données",
+      "description": "Les données personnelles sont conservées pendant la durée nécessaire aux finalités pour lesquelles elles ont été collectées. Cette durée peut varier en fonction de la finalité du traitement."
+    },
+    "securityMeasures": {
+      "title": "7. Mesures de Sécurité",
+      "description": "FORTEKMA met en place des mesures de sécurité techniques et organisationnelles appropriées pour protéger vos données personnelles contre tout accès non autorisé, toute divulgation, toute altération, et toute destruction."
+    },
+    "dpd": {
+      "title": "8. Délégué à la Protection des Données (DPD)",
+      "mrc": "Pour toute question relative à nos mentions légales, veuillez nous contacter à l'adresse suivante : contact@fortekma.com .",
+      "description": "FORTEKMA a désigné un Délégué à la Protection des Données (DPD). Vous pouvez le contacter à l'adresse e-mail suivante : alaeddine.rezgani@fortekma.com ."
+    }
+  },
+  "Maintenance": {
+    "title": " Site en Maintenance",
+    "description1": "   Nous travaillons activement pour améliorer notre site web afin de mieux vous servir.",
+    "span": " Merci de votre compréhension et de votre patience.",
+    "description2": "   Pour toute demande urgente ou assistance, veuillez nous contacter à l'adresse Email ou par téléphone."
+  },
+  "Politiques": {
+    "title": "Politique de confidentialité - Utilisateurs",
+    "description": "Nous nous engageons à protéger et respecter votre vie privée. Cette politique de confidentialité explique comment nous recueillons, utilisons, partageons et protégeons vos données personnelles.",
+    "personalData": {
+      "title": "1.Engagement de Confidentialité",
+      "description": "Nous nous engageons à protéger et à respecter votre vie privée. Cette politique de confidentialité explique comment nous collectons, utilisons, partageons et protégeons vos données personnelles."
+    },
+    "applicableLaws": {
+      "title": "2. Données Personnelles Collectées",
+      "title1": "2.1. Traitement Licite et Transparent",
+      "description": "Nous traitons vos données personnelles de manière licite, loyale et transparente. Seules les informations nécessaires aux fins spécifiées dans cette politique sont collectées.",
+      "title2": "2.2. Finalités de la Collecte",
+      "description2": "Les données personnelles que nous collectons peuvent inclure :",
+      "dataList1": "Adresse IP",
+      "dataList2": "Localisation approximative",
+      "dataList3": "Contenu consulté sur le site",
+      "title3": "2.3. Consentement",
+      "description3": "En utilisant notre site, vous consentez à la collecte automatique de certaines données. Vous avez le droit de retirer ce consentement à tout moment."
+    },
+    "lawfulBasis": {
+      "title": "3. Base Légale du Traitement",
+      "description": "Le traitement de vos données est licite lorsqu'il repose sur l'une des bases suivantes :",
+      "dataList1": "Votre consentement explicite",
+      "dataList2": "L'exécution d'un contrat",
+      "dataList3": "Le respect d'une obligation légale"
+    },
+    "dataUse": {
+      "title": "4. Utilisation des Données Personnelles",
+      "description": "Vos données sont utilisées uniquement aux fins spécifiées dans cette politique, sans utilisation abusive ou non divulguée."
+    },
+    "dataSharing": {
+      "title": "5. Partage des Données Personnelles",
+      "description": "Nous pouvons partager vos données avec des tiers uniquement lorsque cela est nécessaire pour atteindre les objectifs définis dans cette politique. Nous nous assurons que ces tiers respectent la confidentialité de vos données."
+    },
+    "dataRetention": {
+      "title": "6. Durée de Conservation des Données",
+      "description": "Nous conservons vos données aussi longtemps que nécessaire pour atteindre les finalités pour lesquelles elles ont été collectées, et conformément aux lois en vigueur."
+    },
+    "minors": {
+      "title": "7. Protection des Mineurs",
+      "description": "Les utilisateurs de moins de 15 ans doivent obtenir l'accord d'un représentant légal avant d'utiliser notre site.."
+    },
+    "userRights": {
+      "title": "8. Droits des Utilisateurs",
+      "description": "Conformément au RGPD, vous disposez des droits suivants :",
+      "dataList1": "Droit d'accès",
+      "dataList2": "Droit à l'effacement",
+      "dataList3": "Droit à la limitation du traitement",
+      "dataList4": "Droit d'opposition au traitement",
+      "dataList5": "Droit de rectification",
+      "desc": "Pour exercer ces droits, veuillez nous contacter à l'adresse suivante :",
+      "email": "Email :contact@sheelni.com"
+    },
+    "cookiePolicy": {
+      "title": "9. Politique sur les Cookies",
+      "description": "Nous utilisons des cookies analytiques pour améliorer la conception et la fonctionnalité du site. Consultez notre politique sur les cookies pour plus d'informations."
+    },
+    "modifications": {
+      "title": "10. Modifications de la Politique",
+      "description": "Cette politique peut être mise à jour afin de rester conforme aux lois en vigueur. Nous vous invitons à la consulter régulièrement."
+    },
+    "contact": {
+      "title": "11. Contact",
+      "description": "Pour toute question concernant cette politique de confidentialité, veuillez nous contacter à :",
+      "email": "Email :contact@sheelni.com",
+      "mrc": "Merci de faire confiance à Sheelni pour la protection de vos données personnelles."
+    }
+  },
+  "COOKIES": {
+    "title": "Politique de Cookies de Sheelni Technologie",
+    "lastUpdate": "Dernière mise à jour : 1/12/2023",
+    "description": "Chez <Bold>Sheelni Technologie</Bold>, nous accordons une grande importance à la protection de votre vie privée et à la transparence dans l'utilisation des technologies telles que les cookies sur nos sites Web et applications. Cette politique de cookies explique comment nous utilisons ces technologies et les options dont vous disposez pour les contrôler.",
+    "whatAreCookies": {
+      "title": "1. Qu'est-ce que sont les cookies et autres technologies similaires",
+      "description": "Les cookies et autres technologies similaires sont de petits fichiers de données qui sont stockés sur votre appareil lorsque vous visitez notre site Web ou utilisez nos applications. Ils nous aident à assurer le bon fonctionnement, l'analyse et l'amélioration de nos services, tout en personnalisant votre expérience. Ces technologies incluent également des balises Web, pixels, tags, et des SDK dans nos applications mobiles."
+    },
+    "howDoTheyWork": {
+      "title": "2. Comment fonctionnent-ils ?",
+      "description": "Les cookies sont de petits fichiers avec un identifiant unique qui stockent des données lorsque vous visitez notre site. Ils peuvent être temporaires (cookies de session) ou permanents. Les balises Web, pixels et SDK fonctionnent de manière similaire en collectant des informations sur votre utilisation du site."
+    },
+    "whatInformationDoWeCollect": {
+      "title": "3. Quelles informations collectons-nous ?",
+      "description": "Les cookies collectent des informations telles que vos préférences linguistiques, identifiants de connexion, type d'appareil, navigateur utilisé, date et heure de vos visites, et les pages que vous consultez."
+    },
+    "cookieTypes": {
+      "title": "4. Types de cookies que nous utilisons :",
+      "necessaryCookies": "Cookies nécessaires : Essentiels au fonctionnement du site, ils ne peuvent pas être désactivés. Ils sont activés en réponse à des actions de votre part, telles que la configuration de vos préférences.",
+      "list": [
+        "Cookies de fonctionnalité : Améliorent la fonctionnalité et la personnalisation de votre utilisation de nos services.",
+        "Cookies de performance : Nous permettent de mesurer et d'améliorer la performance de notre site en comptabilisant les visites et en analysant le trafic.",
+        "Cookies publicitaires : Utilisés pour comprendre vos centres d'intérêt et vous proposer des publicités pertinentes sur d'autres sites."
+      ]
+    },
+    "cookieRetention": {
+      "title": "5. Durée de conservation des cookies :",
+      "description": "Cookies de session : Expirent automatiquement à la fermeture du navigateur.\nCookies permanents : Conservés pour une période définie ou jusqu'à suppression manuelle."
+    },
+    "howToDisableCookies": {
+      "title": "6. Comment désactiver les cookies :",
+      "description": "Vous pouvez modifier vos préférences de cookies à tout moment dans la rubrique \"Personnaliser mes choix\". Cependant, veuillez noter que cela peut affecter le bon fonctionnement de nos sites et applications."
+    },
+    "cookieList": {
+      "title": "7. Liste des cookies :",
+      "tableHeader": {
+        "group": "Sous-groupe de cookies",
+        "cookie": "Cookies",
+        "usage": "Cookies utilisés"
+      },
+      "rows": [
+        {
+          "group": "Cookies Tawk.io",
+          "cookie": "Tawk.io",
+          "usage": "Service Client chat"
+        }
+      ]
+    },
+    "emailAnalysis": {
+      "title": "8. Analyse des e-mails :",
+      "description": "Les e-mails que nous envoyons contiennent des cookies de performance pour mesurer l'efficacité de nos campagnes marketing."
+    },
+    "consent": {
+      "title": "9. Consentement :",
+      "description": "Dans la plupart des cas, nous demandons votre consentement pour l'utilisation de cookies. Les cookies essentiels ne nécessitent pas de consentement, mais vous pouvez les bloquer ou les supprimer."
+    },
+    "moreInfo": {
+      "title": "10. Besoin d'informations supplémentaires ?",
+      "description": "Consultez nos politiques de confidentialité pour plus d'informations sur le traitement de vos données. Pour des questions sur les cookies, contactez notre équipe : <Bold>contact@sheelni.com</Bold>"
+    }
+  },
+  "Survey": {
+    "title": "D'où nous avez-vous connu?",
+    "button": "Envoyer",
+    "Facebook": "Facebook",
+    "Instagram": "Instagram",
+    "Google": "Google",
+    "Email": "Email",
+    "Bouche à oreille": "Bouche à oreille",
+    "Other": "Autre"
+  },
+  "Dropdown": {
+    "bonjour": "Bonjour",
+    "compte": "Compte",
+    "historique": "Historique",
+    "deconnecter": "Se déconnecter"
+  }
+}
