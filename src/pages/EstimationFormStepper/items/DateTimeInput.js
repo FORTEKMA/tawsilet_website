@@ -65,97 +65,54 @@ const TimeSelect = styled.select`
   border-radius: 10px;
   height: 46px;
   width: 100px;
+  flex:1;
   @media (max-width: 1050px) {
     flex: 1;
     border-radius: 8px;
-    max-width: 70px !important;  }
+      }
 `;
 
 const DateTimeInput = ({
-  updateHour,
-  checkedHour,
   defaultDate,
   defaultTime,
-  isDisabled,
+  onDateTimeChange // New prop
 }) => {
   const dispatch=useDispatch()
-  const command = useSelector((store) => store?.newCommand?.command);
-  const initialSelectedDate = defaultDate ? new Date(defaultDate) : null;
-  const [hhh, mmm] = defaultTime?.split(":") || [null, null];
+    const [hhh, mmm] = defaultTime?.split(":") || [null, null];
   const [t, i18n] = useTranslation();
   const now = new Date();
   const oneHourFromNow = new Date(now.getTime() + 60 * 60 * 1000 * 2); // * 2  To add twoHours
-  const savedCommand = localStorage.getItem("command");
-  const [selectedDate, setSelectedDate] = useState(initialSelectedDate);
+   const [selectedDate, setSelectedDate] = useState(defaultDate ? new Date(defaultDate) : null);
   const [selectedHour, setSelectedHour] = useState(hhh || null);
   const [selectedMinute, setSelectedMinute] = useState(mmm || null);
 
-  useEffect(() => {
-    checkedHour
-      ? isDisabled === true
-        ? (() => {
-            const newDate = new Date(oneHourFromNow);
-            newDate.setDate(newDate.getDate() + 1);
-
-            // Check if the selected time is before 00:00
-            if (parseInt(newDate.getHours()) < 6) {
-              // If before 00:00, add one more day
-              newDate.setDate(newDate.getDate() - 1);
-            }
-
-            setSelectedHour("06");
-            setSelectedMinute("00");
-            setSelectedDate(newDate);
-          })()
-        : (() => {
-            setSelectedHour(
-              oneHourFromNow.getHours().toString().padStart(2, "0")
-            );
-            setSelectedMinute(
-              oneHourFromNow.getMinutes().toString().padStart(2, "0")
-            );
-            setSelectedDate(oneHourFromNow);
-          })()
-      : null;
-  }, [checkedHour]);
-
-  useEffect(() => {
-    setSelectedDate((prevDate) => {
-      if (isToday(prevDate)) {
-        const newDate = new Date(prevDate);
-        newDate.setHours(selectedHour);
-        newDate.setMinutes(selectedMinute);
-        return newDate;
+ 
+   useEffect(() => {
+    if (selectedDate && selectedHour !== null && selectedMinute !== null) {
+      const newDate = new Date(selectedDate);
+      newDate.setHours(parseInt(selectedHour, 10));
+      newDate.setMinutes(parseInt(selectedMinute, 10));
+      if (onDateTimeChange) {
+        onDateTimeChange(newDate.toISOString().split("T")[0], `${selectedHour}:${selectedMinute}:00`);
       }
-      return prevDate;
-    });
-  }, [selectedHour, selectedMinute]);
-
-  useEffect(() => {
-    if(selectedDate){
-      dispatch(updateDepartDate(selectedDate.toISOString().split("T")[0]))
+    } else if (selectedDate && onDateTimeChange) {
+      onDateTimeChange(selectedDate.toISOString().split("T")[0], null);
     }
-  }, [selectedDate]);
-
-  useEffect(() => {
-    if(selectedDate){
-      dispatch(updateDeparTime(`${selectedHour}:${selectedMinute}:00.000`))
-    }
-  }, [selectedHour, selectedMinute]);
+  }, [selectedDate, selectedHour, selectedMinute]);
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
-    updateHour(false);
+   
   };
 
   const handleHourChange = (e) => {
     setSelectedHour(e.target.value);
-    updateHour(false);
+  
   };
 
   const handleMinuteChange = (e) => {
     setSelectedMinute(e.target.value);
-    updateHour(false);
+   
   };
 
   const isToday = (date) => {
@@ -172,7 +129,7 @@ const DateTimeInput = ({
     hour = oneHourFromNow.getHours().toString().padStart(2, "0"),
     minute = oneHourFromNow.getMinutes().toString().padStart(2, "0")
   ) => {
-    if (!isToday(selectedDate)) return false;
+   // if (!isToday(selectedDate)) return false;
     const selectedTime = new Date(selectedDate);
     selectedTime.setHours(parseInt(hour, 10));
     selectedTime.setMinutes(parseInt(minute, 10));
@@ -195,30 +152,20 @@ const DateTimeInput = ({
         aria-label="heure"
         value={selectedHour}
         onChange={handleHourChange}
-        disabled={!selectedDate}
+       // disabled={!selectedDate}
       >
         <option value="">{t("Step1.Heure")}</option>
         {Array.from({ length: 24 }, (_, i) => i).map((hour) => {
-          return !disableOptions(
-            (parseInt(hour) + 1).toString().padStart(2, "0"),
-            selectedMinute || "59"
-          ) ? (
-            hour >= 6 && hour < 22 ? (
-              <option
+          return  (<option
                 key={hour}
                 value={hour.toString().padStart(2, "0")}
-                disabled={disableOptions(
-                  parseInt(hour).toString().padStart(2, "0"),
-                  selectedMinute || "59"
-                )}
+                 
               >
                 {hour.toString().padStart(2, "0")}
               </option>
-            ) : null
-          ) : null;
+            )  
         })}
       </TimeSelect>
-
       <TimeSelect
         aria-label="minute"
         value={selectedMinute}

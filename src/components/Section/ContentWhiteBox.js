@@ -20,11 +20,11 @@ export const RoundedWhiteBox = styled.div`
   border-radius: 20px;
   min-height: 100px;
   border-radius: 20px;
-  border: 1px solid white;
+  
   background-color: white;
   color: ${(p) => p.theme.BACKGROUND_COLOR};
   @media (max-width: 744px) {
-    padding-top: 30px;
+    
     border-radius: 0 0 20px 20px;
     width: 97%;
     overflow: visible;

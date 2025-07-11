@@ -12,6 +12,9 @@ import mute from "../../assets/icons/mute.png";
 import unmute from "../../assets/icons/unmute.png";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import googleIcon from "../../assets/images/google.png";
+import appleIcon from "../../assets/images/apple.png";
+import logoapp from "../../assets/images/logoapp.png";
 
 const Telecharger = () => {
   useEffect(() => {
@@ -20,138 +23,37 @@ const Telecharger = () => {
     });
   }, []);
 
-  const [muted, setMuted] = useState(true); // Start muted by default
-  const [isPlaying, setIsPlaying] = useState(false);
-
-  useEffect(() => {
-    const videoEl = document.getElementById("myVideo");
-    if (!videoEl) return;
-
-    // Set initial attributes
-    videoEl.setAttribute("playsInline", "");
-    videoEl.setAttribute("webkit-playsinline", ""); // For iOS
-    videoEl.muted = true; // Start muted to allow autoplay
-
-    let hasUserInteracted = false;
-    let observer;
-
-    const handleUserInteraction = () => {
-      if (!hasUserInteracted) {
-        hasUserInteracted = true;
-        // Try to unmute after user interaction
-        videoEl.muted = false;
-        setMuted(false);
-        
-        // Remove listeners after first interaction
-        window.removeEventListener("click", handleUserInteraction);
-        window.removeEventListener("scroll", handleUserInteraction);
-        window.removeEventListener("touchstart", handleUserInteraction);
-      }
-    };
-
-    // Add interaction listeners
-    window.addEventListener("click", handleUserInteraction);
-    window.addEventListener("scroll", handleUserInteraction);
-    window.addEventListener("touchstart", handleUserInteraction);
-
-    // Initial muted autoplay attempt
-    const playPromise = videoEl.play().catch(err => {
-      console.warn("Initial muted autoplay failed:", err);
-    });
-
-    // Intersection Observer setup
-    observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            // Video is visible - try to play
-            videoEl.play()
-              .then(() => {
-                setIsPlaying(true);
-                // If we have user interaction, try unmuting
-                if (hasUserInteracted) {
-                  videoEl.muted = false;
-                  setMuted(false);
-                }
-              })
-              .catch(err => {
-                console.warn("Playback failed:", err);
-                setIsPlaying(false);
-              });
-          } else {
-            // Video is not visible - pause
-            videoEl.pause();
-            setIsPlaying(false);
-          }
-        });
-      },
-      { threshold: 0.5 }
-    );
-
-    observer.observe(videoEl);
-
-    // Cleanup
-    return () => {
-      if (observer) observer.disconnect();
-      window.removeEventListener("click", handleUserInteraction);
-      window.removeEventListener("scroll", handleUserInteraction);
-      window.removeEventListener("touchstart", handleUserInteraction);
-      if (videoEl) {
-        videoEl.pause();
-        videoEl.currentTime = 0;
-      }
-    };
-  }, []);
+  // Remove all video/mute/isPlaying related state and effects
 
   const { t, i18n } = useTranslation();
 
-  const toggleMute = () => {
-    const videoEl = document.getElementById("myVideo");
-    if (videoEl) {
-      videoEl.muted = !videoEl.muted;
-      setMuted(videoEl.muted);
-    }
-  };
+  // Remove toggleMute function
 
   return (
-    <section id="download">
+    <Section id="download">
       <Content data-aos="zoom-in" data-aos-delay={300}>
-        <ImgService>
-          <video
-            id="myVideo"
-            autoPlay
-            loop
-            muted={muted}
-            playsInline
-            webkit-playsinline="true"
-          >
-            <source type="video/webm" src={appvideowebm} />
-            <source type="video/mp4" src={appvideo} />
-            <p>Your browser does not support the video tag.</p>
-          </video>
-          <img 
-            className="mute" 
-            src={muted ? mute : unmute} 
-            alt={muted ? "unmute" : "mute"} 
-            onClick={toggleMute}
-          />
-        </ImgService>
         <ContentService dir="auto">
-          <LightTypo
-            headingup={t("ACCEUILE.TÉLÉCHARGER.title2")}
-            descriptioneee={t("ACCEUILE.TÉLÉCHARGER.desc")}
-          />
+          <YellowLabel>{t('DOWNLOAD.LABEL')}</YellowLabel>
+          <MainHeading>{t('DOWNLOAD.HEADING')}</MainHeading>
+          <Description>
+            {t('DOWNLOAD.DESCRIPTION')}
+          </Description>
           <Download>
-            <Link to="">
-              <Icons src={google} alt="playStore:sheelni" />
-            </Link>
-            <Link to="">
-              <Icons src={app} alt="appStore:sheelni"/>
-            </Link>
+            <StoreButton href="https://play.google.com/store/apps/details?id=com.fortekma.tawsiletDriver&pli=1" target="_blank" rel="noopener noreferrer">
+              <StoreIcon src={googleIcon} alt="Google Play" />
+              
+            </StoreButton>
+            <StoreButton href="https://apps.apple.com/us/app/tawsilet-driver/id6745764731" target="_blank" rel="noopener noreferrer">
+              <StoreIcon src={appleIcon} alt="App Store" />
+              
+            </StoreButton>
           </Download>
         </ContentService>
+        <ImgService>
+          <img src={logoapp} alt="App Logo" style={{ width: '100%', height: 'auto', borderRadius: '16px' }} />
+        </ImgService>
       </Content>
-    </section>
+    </Section>
   );
 };
 
@@ -290,4 +192,67 @@ const ImgService = styled.div`
       width: 100%;
     }
   }
+`;
+
+const Section = styled.section`
+  background: #0a0c12;
+  color: #fff;
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+`;
+const YellowLabel = styled.div`
+  color: #ffd166;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 1.5px;
+  margin-bottom: 1.5rem;
+`;
+const MainHeading = styled.h1`
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin: 0 0 1.2rem 0;
+  color: #fff;
+`;
+const Description = styled.p`
+  font-size: 1.1rem;
+  color: #d3d3d3;
+  margin-bottom: 2.5rem;
+  max-width: 420px;
+`;
+const StoreButton = styled.a`
+  display: flex;
+  align-items: center;
+  border-radius: 12px;
+  padding: 0.7rem 1.2rem;
+  text-decoration: none;
+  margin-right: 1.2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  transition: background 0.2s;
+  cursor: pointer;
+  
+  color: #181a20;
+ 
+`;
+const StoreIcon = styled.img`
+  width: 110px;
+  height: 38px;
+  margin-right: 0.9rem;
+`;
+const StoreText = styled.div`
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+`;
+const Small = styled.span`
+  font-size: 0.8rem;
+  color: #bdbdbd;
+`;
+const Bold = styled.span`
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
 `;

@@ -8,6 +8,19 @@
     
   } */
 
+/* Prevent zoom on iOS for map interactions */
+.mapcadre {
+  touch-action: pan-x pan-y pinch-zoom;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Ensure Google Maps container handles touch events properly */
+.mapcadre > div {
+  touch-action: pan-x pan-y pinch-zoom !important;
+}
+
 @font-face {
   font-family: "Inter";
   src: url("../fonts/Inter-VariableFont_slntwght.ttf");
@@ -32,7 +45,7 @@ input:-webkit-autofill:focus {
 }
 
 .tawk-message-body .tawk-agent-chat-bubble {
-  background-color: #f37a1d !important;
+  background-color: #d8b56c !important;
 }
 
 .home_content {
@@ -117,7 +130,7 @@ input:-webkit-autofill:focus {
   border: transparent;
   margin: 0px 0px 0px 8px;
   width: 95%;
-  background-color: #f37a1d;
+  background-color: #d8b56c;
 }
 
 .bot-car {
@@ -178,7 +191,7 @@ input:-webkit-autofill:focus {
   border: transparent;
 
   color: 20111;
-  background-color: #f37a1d;
+  background-color: #d8b56c;
   font-weight: 600;
   font-size: 14px;
   line-height: 30px;
@@ -384,7 +397,7 @@ color: #ffffff;
 
   width: 150px;
   color: 20111;
-  background-color: #f37a1d;
+  background-color: #d8b56c;
   font-weight: 600;
   font-size: 14px;
 }
@@ -471,7 +484,7 @@ color: #ffffff;
 
   width: 150px;
   color: 20111;
-  background-color: #f37a1d;
+  background-color: #d8b56c;
   font-weight: 600;
   font-size: 14px;
 }
@@ -525,7 +538,7 @@ color: #ffffff;
 
   width: 150px;
   color: 20111;
-  background-color: #f37a1d;
+  background-color: #d8b56c;
   font-weight: 600;
   font-size: 14px;
 }

@@ -110,7 +110,7 @@ const NestedOutlet = styled.div`
     background-color: transparent;
   }
   &::-webkit-scrollbar-thumb {
-    background-color: #f37a1d;
+    background-color: #d8b56c;
   }
   @media (max-width: 1151px) {
     width: 100vw;
@@ -184,8 +184,8 @@ const NestedNavbar = styled.ul`
       width: max-content;
     }
     background-color: #FFF;
-    color: #f37a1d;
-    border: 2px solid #f37a1d;
+    color: #d8b56c;
+    border: 2px solid #d8b56c;
     img {
       filter: brightness(0) saturate(100%) invert(63%) sepia(60%) saturate(4043%) hue-rotate(349deg) brightness(98%) contrast(94%);
     }

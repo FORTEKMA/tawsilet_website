@@ -19,13 +19,14 @@ import { getCurrentUser } from "./redux/userSlice/userSlice";
 import { getAllSettings } from "./redux/settingsSlice/settingSlice";
 import DriverTrack from "./pages/DriverTrack";
 import DriverRating from "./pages/DriverRating";
-
+ 
 import Maintenance from "./pages/StaticPages/Maintenance";
 import PrivateRoute from "./Routes/PrivateRoute";
 import CookiesPolitique from "./pages/StaticPages/CookiesPolitique";
 import Reject from "./pages/DriverTrack/Reject";
 import MapHome from "./components/Section/MapHome";
 import Accepted from "./pages/DriverTrack/accepted";
+import DeleteAccountRequest from "./pages/StaticPages/DeleteAccountRequest";
 
 // Lazy imports
 
@@ -39,22 +40,17 @@ const ProfileHistory = lazy(() =>
   import("./pages/DashClient/Profile/ProfileHistory")
 );
 const GetEstimate = lazy(() =>
-  import("./pages/EstimationFormStepper/index copy")
+  import("./pages/EstimationFormStepper/index")
 );
 const Home = lazy(() => import("./pages/StaticPages/Home"));
 const About = lazy(() => import("./pages/StaticPages/About"));
-const Partner = lazy(() => import("./pages/StaticPages/Partner"));
-const Services = lazy(() => import("./pages/StaticPages/Services"));
+ const Services = lazy(() => import("./pages/StaticPages/Services"));
 const SafeArea = lazy(() => import("./components/Section/SafeArea"));
 const Contact = lazy(() => import("./pages/StaticPages/Contact"));
-const LoginCard = lazy(() => import("./components/Items/LoginCard"));
-const SidentifierAgent = lazy(() =>
-  import("./pages/Authentification/SidentifierAgent")
-);
+ 
 const NotFound = lazy(() => import("./pages/StaticPages/404"));
 const Sinsecrire = lazy(() => import("./pages/Authentification/Sinsecrire"));
-const Test = lazy(() => import("./components/DataLayout/Test"));
-const Profile = lazy(() => import("./pages/DashClient/Profile/Profile"));
+ const Profile = lazy(() => import("./pages/DashClient/Profile/Profile"));
 const Sindentifier = lazy(() =>
   import("./pages/Authentification/Sindentifier")
 );
@@ -179,19 +175,19 @@ function App() {
     loading = x;
   };
 
-  // useEffect(() => {
-  //   // setLoading(true);
-  //   // setTimeout(() => {
-  //   //   setLoading(false);
-  //   // }, 600);
-  //   const usertoken = localStorage.getItem("user");
-  //   // dispatch(getAllSettings());
-  //   // const currentUserFetch =
-  //   //   usertoken &&
-  //   //   AuthService.getCurrentUser(usertoken?.id).then((result) => {
-  //   //     setCurrentUser(result);
-  //   //   });
-  // }, []);
+  useEffect(() => {
+    // setLoading(true);
+    // setTimeout(() => {
+    //   setLoading(false);
+    // }, 600);
+    const usertoken = localStorage.getItem("user");
+   dispatch(getAllSettings());
+    // const currentUserFetch =
+    //   usertoken &&
+    //   AuthService.getCurrentUser(usertoken?.id).then((result) => {
+    //     setCurrentUser(result);
+    //   });
+  }, []);
 
   {
     /*useEffect(() => {
@@ -208,8 +204,9 @@ function App() {
   const [activePage, setActivePage] = useState(1);
   const totalPages = 10;
   const maintenanceStatus = useSelector(
-    (state) => state?.settings?.settings[0]?.attributes?.maintenance
+    (state) => state?.settings?.settings[0]?.maintenance
   );
+console.log("maintenanceStatus",maintenanceStatus)
   useEffect(() => {
     if (maintenanceStatus) {
       setMaintenance(maintenanceStatus);
@@ -251,57 +248,14 @@ function App() {
       {/* <Suspense fallback={<Loader />}> */}
       <ThemeProvider theme={theme === "light" ? LightTheme : DarkTheme}>
         <GlobalStyles />
-        {/* {!opp ? (
-          <form
-            style={{
-              width: "100vw",
-              height: "100vh",
-              position: "fixed",
-              top: 0,
-              left: 0,
-              zIndex: 9999999999999,
-              backgroundColor: "#18365a",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              flexDirection: "column",
-              gap: 20,
-            }}
-          >
-            {/* <label htmlFor="username">UserName</label>
-            <input type="text" name="username" ref={usernameInputRef} /> 
-            <label style={{ fontSize: 20, color: "white" }} htmlFor="password">
-              Mot de passe
-            </label>
-            <input
-              placeholder="Mot de passe"
-              style={{ width: 300, fontSize: 18, padding: "8px 20px" }}
-              type="password"
-              name="password"
-              ref={passwordInputRef}
-            />
-            <button
-              type="submit"
-              style={{
-                padding: "12px 30px",
-                backgroundColor: "#F37A1D",
-                color: "#18365a",
-                borderRadius: 16,
-              }}
-              onClick={checkcheck}
-            >
-              Confirmer
-            </button>
-            <h1 style={{ color: "white" }}>{logggWarning}</h1>
-          </form>
-        ) : ( */}
+        
         <>
           {loading ? (
             <Loader />
           ) : (
             <>
-              {pathname.includes("identifier") ||
-              pathname.includes("insecrir") ? null : (
+              { 
+               (
                 <>
                   <Navbar
                     currentUser={currentUser}
@@ -318,10 +272,14 @@ function App() {
               >
                 <ScrollToTop />
 
-                {maintenance ? (
+                {maintenance&&process.env.NODE_ENV != 'development' ? (
                   <Routes>
                     <Route path="/" element={<Maintenance />} />
                     <Route path="*" element={<Maintenance />} />
+                    <Route
+                      path="/DeleteAccountRequest"
+                      element={<DeleteAccountRequest />}
+                    />
                   </Routes>
                 ) : (
                   <Routes>
@@ -329,6 +287,11 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/contact" element={<Contact />} />
+                   
+                      <Route
+                      path="/DeleteAccount"
+                      element={<DeleteAccountRequest />}
+                    />
                     <Route
                       path="/estimation"
                       element={
@@ -343,18 +306,9 @@ function App() {
                     {/* <Route path="/LoginCard" element={<LoginCard />} /> */}
                     <Route
                       path="/Sidentifierpartenaire"
-                      element={<Partner setLoading={setLoading} />}
+                      element={<SinsecrireAgent setLoading={setLoading} /> }
                     />
-                    {/* <Route
-                      path="/SidentifierAgent"
-                      element={
-                        <SidentifierAgent
-                          setLoading={setLoading}
-                          setPing={setPing}
-                          ping={ping}
-                        />
-                      }
-                    /> */}
+                    
                     <Route
                       path="/SinsecrireClient"
                       element={<Sinsecrire setLoading={setLoading} />}
@@ -438,6 +392,7 @@ function App() {
                         />
                       </Route>
                     </Route>
+                   
                   </Routes>
                 )}
 

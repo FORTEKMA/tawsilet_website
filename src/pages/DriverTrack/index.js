@@ -1,205 +1,119 @@
 import React, { useEffect, useState } from "react";
 import Map from "./Map";
-import Badge from "./Badge";
 import styled from "styled-components";
-import { Navigate, useParams } from "react-router";
+import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getDriverById,
-  getLocationById,
-} from "../../redux/locationSlice/locationSlice";
-
-import tracking from "../../assets/images/tracking.png";
-import warehouse from "../../assets/images/warehouse.png";
-import packing from "../../assets/images/packing.png";
-import { Link } from "react-router-dom";
+import { getCommandById } from "../../redux/ordersSlice/OrderSlice";
 import Loader from "../../components/Items/Loader";
 import { getReviewsByUser } from "../../redux/userSlice/userSlice";
 import { useTranslation } from "react-i18next";
-import Reject from "./Reject";
-import Accepted from "./accepted";
-import Delivered from "./delivered";
-import Completed from "./completed";
-import Failedpickup from "./failed-picup";
-import Faileddelivery from "./failed-delivry";
-import ProfileHistoryViewDetails from "../DashClient/Profile/ProfileHistoryViewDetails";
 import Commande from "./commande";
 import OrderStatusStepper from "../../components/Items/OrderStatusStepper";
+import { db } from '../../services/firebase';
+import { ref, onValue, off } from 'firebase/database';
+import ModalRating from "./ModalRating";
 import DriverRating from "../DriverRating";
+import { setCurrentCommandStatus } from "../../redux/ordersSlice/OrderSlice";
 
 const DriverTrack = (props) => {
-  const { t, i18n } = useTranslation();
-  const command = useSelector((store) => store?.location?.command);
+  const { t } = useTranslation();
+  const command = useSelector((store) => store?.orders?.currentCommand);
   const currentUser = useSelector((store) => store?.user?.currentUser);
   const [forceLoader, setForceLoader] = useState(true);
+  const [driverPosition, setDriverPosition] = useState(null);
+  const [realtimeStatus, setRealtimeStatus] = useState(null);
+  const [showRatingModal, setShowRatingModal] = useState(false);
 
   const params = useParams();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (currentUser) {
-      dispatch(getLocationById({ id: params.id })).then((res) => {
-        // console.log(res?.payload?.data?.driver_id?.data?.id);
-        dispatch(
-          getReviewsByUser({
-            id: res?.payload?.data?.driver_id?.documentId,
-          })
-        );
+    let statusRef = null;
+    let driverRef = null;
+    let statusListener = null;
+    let driverListener = null;
+    let cleanup = () => {};
+
+    if (currentUser && params.id) {
+      dispatch(getCommandById({ id: params.id })).then((res) => {
+        const order = res?.payload?.data;
+        if (order?.driver?.documentId) {
+          dispatch(getReviewsByUser({ id: order.driver.documentId }));
+        }
+        // Add Firebase listeners if status is not in the excluded list
+        if (order && !["Canceled_by_partner", "Completed", "Canceled_by_client"].includes(order.commandStatus)) {
+          if (order.requestId) {
+            statusRef = ref(db, `rideRequests/${order.requestId}/commandStatus`);
+            statusListener = onValue(statusRef, (snapshot) => {
+              const status = snapshot.val();
+              if (status) {
+                setRealtimeStatus(status);
+                dispatch(setCurrentCommandStatus(status));
+              }
+            });
+          }
+          if (order.driver?.documentId) {
+            driverRef = ref(db, `drivers/${order.driver.documentId}`);
+            driverListener = onValue(driverRef, (snapshot) => {
+              const pos = snapshot.val();
+              if (pos && pos.latitude && pos.longitude) {
+                setDriverPosition({ latitude: pos.latitude, longitude: pos.longitude,type:pos.type,angle:pos.angle });
+              }
+            });
+          }
+          cleanup = () => {
+            if (statusRef && statusListener) off(statusRef, 'value', statusListener);
+            if (driverRef && driverListener) off(driverRef, 'value', driverListener);
+          };
+        }
         setForceLoader(false);
       });
-
-      const intervalId = setInterval(() => {
-        dispatch(getLocationById({ id: params.id })).then((res) => {});
-      }, 10000);
-      return () => {
-        clearInterval(intervalId);
-      };
     } else {
       setForceLoader(false);
     }
-    // Return a cleanup function to clear the interval when the component unmounts
-  }, []);
+    return () => {
+      cleanup();
+    };
+  }, [currentUser, params.id, dispatch]);
+
+  // Use realtimeStatus if available, else fallback to command.commandStatus
+  const commandStatus = realtimeStatus || command?.commandStatus;
+  const isRated = !!command?.review;
+
+  // Auto-show rating modal when completed and not rated
+  useEffect(() => {
+    if (commandStatus === 'Completed' && !isRated) {
+      setShowRatingModal(true);
+    }
+  }, [commandStatus, isRated]);
+
+  const handleRateClick = () => {
+    if (!isRated) setShowRatingModal(true);
+  };
 
   if (forceLoader) {
     return <Loader />;
   }
 
-  if (
-    !currentUser?.id ||
-    (command?.client_id?.id && !(command?.client_id?.id === currentUser?.id)) ||
-    !command
-  ) {
-    return (
-      <MessageContainer>
-        <h1>{t("ClientProfile.Commande.Message.unauthorized")}</h1>
-        <h3>{t("ClientProfile.Commande.Message.span")}</h3>
-        <Link to="/" className="retour">
-          {t("ClientProfile.Commande.Message.button")}
-        </Link>
-      </MessageContainer>
-    );
-  }
-
-  return ["Pending", "Dispatched_to_partner"].includes(
-    command?.commandStatus
-  ) ? (
+  return (
     <section>
+      {commandStatus === 'Pending' && (
+        <PendingStatus>
+          {t('ClientProfile.Commande.status.pending') || 'Pending...'}
+        </PendingStatus>
+      )}
       <PlienMap ref={props.MapRef}>
-        <Map />
+        <Map driverPosition={driverPosition} command={command}  />
       </PlienMap>
       <div className="order-details-container">
-        {command && command?.commandStatus ? (
-          <OrderStatusStepper commandStatus={command?.commandStatus} />
-        ) : (
-          <p>{t("ClientProfile.Commande.status.loading")}</p>
-        )}
+        <OrderStatusStepper commandStatus={commandStatus} onRateClick={handleRateClick} isRated={isRated} />
       </div>
-
-      <Section style={{}}>
-        <Commande />
+      <Section>
+        <Commande data={command} />
       </Section>
+      {showRatingModal && <DriverRating onClose={() => setShowRatingModal(false)} />}
     </section>
-  ) : ["Arrived_at_pickup", "Arrived_at_delivery"].includes(
-      command?.commandStatus
-    ) ? (
-    <section>
-      <PlienMap ref={props.MapRef}>
-        <Map />
-      </PlienMap>
-      <Badge />
-      <div className="order-details-container">
-        {command && command?.commandStatus ? (
-          <OrderStatusStepper commandStatus={command?.commandStatus} />
-        ) : (
-          <p>{t("ClientProfile.Commande.status.loading")}</p>
-        )}
-      </div>
-
-      <Section style={{}}>
-        <Commande />
-      </Section>
-    </section>
-  ) : [
-      "Assigned_to_driver",
-      "Driver_on_route_to_pickup",
-      "Picked_up",
-      "On_route_to_delivery",
-      "Delivered",
-      "Failed_delivery",
-      "Failed_pickup",
-      "Canceled_by_partner",
-      "Canceled_by_client",
-    ].includes(command?.commandStatus) ? (
-    <section>
-      <PlienMap ref={props.MapRef}>
-        <Map />
-      </PlienMap>
-      <div className="order-details-container">
-        {command && command?.commandStatus ? (
-          <OrderStatusStepper commandStatus={command?.commandStatus} />
-        ) : (
-          <p>{t("ClientProfile.Commande.status.loading")}</p>
-        )}
-      </div>
-
-      <Section style={{}}>
-        <Commande />
-      </Section>
-    </section>
-  ) : // ) : command?.commandStatus === "Assigned_to_driver" ? (
-  //   <Accepted />
-  command?.commandStatus === "Completed" ? (
-    <section>
-      {/* <PlienMap ref={props.MapRef}>
-        <Map />
-      </PlienMap> */}
-      <DriverRating />
-
-      {/* <Section style={{}}>
-        <Commande />
-      </Section> */}
-    </section>
-  ) : (
-    // ) : command?.commandStatus === "Delivered" ? (
-    // //   <Delivered />
-    // command?.commandStatus === "Canceled_by_partner" ? (
-    //   <Reject />
-    // ) : command?.commandStatus === "Canceled_by_client" ? (
-    //   <Reject />
-    // ) : command?.commandStatus === "Failed_pickup" ? (
-    //   <Failedpickup />
-    // // ) : command?.commandStatus === "Failed_delivery" ? (
-    // //   <Faileddelivery />
-    // )
-
-    <TrackingContainer>
-      <h1>
-        {t("ClientProfile.Commande.Message.encours")}
-        {/* {command?.commandStatus} */}
-      </h1>
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: "10",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <img src={tracking} alt="addCommandCover" />
-        <img src={packing} alt="addCommandCover" />
-        <img src={warehouse} alt="addCommandCover" />
-      </div>
-    </TrackingContainer>
   );
-};
-
-const defaultProps = {
-  center: {
-    lat: 33.769012,
-    lng: 10.8674087,
-  },
-  zoom: 11,
 };
 
 export default DriverTrack;
@@ -210,146 +124,33 @@ export const PlienMap = styled.div`
   position: relative;
   @media (max-width: 744px) {
     display: flex;
-    flexWrap:"wrap",flexWrap:"wrap",
+    flex-wrap: wrap;
     height: 50vh;
     flex-direction: column-reverse;
   }
 `;
+
 const Section = styled.section`
-width:"60%",
-margin:"auto",
-  display: "flex",
-  flexWrap:"wrap",
-  gap: 50,
-  justifyContent: "flex-start",
-  alignContent: "center",
-  padding:30,
-  paddingTop:0
-    @media (max-width: 744px) {
-  width:100%
-  }
-`;
-const TrackingContainer = styled.div`
-  margin-top: -10vh;
-  width: 100%;
-  height: 90vh;
+  margin: auto;
   display: flex;
-  flexWrap:"wrap",
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 30px;
-  text-align: center;
-  font-size: 1.3vw;
-  padding-inline: 16px;
-  @media (max-width: 700px) {
-    font-size: 12px;
-  }
-  img {
-    width: 15%;
-  }
-`;
-const MessageContainer = styled.div`
-  background-color: #18365a !important;
-  padding-top: 30vh;
-  padding-bottom: 30px;
-  width: 100%;
-  min-height: 90vh;
-  display: flex;
-  flexWrap:"wrap",
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
+  gap: 50px;
   justify-content: flex-start;
-  gap: 10px;
+  align-content: center;
+  padding: 30px;
+  padding-top: 0;
   @media (max-width: 744px) {
-    padding-top: 20px;
-    justify-content: center;
+    width: 100%;
   }
-  h3 {
-    color: #f37a1d;
-    font-weight: 300;
-  }
-  h1 {
-    color: white;
-    text-transform: capitalize;
-    text-align: center;
-  }
-  .retour {
-    margin-top: 20px;
-    border: 1px solid white;
-    border-radius: 16px;
-    padding: 8px 16px;
-    cursor: pointer;
-    text-decoration: none;
-    color: white;
-    &:hover {
-      background-color: white;
-      border: 1px solid #f37a1d;
-      color: #f37a1d;
-    }
-  }
-`;
-const StatusStepper = styled.div`
-  margin: 20px 0;
-  position: relative;
-  padding-left: 20px;
 `;
 
-const StatusStep = styled.div`
-  position: relative;
-  padding-bottom: 20px;
-  ${({ last }) =>
-    !last &&
-    `
-    &:before {
-      content: '';
-      position: absolute;
-      left: -20px;
-      top: 20px;
-      height: calc(100% - 20px);
-      width: 2px;
-      background: ${(props) => (props.active ? "#3498db" : "#ecf0f1")};
-    }
-  `}
-`;
-
-const StatusBadge = styled.span`
-  display: flex;
-  flexWrap:"wrap",
-  flex-direction:column;
-  padding: 4px 12px;
-  border-radius: 16px;
-  font-size: 14px;
-  font-weight: bold;
-  // background-color: ${(props) => (props.active ? "#3498db" : "#ecf0f1")};
-  color: ${(props) => (props.active ? "#18365a" : "grey")};
-  position: relative;
-
-  &:before {
-    content: "";
-    position: absolute;
-    left: 28px;
-    margin-bottom:10px;
-    top: -13px;
-    transform: translateY(-50%);
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: ${(props) => (props.active ? "#18365a" : "#ecf0f1")};
-    border: 2px solid white;
-  }
-`;
-const StatusBadgee = styled.p`
-  position: absolute;
-  left: -59px;
-  top: -32px;
-  color: ${(props) => (props.active ? "#18365a" : "grey")};
-  // border: 2px solid white;
-`;
-
-const StatusDescription = styled.p`
-  font-size: 14px;
-  margin: 8px 0 0 0;
-  color: #7f8c8d;
-  padding-left: 10px;
+const PendingStatus = styled.div`
+  width: 100%;
+  background: #fffbe6;
+  color: #d8b56c;
+  text-align: center;
+  padding: 16px 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-bottom: 1px solid #ffe58f;
 `;

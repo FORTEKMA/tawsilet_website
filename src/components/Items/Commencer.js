@@ -129,16 +129,16 @@ export const Button = styled.button`
   border-radius: 15px;
   border-color: ${(props) => props.theme.PRIMARY_COLOR};
   padding: ${style.spacing.PADDING_SMALL} ${style.spacing.PADDING_LARGE};
-  background-color: #f37a1d;
+  background-color: #d8b56c;
   color: ${(props) => props.theme.BACKGROUND_COLOR};
   margin-bottom: 20px;
   border: none;
   &:hover {
     border-radius: 15px;
-    border: 1px solid #f37a1d;
+    border: 1px solid #d8b56c;
     background-color: ${(props) =>
-      props.variant !== "outline" ? "#18365a" : "#F37A1D"};
-    color: ${(props) => (props.variant !== "outline" ? "#F37A1D" : "#18365a")};
+      props.variant !== "outline" ? "#18365a" : "#d8b56c"};
+    color: ${(props) => (props.variant !== "outline" ? "#d8b56c" : "#18365a")};
   }
 `;
 export const Li = styled.h6`

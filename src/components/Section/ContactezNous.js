@@ -36,17 +36,11 @@ const ContactezNous = () => {
             <img src={phone} className="icon-cercle" alt="phone" />
             <Description>{t("ACCEUILE.CONTACT.Adresse.addresses")}</Description>
           </Lineone>
-          <Lineone dir="auto" isRtl={i18n.language.startsWith("ar")}>
-            <img src={loca} className="icon-cercle" alt="local" />
-            <Description >
-              
-              +216 36 848 020
-            </Description>
-          </Lineone>
+         
           <Lineone >
             <img src={message} className="icon-cercle" alt="message" />
             <Description >
-              contact@sheelni.com
+              contact@tawsilet.com
             </Description>
           </Lineone>
         </ContentService>
@@ -94,7 +88,7 @@ const ContentService = styled.div`
   display: flex;
   flex-direction: column;
   width: 30%;
-
+  
   border-radius: 32px;
   @media (max-width: 744px) {
     width: 80%;
@@ -103,6 +97,11 @@ const ContentService = styled.div`
     width: 40px;
     /* margin: 10px; */
     object-fit: contain;
+        background-color: white;
+    border-radius: 20px;
+    width: 40px;
+    height: 40px;
+
   }
 `;
 const ImgService = styled.div`
@@ -131,7 +130,7 @@ const Description = styled.div`
   font-size: 1rem;
 
 
-  color: rgba(24, 54, 90, 1);
+  color: #fff;
   line-height: 30px;
   padding: 10px;
   @media (max-width: 744px) {

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import * as style from "../../constants/StyleSheets";
-import React from "react";
+import React, { useEffect } from "react";
 import Side from "../../assets/images/serious-mature-asian-woman-showing-place-sofa-movers-living-room-while-moving-new-house.png";
 import { useTranslation } from "react-i18next";
 import LightTypo from "../../constants/LightTypo";
@@ -8,19 +8,11 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 const Company = () => {
   const { t, i18n } = useTranslation();
+  useEffect(() => {
+    AOS.init({ once: true });
+  }, []);
   return (
-    // <Container dir="auto">
-    //   <Comp>
-    //     <Image>
-    //     <IMG src={Side} alt="side"></IMG></Image>
-    //     <div className="paragraphe-service">
-    //       <Hedear> {t("ABOUT.NOTRE-COMPARE.title1")}</Hedear>
-    //       <Title>{t("ABOUT.NOTRE-COMPARE.title2")}</Title>
-
-    //       <Descrip>{t("ABOUT.NOTRE-COMPARE.desc")}</Descrip>
-    //     </div>
-    //   </Comp>
-    // </Container>
+  
    
     <Content dir="auto">
     {" "}

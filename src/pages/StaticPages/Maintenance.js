@@ -1,7 +1,6 @@
 import React, { lazy } from "react";
 import "./maintenance.css";
-// import maintenance from "./../../assets/images/maintenance.svg";
-const maintenance = lazy(() => import("./../../assets/images/maintenance.svg"));
+import maintenanceImg from "./../../assets/images/maintenance.svg";
 import { useTranslation } from "react-i18next";
 
 
@@ -22,7 +21,7 @@ function Maintenance() {
         </p>
       </div>
       <div className="maintenance_image_container">
-        <img src={maintenance} alt="" />
+        <img src={maintenanceImg} alt="" />
       </div>
     </div>
   );

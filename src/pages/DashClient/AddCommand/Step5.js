@@ -42,7 +42,7 @@ const Step5 = ({ command, setCommand }) => {
     setFinalOrder({
       data: {
         ...finalOrder.data,
-        client_id: currentUser.id,
+        client: currentUser.id,
         paymentStatus: "processing",
       },
     });
@@ -240,7 +240,7 @@ const RadioLabel = styled.span`
   margin-left: 5px;
   //   color: white;
   ${RadioInput}:checked ~ & {
-    color: #F37A1D;
+    color: #d8b56c;
   }
 `;
 const RadioText = styled.div`
@@ -358,8 +358,8 @@ const CheckboxInput = styled.input`
   height: 35.4px; */
   /* top: 20px; */
   &:checked {
-    background-color: #F37A1D;
-    border: 2px solid #F37A1D;
+    background-color: #d8b56c;
+    border: 2px solid #d8b56c;
   }
   @media (max-width: 1150px) {
     width: 8vw;
@@ -400,7 +400,7 @@ const Button = styled.button`
   align-items: center;
   border-width: 2px;
   background-color: ${(props) => props.theme.PRIMARY_COLOR};
-  border-color: #F37A1D;
+  border-color: #d8b56c;
   font-family: ${style.font.FONT_FAMILY};
   font-weight: 600;
   font-size: 0.875rem;

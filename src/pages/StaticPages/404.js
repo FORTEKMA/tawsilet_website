@@ -54,7 +54,7 @@ margin-top: 20px;
   
   cursor: pointer;
  
-  background-color: #F37A1D;
+  background-color: #d8b56c;
   box-shadow: 2px 2px 0px 0px #18365A;
 margin-right:45%;
   @media (max-width: 1050px) {
@@ -76,7 +76,7 @@ margin-right: 30rem;
   font-weight: 400;
   font-size: 16px;
   padding-top: 16px;
-  color: #F37A1D;
+  color: #d8b56c;
  }
 `;
 const Content = styled.section`
@@ -84,7 +84,7 @@ const Content = styled.section`
 flex-direction: row;
   align-items: center;
   justify-content: center;
-  background-color: white;
+  background-color: #0c0c0c;
   text-align: center;
   padding-left: 100px;
   padding-right: 100px;

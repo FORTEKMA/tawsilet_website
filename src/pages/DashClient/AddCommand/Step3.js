@@ -103,7 +103,7 @@ export const Container = styled.div`
   }
 
   .nextButton {
-    background: #F37A1D;
+    background: #d8b56c;
 
     padding: 12px 24px 12px 24px;
     border-radius: 12px;

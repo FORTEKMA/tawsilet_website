@@ -9,12 +9,7 @@ import * as style from "../../constants/StyleSheets";
 export const SecondNav = ({ setShowMenu, navigationValues }) => {
   return (
     <Section>
-      {/* <Div>
-        <img src={Cr} onClick={() => setShowMenu(false)}></img>
-        <img src={Lg}></img>
-        <Button>Connecter</Button>
-      </Div>
-      <Hr></Hr> */}
+   
 
       <DIV>
         {navigationValues?.navbar?.menu?.links?.map((item, index) => (
@@ -22,11 +17,7 @@ export const SecondNav = ({ setShowMenu, navigationValues }) => {
             <P>{item.label}</P>
           </Link>
         ))}
-
-        {/* <P>Nos Services</P>
-        <P>Contact</P>
-        <P>Obtenir une estimation</P>
-        <P>Devenir un partenaire</P> */}
+ 
       </DIV>
     </Section>
   );
@@ -37,7 +28,7 @@ export default SecondNav;
 const Section = styled.section`
   height: 100vh;
   width: 100vw;
-  background-color: #ffff;
+  background-color: #0c0c0c;
   display: none;
   z-index: 999999999999999999999 !important;
   @media (max-width: 1150px) {
@@ -67,8 +58,8 @@ export const Button = styled.button`
   padding: ${style.spacing.PADDING_SMALL} ${style.spacing.PADDING_LARGE};
   background-color: ${(props) => props.theme.BACKGROUND_COLOR};
   border-radius: 10px;
-  color: #F37A1D;
-  border: 1px solid #F37A1D;
+  color: #d8b56c;
+  border: 1px solid #d8b56c;
 `;
 
 const Hr = styled.hr`
@@ -78,7 +69,7 @@ const Hr = styled.hr`
 `;
 
 const P = styled.h1`
-  color: #18365A;
+  color: #d8b56c;
   font-size: 20px;
   font-weight: 800;
   text-decoration: none;

@@ -8,7 +8,7 @@ import { Rating, RoundedStar } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 
 const Badge = () => {
-  const driver = useSelector((store) => store?.location?.command?.driver_id);
+  const driver = useSelector((store) => store?.orders?.currentCommand?.driver_id);
   const reviews = useSelector((store) => store?.user?.reviews);
   // const
   // const [rating, setRating] = useState(3.6); // Initial value
@@ -38,7 +38,7 @@ const Badge = () => {
           // halfFillMode="box"
           itemStyles={{
             itemShapes: RoundedStar,
-            activeFillColor: "#f37a1d",
+            activeFillColor: "#d8b56c",
             inactiveFillColor: "#ccc",
           }}
         />

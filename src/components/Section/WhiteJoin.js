@@ -55,14 +55,14 @@ margin-top: 50px;
   width: 180px;
   height: 45px;
   border-radius: 7px;
-  border: 1px solid #F37A1D;
+  border: 1px solid #d8b56c;
   color: white;
   font-size: 15px;
   text-align: center;
   line-height: 13.63px;
   cursor: pointer;
  
-  background-color: #F37A1D;
+  background-color: #d8b56c;
   /* box-shadow: 2px 2px 0px 0px #18365A; */
 /* margin-right:45%; */
   @media (max-width: 1050px) {
@@ -165,7 +165,7 @@ const Span = styled.span`
 
   line-height: 160%;
 
-  color: #F37A1D;
+  color: #d8b56c;
 
 
   @media (max-width: 744px) {

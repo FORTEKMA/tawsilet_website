@@ -78,8 +78,8 @@ const ActionButton = styled.button`
 const ActionButtonv = styled.button`
   margin-top: 50px;
   padding: 10px;
-  border: 1px solid #f37a1d;
-  background-color: #f37a1d;
+  border: 1px solid #d8b56c;
+  background-color: #d8b56c;
   color: white;
   font-weight: 600;
   margin: auto;
@@ -163,7 +163,7 @@ const PictureSection = styled.div`
     }
   }
   .activeCard {
-    background-color: #f37a1d;
+    background-color: #d8b56c;
     height: 9.5vw;
     @media (max-width: 1150px) {
       height: 100%;
@@ -365,7 +365,7 @@ tableWrapper.innerHTML += clientInfo;
             <h4 style="margin: 0 0 2mm 0; font-size: 12pt;">Date de depart</h4>
             <p style="margin: 0; font-size: 11pt;">${
               selectedOrder?.departDate
-            } ${selectedOrder?.deparTime.split(":").slice(0, 2).join(":")}</p>
+            } ${selectedOrder?.deparTime&&selectedOrder?.deparTime.split(":").slice(0, 2).join(":")}</p>
         </div>
     `;
 
@@ -474,23 +474,15 @@ footerLeft.style.cssText = "float: left; text-align: left;";
 footerLeft.innerHTML = `
       
    
-    <p style="margin: 0 0 1mm 0; font-size: 11pt;">Tél: +216 36 848 020</p>
-    <p style="margin: 0; font-size: 11pt;">Email: contact@sheelni.com</p> 
+    
+    <p style="margin: 0; font-size: 11pt;">Email: contact@tawsilet.com</p> 
     <p style="margin: 0 0 1mm 0; font-size: 11pt;">Adresse: Immeuble Yasmine du Lac, Avenue de la Bourse</p>
     <p style="margin: 0 0 1mm 0; font-size: 11pt;">Berges du Lac 1, La Marsa, Tunis 1053</p>
 `;
 
 // Right side - Company info
 const footerRight = document.createElement("div");
-// const logoo = document.createElement("img");
-// logoo.src = "/assets/images/Group1.png";// Update this path
-// logoo.alt = "Sheelni Logo";
-// logoo.style.cssText = `
-//     width: 30mm;
-//     height: auto;
-//     max-height: 20mm;
-//     object-fit: contain;
-// `;
+ 
 footerRight.style.cssText = "float: right; text-align: right;";
 footerRight.innerHTML = `
      <p style="margin: 0 0 1mm 0; font-size: 10pt; color: #666;">
@@ -673,17 +665,17 @@ return tableWrapper;
           </TableCell>
         </TableRow>
         <TableRow>
-          <TableCell>
+         {selectedOrder?.deparTime&&selectedOrder?.departDate&&(<TableCell>
             <DateTimeSection>
               <InfoTitle>
                 {t("ClientProfile.ProfileHistory.details.date")}
               </InfoTitle>
               <p>
                 {selectedOrder?.departDate},{" "}
-                {selectedOrder?.deparTime.split(":").slice(0, 2).join(":")}
+                {selectedOrder?.deparTime&&selectedOrder?.deparTime.split(":").slice(0, 2).join(":")}
               </p>
             </DateTimeSection>
-          </TableCell>
+          </TableCell>)}
           <TableCell>
             {" "}
             {selectedOrder?.payType === "Livraison" ? null : (
@@ -934,7 +926,7 @@ const SmallCard = styled.div`
 
   box-shadow: 0px 6.360688209533691px 19.082067489624023px 0px #0000001f;
   .activeCard {
-    background-color: #f37a1d !important;
+    background-color: #d8b56c !important;
     height: 9.5vw;
     @media (max-width: 1150px) {
       height: 100%;

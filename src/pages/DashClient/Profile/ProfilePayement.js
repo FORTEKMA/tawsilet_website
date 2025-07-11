@@ -92,7 +92,7 @@ const Button = styled.button`
 
   border-width: 2px;
   background-color: ${(props) => props.theme.PRIMARY_COLOR};
-  border-color: #F37A1D;
+  border-color: #d8b56c;
   font-family: ${style.font.FONT_FAMILY};
   font-weight: 600;
   font-size: 0.875rem;

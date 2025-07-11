@@ -19,14 +19,14 @@ const MarqueAbout = () => {
 
     const fakeData1 = [
       {
-        description: "Service impeccable , Le chauffeur est arrivé à l'heure et le transport s'est fait sans souci. Jerecommande vivement Sheelni",
+        description: "Service impeccable , Le chauffeur est arrivé à l'heure et le transport s'est fait sans souci. Jerecommande vivement Tawsilet",
         title: "Mohamed Ben Amor",
         tag: "Client ",
 
         imageSrc:  client7,
       },
       {
-        description: "Déménagement rapide et efficace, merci à l'équipe Sheelni pour leur professionnalisme ",
+        description: "Déménagement rapide et efficace, merci à l'équipe Tawsilet pour leur professionnalisme ",
         title: "Sarra Khelifi ",
         tag: "Client",
         imageSrc: client3,
@@ -38,7 +38,7 @@ const MarqueAbout = () => {
         imageSrc: client1,
       },
       {
-        description: "Un service qui manquait en Tunisie ! Très pratique et simple à utiliser. Merci Sheelni ",
+        description: "Un service qui manquait en Tunisie ! Très pratique et simple à utiliser. Merci Tawsilet ",
         title: "Firas Messaoudi ",
         tag: "Client",
 
@@ -49,7 +49,7 @@ const MarqueAbout = () => {
       
       const fakeData2 = [
         {
-          description: "Je ne connaissais pas Sheelni avant, mais maintenant je l'utilise à chaque besoin. Service fiable et sérieux",
+          description: "Je ne connaissais pas Tawsilet avant, mais maintenant je l'utilise à chaque besoin. Service fiable et sérieux",
           title: "Amira Dhouibi",
           tag: "Client ",
  
@@ -62,7 +62,7 @@ const MarqueAbout = () => {
           imageSrc: client2,
         },
         {
-          description: "Sheelni, c'est la solution idéale pour un transport sans stress. Service professionnel et rapide ",
+          description: "Tawsilet, c'est la solution idéale pour un transport sans stress. Service professionnel et rapide ",
           title: "Anis Khouini ",
           tag: "Client",
           imageSrc: client6,
@@ -76,7 +76,7 @@ const MarqueAbout = () => {
         },
       ];
   return (
-    <div>
+    <Wrapper>
         <Middle>
       <HeadingUp>
       {t("ABOUT.Review.title")}
@@ -113,7 +113,7 @@ const MarqueAbout = () => {
         </Marquee>
         </SecondMarque>
     </Container>
-  </div>
+  </Wrapper>
   )
 }
 
@@ -135,7 +135,7 @@ export const Container = styled.div`
 export const Description = styled.div`
 font-weight: 400;
 font-size: 16px;
-color: rgba(24, 54, 90, 1);
+color: #0c0c0c;
 line-height: 30px;
 width: 65%;
 text-align: center;
@@ -149,7 +149,7 @@ export const HeadingUp = styled.div`
 font-weight: 700;
 
 font-size: 2.8125rem;
-color: rgba(24, 54, 90, 1);
+color: #0c0c0c;
 
 text-align: center;
 @media (max-width: 744px) {
@@ -162,4 +162,11 @@ justify-content: center;
 align-items: center;
 flex-direction: column;
 gap: 1.25rem;
+`;
+export const Wrapper = styled.div`
+  background: white;
+  border-radius: 26px;
+  margin-left: 30px;
+  margin-right: 30px;
+  padding-ttp:30px
 `;

@@ -24,6 +24,7 @@ import Bulletin from "../../components/Section/Bulletin";
 import MarqueAbout from "../../components/Section/MarqueAbout";
 import { useNavigate } from "react-router";
 // import { Helmet } from "react-helmet-async";
+import TrrustUs  from "../../components/Section/TrrustUs";
 
 const About = () => {
   // useLayoutEffect(() => {
@@ -49,28 +50,9 @@ const About = () => {
     <>
       <CompanySection>
         <Sect>
-          {/* <video
-          id="myVideo"
-          alt="app video"
-          autoPlay
-          loop
-          muted
-          playsinline
-          style={{ width: "100%", height: "auto" }}
-        >
-          {" "}
-          <source type="video/webm" src={appvideowebm} />
-          <source type="video/mp4" src={appvideo} />
-          <p>Your browser does not support the video tag.</p>
-        </video> */}
+         
           <img
-            srcSet={`
-            ${require("../../assets/images/aboutehero-400w.webp")} 400w,
-            ${require("../../assets/images/aboutehero-600w.webp")} 600w,
-            ${require("../../assets/images/aboutehero-800w.webp")} 800w,
-            ${require("../../assets/images/aboutehero-1000w.webp")} 1000w,
-            ${require("../../assets/images/aboutehero-1200w.webp")} 1200w
-          `}
+          
             sizes="(max-width: 400px) 400px, (max-width: 600px) 600px, (max-width: 800px) 800px, (max-width: 1000px) 1000px, (min-width: 1001px) 1200px"
             src={about}
             alt="about demenagement"
@@ -80,7 +62,7 @@ const About = () => {
           />
           {/* <img src={about} alt="about" loading="lazy" /> */}
           <ContactHero style={{ position: "absolute" }}>
-            <Title> {t("ABOUT.Apropos.title1")} </Title>
+           
 
             <SideTitle>{t("ABOUT.Apropos.title2")}</SideTitle>
 
@@ -89,45 +71,19 @@ const About = () => {
               {t("Sheelni-CONTACT.btn-obten")}
             </BUT>
           </ContactHero>{" "}
-          {/* <div className="opacity-background" style={{ position: "absolute" }}>
-          <div className="inner_content_hero_about">
-            {" "}
-            <Title data-aos="zoom-down" data-aos-delay={200}>
-              {t("ABOUT.Apropos.title1")}
-            </Title>
-            <SideTitle data-aos="zoom-down" data-aos-delay={400}>
-              {t("ABOUT.Apropos.title2")}
-            </SideTitle>
-            <LastTitle data-aos="zoom-down" data-aos-delay={600}>
-              {t("ABOUT.Apropos.desc")}
-            </LastTitle>
-            <div
-              className="about__action_"
-              data-aos="zoom-down"
-              data-aos-delay={800}
-            >
-              {" "}
-              {/* //               <Buttonobtenez icon={Arrow} Textbody= {t("ABOUT.Apropos.btn-obten")} />
-//               <Call className="buttonobtenez" /> */}
-          {/* </div>
-          </div>
-        </div>  */}
+          
         </Sect>
 
         <Company />
-        {/* <Marquee> */}
+   
         <MarqueAbout />
-        {/* </Marquee> */}
-        <Teams />
-        <JoinSheelni />
+      
+        {/* <Teams /> */}
+        {/* <TrrustUs /> */}
 
-        <Bulletin />
+        
       </CompanySection>
-      {/* <AgentList /> */}{" "}
-      {/* <Sec>
-        <img className="background-image" src={replace} alt="replace" />
-        <Demagnegment />
-      </Sec> */}
+     
       <Footer />
     </>
   );
@@ -160,7 +116,7 @@ export const BUT = styled.button`
 
   cursor: pointer;
 
-  background-color: #f37a1d;
+  background-color: #d8b56c;
   box-shadow: 2px 2px 0px 0px #18365a;
   /* margin-right:45%; */
   @media (max-width: 1050px) {
@@ -182,22 +138,12 @@ const ContactHero = styled.div`
   flex-direction: column;
   gap: 20px;
 `;
-// export const Title = styled.h1`
-//   font-family: "Inter", sans-serif;
-//   text-align: center;
-
-//   font-size: 16px;
-//   font-style: normal;
-//   font-weight: 400;
-//   line-height: 30px;
-//   letter-spacing: 0.16px;
-//   color: ${(props) => props.theme.PRIMARY_COLOR};
-// `;
+ 
 export const Title = styled.h1`
   font-family: "Inter", sans-serif;
   font-size: 14px;
   font-weight: 300;
-  color: white;
+  color: #0c0c0c;
 `;
 export const SideTitle = styled.h1`
   font-family: "Inter", sans-serif;

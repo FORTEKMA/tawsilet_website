@@ -44,7 +44,7 @@ const Button404 = styled.button`
 
   font-size: 16px;
   color: #020111;
-  background-color: #f37a1d;
+  background-color: #d8b56c;
   border: none;
 
   border-radius: 5px;
@@ -69,8 +69,8 @@ const Button404 = styled.button`
 
   &:hover {
     background-color: #18365a;
-    border: 1px solid #f37a1d;
-    color: #f37a1d;
+    border: 1px solid #d8b56c;
+    color: #d8b56c;
   }
 
   &:hover ${Icon} {

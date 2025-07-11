@@ -67,7 +67,7 @@ const Sindentifier = ({ setLoading, ping, setPing }) => {
         })}
       >
         <Link to={"/"}>
-          <LO src={log} alt="logosheelni"></LO>
+          <LO src={log} alt="logoTawsilet"></LO>
         </Link>
         <Link to={"/"}>
      
@@ -190,7 +190,7 @@ export const Buttonn = styled.button`
   border-radius: 12px;
   color: white;
   font-size: 16px;
-  background-color: #f37a1d;
+  background-color: #d8b56c;
   margin-top: 10px;
   @media (max-width: 744px) {
     color: #18365a;

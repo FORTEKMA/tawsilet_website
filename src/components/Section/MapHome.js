@@ -10,7 +10,6 @@ import {
   Polygon,
 } from "@react-google-maps/api";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllObjects } from "../../redux/objectsSlice/objectsSlice";
 import GetEstimate from "../../pages/EstimationFormStepper";
 import {
   updateDistance,
@@ -19,7 +18,6 @@ import {
   updatePickUpAddress,
 } from "../../redux/newCommand/newCommandSlice";
 import * as turf from "@turf/turf";
-import iconMarker from "../../assets/icons/pinIconsmall.png";
 import AIconMarker from "../../assets/icons/APOINT.png";
 import BIconMarker from "../../assets/icons/BPOINT.png";
 import TunisiaGeoJSON from "../../utils/GeoJSON/TunisiaGeoJSON.json";
@@ -29,27 +27,18 @@ import {
   getAddressFromCoordinates,
 } from "../../utils/helpers/mapUtils";
 import { useTranslation } from "react-i18next";
-
-// Constants
-const defaultProps = {
-  center: { lat: 36.800253, lng: 9.68617 },
-  centerResponsive: { lat: 36.400253, lng: 10 },
-  zoom: 10,
-};
-
-const grandTunisBounds = {
-  north: 37.5,
-  south: 36.3,
-  east: 10.6,
-  west: 9.5,
-};
-
-const allTunisiaBounds = {
-  north: 38.0,
-  south: 29.5,
-  east: 20.0,
-  west: 3.0,
-};
+import {
+  defaultProps,
+  grandTunisBounds,
+  allTunisiaBounds,
+  darkMapStyle,
+} from "../../utils/helpers/mapConstants";
+import { getDatabase, ref as dbRef, onValue } from "firebase/database";
+import { getApp } from "firebase/app";
+import ecoIcon from "../../assets/images/eco.png";
+import vanIcon from "../../assets/images/van.png";
+import berlineIcon from "../../assets/images/Berline.png";
+import axios from "axios";
 
 const MapHome = (props) => {
   const isResponsive = useMediaQuery({ maxWidth: 1150 });
@@ -61,15 +50,16 @@ const MapHome = (props) => {
   const [GeoJSONBounds, setGeoJSONBounds] = useState(null);
   const [step, setStep] = useState(1);
   const [directionsResponse, setDirectionsResponse] = useState(null);
-  const [position, setPosition] = useState({ x: 0, y: 100 });
-  const [offset, setOffset] = useState({ x: 0, y: 0 });
-  const [isDragging, setIsDragging] = useState(false);
-  const dragContainerRef = useRef(null);
   const { t, i18n } = useTranslation();
+  const [filteredDrivers, setFilteredDrivers] = useState({});
+  const [mapZoom, setMapZoom] = useState(defaultProps.zoom);
+  const [mapBounds, setMapBounds] = useState(null);
+  const [showDriversZoom, setShowDriversZoom] = useState(5); // Minimum zoom to show drivers
+  const [vehicleTypes, setVehicleTypes] = useState([]); // Store vehicle types from API
+
   // Initialize AOS and fetch objects
   useEffect(() => {
     AOS.init({ duration: 1000 });
-    dispatch(getAllObjects());
   }, [dispatch]);
 
   // Handle step changes and update polygon paths
@@ -120,24 +110,7 @@ const MapHome = (props) => {
       }
     }
   }, [step]);
-
-  // Update map bounds based on step
-  // useEffect(() => {
-  //   if (mapRef.current) {
-  //     const bounds = step === 1 ? grandTunisBounds : allTunisiaBounds;
-  //     mapRef.current.setOptions({
-  //       restriction: { latLngBounds: bounds, strictBounds: true },
-  //     });
-  //     const center = {
-  //       lat: (bounds.north + bounds.south) / 2,
-  //       lng: (bounds.east + bounds.west) / 2,
-  //     };
-  //     // mapRef.current.panTo(center);
-  //     if (step === 2) mapRef.current.setZoom(5);
-  //   }
-  // }, [step]);
-
-  // Calculate route when pick-up and drop-off addresses change
+ 
   useEffect(() => {
     if (
       command?.pickUpAddress?.coordonne.latitude &&
@@ -161,36 +134,59 @@ const MapHome = (props) => {
     step,
   ]);
 
-  // Handle map click
-  const handleMapClick = async ({ latLng }) => {
-    if (step <= 2) {
-      const lat = latLng.lat();
-      const lng = latLng.lng();
-
-      const isInsidePolygon = google.maps.geometry.poly.containsLocation(
-        new google.maps.LatLng(lat, lng),
-        new google.maps.Polygon({ paths: polygonPaths })
-      );
-
-      if (!isInsidePolygon) {
-        alert(`${t("Alerts.mapalert")}: ${lat}, ${lng}`);
-        return;
-      }
-
-      const address = await getAddressFromCoordinates(lat, lng);
-      const updateAction =
-        step === 1 ? updatePickUpAddress : updateDropOfAddress;
-      dispatch(
-        updateAction({
-          Address: address,
-          coordonne: { latitude: lat, longitude: lng },
-        })
-      );
+  // Calculate virtual route
+  const calculateVirtualRoute = async (origin, destination) => {
+    try {
+      const directionsService = new google.maps.DirectionsService();
+      const results = await directionsService.route({
+        origin,
+        destination,
+        travelMode: google.maps.TravelMode.DRIVING,
+      });
+      setDirectionsResponse(results);
+      dispatch(updateDistance(results.routes[0].legs[0].distance.value));
+      dispatch(updateDuration(results.routes[0].legs[0].duration.text));
+    } catch (error) {
+      console.error("Error calculating route:", error);
+      setDirectionsResponse(null)
     }
+  };
 
-    // if (mapRef.current) {
-    //   mapRef.current.panTo({ lat, lng });
+  const center = useMemo(() => {
+    if (step === 1) {
+      return isResponsive ? defaultProps.centerResponsive : defaultProps.center;
+    } else if (step === 2) {
+      return isResponsive
+        ? { lat: 31.400253, lng: 9.68617 }
+        : { lat: 33.800253, lng: 8.48617 };
+    }
+    return defaultProps.center; // Fallback center
+  }, [step, isResponsive]);
+
+  // Handle marker drag end
+  const handleMarkerDragEnd = async (markerType, event) => {
+    const lat = event.latLng.lat();
+    const lng = event.latLng.lng();
+
+    // const isInsidePolygon = google.maps.geometry.poly.containsLocation(
+    //   new google.maps.LatLng(lat, lng),
+    //   new google.maps.Polygon({ paths: polygonPaths })
+    // );
+
+    // if (!isInsidePolygon) {
+    //   alert(`${t("Alerts.mapalert")}: ${lat}, ${lng}`);
+    //   return;
     // }
+
+    const address = await getAddressFromCoordinates(lat, lng);
+    const updateAction =
+      markerType === "pickUp" ? updatePickUpAddress : updateDropOfAddress;
+    dispatch(
+      updateAction({
+        Address: address,
+        coordonne: { latitude: lat, longitude: lng },
+      })
+    );
   };
 
   const handleGetLocation = async () => {
@@ -242,105 +238,88 @@ const MapHome = (props) => {
     }
   };
 
-  // Calculate virtual route
-  const calculateVirtualRoute = async (origin, destination) => {
-    try {
-      const directionsService = new google.maps.DirectionsService();
-      const results = await directionsService.route({
-        origin,
-        destination,
-        travelMode: google.maps.TravelMode.DRIVING,
-      });
-      setDirectionsResponse(results);
-      dispatch(updateDistance(results.routes[0].legs[0].distance.value));
-      dispatch(updateDuration(results.routes[0].legs[0].duration.text));
-    } catch (error) {
-      console.error("Error calculating route:", error);
-      setDirectionsResponse(null)
-    }
-  };
-
-  const center = useMemo(() => {
-    if (step === 1) {
-      return isResponsive ? defaultProps.centerResponsive : defaultProps.center;
-    } else if (step === 2) {
-      return isResponsive
-        ? { lat: 31.400253, lng: 9.68617 }
-        : { lat: 33.800253, lng: 8.48617 };
-    }
-    return defaultProps.center; // Fallback center
-  }, [step, isResponsive]);
-
-  // Handle marker drag end
-  const handleMarkerDragEnd = async (markerType, event) => {
-    const lat = event.latLng.lat();
-    const lng = event.latLng.lng();
-
-    const isInsidePolygon = google.maps.geometry.poly.containsLocation(
-      new google.maps.LatLng(lat, lng),
-      new google.maps.Polygon({ paths: polygonPaths })
-    );
-
-    if (!isInsidePolygon) {
-      alert(`${t("Alerts.mapalert")}: ${lat}, ${lng}`);
-      return;
-    }
-
-    const address = await getAddressFromCoordinates(lat, lng);
-    const updateAction =
-      markerType === "pickUp" ? updatePickUpAddress : updateDropOfAddress;
-    dispatch(
-      updateAction({
-        Address: address,
-        coordonne: { latitude: lat, longitude: lng },
-      })
-    );
-  };
-
-  // Draggable card logic
-  const handleMouseDown = (e) => {
-    const container = dragContainerRef.current.getBoundingClientRect();
-    setOffset({ x: e.clientX - container.left, y: e.clientY - container.top });
-    setIsDragging(true);
-  };
-
-  const handleMouseMove = (e) => {
-    if (!isDragging) return;
-    const parent =
-      dragContainerRef.current.parentElement.getBoundingClientRect();
-    setPosition({
-      x: Math.min(
-        Math.max(e.clientX - parent.left - offset.x, 0),
-        parent.width
-      ),
-      y: Math.min(
-        Math.max(e.clientY - parent.top - offset.y, 0),
-        parent.height
-      ),
+  useEffect(() => {
+    const db = getDatabase(getApp());
+    const driversRef = dbRef(db, "drivers");
+   
+    const unsubscribe = onValue(driversRef, (snapshot) => {
+      const data = snapshot.val() || {};
+      const processChunk = (entries, startIndex) => {
+        const chunkSize = 450;
+        const chunk = entries.slice(startIndex, startIndex + chunkSize);
+        const activeDrivers = {};
+        chunk.forEach(([uid, driver]) => {
+          if (
+            driver.isActive === true &&
+            driver.isFree === true &&
+            driver.latitude &&
+            driver.longitude
+          ) {
+            activeDrivers[uid] = driver;
+          }
+        });
+       
+        if (startIndex + chunkSize < entries.length) {
+          setTimeout(() => processChunk(entries, startIndex + chunkSize), 0);
+        } else {
+          // Filter by map bounds and zoom
+          if (mapBounds && mapZoom >= showDriversZoom) {
+            const filtered = Object.fromEntries(
+              Object.entries(activeDrivers).filter(([uid, driver]) => {
+                const lat = driver.latitude;
+                const lng = driver.longitude;
+                return (
+                  mapBounds.getSouthWest().lat() <= lat &&
+                  lat <= mapBounds.getNorthEast().lat() &&
+                  mapBounds.getSouthWest().lng() <= lng &&
+                  lng <= mapBounds.getNorthEast().lng()
+                );
+              })
+            );
+            setFilteredDrivers(filtered);
+          } else {
+            setFilteredDrivers({});
+          }
+        }
+      };
+      processChunk(Object.entries(data), 0);
     });
-  };
+    return () => unsubscribe();
+  }, [mapBounds, mapZoom, showDriversZoom]);
 
-  const handleMouseUp = () => setIsDragging(false);
+  // Fetch vehicle types and icons from API once
+  useEffect(() => {
+    const fetchVehicleTypes = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_BASE_URL}settings?populate[0]=map_icon`
+        );
+        setVehicleTypes(response.data.data || []);
+      } catch (error) {
+        console.error("Failed to fetch vehicle types:", error);
+      }
+    };
+    fetchVehicleTypes();
+  }, []);
 
   return (
     <PlienMap
       ref={props.MapRef}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
     >
-      {step === 5 && <HighlightOverlay />}
+    
       <GoogleMap
         options={{
-          draggableCursor: `url(${iconMarker}) 30 60, auto`,
-          ...(step === 5 && {
-            draggable: false,
-            disableDefaultUI: true,
-            gestureHandling: "none",
-            draggableCursor: "default",
-          }),
+          styles: darkMapStyle,
+          streetViewControl: false,
+          fullscreenControl: false,
         }}
         onLoad={(map) => (mapRef.current = map)}
-        onClick={handleMapClick}
+        onZoomChanged={() => {
+          if (mapRef.current) setMapZoom(mapRef.current.getZoom());
+        }}
+        onBoundsChanged={() => {
+          if (mapRef.current) setMapBounds(mapRef.current.getBounds());
+        }}
         center={center}
         zoom={
           step === 1
@@ -354,7 +333,7 @@ const MapHome = (props) => {
         mapContainerClassName="mapcadre"
         mapContainerStyle={{ width: "100%", height: "100%" }}
       >
-        {GeoJSONBounds?.features?.map((feature, index) =>
+    {GeoJSONBounds?.features?.map((feature, index) =>
           feature?.geometry?.type === "MultiPolygon"
             ? feature.geometry.coordinates.map((polygon, polygonIndex) => (
                 <Polygon
@@ -366,7 +345,7 @@ const MapHome = (props) => {
                   options={{
                     fillColor: "#FF0000",
                     fillOpacity: 0,
-                    strokeColor: "#ff7700",
+                    strokeColor: "#d8b56c",
                     strokeOpacity: 1,
                     strokeWeight: 3,
                     zIndex: 99999999,
@@ -385,7 +364,7 @@ const MapHome = (props) => {
                   options={{
                     fillColor: "#FF0000",
                     fillOpacity: 0,
-                    strokeColor: "#ff7700",
+                    strokeColor: "#d8b56c",
                     strokeOpacity: 1,
                     strokeWeight: 3,
                     zIndex: 99999999,
@@ -394,7 +373,8 @@ const MapHome = (props) => {
                   }}
                 />
               ))
-        )}
+        )} 
+        
         {command?.pickUpAddress?.coordonne?.latitude && step !== 2 && (
           <Marker
             icon={{
@@ -429,22 +409,39 @@ const MapHome = (props) => {
             options={{ suppressMarkers: true }}
           />
         )}
+        {Object.entries(filteredDrivers).map(([uid, driver]) => {
+        
+          // Find the vehicle type object for this driver
+          const typeObj = vehicleTypes.find((type) => type.id === driver.type);
+        //  conosle.log("typeObj",typeObj)
+          // Get the icon URL if available
+          const iconUrl = typeObj?.map_icon?.url;
+          return (
+            <Marker
+              key={uid}
+              position={{
+                lat: driver.latitude,
+                lng: driver.longitude,
+              }}
+              icon={
+                iconUrl
+                  ? {
+                      url: iconUrl,
+                      scaledSize: new window.google.maps.Size(24, 35),
+                      rotation: driver.angle || 0,
+                      anchor: { x: 25, y: 25 },
+                    }
+                  : undefined // fallback to default if needed
+              }
+            />
+          );
+        })}
       </GoogleMap>
       <GetEstimate
         grandTunisBounds={grandTunisBounds}
         allTunisiaBounds={allTunisiaBounds}
         directionsResponse={directionsResponse}
         mapRef={mapRef}
-        dragRef={dragContainerRef}
-        handleMouseDown={handleMouseDown}
-        customTransform={{
-          position: "absolute",
-          top: !isResponsive ? `${position.y}px` : undefined,
-          bottom: isResponsive ? `32px` : undefined,
-          left: !isResponsive ? `${position.x}px` : undefined,
-          height: isResponsive && "inherit",
-          cursor: isDragging ? "grabbing" : "move",
-        }}
         setStep={setStep}
         step={step}
         handleGetLocation={handleGetLocation}
@@ -461,20 +458,15 @@ const PlienMap = styled.div`
   height: 92vh;
   overflow: hidden;
   position: relative;
+  
+  /* Prevent zoom on iOS when interacting with map */
+  .mapcadre {
+    touch-action: pan-x pan-y pinch-zoom;
+  }
+  
   @media (max-width: 744px) {
     display: flex;
     height: 90vh;
     flex-direction: column-reverse;
   }
-`;
-
-const HighlightOverlay = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(70, 70, 70, 0.2);
-  z-index: 10;
-  pointer-events: none;
 `;

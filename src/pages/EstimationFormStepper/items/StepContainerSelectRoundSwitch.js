@@ -13,7 +13,7 @@ const RoundSwitchContainer = styled.div`
 
 const Capsule = styled.div`
   border-radius: 5px;
-  background-color: ${({ active }) => (active ? "#F37A1D" : "#eee")};
+  background-color: ${({ active }) => (active ? "#d8b56c" : "#eee")};
   display: inline-block;
   padding: 12px;
   cursor: pointer;

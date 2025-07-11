@@ -1,51 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import * as style from "../../constants/StyleSheets";
-// import confirmIcon from "../../assets/icons/confirm-icon-white.svg";
-// const stepperBackground = lazy(() =>
-//   import("../../assets/images/StepperBackground.svg")
-// );
+ 
 import stepperBackground from "../../assets/images/Mapsiclemap.svg";
-// import PriceTotal from "../DashClient/AddCommand/PriceTotal";
-// import Step1 from "../DashClient/AddCommand/Step2";
+ 
 
 const StepperLayout = ({ children, step, setStep }) => {
   return (
     <Stepper>
-      {/* <div
-        className="layer"
-        style={{
-          backgroundColor: "rgba(37, 36, 58, 0.3)",
-          width: "100%",
-          minHeight: "100%",
-          position: "absolute",
-          top: "80px",
-          left: 0,
-          padding: " 0px 0px 40px",
-        }}
-      ></div> */}
-      {/* Step pagination ---------------------------------------------------------------------------------------------------------*/}
-      {/* <StepPagination>
-        {children?.map((child, index) => (
-          <PaginationItem key={index} isactive={index < children.length - 1}>
-            {index < step && (
-              <StepNum
-                isactive={index < step}
-                onClick={() => setStep(index + 1)}
-              >
-                {index + 1}
-              </StepNum>
-            )}{" "}
-            {index < children.length - 1 && (
-              <HorizentalDivider isactive={index < step - 1} index={index} />
-            )}
-            {/* // } 
-          </PaginationItem>
-        ))}
-      </StepPagination> */}
-      {/* -------------------------------------------------------------------------------------------------------------- */}
-
-      {/* Step container ------------------------------------------------------------------------------------------------ */}
+ 
       <Main>
         {children?.map((child, index) => {
           if (index === step - 1) {
@@ -54,9 +17,7 @@ const StepperLayout = ({ children, step, setStep }) => {
           return null;
         })}
       </Main>
-      {/* ------------------------------------------------------------------------------------------------------ ---------------*/}
-      {/* total price -----------------------------------------------------------------------------------------------------------Ò */}
-      {/* <PriceTotal /> */}
+    
     </Stepper>
   );
 };
@@ -65,7 +26,7 @@ export default StepperLayout;
 
 export const Stepper = styled.div`
   position: absolute;
-  top:0px;
+  bottom:10%;
   // background-image: url(${stepperBackground});
   // background-position: top;
   // background-size: cover;
@@ -147,7 +108,7 @@ export const StepperForm = styled.div`
   /* padding-inline: calc(${style.spacing.PADDING_LARGE} * 2); */
 
   .activeCard {
-    background-color: #F37A1D;
+    background-color: #d8b56c;
     height: 9.5vw;
     @media (max-width: 1150px) {
       height: 100%;
@@ -217,7 +178,7 @@ export const StepperForm = styled.div`
     justify-content: flex-end;
   }
   .nextButton {
-    background: #F37A1D;
+    background: #d8b56c;
 
     padding: 12px 24px 12px 24px;
     border-radius: 12px;
@@ -268,7 +229,7 @@ const StepNum = styled.h1`
   top: 50%;
   left: 0%;
   transform: translate(-50%, -50%);
-  background-color: ${(p) => (p.isactive ? "#F37A1D" : "white")};
+  background-color: ${(p) => (p.isactive ? "#d8b56c" : "white")};
   width: 36px;
   height: 36px;
   border-radius: 50%;
@@ -292,7 +253,7 @@ const HorizentalDivider = styled.div`
   height: 12px;
   background-color: ${(p) =>
     p.isactive
-      ? "#F37A1D"
+      ? "#d8b56c"
       : !(p.index % 2 === 0)
       ? "rgba(200, 200, 200, 1)"
       : "rgba(255, 255, 255, 1)"};

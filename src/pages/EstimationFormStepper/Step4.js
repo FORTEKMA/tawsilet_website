@@ -1,755 +1,586 @@
-import React, { lazy, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-// import { useForm } from "react-hook-form";
-import Geocode from "react-geocode";
-// import { useNavigate } from "react-router";
-import { useTranslation } from "react-i18next";
-// import { confirmAlert } from "react-confirm-alert";
-import "react-confirm-alert/src/react-confirm-alert.css";
-
-import {
-  StepCardsContainer,
-  StepContainerBody,
-  StepContainerButtonRight,
-  StepContainerHeader,
-  StepContainerHeaderTitle,
-  StepContainerInfor,
-  StepContainerLayout,
-} from ".";
-
-import Card from "./items/CardItem";
-import StepContainerSelectRoundSwitch from "./items/StepContainerSelectRoundSwitch";
-import Sindentifier from "./items/Sidentifier";
-import Sinscrire from "./items/Sinscrire";
-import DepartEditCard from "./section/DepartEditCard";
-import ArriveeEditCard from "./section/ArriveeEditCard";
-import ObjetEditCard from "./section/ObjetEditCard";
 import previousFleshIcon from "../../assets/icons/previousFleshIcon.svg";
-
-import interrogationBlueIcon from "../../assets/icons/interrogationBlueIcon.svg";
-import Agentandcaryellow from "../../assets/icons/Agentandcaryellow.svg";
-import twoagentandcargray from "../../assets/icons/twoagentandcargray.svg";
-import twoagentandcaryellow from "../../assets/icons/twoagentandcaryellow.svg";
-import agentandcargray from "../../assets/icons/agentandcargray.svg";
-import arrowleftgray from "../../assets/icons/arrowleftgray.svg";
-import arrowleftyellow from "../../assets/icons/arrowleftyellow.svg";
-import arrowrightgray from "../../assets/icons/arrowrightgray.svg";
-import arrowrightyellow from "../../assets/icons/arrowrightyellow.svg";
-import box3dgray from "../../assets/icons/box3dgray.svg";
-import box3dyellow from "../../assets/icons/box3dyellow.svg";
-import { calculatePrice } from "../../utils/priceCalcul";
-import { Spin } from "antd";
+import carIcon from "../../assets/images/classeCar.png";
+import { StepContainerLayout, StepContainerHeader, StepContainerHeaderTitle, StepContainerBody } from ".";
+import { useTranslation } from "react-i18next";
+import { updateTotalPrice, updateClient } from "../../redux/newCommand/newCommandSlice";
 import axios from "axios";
-import {
-  updateClient,
-  updateTotalPrice,
-} from "../../redux/newCommand/newCommandSlice";
-import SignIn from "./items/Sidentifier";
-import SignUp from "./items/Sinscrire";
+import { useNavigate } from "react-router-dom";
+
+ 
+export const calculatePrice = async (formData, driver = null) => {
+  const data = {
+    accessDepart: {
+      lat: formData.pickupAddress.coordonne.latitude,
+      lng: formData.pickupAddress.coordonne.longitude,
+    },
+    accessArrivee: {
+      lat: formData.dropAddress.coordonne.latitude,
+      lng: formData.dropAddress.coordonne.longitude,
+    },
+    id: formData?.vehicleType?.id,
+    selectedDate: formData?.selectedDate,
+  };
+  const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/calcul`, data);
+  return response.data;
+};
+
+// Car types config for dynamic rendering
+const carTypes = [
+  {
+    id: '1',
+    title: 'Éco',
+    description: 'Véhicule économique',
+    image: require("../../assets/images/ecoCar.png"),
+    capacity: 4
+  },
+  {
+    id: '2',
+    title: 'classe',
+    description: 'Classe confortable',
+    image: require("../../assets/images/classeCar.png"),
+    capacity: 4
+  },
+  {
+    id: '3',
+    title: 'XL',
+    description: 'Grande capacité',
+    image: require("../../assets/images/xlCar.png"),
+    capacity: 7
+  }
+];
 
 const Step4 = ({ setStep }) => {
-  const jwt = localStorage.getItem("token");
   const command = useSelector((store) => store?.newCommand?.command);
-  const dispatch = useDispatch();
-
   const { t, i18n } = useTranslation();
+  const jwt = localStorage.getItem("token");
+  const dispatch = useDispatch();
+  const [loading, setLoadingState] = useState(true);
+  const [driver, setDriver] = useState(null);
+  const [price, setPrice] = useState(null);
+  const currentUser = useSelector((store) => store.user.currentUser);
+  const date = command?.departDate || command?.date || null;
+  const [buttonLoading, setButtonLoading] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchData = async () => {
-      const result = await calculateRoute({
-        originRef: command?.pickUpAddress?.Address,
-        destinationRef: command?.dropOfAddress?.Address,
-      });
-      return result;
+    const fetchPrice = async () => {
+      if (command?.pickUpAddress && command?.dropOfAddress && command?.TansportType) {
+        setLoadingState(true);
+        try {
+          const formData = {
+            pickupAddress: command.pickUpAddress,
+            dropAddress: command.dropOfAddress,
+            vehicleType: command.TansportType.id,
+            selectedDate: date,
+          };
+          const calculatedPrice = await calculatePrice(formData, driver);
+          setPrice(calculatedPrice?.price);
+        } catch (error) {
+          setPrice("N/A");
+        } finally {
+          setLoadingState(false);
+        }
+      }
     };
-    fetchData().catch((err) => console.log(err));
-    if (command?.distance) {
-      axios
-        .post(`${process.env.REACT_APP_BASE_URL}/calcul`, {
-          distance: command?.distance,
-          volume: command?.items,
-        })
-        .then((res) => setMinPrice(res.data));
+    fetchPrice();
+  }, [command, date, driver]);
 
-      axios
-        .post(`${process.env.REACT_APP_BASE_URL}/calcul`, {
-          distance: command?.distance,
-          volume: command?.items,
-          accessDepart: command?.pickUpAcces,
-          accessArrivee: command?.dropAcces,
-        })
-        .then((res) => setMaxPrice(res.data));
-    }
-  }, [command?.distance]);
+  // Use departDate and deparTime directly from command if present
+  const splitDateTime = (commandObj) => {
+    return {
+      departDate: commandObj?.departDate || '',
+      deparTime: commandObj?.deparTime || '',
+    };
+  };
 
-  // Function to calculate route using Google Maps API
-  async function calculateRoute({ originRef, destinationRef }) {
-    if (originRef === "" || destinationRef === "") {
+  const handleGoToHistory = () => {
+    setShowSuccessModal(false);
+    navigate("ClientProfile/history");
+  };
+
+  const handleNextStep = async () => {
+    if (jwt === null) {
+      setStep(6);
       return;
     }
-
-    const directionsService = new google.maps.DirectionsService();
-    // Geocode.setApiKey("AIzaSyA8oEc5WKQqAXtSKpSH4igelH5wlPDaowE"); //(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
-
-    const results = await directionsService.route({
-      origin: originRef,
-      destination: destinationRef,
-      travelMode: google.maps.TravelMode.DRIVING,
-    });
-
-    setDirectionsResponse(results);
-    setDistance(results.routes[0].legs[0].distance.value);
-    setDuration(results.routes[0].legs[0].duration.text);
-
-    setOriginPosition({
-      lat: results.routes[0].legs[0].start_location.lat(),
-      lng: results.routes[0].legs[0].start_location.lng(),
-    });
-
-    setDestinationPosition({
-      lat: results.routes[0].legs[0].end_location.lat(),
-      lng: results.routes[0].legs[0].end_location.lng(),
-    });
-  }
-
-  // Initialize price-related state variables
-  const [minPrice, setMinPrice] = useState(null);
-  const [maxPrice, setMaxPrice] = useState(
-    null
-    // () =>
-    // calculatePrice({
-    //   distance: command?.distance,
-    //   volume: calculateTotalVolume(command?.items),
-    //   accessDepart: command?.pickUpAcces,
-    //   accessArrivee: command?.dropAcces,
-    //   settings: settings,
-    // })
-  );
-
-  // Get current user from Redux store
-  const currentUser = useSelector((store) => store.user.currentUser);
-
-  // Initialize state variables for UI
-  const [authenticationShow, setAuthenticationShow] = useState(false);
-  // console.log(authenticationShow, "auth");
-  const [selectedCard, setSelectedCard] = useState(
-    (command?.dropAcces.options === "Camion" &&
-      command?.pickUpAcces.options === "Camion") ||
-      false
-  );
-  const [switchValue, setSwitchValue] = useState(true);
-  const [setshowModalInfoLeftCard, setSetshowModalInfoLeftCard] =
-    useState(false);
-  const [showModalInfoRightCard, setshowModalInfoRightCard] = useState(false);
-  const [showModalEditLeftSide, setShowModalEditLeftSide] = useState("");
-  const [showModalEditRightSide, setShowModalEditRightSide] = useState("");
-
-  useEffect(() => {
-    setSelectedCard(
-      command?.dropAcces.options === "Camion" &&
-        command?.pickUpAcces.options === "Camion"
-    );
-  }, [command]);
-
-  // Handle switch change
-  const handleSwitchChange = (newValue) => {
-    setSwitchValue(newValue);
-  };
-
-  // Handle the next step
-  const handleNextStep = async () => {
-    if (jwt !== null) {
-      dispatch(updateTotalPrice(selectedCard ? minPrice : maxPrice));
-      dispatch(updateClient(currentUser?.documentId));
-
-      // setCommand({
-      //   ...command,
-      //   data: {
-      //     ...command.data,
-      //     client_id: currentUser.id,
-      //     totalPrice: selectedCard ? minPrice : maxPrice,
-      //   },
-      // });
-      // if (command?.totalPrice) {
-      if (command?.totalPrice) {
-        setStep(5);
+ 
+    if (command?.departDate) {
+      setButtonLoading(true);
+      try {
+        const formData = {
+          ...command,
+          pickupAddress: command.pickUpAddress,
+          dropAddress: command.dropOfAddress,
+          vehicleType: command.TansportType,
+          selectedDate: command.date,
+          distance: command.distance,
+          time: command.time,
+        };
+        const user = currentUser;
+        const payload = {
+          payType: "Livraison",
+          commandStatus: "Pending",
+          totalPrice: price,
+          distance: formData.distance,
+          ...splitDateTime(command),
+          duration: formData.time,
+          isAccepted: false,
+          client: {
+            id:  user?.id,
+          },
+          carType: formData?.vehicleType?.id,
+          pickUpAddress: {
+            Address: formData?.pickupAddress?.Address || "Livraison",
+            coordonne: {
+              longitude: formData?.pickupAddress?.coordonne?.longitude || "17",
+              latitude: formData?.pickupAddress?.coordonne?.latitude || "17",
+            },
+          },
+          dropOfAddress: {
+            Address: formData?.dropAddress?.Address || "Livraison",
+            coordonne: {
+              longitude: formData?.dropAddress?.coordonne?.longitude || "17",
+              latitude: formData?.dropAddress?.coordonne?.latitude || "17",
+            },
+          },
+        };
+       
+        await axios.post(`${process.env.REACT_APP_BASE_URL}/commands`, { data: payload }, {
+          headers: { Authorization: `Bearer ${jwt}` }
+        });
+        setShowSuccessModal(true);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setButtonLoading(false);
       }
-      // }
     } else {
-      window.scrollTo(0, 0);
-      setAuthenticationShow(true);
+      dispatch(updateTotalPrice(price));
+      dispatch(updateClient(currentUser?.documentId));
+      setStep(5);
     }
   };
 
-  // Render left side of the UI based on the selected modal
-  const showTheShowLeft = () => {
-    // switch (showModalEditLeftSide) {
-    //   case "":
-        return (
-          <>
-            <Card
-              setShowModalEdit={setShowModalEditLeftSide}
-              content="depart"
-              // onClick={(e) => {
-              //   setShowModalEditRightSide("depart");
-              //   // e.stopPropagation();
-              // }}
-              selectedCard={selectedCard}
-              iconSrc={selectedCard ? arrowrightyellow : arrowrightgray}
-              title={command?.pickUpAddress?.Address}
-              description={t("Step4.camion")}
-              onEdit={() => {
-                // Handle the edit action here
-                // console.log("Edit clicked");
-              }}
-            />{" "}
-            <Card
-              setShowModalEdit={setShowModalEditLeftSide}
-              content="arrivee"
-              // onClick={(e) => {
-              //   setShowModalEditRightSide("arrivee");
-              //   e.stopPropagation();
-              // }}
-              // setShowModalEdit={setShowModalEditRightSide}
-              selectedCard={selectedCard}
-              iconSrc={selectedCard ? arrowleftyellow : arrowleftgray}
-              title={command?.dropOfAddress?.Address}
-              description={t("Step4.camion")}
-              onEdit={() => {
-                // Handle the edit action here
-                // console.log("Edit clicked");
-              }}
-            />{" "}
-            <Card
-              setShowModalEdit={setShowModalEditLeftSide}
-              content="objets"
-              // onClick={(e) => {
-              //   setShowModalEditRightSide("objets");
-              //   e.stopPropagation();
-              // }}
-              // setShowModalEdit={setShowFirstModalEditRightSide}
-              selectedCard={selectedCard}
-              iconSrc={selectedCard ? box3dyellow : box3dgray}
-              description={command?.items?.map((el, i) =>
-                i < 3
-                  ? `${el.quant}x ${el.item.name}${
-                      i < command?.items?.length - 1 ? ", " : ""
-                    }`
-                  : i === 3
-                  ? "..."
-                  : null
-              )}
-              onEdit={() => {
-                // Handle the edit action here
-                // console.log("Edit clicked");
-              }}
-            />
-            <StepContainerButtonRight
-              // disabled={!selectedCard}
-              selectedCard={selectedCard}
-              centerbutton={
-                command?.dropAcces.options === "Camion" &&
-                command?.pickUpAcces.options === "Camion"
-              }
-              onClick={(e) => {
-                if(!selectedCard){
-                  setSelectedCard(true)}
-                  else{
-                    e.stopPropagation()
-                    e.preventDefault();
-                    handleNextStep();
-                  }
-              }}
-            >
-              {/* {!command?.totalPrice ? <Spin /> : null} */}
-              {t("Step4.Continuer")}
-            </StepContainerButtonRight>
-          </>
-        );
-      // case "depart":
-      //   return (
-      //     <DepartEditCard
-      //       // command={command}
-      //       // setCommand={setCommand}
-      //       // setShow={setShowModalEditLeftSide}
-      //     />
-      //   );
-      // case "arrivee":
-      //   return (
-      //     <ArriveeEditCard
-      //       // command={command}
-      //       // setCommand={setCommand}
-      //       // setShow={setShowModalEditLeftSide}
-      //     />
-      //   );
-      // case "objets":
-      //   return (
-      //     <ObjetEditCard
-      //       // command={command}
-      //       // setCommand={setCommand}
-      //       // setShow={setShowModalEditLeftSide}
-      //       // setStep={setStep}
-      //     />
-      //   );
-    //   default:
-    //     return <h1>!!!!!!!!!</h1>;
-    // }
-  };
-
-  // Render right side of the UI based on the selected modal
-  const showTheShowRight = () => {
-    // switch (showModalEditRightSide) {
-    //   case "":
-        return (
-          <>
-            <Card
-              content="depart"
-              setShowModalEdit={setShowModalEditRightSide}
-              selectedCard={!selectedCard}
-              iconSrc={!selectedCard ? arrowrightyellow : arrowrightgray}
-              title={command?.pickUpAddress?.Address}
-              description={
-                command?.pickUpAcces?.options === "Camion"
-                  ? t("Step1.Aupied")
-                  : command?.pickUpAcces?.floor > 0 ||
-                    command?.pickUpAcces?.floor < 0
-                  ? `${t("Step1.chezMoi")}, ${command?.pickUpAcces?.floor} ${t(
-                      "Step1.étage"
-                    )}, ${
-                      command?.pickUpAcces?.options === "Ascenseur"
-                        ? t("Step1.RDC")
-                        : t("Step1.sansRDC")
-                    }`
-                  : t("Step1.rdc")
-              }
-              onEdit={() => {
-                // Handle the edit action here
-                // console.log("Edit clicked");
-              }}
-            />{" "}
-            <Card
-              content="arrivee"
-              setShowModalEdit={setShowModalEditRightSide}
-              selectedCard={!selectedCard}
-              iconSrc={!selectedCard ? arrowleftyellow : arrowleftgray}
-              title={command?.dropOfAddress?.Address}
-              description={
-                command?.dropAcces?.options === "Camion"
-                  ? t("Step1.Aupied")
-                  : command?.dropAcces?.floor > 0 ||
-                    command?.dropAcces?.floor < 0
-                  ? `${t("Step1.chezMoi")}, ${command?.dropAcces?.floor} ${t(
-                      "Step1.étage"
-                    )}, ${
-                      command?.dropAcces?.options === "Ascenseur"
-                        ? t("Step1.RDC")
-                        : t("Step1.sansRDC")
-                    }`
-                  : t("Step1.rdc")
-              }
-              onEdit={() => {
-                // Handle the edit action here
-                // console.log("Edit clicked");
-              }}
-            />{" "}
-            <Card
-              content="objets"
-              setShowModalEdit={setShowModalEditRightSide}
-              selectedCard={!selectedCard}
-              iconSrc={!selectedCard ? box3dyellow : box3dgray}
-              description={command?.items?.map((el, i) =>
-                i < 3
-                  ? `${el.quant}x ${el.item.name}${
-                      i < command?.items?.length - 1 ? ", " : ""
-                    }`
-                  : i === 3
-                  ? "..."
-                  : null
-              )}
-              onEdit={() => {
-                // Handle the edit action here
-                // console.log("Edit clicked");
-              }}
-            />
-            <StepContainerButtonRight
-              // disabled={selectedCard}
-              selectedCard={!selectedCard}
-              centerbutton={
-                command?.dropAcces.options === "Camion" &&
-                command?.pickUpAcces.options === "Camion"
-              }
-              onClick={(e) => {
-                if(selectedCard){
-                  setSelectedCard(false)}
-                  else{
-                    e.stopPropagation()
-                    e.preventDefault();
-                    handleNextStep();
-                  }
-                
-              }}
-            >
-              {/* {!command?.totalPrice ? <Spin /> : null} */}
-              {t("Step4.Continuer")}
-            </StepContainerButtonRight>
-          </>
-        );
-      // case "depart":
-      //   return (
-      //     <DepartEditCard
-      //       // command={command}
-      //       // setCommand={setCommand}
-      //       // setShow={setShowModalEditRightSide}
-      //     />
-      //   );
-      // case "arrivee":
-      //   return (
-      //     <ArriveeEditCard
-      //       // command={command}
-      //       // setCommand={setCommand}
-      //       // setShow={setShowModalEditRightSide}
-      //     />
-      //   );
-      // case "objets":
-      //   return (
-      //     <ObjetEditCard
-      //       // command={command}
-      //       // setCommand={setCommand}
-      //       // setShow={setShowModalEditRightSide}
-      //       // setStep={setStep}
-      //     />
-      //   );
-    //   default:
-    //     return <h1>!!!!!!!!!!!!</h1>;
-    // }
-  };
+  const isResponsive = window.innerWidth <= 1150;
 
   return (
-    <>
-      {authenticationShow ? ( //++=============================================================================
-        <StepContainerLayout>
-          <StepContainerHeader
-            directionflesh={i18n.language === "ar-AR"}
-            dir="auto"
-          >
-            {i18n.language === "ar-AR" ? (
-              <StepContainerHeaderTitle selected={true} directionflesh={true}>
-                <img
-                  src={previousFleshIcon}
-                  onClick={() => setStep(3)}
-                  alt="flesh"
-                />
-                {t("Step4.info")}
-              </StepContainerHeaderTitle>
-            ) : (
-              <StepContainerHeaderTitle selected={true} directionflesh={false}>
-                <img
-                  src={previousFleshIcon}
-                  onClick={() => setStep(3)}
-                  alt="flesh"
-                />
-                {t("Step4.info")}
-              </StepContainerHeaderTitle>
-            )}
-          </StepContainerHeader>
-          <StepContainerBody directionLanguage={i18n.language === "ar-AR"}>
-            {i18n.language === "ar-AR" ? (
-              <StepContainerSelectRoundSwitch
-                directionLanguage={true}
-                center={true}
-                leftValue={true}
-                rightValue={false}
-                leftLabel={t("SINSCRIRE.sidentifier")}
-                rightLabel={t("SINSCRIRE.Inscrire")}
-                value={switchValue}
-                onChange={handleSwitchChange}
-              />
-            ) : (
-              <StepContainerSelectRoundSwitch
-                directionLanguage={false}
-                center={true}
-                leftValue={true}
-                rightValue={false}
-                leftLabel={t("SINSCRIRE.sidentifier")}
-                rightLabel={t("SINSCRIRE.Inscrire")}
-                value={switchValue}
-                onChange={handleSwitchChange}
-              />
-            )}
-
-            {switchValue ? (
-              <SignIn
-                // command={command}
-                // setCommand={setCommand}
-                // totalPrice={selectedCard ? minPrice : maxPrice}
-                setAuthenticationShow={setAuthenticationShow}
-                setStep={setStep}
-              />
-            ) : (
-              <SignUp
-                // command={command}
-                // setCommand={setCommand}
-                // totalPrice={selectedCard ? minPrice : maxPrice}
-                setAuthenticationShow={setAuthenticationShow}
-                setStep={setStep}
-              />
-            )}
-          </StepContainerBody>
-        </StepContainerLayout>
-      ) : (
-        //++=============================================================================
-        <Container>
-          <StepCardsContainer>
-          {command?.dropAcces.options === "Camion" &&
-            command?.pickUpAcces.options === "Camion" ? null : (
-              <StepContainerLayout
-                pointer={true}
-                shadowColor={
-                  selectedCard ? "rgba(200, 200, 200, 1)" : "#F37A1D"
-                }
-                onClick={() => {
-                  setSelectedCard(false), setShowModalEditLeftSide("");
-                }}
-              >
-                {showModalInfoRightCard ? (
-                  <StepContainerInfor
-                    selectedCard={!selectedCard}
-                    onMouseOut={(e) => {
-                      setshowModalInfoRightCard(false);
-                      e.stopPropagation();
-                    }}
-                  >
-                    <img
-                      src={
-                        selectedCard
-                          ? interrogationBlueIcon
-                          : interrogationBlueIcon
-                      }
-                      className="bigIcon"
-                      onClick={(e) => {
-                        setshowModalInfoRightCard(false);
-                        e.stopPropagation();
-                      }}
-                      alt="interrog"
-                    />
-                    <h2>{t("Step4.avecAide.avecAide")}</h2>
-                    <ul>
-                      <li>{t("Step4.avecAide.desc1")}</li>
-                      <li>{t("Step4.avecAide.desc2")}</li>
-                    </ul>
-                    <img
-                      src={
-                        selectedCard ? twoagentandcargray : twoagentandcaryellow
-                      }
-                      alt="agent"
-                    />
-                  </StepContainerInfor>
-                ) : null}
-                <StepContainerHeader
-                  background={
-                    selectedCard ? "rgba(200, 200, 200, 1)" : "#F37A1D"
-                  }
-                  height="90px"
-                  selected={!selectedCard}
-                >
-                  <img
-                    src={previousFleshIcon}
-                    onClick={() => setStep(3)}
-                    alt="flesh"
-                  />
-                  <StepContainerHeaderTitle selected={!selectedCard} dir="auto">
-                    <h3>
-                      <span>{t("Step4.PRIX")}</span>{" "}
-                      {maxPrice ? maxPrice : <Spin />}Dt
-                    </h3>
-                  </StepContainerHeaderTitle>
-
-                  <img
-                    className="bigIcon"
-                    src={interrogationBlueIcon}
-                    onClick={(e) => {
-                      setshowModalInfoRightCard(true);
-                      e.stopPropagation();
-                    }}
-                    onMouseEnter={(e) => {
-                      setshowModalInfoRightCard(true);
-                      e.stopPropagation();
-                    }}
-                    alt="interro"
-                  />
-                </StepContainerHeader>
-
-                <StepContainerBody gap={"0px"} selected={!selectedCard}>
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      gap: 10,
-                      padding: 10,
-                    }}
-                  >
-                    <h4 className="card-body-title">{t("Step4.chezmoi")}</h4>
-                    <img
-                      src={
-                        !selectedCard
-                          ? twoagentandcaryellow
-                          : twoagentandcargray
-                      }
-                      alt="agent"
-                    />
-                  </div>
-                  {showTheShowRight()}
-                </StepContainerBody>
-              </StepContainerLayout>
-            )}
-
-            <StepContainerLayout
-              pointer={true}
-              shadowColor={!selectedCard ? "rgba(200, 200, 200, 1)" : "#F37A1D"}
-              onClick={() => {
-                setSelectedCard(true), setShowModalEditRightSide("");
-              }}
-            >
-              {/* ------------------------------------------------------- */}
-              {/* ------------------------------------------------------- */}
-              {/* ------------------------------------------------------- */}
-              {/* ------------------------------------------------------- */}
-              {setshowModalInfoLeftCard ? (
-                <StepContainerInfor
-                  selectedCard={selectedCard}
-                  onMouseOut={(e) => {
-                    setSetshowModalInfoLeftCard(false);
-                    e.stopPropagation();
-                  }}
-                >
-                  <img
-                    src={
-                      selectedCard
-                        ? interrogationBlueIcon
-                        : interrogationBlueIcon
-                    }
-                    className="bigIcon"
-                    onClick={(e) => {
-                      setSetshowModalInfoLeftCard(false);
-                      e.stopPropagation();
-                    }}
-                    alt="interrog"
-                  />
-                  <h2>{t("Step4.sansAide.sansAide")}</h2>
-                  <ul>
-                    <li>{t("Step4.sansAide.desc1")}</li>
-                    <li>{t("Step4.sansAide.desc2")}</li>
-                  </ul>
-                  <img
-                    src={selectedCard ? Agentandcaryellow : agentandcargray}
-                    alt="agent"
-                  />
-                </StepContainerInfor>
-              ) : null}
+    <StepContainerLayout dir="auto">
+      <StepContainerHeader directionflesh={i18n.language === "ar-AR"}>
+        <StepContainerHeaderTitle selected={true} directionflesh={i18n.language === "ar-AR"}>
+          <img src={previousFleshIcon} onClick={() => setStep(3)} alt="retour" />
+          {t("Confirmer la course")}
+        </StepContainerHeaderTitle>
+        {isResponsive && <StepContainerHeaderTitle selected={true} />}
+      </StepContainerHeader>
+      <StepContainerBody>
+        <ContentWrapper>
+          {/* Dynamic VehicleTypeCard */}
+          {(() => {
+            const tansportType = command?.TansportType;
+            return (
               <>
-                <StepContainerHeader
-                  background={
-                    selectedCard ? "#F37A1D" : "rgba(200, 200, 200, 1)"
-                  }
-                  height="90px"
-                  selected={selectedCard}
-                >
-                  <img
-                    src={previousFleshIcon}
-                    onClick={() => setStep(3)}
-                    alt="flesh"
-                  />
-                  <StepContainerHeaderTitle selected={selectedCard} dir="auto">
-                    <h3>
-                      <span>{t("Step4.PRIX")}</span>{" "}
-                      {minPrice ? minPrice : <Spin />}Dt
-                    </h3>
-                  </StepContainerHeaderTitle>
-                  <img
-                    src={interrogationBlueIcon}
-                    className="bigIcon"
-                    onClick={(e) => {
-                      setSetshowModalInfoLeftCard(true);
-                      // e.stopPropagation();
-                    }}
-                    // onMouseEnter={(e) => {
-                    //   setSetshowModalInfoLeftCard(true);
-                    //   e.stopPropagation();
-                    // }}
-                    alt="interrog"
-                  />
-                </StepContainerHeader>
-                <StepContainerBody gap={"0px"} selected={selectedCard}>
-                  <div
-                    dir="auto"
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      gap: 10,
-                      padding: 10,
-                    }}
-                  >
-                    <h4 className="card-body-title">{t("Step4.camion")}</h4>
-                    <img
-                      src={selectedCard ? Agentandcaryellow : agentandcargray}
-                      alt="agent"
-                    />
-                  </div>
-                  {showTheShowLeft()}{" "}
-                </StepContainerBody>
-                {/*
-                {showSecondModalEditRightSide && (
-                  <StepContainerBodyModal>
-                    <h1>Stepper modal Arrivée</h1>
-                  </StepContainerBodyModal>
-                )}
-                {showThirdModalEditRightSide && (
-                  <StepContainerBodyModal>
-                    <h1>Stepper modal Mes Objets</h1>
-                  </StepContainerBodyModal>
-                )} */}
-                {/* {!(
-                  showFirstModalEditRightSide ||
-                  showSecondModalEditRightSide ||
-                  showThirdModalEditRightSide
-                ) && ( */}
-
-                {/* )} */}
+                <VehicleTypeCard>
+                  <VehicleTypeIcon src={tansportType?.image || carIcon} alt={tansportType?.title || 'car'} />
+                  <VehicleTypeDetails>
+                    <VehicleTypeName>{tansportType?.title || t('Type inconnu')}</VehicleTypeName>
+                    {/* <VehicleTypeDescription>{tansportType?.description || t('Type de véhicule non reconnu')}</VehicleTypeDescription> */}
+                  </VehicleTypeDetails>
+                </VehicleTypeCard>
+                
               </>
-            </StepContainerLayout>
+            );
+          })()}
+          <DetailsCard>
+            <AddressContainer>
+              <AddressRowContainer>
+                <AddressIconCircle />
+                <AddressDetails>
+                  <AddressLabel>{t("Point de départ")}</AddressLabel>
+                  <AddressValue>{command?.pickUpAddress?.Address}</AddressValue>
+                </AddressDetails>
+              </AddressRowContainer>
+              <VerticalLine />
+              <AddressRowContainer>
+                <AddressIconSquare />
+                <AddressDetails>
+                  <AddressLabel>{t("Point d'arrivée")}</AddressLabel>
+                  <AddressValue>{command?.dropOfAddress?.Address}</AddressValue>
+                </AddressDetails>
+              </AddressRowContainer>
+            </AddressContainer>
+            {date && (
+              <CarTypeRow>
+                <CarTypeLabel>Date :</CarTypeLabel>
+                <CarTypeValue>{date}</CarTypeValue>
+              </CarTypeRow>
+            )}
+          </DetailsCard>
+        </ContentWrapper>
+        {date && (
+                  <ReservationFeeInfo>
+                    {t('Le prix inclut les frais de réservation')}
+                    {command.tansportType?.reservation_price && (
+                      <> : <strong>{tansportType.reservation_price} DT</strong></>
+                    )}
+                  </ReservationFeeInfo>
+                )}
 
-          </StepCardsContainer>
-          {/* <div style={{ flex: 1, zIndex: 9999, width: "90vw" }}> */}
-
-          {/* </div> */}
-        </Container>
-      )}
-    </>
+        <ConfirmButtonWrapper>
+          <ConfirmButton
+            enabled={!loading && !buttonLoading}
+            onClick={(e) => {
+              e.stopPropagation();
+              e.preventDefault();
+              handleNextStep();
+            }}
+          >
+            {buttonLoading ? (
+              <Spinner style={{ marginRight: 8, marginLeft: 0 }} />
+            ) : (
+              <PriceText>{price ? `${price} DT` : '...'}</PriceText>
+            )}
+            <ConfirmText>{t("Confirmer")}</ConfirmText>
+          </ConfirmButton>
+        </ConfirmButtonWrapper>
+        {showSuccessModal && (
+          <BillModal>
+            <BillContent>
+              <h2>{t('Votre réservation a été créée avec succès!')}</h2>
+              <ul>
+                <li>{t('Vous pouvez consulter l\'historique de vos réservations dans votre profil.')}</li>
+              </ul>
+              <CloseBtn onClick={handleGoToHistory}>{t('Aller à mon historique')}</CloseBtn>
+            </BillContent>
+          </BillModal>
+        )}
+      </StepContainerBody>
+    </StepContainerLayout>
   );
 };
 
 export default Step4;
 
-export const Container = styled.div`
-  width: 90vw;
+const LogsBlock = styled.div`
   display: flex;
-  /* flex-wrap: wrap; */
-  justify-content: center;
   flex-direction: column;
   align-items: center;
-  gap: 30px;
-  margin-inline: auto;
-  @media (max-width: 1150px) {
-    width: 100%;
+  margin-top: 60px;
+  margin-bottom: 16px;
+`;
+const LogLine = styled.div`
+  font-size: 18px;
+  margin-bottom: 16px;
+  color: ${({ active }) => (active ? "#0c0c0c" : '#888')};
+  font-weight: ${({ active }) => (active ? 600 : 400)};
+  display: flex;
+  align-items: center;
+`;
+const Spinner = styled.div`
+  margin-left: 8px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid ${"#0c0c0c"};
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  animation: spin 1s linear infinite;
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
   }
-  .mainImg {
-    width: 15vw;
-    @media (max-width: 1150px) {
-      width: 40vw;
-      display: none;
-    }
+`;
+const PriceBlock = styled.div`
+  display: none;
+`;
+const PriceValue = styled.span`
+  font-size: 2.1rem;
+  font-weight: 600;
+  color: #18365a;
+`;
+const PriceLabel = styled.span`
+  font-size: 1.2rem;
+  color: #18365a;
+  font-weight: 400;
+`;
+const DetailsCard = styled.div`
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: none;
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+  border: 1px solid #ccc;
+`;
+const TruckRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+`;
+const TruckTitle = styled.span`
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #000;
+`;
+const AddressRow = styled.div`
+  display: flex;
+  align-items: flex-start;
+  gap: 0px;
+  width: 100%;
+`;
+const AddressMain = styled.div`
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #222;
+`;
+const CarTypeRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #888;
+`;
+const CarTypeLabel = styled.span`
+  font-size: 1rem;
+  font-weight: 600;
+  color: #888;
+`;
+const CarTypeValue = styled.span`
+  font-size: 1rem;
+  color: #222;
+  font-weight: 500;
+`;
+const ContinueButton = styled.button`
+  margin-top: 18px;
+  background: ${"#0c0c0c"};
+  color: #fff;
+  border: none;
+  border-radius: 16px;
+  padding: 12px 36px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 2px 2px 0px 1px #18365a33;
+  align-self: flex-end;
+`;
+const BillModal = styled.div`
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+`;
+const BillContent = styled.div`
+  background: #fff;
+  border-radius: 16px;
+  padding: 32px 32px 24px 32px;
+  min-width: 320px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.13);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  h2 {
+    color: ${"#0c0c0c"};
+    font-size: 1.3rem;
+    margin-bottom: 10px;
   }
+  ul {
+    margin: 0 0 10px 0;
+    padding: 0 0 0 18px;
+    color: #222;
+    font-size: 1.1rem;
+  }
+`;
+const TotalRow = styled.div`
+  font-size: 1.2rem;
+  color: ${"#0c0c0c"};
+  font-weight: 700;
+  margin-top: 8px;
+  display: flex;
+  gap: 10px;
+`;
+const CloseBtn = styled.button`
+  margin-top: 18px;
+  background: ${"#0c0c0c"};
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 8px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  align-self: flex-end;
+`;
+
+const VehicleTypeCard = styled.div`
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: none;
+  padding: 12px 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+`;
+
+const VehicleTypeIcon = styled.img`
+  width: 60px;
+  height: 40px;
+  object-fit: cover;
+`;
+
+const VehicleTypeDetails = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const VehicleTypeName = styled.span`
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0c0c0c;
+`;
+
+const VehicleTypeDescription = styled.span`
+  font-size: 1rem;
+  color: #888;
+  font-weight: 400;
+`;
+
+const AddressContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  width: 100%;
+`;
+
+const AddressRowContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+`;
+
+const AddressIconCircle = styled.div`
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #0c0c0c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const AddressIconSquare = styled.div`
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  background: #fff;
+  border: 2px solid #0c0c0c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const AddressDetails = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const AddressLabel = styled.span`
+  font-size: 0.8rem;
+  color: #888;
+  font-weight: 400;
+`;
+
+const AddressValue = styled.span`
+  font-size: 1rem;
+  color: #0c0c0c;
+  font-weight: 500;
+`;
+
+const VerticalLine = styled.div`
+  width: 2px;
+  height: 20px;
+  background-color: #ccc;
+  margin-left: 9px;
+`;
+
+const ConfirmButtonWrapper = styled.div`
+  width: 100%;
+  padding: 10px 6px;
+  background-color: #fff;
+  box-shadow: none;
+ 
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ `;
+
+const ConfirmButton = styled.button`
+  background: ${"#0c0c0c"};
+  color: #fff;
+ 
+  border: none !important;
+  border-radius: 18px;
+  padding: 14px 28px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 85%;
+  max-width: 370px;
+  transition: background 0.2s;
+  opacity: ${({ enabled }) => (enabled ? 1 : 0.6)};
+  pointer-events: ${({ enabled }) => (enabled ? 'auto' : 'none')};
+  &:hover {
+    background: #222;
+  }
+`;
+
+const PriceText = styled.span`
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+`;
+
+const ConfirmText = styled.span`
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+`;
+
+const ContentWrapper = styled.div`
+  padding: 8px 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+`;
+
+const ReservationFeeInfo = styled.div`
+  margin: 8px 0 0 0;
+  font-size: 1rem;
+  color: #0c0c0c;
+  background: #f7f7f7;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-weight: 500;
 `;

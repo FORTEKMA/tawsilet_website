@@ -26,7 +26,7 @@ export const Button404 = styled.button`
   font-weight: 700;
   font-size: 16px;
   color: #020111;
-  background-color: #f37a1d;
+  background-color: #d8b56c;
   border: none;
   display: flex;
   flex-direction: row;
@@ -39,8 +39,8 @@ export const Button404 = styled.button`
 
   /* &:hover {
     background-color:  #18365a;
-    border: 1px solid #F37A1D;
-    color:  #F37A1D;
+    border: 1px solid #d8b56c;
+    color:  #d8b56c;
   } */
   .icon-arrow {
     width: 20px;

@@ -60,7 +60,7 @@ const EditIcon = styled.img`
 `;
 
 const Card = ({
-  selectedCard,
+  
   content = "",
   iconSrc,
   title = null,
@@ -70,10 +70,7 @@ const Card = ({
 }) => {
   return (
     <CardContainer
-      onClick={(e) => {
-        selectedCard &&
-          (setShowModalEdit(content), e.stopPropagation(), e.preventDefault());
-      }}
+      
     >
       <IconContainer>
         <Icon src={iconSrc} alt="Icon" />
@@ -82,7 +79,7 @@ const Card = ({
         {title ? <Title>{title}</Title> : null}
         <Description>{description}</Description>
       </TextContainer>
-      {selectedCard ? <EditIcon src={penIcon} alt="Edit" /> : null}
+    
     </CardContainer>
   );
 };

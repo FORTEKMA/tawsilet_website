@@ -8,7 +8,7 @@ const CallContact = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  color: #F37A1D;
+  color: #d8b56c;
   gap: 20px;
   font-size: 17px;
   margin-top: 8px;
@@ -31,7 +31,7 @@ export const Call = () => {
   return (
     <CallContact>
       {/* <img src={Tel} alt="Group" /> */}
-       +216 36 848 020
+      
     </CallContact>
   );
 };

@@ -269,7 +269,7 @@ const Button = styled.button`
   height: 3rem;
   border-width: 2px;
   background-color: ${(props) => props.theme.PRIMARY_COLOR};
-  border-color: #F37A1D;
+  border-color: #d8b56c;
   font-family: ${style.font.FONT_FAMILY};
   font-weight: 600;
   font-size: 0.875rem;
@@ -368,7 +368,7 @@ const OptionContent = styled.div`
 
 const ExpandIcon = styled.div`
   margin-left: auto;
-  color: #F37A1D;
+  color: #d8b56c;
   font-size: 1.2rem;
 `;
 

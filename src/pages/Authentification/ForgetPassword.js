@@ -168,7 +168,7 @@ const Button = styled.button`
   height: 3rem;
   border-width: 2px;
   background-color: ${(props) => props.theme.PRIMARY_COLOR};
-  border-color: #F37A1D;
+  border-color: #d8b56c;
   font-family: ${(props) => props.theme.FONT_FAMILY};
   font-weight: 600;
   font-size: 0.875rem;
@@ -198,7 +198,7 @@ const Button = styled.button`
 
 const SPPAANN = styled.span`
   a {
-    color: #F37A1D;
+    color: #d8b56c;
     text-decoration: none;
   }
 `;

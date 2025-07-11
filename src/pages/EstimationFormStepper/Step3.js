@@ -1,124 +1,120 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
+import axios from "axios";
 import {
-  AccesBlocConatiner,
   StepContainerBody,
   StepContainerButton,
   StepContainerHeader,
   StepContainerHeaderTitle,
   StepContainerLayout,
-  StyledIcon,
 } from ".";
 import previousFleshIcon from "../../assets/icons/previousFleshIcon.svg";
-import WarningIcon from "../../assets/icons/warningIcon.svg";
-import ComboBox from "./items/DataList";
-import WarningMessage from "./items/WarninMessage";
-import CountComponent from "./items/CountComponent";
+import CarSelection from "./items/CarSelection";
 import { useTranslation } from "react-i18next";
 import {
-  updateItems,
-  updateSpecificNote,
+  updateTransportType,
+  updateDistance,
+  updateDuration,
+  updateDepartDate,
+  updateDeparTime,
 } from "../../redux/newCommand/newCommandSlice";
-import downFlesh from "../../assets/icons/fleshrightblue.svg"
-
+import downFlesh from "../../assets/icons/fleshrightblue.svg";
 import { useMediaQuery } from "react-responsive";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClock, faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import DateTimeInput from "./items/DateTimeInput";
+
+export async function calculateDistanceAndTime(startCoords, endCoords) {
+  const apiKey = 'AIzaSyA8oEc5WKQqAXtSKpSH4igelH5wlPDaowE';
+  const url = `https://maps.googleapis.com/maps/api/directions/json?origin=${startCoords.latitude},${startCoords.longitude}&destination=${endCoords.latitude},${endCoords.longitude}&key=${apiKey}&language=fr`;
+  try {
+    const response = await axios.get(url);
+    const distance = response.data.routes[0].legs[0].distance.value;
+    const duration = response.data.routes[0].legs[0].duration.text.trim();
+    return {
+      distance: distance,
+      time: duration,
+    };
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
 
 const Step3 = ({ setStep }) => {
   const command = useSelector((store) => store?.newCommand?.command);
-
   const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
-  const objects = useSelector((store) => store?.objects?.objects);
-  const commandItems = useSelector(
-    (store) => store?.newCommand?.command?.items
-  );
-
   const [minimizeWindow, setMinimizeWindow] = useState(false);
   const isResponsive = useMediaQuery({ maxWidth: 1150 });
-
-  const remarqueRef = useRef("");
-
-  // Helper function to calculate total volume
-  const calculateTotalVolume = (items) => {
-    return items?.reduce(
-      (total, item) => total + item.quant * item.item.volume,
-      0
-    );
-  };
-
-  const [selectedItems, setSelectedItems] = useState(commandItems);
-  // const [note, setNote] = useState(commandItems?.SpecificNote || "");
-  const [volume, setVolume] = useState(
-    calculateTotalVolume(command?.items || [])
-  );
+   const [selectedCar, setSelectedCar] = useState(command?.TansportType?.id || '');
+  const [showDateModal, setShowDateModal] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(command?.departDate ? new Date(command.departDate) : null);
+  const [selectedTime, setSelectedTime] = useState(command?.deparTime || null);
+  const [carError, setCarError] = useState("");
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  // Update Redux store when selectedItems change
-  const updateSelectedItems = (newSelectedItems) => {
-    setSelectedItems(newSelectedItems);
-    dispatch(updateItems(newSelectedItems)); // Dispatching the updateItems action
-  };
-
-  // Handle incrementing item quantity
-  const handleIncrement = (index) => {
-    const updatedItems = commandItems.map((item, i) => {
-      if (i === index) {
-        const newItem = { ...item }; // Create a new object for the item
-        if (volume + newItem?.item?.volume <= 20) {
-          newItem.quant += 1; // Increment the quantity
+  useEffect(() => {
+    const calculateRoute = async () => {
+      if (command?.startLocation && command?.endLocation) {
+        const result = await calculateDistanceAndTime(
+          command.startLocation,
+          command.endLocation
+        );
+        if (result) {
+          dispatch(updateDistance(result.distance));
+          dispatch(updateDuration(result.time));
         }
-        return newItem;
       }
-      return item;
-    });
+    };
+    calculateRoute();
+  }, [command?.startLocation, command?.endLocation, dispatch]);
 
-    setVolume(calculateTotalVolume(updatedItems));
-    updateSelectedItems(updatedItems); // Dispatching the updated list
+ 
+
+  const handleCarSelect = (carType) => {
+    setSelectedCar(carType.id);
+    setCarError("");
+    dispatch(updateTransportType(carType ));
   };
 
-  const handleNoteChange = (e) => {
-    const updatedNote = e.target.value;
-    // setNote(updatedNote);
-    dispatch(updateSpecificNote(updatedNote)); // Dispatch the updated note
+  const distance = command?.distance ? `${(command.distance / 1000).toFixed(2)} km` : '0 km';
+  const duration = command?.duration || '0 min';
+
+  const handleClockButtonClick = () => {
+    setShowDateModal(true);
   };
 
-  // Handle decrementing item quantity
-  const handleDecrement = (index) => {
-    const updatedItems = commandItems
-      .map((item, i) => {
-        if (i === index) {
-          const newItem = { ...item }; // Create a new object for the item
-          newItem.quant -= 1; // Decrement the quantity
-
-          if (newItem.quant < 1) {
-            return null; // Remove the item if quantity becomes less than 1
-          }
-          return newItem;
-        }
-        return item;
-      })
-      .filter((item) => item !== null); // Filter out null items (those that were removed)
-
-    setVolume(calculateTotalVolume(updatedItems));
-    updateSelectedItems(updatedItems); // Dispatching the updated list
+  const handleCloseDateModal = () => {
+    setShowDateModal(false);
   };
 
-  // Handle moving to the next step
+  const handleDateTimeChange = (date, time) => {
+    setSelectedDate(date ? new Date(date) : null);
+    setSelectedTime(time);
+  };
+
+  const handleConfirmDate = () => {
+    dispatch(updateDepartDate(selectedDate ? selectedDate.toISOString().split("T")[0] : null));
+    dispatch(updateDeparTime(selectedTime));
+    setShowDateModal(false);
+  };
+
   const handleNextStep = (e) => {
     e.stopPropagation();
-    if (volume > 20) {
-      alert("Volume Max 20 mètre cube");
-    } else if (commandItems.length) {
+    if (selectedCar) {
       setStep(4);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      alert("Sélectionner des objets");
+      setCarError(t("Veuillez sélectionner un type de véhicule avant de continuer."));
     }
   };
+
+  const formattedDate = selectedDate ? selectedDate.toLocaleDateString(i18n.language) : '';
 
   return (
     <StepContainerLayout dir="auto">
@@ -127,15 +123,15 @@ const Step3 = ({ setStep }) => {
           selected={true}
           directionflesh={i18n.language === "ar-AR"}
         >
-          <img src={previousFleshIcon} onClick={(e) => {e.stopPropagation() ;setStep(2)}} alt="flesh" />
-          {t("Step3.objets")}
+          <img src={previousFleshIcon} onClick={(e) => {e.stopPropagation(); setStep(2);}} alt="flesh" />
+          {t("Sélectionner une voiture")}
         </StepContainerHeaderTitle>
         {isResponsive && (
           <StepContainerHeaderTitle selected={true}>
             <img
               className={minimizeWindow ? "up-flesh" : "down-flesh"}
               src={downFlesh}
-              onClick={(e) =>{e.stopPropagation(); setMinimizeWindow(!minimizeWindow)}}
+              onClick={(e) => {e.stopPropagation(); setMinimizeWindow(!minimizeWindow);}}
               alt="minimize"
             />
           </StepContainerHeaderTitle>
@@ -143,50 +139,38 @@ const Step3 = ({ setStep }) => {
       </StepContainerHeader>
       {!minimizeWindow ? (
         <StepContainerBody>
-          {/* ComboBox for selecting items */}
-          <ComboBox
-            volume={volume}
-            objects={objects}
-            setSelectedItems={updateSelectedItems} // Update items with dispatch
-            selectedItems={selectedItems}
+          <CarSelection 
+            selectedCar={selectedCar}
+            onSelectCar={handleCarSelect}
           />
-          {commandItems?.length !== 0 && (
-            <ItemsBox>
-              {commandItems.map((item, index) => (
-                <AccesBlocConatiner key={index} style={{ padding: 12 }}>
-                  <h4 style={{ fontWeight: 500, textTransform: "capitalize" }}>
-                    {item?.item?.name}
-                  </h4>
-                  <CountComponent
-                    value={item?.quant}
-                    onIncrement={() => handleIncrement(index)}
-                    onDecrement={() => handleDecrement(index)}
-                  />
-                </AccesBlocConatiner>
-              ))}
-            </ItemsBox>
+          {carError && (
+            <div style={{ color: '#d32f2f', fontWeight: 500, margin: '8px 0 0 0', textAlign: 'center' }}>{carError}</div>
           )}
-          {/* {commandItems.length > 0 ? ( */}
-          <>
-            <h3 style={{ color: "black" }}>{t("Step3.remarque")}</h3>
-            <NoteArea
-              ref={remarqueRef}
-              rows={4}
-              placeholder={t("Step3.textarea")}
-              defaultValue={command?.SpecificNote} 
-              onChange={handleNoteChange} 
-            />
-          </>
-          {/* ) : ( */}
-          {/* <WarningMessage
-            icon={<StyledIcon src={WarningIcon} alt="warningIcon" />}
-            description={t("Step3.desc")}
-          /> */}
-          {/* )} */}
-          {commandItems.length > 0 && (
-            <StepContainerButton onClick={handleNextStep}>
-              {t("Step3.obtenir")}
-            </StepContainerButton>
+          <InfoContainer>
+            <InfoItem>
+              <FontAwesomeIcon icon={faLocationDot} />
+              {distance}
+            </InfoItem>
+            <InfoItem>
+              <FontAwesomeIcon icon={faClock} />
+              {duration}
+            </InfoItem>
+            {selectedDate && selectedTime && (
+              <InfoItem>
+                <FontAwesomeIcon icon={faClock} />
+                {formattedDate} {selectedTime.substring(0, 5)}
+              </InfoItem>
+            )}
+          </InfoContainer>
+          {selectedCar && (
+            <BookButtonContainer>
+              <ClockButton onClick={handleClockButtonClick}>
+                <FontAwesomeIcon icon={faClock} />
+              </ClockButton>
+              <ReserveButton onClick={handleNextStep}>
+                {t("Réserver maintenant")}
+              </ReserveButton>
+            </BookButtonContainer>
           )}
         </StepContainerBody>
       ) : (
@@ -194,173 +178,200 @@ const Step3 = ({ setStep }) => {
           <h4 style={{ color: "black" }}>{t("Step1.detail")}</h4>
         </StepContainerBody>
       )}
+      {showDateModal && (
+        <DateModalOverlay onClick={handleCloseDateModal}>
+          <DateModalContent onClick={(e) => e.stopPropagation()}>
+            <CloseButton onClick={handleCloseDateModal}>&times;</CloseButton>
+            <ModalTitle>{t("Choisissez la date et l'heure de départ")}</ModalTitle>
+            <DateTimeInput
+              defaultDate={selectedDate}
+              defaultTime={selectedTime}
+              onDateTimeChange={handleDateTimeChange}
+            />
+            <ModalButtonRow>
+              <ModalResetButton
+                onClick={() => {
+                  setSelectedDate(null);
+                  setSelectedTime(null);
+                  dispatch(updateDepartDate(null));
+                  dispatch(updateDeparTime(null));
+                  setShowDateModal(false);
+                }}
+              >
+                {t("Réinitialiser")}
+              </ModalResetButton>
+              <ModalCancelButton onClick={handleCloseDateModal}>{t("Annuler")}</ModalCancelButton>
+              <ModalConfirmButton onClick={handleConfirmDate}>{t("Confirmer")}</ModalConfirmButton>
+            </ModalButtonRow>
+          </DateModalContent>
+        </DateModalOverlay>
+      )}
     </StepContainerLayout>
   );
 };
 
 export default Step3;
 
-export const Container = styled.div`
-  width: 100%;
+const InfoContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #f0f0f0;
+  padding: 15px 20px;
+  border-radius: 12px;
+`;
+
+const InfoItem = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #333;
+  font-size: 1rem;
+  font-weight: 500;
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+`;
+
+const BookButtonContainer = styled.div`
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ClockButton = styled.button`
+  background: #e0e0e0;
+  border: none;
+  border-radius: 12px;
+  padding: 15px;
   display: flex;
   justify-content: center;
-  flex-direction: column;
   align-items: center;
-  gap: 30px;
-
-  .mainImg {
-    width: 15vw;
-    @media (max-width: 1150px) {
-      width: 40vw;
-    }
-  }
-  .finalBtn {
-    display: flex;
-    width: 100%;
-    justify-content: flex-end;
-    @media (max-width: 1150px) {
-      margin: 20px;
-      width: 90%;
-    }
-  }
-
-  .nextButton {
-    background: #f37a1d;
-
-    padding: 12px 24px 12px 24px;
-    border-radius: 12px;
-    border: 1px;
-    gap: 8px;
-    width: 10vw;
-    height: 7vh;
-    font-size: 1vw;
-    font-weight: 600;
-
-    box-shadow: 0px 4.410621643066406px 13.231865882873535px 0px #0000001f;
-    @media (max-width: 1150px) {
-      width: 60%;
-      font-size: 4vw;
-    }
+  cursor: pointer;
+  svg {
+    width: 24px;
+    height: 24px;
   }
 `;
 
-export const BoxContainer = styled.div`
-  display: flex;
-  width: 60%;
-  margin-top: 2%;
-
-  align-items: center;
-  @media (max-width: 1150px) {
-    width: 85%;
-  }
-  .title {
-    font-size: 1.4rem;
-    font-weight: 500;
-    @media (max-width: 1150px) {
-      font-size: 0.8rem;
-    }
-  }
-
-  .detais {
-    font-size: 16px;
-    font-weight: 400;
-    @media (max-width: 1150px) {
-      font-size: 12px;
-    }
-  }
-  .imgD {
-    width: 2vw;
-    margin-right: 2vw;
-    @media (max-width: 1150px) {
-      width: 10vw;
-      margin-right: 4vw;
-    }
-  }
-`;
-
-const ItemsBox = styled.div`
-  max-height: 200px;
-  overflow: scroll;
-  // z-index:9999999999999999;
-  overflow-y: scroll;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-`;
-
-const NoteArea = styled.textarea`
-  border: 2px solid #66666633;
+const ReserveButton = styled.button`
+  flex-grow: 1;
+  background: black;
+  color: white;
+  padding: 15px 30px;
   border-radius: 12px;
-  font-size: 16px;
-  resize: vertical;
-  padding: 10px;
-  width: 100%;
-  margin: auto;
-  &::placeholder {
-    font-size: 12px;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  &:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
   }
 `;
 
-{
-  /* <Container>
-      <img className="mainImg" src={MainImage} />
-      <BoxContainer>
-        <img className="imgD" src={timerImg} />
-        <div className="textBox">
-          <p className="title">Emplacement de ramassage sélectionné</p>
-          <span className="detais">
-            {command.data.departDate} à {command.data.deparTime}
-          </span>
-        </div>
-      </BoxContainer>
+const DateModalOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(2px);
+`;
 
-      <BoxContainer>
-        <img className="imgD" src={location} />
-        <div>
-          <p className="title">Adresse de ramassage</p>
-          <span className="detais">{command.data.pickUpAddress.Address}</span>
-        </div>
-      </BoxContainer>
+const DateModalContent = styled.div`
+  background: #fff;
+  padding: 32px 24px 24px 24px;
+  border-radius: 18px;
+  width: 80%;
+ 
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  position: relative;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18), 0 1.5px 6px rgba(216,181,108,0.12);
+  animation: modalFadeIn 0.25s cubic-bezier(0.4,0,0.2,1);
+  @keyframes modalFadeIn {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+`;
 
-      <BoxContainer>
-        <img className="imgD" src={location2} />
-        <div>
-          <p className="title">Adresse de dépôt</p>
-          <span className="detais">{command.data.dropOfAddress.Address}</span>
-        </div>
-      </BoxContainer>
+const ModalTitle = styled.h3`
+  margin: 0 0 8px 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #222;
+  text-align: center;
+`;
 
-      <BoxContainer>
-        <img className="imgD" src={box} />
-        <div className="subCont">
-          <p className="title">Mes articles</p>
-          <span className="detais">
-            {command.data.items.map((item) => (
-              <span className="detais">
-                {item.quant}*{item.item.name}
-              </span>
-            ))}
-          </span>
-        </div>
-      </BoxContainer>
-      <BoxContainer>
-        <img className="imgD" src={layer} />
-        <div>
-          <p className="title">Accès</p>
-          <span className="detais">
-            {command.data.pickUpAcces.options} ,{" "}
-            {command.data.pickUpAcces.floor} étage
-          </span>
-        </div>
-      </BoxContainer>
+const ModalButtonRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 8px;
+`;
 
-      <div className="finalBtn">
-        <button
-          className="nextButton"
-          onClick={() => (userLoggedIn ? setStep(5) : setStep(4))}
-        >
-          Suivant
-        </button>
-      </div>
-    </Container> */
-}
+const ModalResetButton = styled.button`
+  flex: 1;
+  background: #fff3cd;
+  color: #856404;
+  padding: 12px 20px;
+  border-radius: 10px;
+  border: 1px solid #ffeeba;
+  font-size: 1.08rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+  &:hover {
+    background: #ffeeba;
+  }
+`;
+
+const ModalCancelButton = styled.button`
+  flex: 1;
+  background: #f0f0f0;
+  color: #222;
+  padding: 12px 20px;
+  border-radius: 10px;
+  border: none;
+  font-size: 1.08rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+  &:hover {
+    background: #e0e0e0;
+  }
+`;
+
+const ModalConfirmButton = styled.button`
+  flex: 1;
+  background: #222;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.08rem;
+  padding: 12px 28px;
+  border-radius: 10px;
+  transition: background 0.2s;
+  &:hover {
+    background: #d8b56c;
+    color: #222;
+  }
+`;
+
+const CloseButton = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+`;

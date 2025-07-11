@@ -110,7 +110,7 @@ export const Sidentifbut = styled.button`
     font-weight: 900;
     height: 55px;
     border: none;
-    color: #f37a1d;
+    color: #d8b56c;
     font-size: 16px;
     background-color: transparent;
   }
@@ -122,7 +122,7 @@ export const Buttonn = styled.button`
   border-radius: 12px;
   color: white;
   font-size: 16px;
-  background-color: #f37a1d;
+  background-color: #d8b56c;
   margin-top: 10px;
   @media (max-width: 1050px) {
     color: #18365a;

@@ -100,5 +100,5 @@ const SubmitButton = styled.button`
   padding: 10px;
   margin-left: 10px;
   width: 325px;
-  background-color: #F37A1D;
+  background-color: #d8b56c;
 `;

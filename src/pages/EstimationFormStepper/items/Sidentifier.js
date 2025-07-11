@@ -28,7 +28,7 @@ import ErrorMessage from "../../../components/Form/ErrorMessage";
 import { useTranslation } from "react-i18next";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
-const SignIn = ({ setAuthenticationShow, setStep }) => {
+const SignIn = ({  setStep }) => {
   const { t, i18n } = useTranslation();
   const {
     register,
@@ -38,16 +38,7 @@ const SignIn = ({ setAuthenticationShow, setStep }) => {
   } = useForm();
   const dispatch = useDispatch();
   const command = useSelector((store) => store?.newCommand?.command);
-
-  // useEffect(() => {
-  //   setCommand({
-  //     ...command,
-  //     data: {
-  //       ...command.data,
-  //       totalPrice: totalPrice,
-  //     },
-  //   });
-  // }, []);
+ 
 
   const navigate = useNavigate();
   // const loadingStatus = useSelector((state) => state.user.isLoading);
@@ -63,29 +54,15 @@ const SignIn = ({ setAuthenticationShow, setStep }) => {
     try {
       setisLoading(loadingStatus);
       const response = await myPromise(data);
-      // console.log(response);
+     
       if (response.payload) {
-        setAuthenticationShow(false);
+        
         dispatch(getCurrentUserEstimation());
-        setStep(5);
+        setStep(response.payload);
       } else {
         console.log("errrrrrr");
       }
-      // setAuthenticationShow(false);
-      // dispatch(getCurrentUserEstimation());
-      // setStep(5);
-
-      //   .then(() => {
-      //     setAuthenticationShow(false);
-      //     dispatch(getCurrentUserEstimation());
-      //     setStep(5);
-      //   });
-      //   // if (auth) {
-      //   //   setAuthenticationShow(false);
-      //   //   setStep(4);
-      //   // } else {
-      //   //   return false;
-      // }
+   
     } catch (error) {
       console.log(error.message);
     }
@@ -138,7 +115,7 @@ const SignIn = ({ setAuthenticationShow, setStep }) => {
             <IconContainer
               onClick={() => setPasswordVisible(false)}
               isRtl={i18n.language.startsWith("ar")}
-            >
+             >
               <AiOutlineEyeInvisible />
             </IconContainer>
           ) : (
@@ -204,10 +181,11 @@ export default SignIn;
 const IconContainer = styled.div`
   position: absolute;
 
-  top: 16px;
+  top: 15px;
   /* transform: translateY(-50%); */
   cursor: pointer;
   color: black;
+  right: 15px;
   @media (max-width: 1050px) {
     /* color: white; */
     right: 0px; /* Adjust as needed */
@@ -256,22 +234,19 @@ export const HR = styled.p`
   }
 `;
 export const Buttonn = styled.button`
+  background: #0c0c0c;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 18px;
   cursor: pointer;
-  width: 70%;
-  font-weight: 700px;
-  height: 45px;
-  border-radius: 7px;
-  color: white;
-  font-size: 16px;
-  background-color: #f37a1d !important;
-  margin-top: 10px;
-  @media (max-width: 1050px) {
-    /* color: #18365a; */
-    /* background-color: white; */
-    border: none;
-    height: 50px;
-    width: 300px;
-    margin-bottom: 16px;
+  width: 100%;
+  transition: background 0.2s;
+  &:hover {
+    background: #222;
   }
 `;
 export const Card = styled.section`

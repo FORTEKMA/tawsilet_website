@@ -14,7 +14,7 @@ const Download = () => {
           <div className="heading_up_downlaod"> TÉLÉCHARGER</div>
           <div className="heading_downlaod">Téléchargez notre application</div>
           <div className="description_downlaod">
-            Simplifiez votre expérience de transport avec l'application Sheelni.
+            Simplifiez votre expérience de transport avec l'application Tawsilet.
             Réservez, suivez et gérez les livraisons sans effort. Commencez dès
             maintenant et profitez d'une logistique transparente à portée de
             main.

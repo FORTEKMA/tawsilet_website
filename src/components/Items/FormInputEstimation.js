@@ -254,7 +254,7 @@ export const Buttonn = styled.button`
   border-radius: 12px;
   color: white;
   font-size: 16px;
-  background-color: #f37a1d;
+  background-color: #d8b56c;
   margin-top: 20px;
   @media (max-width: 744px) {
     color: #18365a;

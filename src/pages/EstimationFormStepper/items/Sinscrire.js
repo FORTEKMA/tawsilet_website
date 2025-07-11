@@ -19,7 +19,7 @@ import "react-phone-input-2/lib/style.css";
 
 import PhoneInput from "react-phone-input-2";
 
-const SignUp = ({ setAuthenticationShow, setStep }) => {
+const SignUp = ({  setStep }) => {
   const { t, i18n } = useTranslation();
   const command = useSelector((store) => store?.newCommand?.command);
   const auth = localStorage.getItem("token");
@@ -78,10 +78,9 @@ const SignUp = ({ setAuthenticationShow, setStep }) => {
         })
           .then((user) => {
             setisLoading(false);
-            setAuthenticationShow(false);
             dispatch(getCurrentUserEstimation());
             if (command?.totalPrice) {
-              setStep(5);
+              setStep(user);
             }
             // window.location.replace("/clientProfile/details");
           })
@@ -91,21 +90,7 @@ const SignUp = ({ setAuthenticationShow, setStep }) => {
             alert(error?.response?.data?.error?.message);
           });
 
-        // AuthService.register({
-        //   username: data.email,
-        //   email: data.email,
-        //   phoneNumber: data.phoneNumber,
-        //   user_role: "client",
-        //   password: data.password,
-        //   accountOverview: [
-        //     {
-        //       __component: "section.client",
-
-        //       firstName: data.firstName,
-        //       lastName: data.lastName,
-        //     },
-        //   ],
-        // })
+       
       })}
     >
       <DISP>
@@ -419,23 +404,20 @@ const Formulaire = styled.form`
   }
 `;
 
-export const Buttonn = styled.button`
-  width: 70%;
-  align-self: center;
-  height: 45px;
-  border-radius: 12px;
-  color: white;
-  font-size: 16px;
-  background-color: #f37a1d;
-  margin-top: 20px;
-  @media (max-width: 1050px) {
-    /* color: #18365a;
-    background-color: white; */
-    border: none;
-    height: 50px;
-    width: 100%;
-    /* max-width: 200px; */
-    margin-bottom: 16px;
+const Buttonn = styled.button`
+  background: #0c0c0c;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 18px;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.2s;
+  &:hover {
+    background: #222;
   }
 `;
 
@@ -457,7 +439,7 @@ export const Pi = styled.p`
   }
   a {
     @media (max-width: 1050px) {
-      color: #f37a1d;
+      color: #d8b56c;
       text-decoration: none;
       font-weight: 600;
     }

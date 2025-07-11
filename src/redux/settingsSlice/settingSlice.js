@@ -11,7 +11,7 @@ const initialState = {
 export const getAllSettings = createAsyncThunk("settings/get", async (id) => {
   try {
     const response = await axios.get(
-      `${process.env.REACT_APP_DOMAIN_URL}/api/settings?populate=*`
+      `${process.env.REACT_APP_DOMAIN_URL}/api/parameters?populate=*`
     );
     return response.data;
   } catch (error) {

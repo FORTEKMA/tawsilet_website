@@ -14,50 +14,41 @@ import {
 } from "../../../redux/ordersSlice/OrderSlice";
 import { sendNotification } from "../../../redux/notifications/notificationSlice";
 import axios from "axios";
-import Survey from "../../EstimationFormStepper/section/Enqeute";
-const { Option } = Select;
+ const { Option } = Select;
 import { useNavigate } from "react-router";
-const ProfileHistory = ({ }) => {
+const ProfileHistory = () => {
   const navigate = useNavigate();
   const [ping, setPing] = useState(false);
   const currentUser = useSelector((store) => store?.user?.currentUser);
   const [newDate, setNewDate] = useState(null);
   const [selectedHour, setSelectedHour] = useState(null);
   const [selectedMinute, setSelectedMinute] = useState(null);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [activePage, setActivePage] = useState(1);
-  const onPageChange = (index) => {
-    setActivePage(index);
-  };
+  const onPageChange = (index) => setActivePage(index);
   const orders = useSelector((store) => store?.orders?.orders?.data);
-  const pagination = useSelector(
-    (store) => store?.orders?.orders?.meta?.pagination
-  );
+  const pagination = useSelector((store) => store?.orders?.orders?.meta?.pagination);
   const [pageSize, setPageSize] = useState(10);
-  const handlePageSizeChange = (e) => {
-    const selectedPageSize = parseInt(e.target.value);
-    setPageSize(selectedPageSize);
-  };
+  const handlePageSizeChange = (e) => setPageSize(parseInt(e.target.value));
   const [showModal, setShowModal] = useState(false);
   const [showModal2, setShowModal2] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [firstLoad, setFirstLoad] = useState(true);
   const [text, setText] = useState("");
-  const [showEnqeuteModal, setShowEnqeuteModal] = useState(false);
-  const [searchText, setSearchText] = useState("");
+   const [searchText, setSearchText] = useState("");
   const dispatch = useDispatch();
 
   const handleSearch = (e) => {
     const value = e.target.value;
     setSearchText(value);
-
     dispatch(
       getOrderById({
         id: currentUser,
-        text: value, // Pass the search text
+        text: value,
       })
     );
   };
+
   useEffect(() => {
     if (firstLoad) {
       setFirstLoad(false);
@@ -93,9 +84,7 @@ const ProfileHistory = ({ }) => {
         { headers: { Authorization: `Bearer ${token}` } }
       )
       .then((res) => {
-        if (res?.data?.data?.length === 0) {
-          setShowEnqeuteModal(true);
-        }
+       
       });
   }, []);
 
@@ -105,58 +94,50 @@ const ProfileHistory = ({ }) => {
       order?.commandStatus?.toLowerCase().includes(searchText.toLowerCase())
   );
 
-  const [editTime, setEditTime] = useState(true);
-
   const getStatusBadgeColor = (status) => {
     switch (status) {
       case "Dispatched_to_partner":
-        return "rgb(241 197 116)";
-
+        return "#d8b56c";
       case "Assigned_to_driver":
-        return "#FFFACD"; // Pastel Yellow
-      case "Assigned_to_driver":
-        return "#FFFACD"; // Pastel Yellow
+        return "#222";
       case "Driver_on_route_to_pickup":
-        return "#D8BFD8"; // Pastel Lavender
+        return "#444";
       case "Arrived_at_pickup":
-        return "#98FB98"; // Pastel Mint Green
+        return "#333";
       case "Picked_up":
-        return "#a7c6f4"; // Pastel Aqua
+        return "#555";
       case "On_route_to_delivery":
-        return "#FFDAB9"; // Pastel Peach
+        return "#666";
       case "Arrived_at_delivery":
-        return "#a7c6f4"; // Pastel Powder Blue
+        return "#777";
       case "Delivered":
-        return "rgb(245 202 244)"; // Pastel Pink
+        return "#888";
       case "Completed":
-        return "#C1E1C1"; // Pastel Sage Green
+        return "#0c0c0c";
       case "Failed_pickup":
-        return "rgb(247 168 166)"; // Pastel Coral
       case "Failed_delivery":
-        return "rgb(247 168 166)"; // Pastel Light Pink
+        return "#b22222";
       case "Canceled_by_partner":
-        return "rgb(235 89 89)";
       case "Canceled_by_client":
-        return "rgb(235 89 89)"; // Pastel Light Salmon
+        return "#b22222";
       default:
-        return "#D3D3D3"; // Pastel Gray
+        return "#222";
     }
   };
 
   const StatusMessage = (status) => {
     const statusColor = getStatusBadgeColor(status);
-    const statusText = t(
-      `ClientProfile.Commande.status.${status.toLowerCase()}`
-    );
-
+    const statusText = t(`ClientProfile.Commande.status.${status.toLowerCase()}`);
     return (
       <span
         style={{
           backgroundColor: statusColor,
           fontWeight: "bold",
-          color: "black",
-          padding: "6px",
+          color: "#fff",
+          padding: "6px 12px",
           borderRadius: "6px",
+          fontSize: 13,
+          letterSpacing: 1,
         }}
       >
         {statusText}
@@ -164,86 +145,16 @@ const ProfileHistory = ({ }) => {
     );
   };
 
-  const StatusFilter = (status) => {
-    const lowerCaseStatus = status.toLowerCase();
-
-    if (lowerCaseStatus.includes("attente")) {
-      return "Pending";
-    } else if (
-      lowerCaseStatus.includes("annuler") ||
-      lowerCaseStatus.includes("canceled")
-    ) {
-      return lowerCaseStatus.includes("client")
-        ? "Canceled_by_client"
-        : "Canceled_by_partner";
-    } else if (lowerCaseStatus.includes("assigner")) {
-      return "Dispatched_to_partner";
-    } else if (
-      lowerCaseStatus.includes("conducteur") ||
-      lowerCaseStatus.includes("driver")
-    ) {
-      return "Assigned_to_driver";
-    } else if (
-      lowerCaseStatus.includes("route") &&
-      lowerCaseStatus.includes("pickup")
-    ) {
-      return "Driver_on_route_to_pickup";
-    } else if (
-      lowerCaseStatus.includes("arrive") &&
-      lowerCaseStatus.includes("pickup")
-    ) {
-      return "Arrived_at_pickup";
-    } else if (
-      lowerCaseStatus.includes("ramasser") ||
-      lowerCaseStatus.includes("picked")
-    ) {
-      return "Picked_up";
-    } else if (
-      lowerCaseStatus.includes("route") &&
-      lowerCaseStatus.includes("delivery")
-    ) {
-      return "On_route_to_delivery";
-    } else if (
-      lowerCaseStatus.includes("arrive") &&
-      lowerCaseStatus.includes("delivery")
-    ) {
-      return "Arrived_at_delivery";
-    } else if (
-      lowerCaseStatus.includes("livrer") ||
-      lowerCaseStatus.includes("delivered")
-    ) {
-      return "Delivered";
-    } else if (
-      lowerCaseStatus.includes("fermer") ||
-      lowerCaseStatus.includes("completed")
-    ) {
-      return "Completed";
-    } else if (
-      lowerCaseStatus.includes("echec") &&
-      lowerCaseStatus.includes("pickup")
-    ) {
-      return "Failed_pickup";
-    } else if (
-      lowerCaseStatus.includes("echec") &&
-      lowerCaseStatus.includes("delivery")
-    ) {
-      return "Failed_delivery";
-    } else {
-      return status;
-    }
-  };
-
   const [selectedReason, setSelectedReason] = useState("");
   const selectedReasonRef = useRef("");
-
   const reasons = [
-    t("annuler.raison1"), // "Changement d'avis"
-    t("annuler.raison2"), // "J'ai trouvé un meilleur prix ailleurs"
-    t("annuler.raison3"), // "Délai de livraison trop long"
-    t("annuler.raison4"), // "Commande passée par erreur"
-    t("annuler.raison5"), // "Problème de paiement"
-    t("annuler.raison6"), // "Service client insatisfaisant"
-    t("annuler.raison7"), // "Autre raison"
+    t("annuler.raison1"),
+    t("annuler.raison2"),
+    t("annuler.raison3"),
+    t("annuler.raison4"),
+    t("annuler.raison5"),
+    t("annuler.raison6"),
+    t("annuler.raison7"),
   ];
 
   const handleStatus = (order) => {
@@ -269,29 +180,28 @@ const ProfileHistory = ({ }) => {
             </Select>
           </div>
         ),
-        cancelText: t("annuler.non"), // "Non"
+        cancelText: t("annuler.non"),
         okText: t("annuler.oui"),
         className: "custom-modal",
         okButtonProps: {
           style: {
-            backgroundColor: "#18365a",
-            borderColor: "#18365a",
+            backgroundColor: "#0c0c0c",
+            borderColor: "#0c0c0c",
             color: "#FFFFFF",
           },
         },
         cancelButtonProps: {
           style: {
-            backgroundColor: "#f37a1d",
-            borderColor: "#f37a1d",
+            backgroundColor: "#d8b56c",
+            borderColor: "#d8b56c",
             color: "#FFFFFF",
           },
         },
         onOk() {
           const reason = selectedReasonRef.current;
-
           if (!reason) {
             Modal.error({
-              title: t("annuler.erreur"), // "Erreur"
+              title: t("annuler.erreur"),
               content: t("annuler.echec1"),
             });
             return Promise.reject();
@@ -302,7 +212,7 @@ const ProfileHistory = ({ }) => {
               body: {
                 data: {
                   commandStatus: "Canceled_by_client",
-                  cancelReason: reason, // Use the reason from the ref
+                  cancelReason: reason,
                 },
               },
             })
@@ -327,7 +237,7 @@ const ProfileHistory = ({ }) => {
                 },
               })
             );
-            setPing(!ping);
+            setPing((prev) => !prev);
           });
         },
         onCancel() {
@@ -338,23 +248,16 @@ const ProfileHistory = ({ }) => {
     }
   };
 
-  const handleDateChange = (date) => {
-    if (date) {
-      const formattedDate = date;
-      setNewDate(formattedDate);
-    }
-  };
-
+  const handleDateChange = (date) => setNewDate(date);
   const changeDate = (order) => {
     setShowModal2(true);
     setSelectedOrder(order);
   };
 
-  let calculeTime = ({ date, time, order }) => {
+  const calculeTime = ({ date, time, order }) => {
     const currentTime = new Date();
     const departDate = new Date(date);
-    const deparTimeStr = time;
-    const [hours, minutes, seconds] = deparTimeStr.split(":").map(Number);
+    const [hours, minutes, seconds] = time.split(":").map(Number);
     const deparTime = new Date(
       departDate.getFullYear(),
       departDate.getMonth(),
@@ -363,29 +266,19 @@ const ProfileHistory = ({ }) => {
       minutes,
       seconds
     );
-
     const timeDifference = deparTime - currentTime;
     const isCanceled = order?.commandStatus === "Canceled_by_client";
     const oneHourInMilliseconds = 60 * 60 * 1000;
-
     if (
       timeDifference > oneHourInMilliseconds &&
       ["Pending", "Dispatched_to_partner"].includes(order?.commandStatus)
     ) {
       return (
-        <StyledTableCell
-          style={{
-            textAlign: "center",
-            display: "flex",
-            justifyContent: "space-between",
-          }}
-        >
+        <StyledTableCell style={{ textAlign: "center", display: "flex", justifyContent: "space-between" }}>
           <i
-            onClick={() => handleStatus(order)}
-            style={{
-              color: isCanceled ? "#b1b0b063" : "#FFFFFF",
-            }}
-            class="fa-solid fa-ban"
+            onClick={(e) => { e.stopPropagation(); handleStatus(order); }}
+            style={{ color: isCanceled ? "#b1b0b063" : "#fff", cursor: isCanceled ? "not-allowed" : "pointer", fontSize: 18 }}
+            className="fa-solid fa-ban"
             title={
               isCanceled
                 ? "Cette commande a été annulée"
@@ -396,31 +289,17 @@ const ProfileHistory = ({ }) => {
       );
     } else {
       return (
-        <StyledTableCell
-          style={{
-            textAlign: "center",
-            display: "flex",
-            justifyContent: "space-between",
-          }}
-        >
+        <StyledTableCell style={{ textAlign: "center", display: "flex", justifyContent: "space-between" }}>
           <i
-            onClick={() => {
-              setShowModal(true);
-              setSelectedOrder(order);
-            }}
-            class="fa-solid fa-eye"
+            onClick={(e) => { e.stopPropagation(); setShowModal(true); setSelectedOrder(order); }}
+            className="fa-solid fa-eye"
             title={"Vous ne pouvez plus éditer cette commande"}
-            style={{
-              color: "white",
-              fontSize: "16px",
-            }}
+            style={{ color: "#fff", fontSize: "18px", cursor: "pointer" }}
           ></i>
           <i
-            class="fa-solid fa-ban"
+            className="fa-solid fa-ban"
             title={"Vous ne pouvez plus annuler cette commande"}
-            style={{
-              color: "#b1b0b063",
-            }}
+            style={{ color: "#b1b0b063", fontSize: 18, cursor: "not-allowed" }}
           ></i>
         </StyledTableCell>
       );
@@ -437,7 +316,6 @@ const ProfileHistory = ({ }) => {
       });
       return;
     }
-
     dispatch(
       updateReservation({
         id: selectedOrder.id,
@@ -450,60 +328,47 @@ const ProfileHistory = ({ }) => {
           },
         },
       })
-    ).then((result) => {
-      // dispatch(
-      //   sendNotification({
-      //     id: 227,
-      //     title: "mise à jour commande",
-      //     sendFrom: {
-      //       id: currentUser?.id,
-      //       name: currentUser?.accountOverview[0]?.firstName,
-      //     },
-      //     command: result?.payload?.data?.id,
-      //     notification_type: "updated",
-      //     types: ["notification", "sms", "email"],
-      //     smsCore: `${currentUser?.firstName} a changer la date de commande N°: ${result?.payload?.data?.refNumber}`,
-      //     notificationCore: `${currentUser?.firstName} a changer la date de commande N°: ${result?.payload?.data?.refNumber}`,
-      //     saveNotification: true,
-      //     template_id: "d-8b266aac7fd64f73bab6ee0c80df8dbd",
-      //     dynamicTemplateData: {
-      //       commandeid: result?.data?.id,
-      //     },
-      //   })
-      // );
-      setPing(!ping);
+    ).then(() => {
+      setPing((prev) => !prev);
       setShowModal2(false);
     });
+  };
+
+  const handleRowClick = (order) => {
+    if (order?.documentId) {
+      navigate(`/driver/track/${order.documentId}`);
+    }
   };
 
   return (
     <>
       {showModal2 && selectedOrder && (
         <Modal
-          title="Changer le date de départ"
+          title={<span style={{ color: '#0c0c0c' }}>Changer la date de départ</span>}
           visible={showModal2}
           onCancel={() => setShowModal2(false)}
-          onOk={() => handleUpdateDate()}
-          okText="Confirmer"
-          cancelText="Annuler"
+          onOk={handleUpdateDate}
+          okText={<span style={{ color: '#fff' }}>Confirmer</span>}
+          cancelText={<span style={{ color: '#0c0c0c' }}>Annuler</span>}
+          okButtonProps={{ style: { background: '#0c0c0c', borderColor: '#0c0c0c' } }}
+          cancelButtonProps={{ style: { background: '#fff', color: '#0c0c0c', borderColor: '#0c0c0c' } }}
         >
           <div className="chnage_date_modal">
             <div className="chnage_date_modal_item">
-              <p>Date :</p>
+              <p style={{ color: '#0c0c0c' }}>Date :</p>
               <DatePicker
                 value={newDate}
                 onChange={handleDateChange}
-                disabledDate={(current) =>
-                  current && current <= moment().add(1, "hour")
-                }
+                disabledDate={(current) => current && current <= moment().add(1, "hour")}
+                style={{ width: '100%' }}
               />
             </div>
             <div className="chnage_date_modal_item">
-              <p>Heure :</p>
+              <p style={{ color: '#0c0c0c' }}>Heure :</p>
               <Select
                 style={{ width: "100%" }}
                 value={selectedHour}
-                onChange={(value) => setSelectedHour(value)}
+                onChange={setSelectedHour}
               >
                 {Array.from({ length: 13 }, (_, index) => {
                   const hourValue = (index + 7).toString().padStart(2, "0");
@@ -515,30 +380,22 @@ const ProfileHistory = ({ }) => {
                 })}
               </Select>
             </div>
-
             <div className="chnage_date_modal_item">
-              <p>Minutes :</p>
+              <p style={{ color: '#0c0c0c' }}>Minutes :</p>
               <Select
                 style={{ width: "100%" }}
                 value={selectedMinute}
-                onChange={(value) => setSelectedMinute(value)}
+                onChange={setSelectedMinute}
               >
                 {Array.from({ length: 60 }, (_, i) => i).map((minute) => (
-                  <Select.Option
-                    key={minute}
-                    value={minute.toString().padStart(2, "0")}
-                  >
-                    {minute.toString().padStart(2, "0")}
-                  </Select.Option>
+                  <Select.Option key={minute} value={minute.toString().padStart(2, "0")}>{minute.toString().padStart(2, "0")}</Select.Option>
                 ))}
               </Select>
             </div>
           </div>
         </Modal>
       )}
-      
       {showModal && (
-        
         <ModalProfileHistory
           showModal={showModal}
           setShowModal={setShowModal}
@@ -548,23 +405,7 @@ const ProfileHistory = ({ }) => {
       )}
       <ProfileHistoryConatiner dir="auto">
         <ProfileHistoryHeader>
-          {/* <div className="p-4 bg-white rounded-lg shadow-md">
-     
-
-   
-      <ul className="mt-4">
-        {orders?.map((order) => (
-          <li key={order?.id} className="p-2 border-b">
-            {order?.refNumber} - {order?.commandStatus}
-          </li>
-        ))}
-      </ul>
-    </div> */}
           <SearchBox>
-            {/* <Input
-              onChange={(e) => setText(StatusFilter(e.target.value))}
-              placeholder={t("ClientProfile.Rechercher")}
-            ></Input> */}
             <Input
               placeholder={t("ClientProfile.Rechercher")}
               value={searchText}
@@ -575,7 +416,7 @@ const ProfileHistory = ({ }) => {
             <Button>
               <Link to="/estimation">
                 <span>+</span> {t("ClientProfile.Réservation")}
-              </Link>{" "}
+              </Link>
             </Button>
           </RightBox>
         </ProfileHistoryHeader>
@@ -583,99 +424,36 @@ const ProfileHistory = ({ }) => {
           <StyledTable>
             <thead>
               <tr>
-                <StyledTableHeader>
-                  {t("ClientProfile.ProfileHistory.tab.ID")}
-                </StyledTableHeader>
-                <StyledTableHeader>
-                  {t("ClientProfile.ProfileHistory.tab.code")}
-                </StyledTableHeader>
-                <StyledTableHeader>
-                  {t("ClientProfile.ProfileHistory.tab.date")}
-                </StyledTableHeader>
-                <StyledTableHeader className="max-width-column">
-                  {t("ClientProfile.ProfileHistory.tab.adresseR")}
-                </StyledTableHeader>
-                <StyledTableHeader className="max-width-column">
-                  {t("ClientProfile.ProfileHistory.tab.adresseD")}
-                </StyledTableHeader>
-                <StyledTableHeader>
-                  {" "}
-                  {t("ClientProfile.ProfileHistory.tab.status")}
-                </StyledTableHeader>
-                <StyledTableHeader>
-                  {t("ClientProfile.ProfileHistory.tab.Actions")}
-                </StyledTableHeader>
+                <StyledTableHeader>{t("ClientProfile.ProfileHistory.tab.ID")}</StyledTableHeader>
+                <StyledTableHeader>{t("ClientProfile.ProfileHistory.tab.code")}</StyledTableHeader>
+                <StyledTableHeader>{t("ClientProfile.ProfileHistory.tab.date")}</StyledTableHeader>
+                <StyledTableHeader className="max-width-column">{t("ClientProfile.ProfileHistory.tab.adresseR")}</StyledTableHeader>
+                <StyledTableHeader className="max-width-column">{t("ClientProfile.ProfileHistory.tab.adresseD")}</StyledTableHeader>
+                <StyledTableHeader>{t("ClientProfile.ProfileHistory.tab.status")}</StyledTableHeader>
+                <StyledTableHeader>{t("ClientProfile.ProfileHistory.tab.Actions")}</StyledTableHeader>
               </tr>
             </thead>
             <tbody>
               {filteredOrders?.length > 0 ? (
                 filteredOrders?.map((order, index) => (
-                  <StyledTableRow key={order?.id} isEvenRow={index % 2 === 0}>
-                    <StyledTableCell
-                      onClick={() => {
-                        setShowModal(true);
-                        setSelectedOrder(order);
-                      }}
-                    >
-                      {order?.id}
-                    </StyledTableCell>
-                    <StyledTableCell
-                      onClick={() => {
-                        setShowModal(true);
-                        setSelectedOrder(order);
-                      }}
-                    >
-                      {order?.refNumber}
-                    </StyledTableCell>
-                    <StyledTableCell
-                      onClick={() => {
-                        setShowModal(true);
-                        setSelectedOrder(order);
-                      }}
-                    >
-                      {order?.departDate}
-                    </StyledTableCell>
-                    <StyledTableCell
-                      onClick={() => {
-                        setShowModal(true);
-                        setSelectedOrder(order);
-                      }}
-                    >
-                      {order?.pickUpAddress?.Address}
-                    </StyledTableCell>
-                    <StyledTableCell
-                      onClick={() => {
-                        setShowModal(true);
-                        setSelectedOrder(order);
-                      }}
-                    >
-                      {order?.dropOfAddress?.Address}
-                    </StyledTableCell>
-                    <StyledTableCell
-                      onClick={() => {
-                        setShowModal(true);
-                        setSelectedOrder(order);
-                      }}
-                    >
-                      {StatusMessage(order?.commandStatus)}
-                    </StyledTableCell>
-                    {calculeTime({
-                      time: order?.deparTime,
-                      date: order?.departDate,
-                      order,
-                    })}
+                  <StyledTableRow
+                    key={order?.id}
+                    isEvenRow={index % 2 === 0}
+                    onClick={() => handleRowClick(order)}
+                    style={{ cursor: order?.documentId ? "pointer" : "default" }}
+                  >
+                    <StyledTableCell>{order?.id}</StyledTableCell>
+                    <StyledTableCell>{order?.refNumber}</StyledTableCell>
+                    <StyledTableCell>{order?.departDate}</StyledTableCell>
+                    <StyledTableCell>{order?.pickUpAddress?.Address}</StyledTableCell>
+                    <StyledTableCell>{order?.dropOfAddress?.Address}</StyledTableCell>
+                    <StyledTableCell>{StatusMessage(order?.commandStatus)}</StyledTableCell>
+                    {order?.deparTime && order?.departDate && calculeTime({ time: order?.deparTime, date: order?.departDate, order })}
                   </StyledTableRow>
                 ))
               ) : (
                 <tr>
-                  <td
-                    colSpan="7"
-                    style={{
-                      padding: "16px 8px",
-                      color: "white",
-                      textAlign: "center",
-                    }}
-                  >
+                  <td colSpan="7" style={{ padding: "16px 8px", color: "#fff", textAlign: "center", background: '#0c0c0c' }}>
                     {t("ClientProfile.passer1ere")}
                   </td>
                 </tr>
@@ -685,33 +463,21 @@ const ProfileHistory = ({ }) => {
         </div>
         <ProfileHistoryFooter>
           <LeftFooter>
-            <p style={{ color: "white" }}>{t("ClientProfile.ligne")}</p>
-            <select
-              name="pageSize"
-              id=""
-              value={pageSize}
-              onChange={handlePageSizeChange}
-            >
+            <p style={{ color: "#fff" }}>{t("ClientProfile.ligne")}</p>
+            <select name="pageSize" value={pageSize} onChange={handlePageSizeChange} style={{ background: '#0c0c0c', color: '#fff', border: '1px solid #fff', borderRadius: 6 }}>
               <option value="5">5</option>
               <option value="10">10</option>
               <option value="25">25</option>
               <option value="50">50</option>
               <option value="100">100</option>
             </select>
-            <span style={{ color: "white" }}>
-              1-10 {t("ClientProfile.of")}
-              {pagination?.total}
+            <span style={{ color: "#fff" }}>
+              1-10 {t("ClientProfile.of")}{pagination?.total}
             </span>
           </LeftFooter>
-          <Pagination
-            pageCount={pagination?.pageCount}
-            current={pagination?.page}
-            onPageChange={onPageChange}
-          />
+          <Pagination pageCount={pagination?.pageCount} current={pagination?.page} onPageChange={onPageChange} />
         </ProfileHistoryFooter>
-        {showEnqeuteModal && (
-          <Survey setShowEnqeuteModal={setShowEnqeuteModal} />
-        )}
+    
       </ProfileHistoryConatiner>
     </>
   );
@@ -722,6 +488,8 @@ export default ProfileHistory;
 const ProfileHistoryConatiner = styled.div`
   padding: 3vw;
   width: 100%;
+  background: #0c0c0c;
+  min-height: 100vh;
   @media (max-width: 1151px) {
     padding: 16px 4px;
     overflow: hidden !important;
@@ -738,19 +506,19 @@ const StyledTable = styled.table`
   border-collapse: collapse;
   display: block;
   white-space: nowrap;
+  background: #0c0c0c;
+  color: #fff;
   &::-webkit-scrollbar {
     width: 1px;
     height: 1px;
-    color: red;
     background-color: transparent;
   }
   &::-webkit-scrollbar-thumb {
-    background-color: #f37a1d;
+    background-color: #d8b56c;
   }
   .max-width-column {
     width: 50%;
   }
-
   @media (max-width: 1151px) {
     display: block;
     width: 100%;
@@ -759,27 +527,29 @@ const StyledTable = styled.table`
   }
 `;
 const StyledTableHeader = styled.th`
-  font-size: 14px;
-  background-color: #334f71;
-  color: white;
-  padding: 12px;
+  font-size: 15px;
+  background-color: #0c0c0c;
+  color: #fff;
+  padding: 16px;
   font-weight: bold;
   text-align: left;
-  padding: 16px;
+  border-bottom: 2px solid #d8b56c;
 `;
 const StyledTableRow = styled.tr`
   cursor: pointer;
-  background-color: ${(props) => (props.isEvenRow ? "transparent" : "#334f71")};
+  background-color: ${(props) => (props.isEvenRow ? "#181818" : "#0c0c0c")};
   text-align: left;
-  color: white;
-  font-size: 12px;
+  color: #fff;
+  font-size: 13px;
+  transition: background 0.2s;
   &:hover {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: #232323;
   }
 `;
 const StyledTableCell = styled.td`
   padding: 16px;
   text-align: left;
+  border-bottom: 1px solid #232323;
 `;
 const ProfileHistoryHeader = styled.div`
   margin-bottom: 2vw;
@@ -790,7 +560,9 @@ const ProfileHistoryHeader = styled.div`
 `;
 const SearchBox = styled.div`
   width: 30%;
-  box-shadow: -4px 12px 15px -13px #000;
+  box-shadow: 0 2px 12px -4px #000;
+  background: #181818;
+  border-radius: 30px;
   @media (max-width: 1151px) {
     width: 150px;
   }
@@ -810,30 +582,37 @@ const Input = styled.input`
   height: 35px;
   width: 100%;
   padding: 8px 40px;
-  align-self: "flex-start";
+  background: #0c0c0c;
+  color: #fff;
+  font-size: 15px;
+  &::placeholder {
+    color: #aaa;
+  }
 `;
 const Button = styled.div`
   width: auto;
-  padding: 20px;
-  height: 35px;
+  padding: 12px 24px;
+  height: 40px;
   border-radius: 12px;
-  background: var(--yellow-main-color, #f37a1d);
+  background: #d8b56c;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
-  font-size: 14px;
+  color: #0c0c0c;
+  font-size: 15px;
   gap: 10px;
   border: 2px solid #fff;
+  box-shadow: 0 2px 8px -2px #000;
   span {
     font-size: 20px;
   }
   a {
     text-decoration: none;
-    color: #fff;
+    color: #0c0c0c;
     display: flex;
     align-items: center;
     gap: 16px;
+    font-weight: bold;
   }
 `;
 const ProfileHistoryFooter = styled.div`
@@ -854,6 +633,8 @@ const LeftFooter = styled.div`
   padding: 0px 20px;
   option {
     height: 20px;
+    background: #0c0c0c;
+    color: #fff;
   }
 `;
 const PaginationNumbers = styled.div`
@@ -866,8 +647,8 @@ const PaginationNumbers = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: white;
-    color: #334f71;
+    background-color: #fff;
+    color: #0c0c0c;
     border-radius: 50%;
   }
 `;

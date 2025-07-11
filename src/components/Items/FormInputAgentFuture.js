@@ -391,7 +391,7 @@ const FormSwitcher = styled.div`
 `;
 
 const SwitchButton = styled.button`
-  background: ${(props) => (props.active ? "#F37A1D" : "#e0e0e0")};
+  background: ${(props) => (props.active ? "#d8b56c" : "#e0e0e0")};
   color: ${(props) => (props.active ? "#ffffff" : "#000000")};
   border: none;
   padding: 10px 20px;
@@ -402,7 +402,7 @@ const SwitchButton = styled.button`
   opacity: ${(props) => (props.disabled ? 0.6 : 1)};
 
   &:hover {
-    background: ${(props) => (props.disabled ? "#e0e0e0" : "#F37A1D")};
+    background: ${(props) => (props.disabled ? "#e0e0e0" : "#d8b56c")};
     color: ${(props) => (props.disabled ? "#000000" : "#ffffff")};
   }
 `;
@@ -410,12 +410,12 @@ const SwitchButton = styled.button`
 const FormTitle = styled.h2`
   text-align: center;
   margin-bottom: 20px;
-  color: #f37a1d;
+  color: #d8b56c;
 `;
 
 const SubmitButton = styled.button`
   width: 100%;
-  background: #f37a1d;
+  background: #d8b56c;
   color: #ffffff;
   padding: 10px;
   font-size: 16px;
@@ -462,7 +462,7 @@ export const Pi = styled.p`
   line-height: 150%;
   letter-spacing: 0.24px;
   a {
-    color: #f37a1d;
+    color: #d8b56c;
   }
 
   @media (max-width: 1050px) {
@@ -616,7 +616,7 @@ export const Buttonn = styled.button`
   border-radius: 12px;
   color: white;
   font-size: 16px;
-  background-color: #f37a1d;
+  background-color: #d8b56c;
   margin-top: 20px;
   @media (max-width: 1050px) {
     color: #18365a;
@@ -635,7 +635,7 @@ export const BTNn = styled.button`
   border-radius: 12px;
   color: white;
   font-size: 16px;
-  background-color: #f37a1d;
+  background-color: #d8b56c;
   margin-top: 20px;
   @media (max-width: 1050px) {
     color: #18365a;

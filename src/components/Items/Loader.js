@@ -28,7 +28,7 @@ const LoaderContainer = styled.div`
     display: block;
     position: relative;
     transform: translate(-150%, -20px);
-    color: #F37A1D;
+    color: #d8b56c;
     box-sizing: border-box;
     animation: animloader 2s ease infinite;
   }
@@ -42,7 +42,7 @@ const LoaderContainer = styled.div`
     box-shadow: 0 30px, 0 -30px;
     border-radius: 4px;
     background: currentColor;
-    color: #F37A1D;
+    color: #d8b56c;
     position: absolute;
     left: 30px;
     top: 0;
@@ -57,7 +57,7 @@ const LoaderContainer = styled.div`
   @keyframes animloader {
     0% {
       top: 0;
-      color: #F37A1D;
+      color: #d8b56c;
     }
 
     50% {
@@ -67,7 +67,7 @@ const LoaderContainer = styled.div`
 
     100% {
       top: 0;
-      color: #F37A1D;
+      color: #d8b56c;
     }
   }
 `;

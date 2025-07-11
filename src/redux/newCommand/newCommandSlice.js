@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   command: {
-    departDate: null,
+    
     SpecificNote: "",
     payType: "Livraison",
     pickUpAddress: {
@@ -15,12 +15,10 @@ const initialState = {
     },
     totalPrice: null,
     distance: 0,
-    items: [],
-    deparTime: "10:49",
-    dropAcces: { options: "Camion", floor: 0 },
-    pickUpAcces: { options: "Camion", floor: 0 },
+  
     duration: "",
-    client_id: null,
+    client: null,
+   
   },
   unsynced: false, // Track if the command is unsynced
 };
@@ -70,28 +68,23 @@ const newCommandSlice = createSlice({
       state.command.distance = action.payload;
       state.unsynced = true;
     },
-    updateItems(state, action) {
-      state.command.items = action.payload;
-      state.unsynced = true;
-    },
+ 
     updateDeparTime(state, action) {
       state.command.deparTime = action.payload;
       state.unsynced = true;
     },
-    updateDropAcces(state, action) {
-      state.command.dropAcces = action.payload;
-      state.unsynced = true;
-    },
-    updatePickUpAcces(state, action) {
-      state.command.pickUpAcces = action.payload;
-      state.unsynced = true;
-    },
+ 
+ 
     updateDuration(state, action) {
       state.command.duration = action.payload;
       state.unsynced = true;
     },
     updateClient(state, action) {
-      state.command.client_id = action.payload;
+      state.command.client = action.payload;
+      state.unsynced = true;
+    },
+    updateTransportType(state, action) {
+      state.command.TansportType = action.payload;
       state.unsynced = true;
     },
     // Synchronize the command
@@ -113,12 +106,12 @@ export const {
   updateDropOfAddress,
   updateTotalPrice,
   updateDistance,
-  updateItems,
+ 
   updateDeparTime,
-  updateDropAcces,
-  updatePickUpAcces,
+ 
   updateDuration,
   updateClient,
+  updateTransportType,
 } = newCommandSlice.actions;
 
 // Export reducer

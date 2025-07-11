@@ -37,7 +37,7 @@ export const ListItem = styled.li`
     color: ${(props) => props.theme.PRIMARY_COLOR};
   }
   a.active {
-    color: #f37a1d;
+    color: #d8b56c;
   }
   /* a:visited {
     color: ${(props) => props.theme.TEXT_COLOR};
@@ -72,17 +72,13 @@ const Menu = ({ navigationValues }) => {
             className={({ isActive }) => {
               return isActive ? "active" : "";
             }}
-            // style={
-            //   {
-            //     // color: active === item ? "#F37A1D" : "#FFFFFF";
-            //   }
-            // }
+           
           >
             {item.label}
           </NavLink>
         </ListItem>
       ))}
-      <ListItem
+      {/* <ListItem
         // key={index}
         // onClick={() => handleItemClick(item)}
       >
@@ -95,7 +91,7 @@ const Menu = ({ navigationValues }) => {
 }}>
   APPLICATION
 </a>
-      </ListItem>
+      </ListItem> */}
     </Nav>
   );
 };

@@ -1,97 +1,44 @@
 import styled from "styled-components";
 import * as style from "../../constants/StyleSheets";
 import contact from "../../assets/images/contact-cover.png";
-// import Commencer from "../../components/Items/Commencer";
 import phone from "../../assets/icons/phone.svg";
 import message from "../../assets/icons/Line.svg";
-// import loca from "../../assets/icons/Iconlyaddress.svg";
-// import logo from "../../assets/icons/send 1.svg";
-// // import button from "../../assets/icons/button.transition.png";
-// import Send from "./../../assets/icons/det.svg";
-// import Arrow from "./../../assets/icons/arrowdown.svg";
-
-// import frame from "../../assets/icons/Frame 630.png";
-// import pathh from "../../assets/icons/Path (6).png";
-// import Buttondetails from "../../components/Items/buttondetails";
-// import Call from "../../components/Items/Call";
-// import LoginCard from "../../components/Items/LoginCard";
 import Inpuut from "../../components/Items/Inpuut";
-// import Trrustus from "../../components/Section/TrrustUs";
 import Footer from "../../components/Section/Footer";
-// import Buttonobtenez from "../../components/Items/buttonobtenez";
+import {lazy} from "react"
 import { useTranslation } from "react-i18next";
-// import JoinSheelni from "../../components/Section/JoinSheelni";
 import WhiteJoin from "../../components/Section/WhiteJoin";
+const TrrustUs = lazy(() => import("../../components/Section/TrrustUs"));
+
 import { useNavigate } from "react-router";
 const Contact = () => {
   const { t, i18n } = useTranslation();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <>
       <Sect dir="auto">
-         <img
-                    srcSet={`
-                    ${require("../../assets/images/contact-cover-400w.webp")} 400w,
-                    ${require("../../assets/images/contact-cover-600w.webp")} 600w,
-                    ${require("../../assets/images/contact-cover-800w.webp")} 800w,
-                    ${require("../../assets/images/contact-cover-1000w.webp")} 1000w,
-                    ${require("../../assets/images/contact-cover-1200w.webp")} 1200w
-                  `}
-                    sizes="(max-width: 400px) 400px, (max-width: 600px) 600px, (max-width: 800px) 800px, (max-width: 1000px) 1000px, (min-width: 1001px) 1200px"
-                    src={contact}
-                    alt="contact sheelni"
-                    // width="1440"
-                    // height="944"
-                    loading="lazy"
-                  />
-        {/* <img src={contact} alt="contact"   loading="lazy"/> */}
+        <img
+           
+          sizes="(max-width: 400px) 400px, (max-width: 600px) 600px, (max-width: 800px) 800px, (max-width: 1000px) 1000px, (min-width: 1001px) 1200px"
+          src={contact}
+          alt="contact sheelni"
+          loading="lazy"
+        />
         <ContactHero style={{ position: "absolute" }}>
-          <Title> {t("Sheelni-CONTACT.title1")} </Title>
+         
           <SideTitle>{t("Sheelni-CONTACT.title2")}</SideTitle>
           <LastTitle>{t("Sheelni-CONTACT.desc")}</LastTitle>{" "}
-          <BUT onClick={()=>navigate("/")}>{t("Sheelni-CONTACT.btn-obten")}</BUT>
-          {/* <Btn>
-          <Buttonobtenez icon={Arrow} Textbody={t("Sheelni-CONTACT.btn-obten")} />
-        </Btn>
-        <Call className="buttonobtenez" /> */}
+          <BUT onClick={() => navigate("/")}>{t("Sheelni-CONTACT.btn-obten")}</BUT>
         </ContactHero>{" "}
       </Sect>
-      {/*
-
-    <Buttonobtenez icon={Arrow} Textbody="Obtenez une estimation" />
-    <section
-      style={{
-        display: "flex",
-        gap: "190px",
-        justifyContent: "center",
-        marginTop: "50px",
-      }}
-    >
-      <section style={{ width: "35%" }}>
-*/}
       <ContactForm dir="auto">
         <section>
           <DIV style={{ display: "flex", gap: "10px", marginBottom: "10px" }}>
-            <IMa src={phone}></IMa>
+          
             <Titlle> {t("Sheelni-CONTACT.ContactForm.title2")} </Titlle>
           </DIV>
           <TI>{t("Sheelni-CONTACT.ContactForm.title1")}</TI>
           <PA>{t("Sheelni-CONTACT.ContactForm.desc")}</PA>
-          {/* <div
-            style={{
-              marginTop: "20px",
-              display: "flex",
-              flexDirection: "column",
-              gap: "5px",
-            }}
-          >
-            <div style={{ display: "flex", gap: "20px" }}>
-              <IM src={phone}></IM>
-              <Te>{t("Sheelni-CONTACT.ContactForm.phone")}</Te>
-            </div>
-
-            <NU>(216) 123 456 78</NU>
-          </div> */}{" "}
           <IM src={message} alt="message"></IM>
           <div
             style={{
@@ -102,25 +49,19 @@ const Contact = () => {
             }}
           >
             <NU>{t("Sheelni-CONTACT.ContactForm.textAresse")}</NU>
-
             <NU>{t("Sheelni-CONTACT.ContactForm.textAress")}</NU>
             <div style={{ display: "flex", gap: "20px" }}></div>
-            {/* <NU>contact@sheelni.com</NU> */}
           </div>
-          <DIVE dir="auto" isRtl={i18n.language.startsWith("ar")}>
-            {/* <IMa src={loca} alt="local"></IMa> */}
+          <DIVE dir="auto" isRtl={i18n.language.startsWith("ar")}>            
             <Te>{t("Sheelni-CONTACT.ContactForm.email")}</Te>
             <Te>{t("Sheelni-CONTACT.ContactForm.Adresse")}</Te>
           </DIVE>
         </section>
         <Section>
           <SEND>
-            {/* <img src={logo} alt="logooo"></img> */}
             <TIR>{t("Sheelni-CONTACT.ContactForm.btnSend")} </TIR>
           </SEND>
-
           <Inpuut />
-
           <div
             style={{
               marginTop: "50px",
@@ -128,22 +69,12 @@ const Contact = () => {
               marginBottom: "90px",
             }}
           >
-            {/* <Btn>
-              <Buttondetails
-                icon={Send}
-                Textbody={t("Sheelni-CONTACT.ContactForm.placeholder")}
-              />
-            </Btn> */}
             <BUTT>{t("Sheelni-CONTACT.ContactForm.placeholder")}</BUTT>
           </div>
         </Section>
       </ContactForm>
-      {/* <Sec>
-        <Commencer hasdessin={false} />
-        
-      </Sec> */}
       <Sec></Sec>
-      <WhiteJoin />
+    
       <Footer />
     </>
   );
@@ -153,8 +84,7 @@ export default Contact;
 export const Section = styled.section`
   padding-left: 30px;
   padding-right: 30px;
-
-  border: 2px solid #18365a;
+  border: 2px solid #DCB33E;
   border-radius: 10px;
   width: 430px;
   height: 500px;
@@ -163,13 +93,11 @@ export const Section = styled.section`
     height: auto;
     margin: auto;
     height: 450px;
-    /* margin-bottom:50rem; */
   }
 `;
 const Sect = styled.div`
   position: relative;
   width: 100%;
-
   img {
     width: 100%;
     height: calc(100vh - 80px);
@@ -193,17 +121,13 @@ export const BUT = styled.button`
   color: white;
   font-size: 15px;
   text-align: center;
-
   cursor: pointer;
-
-  background-color: #f37a1d;
+  background-color: #d8b56c;
   box-shadow: 2px 2px 0px 0px #18365a;
-  /* margin-right:45%; */
   @media (max-width: 1050px) {
     width: 200px;
     font-weight: 900;
     height: 55px;
-    /* margin-right:0rem; */
   }
 `;
 
@@ -216,12 +140,9 @@ export const BUTT = styled.button`
   color: white;
   font-size: 15px;
   text-align: center;
-
   cursor: pointer;
-
-  background-color: #f37a1d;
+  background-color: #d8b56c;
   box-shadow: 2px 2px 0px 0px #18365a;
-  /* margin-right:45%; */
   @media (max-width: 1050px) {
     width: 260px;
     font-weight: 900;
@@ -238,7 +159,6 @@ export const SEND = styled.div`
     display: flex;
     justify-content: flex-start;
     align-self: flex-start;
-    /* margin: 30px; */
   }
 `;
 export const DIV = styled.div`
@@ -252,7 +172,6 @@ export const DIV = styled.div`
 export const DIVE = styled.div`
   margin-top: 20px;
   direction: ltr;
-
   text-align: ${({ isRtl }) => (isRtl ? "right" : "left")};
   display: flex;
   flex-direction: column;
@@ -266,30 +185,11 @@ const ContactHero = styled.div`
   height: calc(100vh - 80px);
   width: 100%;
   background-color: rgba(24, 54, 90, 0.4);
-
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   gap: 20px;
-`;
-
-const Btn = styled.div`
-  padding: 10px;
-  width: 20vw;
-  margin-bottom: 5vh;
-  @media (max-width: 744px) {
-    width: 70%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1vh;
-    /* flex: 1; */
-    padding: 0;
-    align-self: center;
-    /* border: 1px solid red; */
-    /* margin-top: 20px; */
-  }
 `;
 
 const Sec = styled.div``;
@@ -303,7 +203,7 @@ export const Titlle = styled.h1`
   font-family: "Inter", sans-serif;
   font-size: 16px;
   font-weight: 400;
-  color: ${(props) => props.theme.SECONDARY_COLOR};
+  color: #0c0c0c;
 `;
 export const SideTitle = styled.h1`
   font-family: "Inter", sans-serif;
@@ -319,7 +219,6 @@ const Div = styled.div`
   flex-direction: column;
   gap: 3rem;
   @media (max-width: 744px) {
-    /* display: none; */
     gap: 2rem;
   }
 `;
@@ -340,30 +239,27 @@ export const LastTitle = styled.h2`
 
 const ContactForm = styled.section`
   margin: 0 auto;
-
   display: flex;
   flex-wrap: wrap;
   width: 90vw;
-  /* height: 90vh; */
   justify-content: space-between;
   margin-top: 20px;
   padding: 30px 30px;
   margin-bottom: 150px;
-
   section:first-child {
     width: 45%;
-
     @media (max-width: 760px) {
       width: 100%;
     }
   }
-
   @media (max-width: 760px) {
     padding: 30px 20px;
     width: 100%;
     margin-bottom: 0px;
     gap: 50px;
   }
+        background-color: #fff;
+    border-radius: 15px;
 `;
 
 export const TI = styled.h2`
@@ -372,10 +268,9 @@ export const TI = styled.h2`
   font-weight: 600;
   font-size: 35px;
   line-height: 155.56%;
-  color: ${(props) => props.theme.SECONDARY_COLOR};
+  color: #0c0c0c;
   @media (max-width: 760px) {
     font-size: 28px;
-    /* text-align: center; */
   }
 `;
 export const PA = styled.h1`
@@ -386,9 +281,8 @@ export const PA = styled.h1`
   font-size: 14px;
   line-height: 30px;
   letter-spacing: 0.01em;
-  color: ${(props) => props.theme.SECONDARY_COLOR};
+  color:#0c0c0c;
   @media (max-width: 760px) {
-    /* text-align: center; */
   }
 `;
 export const Te = styled.p`
@@ -398,7 +292,7 @@ export const Te = styled.p`
   font-size: 16px;
   line-height: 30px;
   letter-spacing: 0.01em;
-  color: ${(props) => props.theme.SECONDARY_COLOR};
+  color: #0c0c0c;
 `;
 export const NU = styled.p`
   font-family: "Inter", sans-serif;
@@ -406,7 +300,7 @@ export const NU = styled.p`
   font-weight: 500;
   font-size: 16px;
   line-height: 155.56%;
-  color: ${(props) => props.theme.SECONDARY_COLOR};
+  color: #0c0c0c;
 `;
 export const IM = styled.img`
   width: 200px;
@@ -429,7 +323,7 @@ export const TIR = styled.h1`
   font-size: 28px;
   line-height: 155.56%;
   margin-bottom: 10px;
-  color: ${(props) => props.theme.SECONDARY_COLOR};
+  color: #0c0c0c;
   @media (max-width: 760px) {
     text-align: start;
     font-size: 20px;
@@ -441,12 +335,7 @@ export const Cor = styled.p`
   font-weight: 400;
   font-size: 16px;
   line-height: 80px;
-  /* identical to box height, or 188% */
-
   letter-spacing: 0.03em;
-
-  /* white */
-
   color: ${(props) => props.theme.SECONDARY_COLOR};
 `;
 export const IO = styled.img`
@@ -465,7 +354,7 @@ export const Button404 = styled.button`
   font-weight: 700;
   font-size: 16px;
   color: white;
-  background-color: #f37a1d;
+  background-color: #d8b56c;
   border: none;
   display: flex;
   flex-direction: row;
@@ -489,7 +378,7 @@ export const YU = styled.h1`
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
-  color: #f37a1d;
+  color: #d8b56c;
 `;
 export const JU = styled.img`
   width: 20px;

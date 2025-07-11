@@ -1,79 +1,32 @@
 import React from "react";
 import styled from "styled-components";
-import * as style from "../../constants/StyleSheets";
-
-import logo from "../../assets/icons/logoo.svg";
-// import FormInput from "../Items/FormInput";
+ 
+ 
 import FormInputAgent from "../../components/Items/FormInputAgent";
 import { Link, useNavigate } from "react-router-dom";
-// import { useForm } from "react-hook-form";
-// import AuthService from "../../services/auth.service";
-// import faaceb from "../../assets/icons/facebookAuth.svg";
-// import gooogle from "../../assets/icons/googleAuth.svg";
-// import aapple from "../../assets/icons/appleAuth.svg";
-// import log from "../../assets/icons/Component 43 (1).png";
+ 
 import { useTranslation } from "react-i18next";
-import StyledImage from "../../components/Items/StyledImage";
-import BlueSide from "../../components/Items/BlueSide";
-import { useMediaQuery } from "react-responsive";
-const SinsecrireAgent = ({ setLoading }) => {
+ import { useMediaQuery } from "react-responsive";
+ const SinsecrireAgent = ({ setLoading }) => {
   const { t, i18n } = useTranslation();
-  const isResponsive = useMediaQuery({ maxWidth: 1150 });
-
-  // const { register, handleSubmit } = useForm();
-  const navigate = useNavigate();
+  
   return (
-    <Card dir="auto">
-      <White
-      // onSubmit={handleSubmit((data) => {
-      //   console.log(data);
-      //   // AuthService.loginUser(data);
-      // })}
+    <Container>
+    
+      <h1
+        className="top-title"
+        style={{
+          width: "500px",
+          textAlign: "center",
+          fontSize: "24px",
+          marginTop: "120px",
+          color:"#0c0c0c"
+        }}
       >
-        <LogoSection>
-          <Link to="/">
-            <StyledImage />
-          </Link>
-          <p onClick={() => navigate("/")}>x</p>
-          {/* </div> */}
-        </LogoSection>
-
-        {/* <h1>{t("SINSCRIREpartenaire.Inscrire")}</h1> */}
-        <h1
-          className="top-title"
-          style={{
-            width: "500px",
-            textAlign: "center",
-            fontSize: "24px",
-          }}
-        >
-          {t("SINSCRIREpartenaire.FormInput.organisre")}
-        </h1>
-
-        <FormInputAgent setLoading={setLoading} />
-        {/* <PX>
-          <LineWaz />
-          {t("SINSCRIREpartenaire.px")}
-          <LineWaz />
-        </PX> */}
-        {/* <Foote>
-          <IMA src={gooogle} />
-          <IMA src={faaceb} />
-          <IMA src={aapple} />
-        </Foote> */}
-      </White>
-
-      {/* <Blue>
-        <Div>
-          <Titlee>{t("SINSCRIREpartenaire.Titlee")}</Titlee>
-          <Para>{t("SINSCRIREpartenaire.para")}</Para>
-        </Div>
-      
-          <Sidentifbut>{t("SINSCRIREpartenaire.sidentifier")}</Sidentifbut>
-        </Link>
-      </Blue> */}
-      <BlueContainer>{!isResponsive && <BlueSide />}</BlueContainer>
-    </Card>
+        {t("SINSCRIREpartenaire.FormInput.organisre")}
+      </h1>
+      <FormInputAgent setLoading={setLoading} />
+    </Container>
   );
 };
 
@@ -237,7 +190,7 @@ export const Buttonn = styled.button`
   border-radius: 12px;
   color: white;
   font-size: 16px;
-  background-color: #f37a1d;
+  background-color: #d8b56c;
   margin-top: 10px;
   @media (max-width: 1050px) {
     color: #18365a;
@@ -249,24 +202,17 @@ export const Buttonn = styled.button`
   }
 `;
 export const Card = styled.section`
-  background-color: #18365a;
+  background-color: #f7f7f7;
   width: 100vw;
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   /* justify-content: center; */
   align-items: center;
-  @media (max-width: 1050px) {
-    gap: 30px;
-    height: unset;
-    min-height: unset;
-    flex-direction: column;
-    background-color: #18365a;
-    /* height: 220vh; */
-  }
 `;
 
 export const White = styled.section`
-  width: 50%;
+  width: 100%;
   min-height: 100vh;
   padding-top: 50px;
   background: #ffffff;
@@ -427,4 +373,13 @@ export const INP = styled.input`
   border-radius: 8px;
   padding: 10px;
   transition: border-color 0.3s;
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f7f7f7;
 `;

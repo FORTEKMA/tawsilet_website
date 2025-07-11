@@ -42,14 +42,14 @@ const Container = styled.div`
   }
   a {
     cursor: pointer;
-    border: 1px solid #f37a1d;
+    border: 1px solid #d8b56c;
     border-radius: 12px;
     padding: 10px 20px;
     margin-top: 30px;
-    color: #f37a1d;
+    color: #d8b56c;
     text-decoration: none;
     &:hover {
-      background-color: #f37a1d;
+      background-color: #d8b56c;
       color: #18365a;
     }
   }

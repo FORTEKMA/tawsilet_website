@@ -62,7 +62,7 @@ const Innput = styled.input`
     width: 100%;
   }
   &:focus {
-    border-color: #F37A1D;
+    border-color: #d8b56c;
     outline: none;
   }
 `;
@@ -88,7 +88,7 @@ const Input = styled.input`
     width: 100%;
   }
   &:focus {
-    border-color: #F37A1D;
+    border-color: #d8b56c;
     outline: none;
   }
 `;

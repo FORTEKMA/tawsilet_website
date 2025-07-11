@@ -74,7 +74,10 @@
       "avecAide": "With Assistance",
       "desc1": "Choose this option if you have heavier or bulkier parcels that require assistance.",
       "desc2": "2 handlers will be available to help you load/unload your parcels safely."
-    }
+    },
+    "loadingTime": "This may take some time",
+    "swipeLeftToCancel": "Swipe left to cancel",
+    "back": "Back"
   },
   "Step5": {
     "alert1": "Please choose the payment method",
@@ -93,17 +96,27 @@
     "TRUSTUS": {
       "title2": "They Trusted Us "
     },
+    "TRUSTUS_HERO": {
+      "title": {
+        "1": "Join",
+        "2": "Tawsilet",
+        "3": "for Effortless",
+        "4": "Ride Solutions"
+      },
+      "desc": "Sign up on our app or website and experience reliable, transparent ride services tailored to your needs. Join us today for smarter, stress–free travel!",
+      "button": "Learn More"
+    },
     "APROPOSdeNous": "ABOUT US",
     "EFFICACITE": "Efficiency, Reliability, and Convenience",
-    "descrip": "When it comes to transportation, Sheelni is your trusted partner. We understand the importance of dependable logistics solutions, which is why we prioritize efficiency, reliability, and convenience in everything we do. With cutting-edge technology and extensive experience, we offer seamless transport services you can rely on. Experience peace of mind knowing that your items are in safe hands with Sheelni.",
+    "descrip": "When it comes to transportation, Tawsilet is your trusted partner. We understand the importance of dependable logistics solutions, which is why we prioritize efficiency, reliability, and convenience in everything we do. With cutting-edge technology and extensive experience, we offer seamless transport services you can rely on. Experience peace of mind knowing that your items are in safe hands with Tawsilet.",
     "btnSavoir": "Learn More",
     "Delai": {
       "title": "Delivery Time",
-      "desc": "Sheelni ensures short-term delivery for your transportation needs."
+      "desc": "Tawsilet ensures short-term delivery for your transportation needs."
     },
     "Coût": {
       "title": " Affordable Cost",
-      "desc": "Sheelni offers transportation services at an affordable cost."
+      "desc": "Tawsilet offers transportation services at an affordable cost."
     },
     "ÉTAPES": {
       "title1": "Easy Steps",
@@ -131,13 +144,13 @@
       }
     },
     "JOINUS": {
-      "title1": "Join Sheelni for Seamless Logistics Solutions",
-      "desc": "Sign up on our website or app and discover transparent logistics solutions for all your transportation needs. Join Sheelni today."
+      "title1": "Join Tawsilet for Seamless Logistics Solutions",
+      "desc": "Sign up on our website or app and discover transparent logistics solutions for all your transportation needs. Join Tawsilet today."
     },
     "PRESTATION-SERVICE-1": {
       "title1": "SERVICES",
       "title2": "Track Deliveries with Technology",
-      "desc": "Stay informed with our mobile app and website. Book your van easily with our online platform. A simple form on the website or app ensures a quick reservation process. Enjoy the convenience of booking with Sheelni and get the transportation you need, when you need it."
+      "desc": "Stay informed with our mobile app and website. Book your van easily with our online platform. A simple form on the website or app ensures a quick reservation process. Enjoy the convenience of booking with Tawsilet and get the transportation you need, when you need it."
     },
     "PRESTATION-SERVICE-3": {
       "title1": "Our Services",
@@ -147,7 +160,7 @@
     "PRESTATION-SERVICE-2": {
       "title1": "SERVICE",
       "title2": "Providing Excellent Service",
-      "desc": "Experience exceptional service with Sheelni—fast deliveries, attentive support, and peace of mind.",
+      "desc": "Experience exceptional service with Tawsilet—fast deliveries, attentive support, and peace of mind.",
       "Cards": {
         "card1": {
           "title": "In-Store Delivery",
@@ -163,7 +176,7 @@
         },
         "card4": {
           "title": "Labor-Only Moves",
-          "desc": "Don’t lift a finger. We’ll handle your larger furniture and other bulky items."
+          "desc": "Don't lift a finger. We'll handle your larger furniture and other bulky items."
         },
         "card5": {
           "title": "Apartment Moves",
@@ -183,19 +196,19 @@
     "TÉLÉCHARGER": {
       "title1": "DOWNLOAD",
       "title2": "Download Our App",
-      "desc": "Simplify your transport experience with the Sheelni app. Book, track, and manage deliveries effortlessly. Start now and enjoy seamless logistics at your fingertips."
+      "desc": "Simplify your transport experience with the Tawsilet app. Book, track, and manage deliveries effortlessly. Start now and enjoy seamless logistics at your fingertips."
     },
     "CONTACT": {
       "title1": "CONTACT",
       "title2": "Contact us",
-      "desc": "Have questions or need assistance? Reach out to our friendly team today. We’re here to help and provide the information you need.",
+      "desc": "Have questions or need assistance? Reach out to our friendly team today. We're here to help and provide the information you need.",
       "Adresse": {
         "addresses": "Yasmine du Lac Building Avenue de la Bourse Berges du Lac 1, La Marsa, Tunis 1053"
       }
     },
     "COMMENCER": {
       "title1": "Get Started",
-      "desc": "Sign up on our website or app and discover seamless logistic solutions for all your transport needs. Join Sheelni today.",
+      "desc": "Sign up on our website or app and discover seamless logistic solutions for all your transport needs. Join Tawsilet today.",
       "btn-Comencer": "Get Started"
     }
   },
@@ -213,7 +226,7 @@
     "NOTRE-COMPARE": {
       "title1": "Our Company",
       "title2": "We Are a Moving Leader in UAE",
-      "desc": "At Sheelni, we are a renowned transportation company based in UAE. We specialize in transporting a wide range of items, from delicate paper documents to full moving services, to specific locations in the Djerba region. Our services are tailored to meet the transport needs of both businesses and individuals, ensuring efficient and reliable deliveries. With our deep knowledge of the area, we offer customized logistics solutions to meet your specific requirements. Whether it’s a small package or a large shipment, our dedicated team is committed to delivering your items safely and on time."
+      "desc": "At Tawsilet, we are a renowned transportation company based in UAE. We specialize in transporting a wide range of items, from delicate paper documents to full moving services, to specific locations in the Djerba region. Our services are tailored to meet the transport needs of both businesses and individuals, ensuring efficient and reliable deliveries. With our deep knowledge of the area, we offer customized logistics solutions to meet your specific requirements. Whether it's a small package or a large shipment, our dedicated team is committed to delivering your items safely and on time."
     },
     "DEMENAGEMENT": {
       "Paragraph": "Fast secure delivery. Very good courteous",
@@ -242,7 +255,7 @@
         "Li": "Admin"
       }
     },
-    "SERVICES-Sheelni": {
+    "SERVICES-Tawsilet": {
       "Nos-Service": {
         "title1": " SERVICES",
         "title2": "Our Services",
@@ -251,7 +264,7 @@
       },
       "ABOUT-SERVICE": {
         "title1": "ABOUT SERVICE",
-        "title2": "About Sheelni's Services",
+        "title2": "About Tawsilet's Services",
         "desc1": "We are proud to present our comprehensive range of transport services, designed to meet your varied needs. Guided by our commitment to excellence, we provide reliable and efficient solutions to ensure smooth transport for your shipments.",
         "desc2": "From collection to delivery; whether you have light, heavy, or specialized parcels, our team is ready to handle everything by adopting the most appropriate logistics strategies. We carefully handle each step, offering much more than just a service."
       },
@@ -312,7 +325,7 @@
       }
     }
   },
-  "Sheelni-CONTACT": {
+  "Tawsilet-CONTACT": {
     "title1": "CONTACT",
     "title2": "Get in Touch",
     "desc": "Contact us today to discuss your transportation needs. Our friendly team is ready to assist you and provide personalized solutions",
@@ -325,8 +338,8 @@
       "phone": "Last Name",
       "nom": "Firsta Name",
       "emaile": "Your Email",
-      "Adresse": "+216 36 848 020",
-      "email": "contact@sheelni.com",
+      "Adresse": "",
+      "email": "contact@tawsilet.com",
       "textAresse": "Any problem ?",
       "textAress": "You can contact us on :",
       "btnSend": "Send us message",
@@ -564,7 +577,15 @@
         "produit": "Products",
         "commande": "ORDER",
         "paiement_a_la_livraison": "Cash on Delivery",
-        "carte_bancaire": "Bank Card"
+        "carte_bancaire": "Bank Card",
+        "driver_info": "Driver Information",
+        "driver_name": "Driver Name",
+        "driver_phone": "Phone",
+        "call": "Call",
+        "vehicle": "Vehicle",
+        "color": "Color:",
+        "matriculation": "Matriculation:",
+        "cancel_order": "Cancel Order"
       }
     },
     "Commande": {
@@ -580,11 +601,17 @@
         "delivered": "Delivered",
         "completed": "Completed",
         "canceled_by_client": "Canceled",
-        "canceled_by_partner": "Canceled",
+        "canceled_by_partner": "Canceled by Partner",
         "failed_pickup": "Pickup failed",
         "failed_delivery": "Delivery failed",
         "aucun": "Unknown",
-        "loading": "Loading order status... "
+        "loading": "Loading order status... ",
+        "go_to_pickup": "Go to Pickup",
+        "arrived_at_pickup": "Arrived at Pickup",
+        "picked_up": "Picked Up",
+        "completed": "Completed",
+        "canceled_by_client": "Canceled by client",
+        "rate": "Rate"
       },
       "Message": {
         "pending": "Pending",
@@ -596,8 +623,8 @@
         "on_route_to_delivery": "Driver en route to delivery",
         "arrived_at_delivery": "Arrived at delivery location",
         "delivered": "Order delivered",
-        "canceled_by_client": "You canceled this order",
-        "canceled_by_partner": "Merchant canceled order",
+        "canceled_by_client": "This order was canceled by the client.",
+        "canceled_by_partner": "Order was canceled by the partner.",
         "failed_pickup": "Pickup failed",
         "failed_delivery": "Delivery failed",
         "completed": "Your order has been successfully completed",
@@ -615,7 +642,12 @@
         "ratting": "We invite you to share your feedback on the delivery service and the courier by leaving a small message. ",
         "passer": "Skip",
         "dejanote": "You have already rated",
-        "rattinge": ". Your feedback is valuable to us!"
+        "rattinge": ". Your feedback is valuable to us!",
+        "go_to_pickup": "Driver is on the way to pickup location.",
+        "arrived_at_pickup": "Driver has arrived at the pickup location.",
+        "picked_up": "Order has been picked up.",
+        "completed": "Order is completed.",
+        "canceled_by_client": "This order was canceled by the client."
       }
     }
   },
@@ -630,19 +662,19 @@
   "ImageSlider": {
     "image1": {
       "title": "Handled with Care — Delivered with Trust",
-      "description": "Sheelni Team"
+      "description": "Tawsilet Team"
     },
     "image2": {
       "title": "From Door to Door, With Care",
-      "description": "Sheelni Team"
+      "description": "Tawsilet Team"
     },
     "image3": {
       "title": "Trust Us to Deliver",
-      "description": "Sheelni Team"
+      "description": "Tawsilet Team"
     },
     "image4": {
       "title": "Swift, Safe, Reliable",
-      "description": "Sheelni Team"
+      "description": "Tawsilet Team"
     }
   },
   "Bulletin": {
@@ -651,10 +683,10 @@
   },
   "JoinSeeelni": {
     "title": "Join ",
-    "span": "Sheelni",
+    "span": "Tawsilet",
     "Sutitle1": "for Seamless",
     "Sutitle": "Logistics Solutions",
-    "description": " Sign up on our website or app and discover transparent logistics solutions for all your transportation needs. Join Sheelni today.",
+    "description": " Sign up on our website or app and discover transparent logistics solutions for all your transportation needs. Join Tawsilet today.",
     "button": "Get Started"
   },
   "Team": {
@@ -679,7 +711,7 @@
   },
   "ForgetPassword": {
     "title": "Account Recovery",
-    "span": "You don’t have an account with this email address",
+    "span": "You don't have an account with this email address",
     "link": "Create an account",
     "button": "Next"
   },
@@ -715,11 +747,11 @@
     "heading": "Legal Notice of FORTEKMA",
     "identity": {
       "title": "1. Company Identity",
-      "description": "Company Name: FORTEKMA, Legal Form: Limited Liability Company (SARL), Share Capital: 10,000 TND, Registered Office Address: YASMINE Building, Avenue de la Bourse, Berge du Lac 2, 1053, Tunisia, Phone: +216 36 848 020, Email: contact@fortekma.com, Trade Register Number: 1906853H, Tax Identification Number: 1906853H, APE Code: 74.13."
+      "description": "Company Name: FORTEKMA, Legal Form: Limited Liability Company (SARL), Share Capital: 10,000 TND, Registered Office Address: YASMINE Building, Avenue de la Bourse, Berge du Lac 2, 1053, Tunisia, Email: contact@fortekma.com, Trade Register Number: 1906853H, Tax Identification Number: 1906853H, APE Code: 74.13."
     },
     "dataProcessing": {
       "title": "2. Data Processing Officer",
-      "description": "Name of the Officer: Alaeddine Rezgani, Email of the Officer: alaeddine.rezgani@fortekma.com."
+      "description": "Name of the Officer: Alaeddine Rezgani, Email of the Officer: alaeddine.rezgani@fortekma.com."
     },
     "dataPurposes": {
       "title": "3. Purposes of Data Processing",
@@ -743,8 +775,8 @@
     },
     "dpd": {
       "title": "8. Data Protection Officer (DPO)",
-      "mrc": "For any questions regarding our legal notice, please contact us at: contact@fortekma.com.",
-      "description": "FORTEKMA has appointed a Data Protection Officer (DPO). You can contact them at the following email address: alaeddine.rezgani@fortekma.com."
+      "mrc": "For any questions regarding our legal notice, please contact us at: contact@fortekma.com.",
+      "description": "FORTEKMA has appointed a Data Protection Officer (DPO). You can contact them at the following email address: alaeddine.rezgani@fortekma.com."
     }
   },
   "Maintenance": {
@@ -804,7 +836,7 @@
       "dataList4": "Limit processing",
       "dataList5": "Object to processing",
       "desc": "To exercise these rights, please contact us at:",
-      "email": "Email :contact@sheelni.com"
+      "email": "Email :contact@tawsilet.com"
     },
     "cookiePolicy": {
       "title": "9. Cookie Policy",
@@ -817,14 +849,14 @@
     "contact": {
       "title": "11. Contact",
       "description": "For any questions regarding this privacy policy, please contact us at:",
-      "email": "Email :contact@sheelni.com",
-      "mrc": "Thank you for trusting Sheelni with the protection of your personal data."
+      "email": "Email :contact@tawsilet.com",
+      "mrc": "Thank you for trusting Tawsilet with the protection of your personal data."
     }
   },
   "COOKIES": {
-    "title": "Cookie Policy of Sheelni Technologie",
+    "title": "Cookie Policy of Tawsilet Technologie",
     "lastUpdate": "Last updated: 1/12/2023",
-    "description": "At <Bold>Sheelni Technologie</Bold>, we take your privacy seriously and are transparent about our use of technologies such as cookies on our websites and applications. This cookie policy explains how we use these technologies and the options available to you to control them.",
+    "description": "At <Bold>Tawsilet Technologie</Bold>, we take your privacy seriously and are transparent about our use of technologies such as cookies on our websites and applications. This cookie policy explains how we use these technologies and the options available to you to control them.",
     "whatAreCookies": {
       "title": "1. What are cookies and similar technologies",
       "description": "Cookies and similar technologies are small data files stored on your device when you visit our website or use our applications. They help us ensure the proper functioning, analysis, and improvement of our services while personalizing your experience. These technologies also include web beacons, pixels, tags, and SDKs in our mobile applications."
@@ -879,7 +911,7 @@
     },
     "moreInfo": {
       "title": "10. Need more information?",
-      "description": "Please review our privacy policies for more information on how we handle your data. For any questions about cookies, contact our team at: <Bold>contact@sheelni.com</Bold>"
+      "description": "Please review our privacy policies for more information on how we handle your data. For any questions about cookies, contact our team at: <Bold>contact@tawsilet.com</Bold>"
     }
   },
   "Survey": {
@@ -897,5 +929,153 @@
     "compte": "Account",
     "historique": "History",
     "deconnecter": "Logout"
+  },
+  "DeleteAccount": {
+    "title": "Request Account Deletion",
+    "email": "Email Address",
+    "emailPlaceholder": "Enter your email",
+    "type": "Account Type",
+    "client": "Client",
+    "driver": "Driver",
+    "requestBtn": "Request Deletion",
+    "confirmTitle": "Confirm Deletion",
+    "confirmText": "Are you sure you want to request deletion of your account? This action cannot be undone.",
+    "confirmBtn": "Yes, Delete",
+    "cancelBtn": "Cancel",
+    "successTitle": "Account Deleted",
+    "successText": "Your account has been successfully deleted."
+  },
+  "EstimationFormStepper": {
+    "Step4": {
+      "loadingTime": "This may take some time",
+      "swipeLeftToCancel": "Swipe left to cancel",
+      "back": "Back"
+    }
+  },
+  "DriverRating": {
+    "title": "Rate the driver",
+    "subtitle": "How would you rate your experience?",
+    "leaveComment": "Leave a comment",
+    "options": {
+      "professional": "Very professional",
+      "ontime": "Arrived on time",
+      "talksTooMuch": "Talks too much",
+      "other": "Other"
+    },
+    "button": "Rate",
+    "otherPlaceholder": "Your comment..."
+  },
+  "HOWWEWORK": {
+    "STEPS_LABEL": "EASY STEPS",
+    "TITLE": "How We Work",
+    "SUBTITLE": "Getting a ride with Tawsilet is simple and hassle-free",
+    "STEP1": {
+      "TITLE": "BOOK YOUR RIDE",
+      "DESC": "Use our app or website to easily book your ride in just a few taps."
+    },
+    "STEP2": {
+      "TITLE": "RIDE WITH CONFIDENCE",
+      "DESC": "Our experienced drivers and reliable vehicles ensure a smooth and secure journey ."
+    },
+    "STEP3": {
+      "TITLE": "ARRIVE ON TIME",
+      "DESC": "Enjoy fast, efficient, and stress-free travel, tailored to your schedule."
+    },
+    "FOOTER": {
+      "TEXT": "Want to know more?",
+      "LINK": "Learn more"
+    }
+  },
+  "SUIVI": {
+    "SERVICES_LABEL": "SERVICES",
+    "HEADING": "Stay Connected with\nTechnology",
+    "DESCRIPTION": "Track your rides and stay updated in real-time with our user-friendly mobile app and website. Booking a ride is effortless—our intuitive platform ensures a smooth and fast reservation process. With just a few taps, you'll have a ride when you need it, where you need it.",
+    "LEARN_MORE": "Learn More"
+  },
+  "SERVICES_SECTION": {
+    "heading": "SERVICES",
+    "title": "Delivering Exceptional Ride Experiences",
+    "description": "At Tawsilet, we pride ourselves on providing outstanding service, ensuring every journey is seamless, reliable, and comfortable.",
+    "cards": {
+      "luxury": {
+        "title": "Luxury Vehicles",
+        "desc": "Access a premium fleet of high-end vehicles tailored for your comfort."
+      },
+      "driver": {
+        "title": "Professional Drivers",
+        "desc": "Expert, discreet drivers ensuring safety and top-notch service."
+      },
+      "airport": {
+        "title": "Airport Transfers",
+        "desc": "Seamless & punctual airport transfers with personalised meet."
+      },
+      "business": {
+        "title": "Business Transport",
+        "desc": "Reliable executive travel for meetings and events."
+      },
+      "privacy": {
+        "title": "Privacy & Discretion",
+        "desc": "Secure rides with tinted windows and confidential service."
+      },
+      "child": {
+        "title": "Child-Friendly Options",
+        "desc": "Safety seats available for families traveling with kids."
+      }
+    }
+  },
+  "DOWNLOAD": {
+    "LABEL": "DOWNLOAD",
+    "HEADING": "Download Our App",
+    "DESCRIPTION": "Simplify your transport experience with the Tawsilet app. Book, track, and manage deliveries effortlessly. Start now and enjoy seamless logistics at your fingertips."
+  },
+  "regions": {
+    "Ariana": "Ariana",
+    "Beja": "Beja",
+    "BenArous": "Ben Arous",
+    "Bizerte": "Bizerte",
+    "Gabes": "Gabes",
+    "Gafsa": "Gafsa",
+    "Jendouba": "Jendouba",
+    "Kairouan": "Kairouan",
+    "Kasserine": "Kasserine",
+    "Kebili": "Kebili",
+    "Kef": "Kef",
+    "Mahdia": "Mahdia",
+    "Manouba": "Manouba",
+    "Medenine": "Medenine",
+    "Monastir": "Monastir",
+    "Nabeul": "Nabeul",
+    "Sfax": "Sfax",
+    "SidiBouzid": "Sidi Bouzid",
+    "Siliana": "Siliana",
+    "Sousse": "Sousse",
+    "Tataouine": "Tataouine",
+    "Tozeur": "Tozeur",
+    "Tunis": "Tunis",
+    "Zaghouan": "Zaghouan"
+  },
+  "registration_success_title": "Request Sent Successfully",
+  "registration_success_message": "Your request has been sent successfully. Our team will review it and you will receive an email.",
+  "registration_success_short": "Registration successful!",
+  "go_home": "Go to Home Page",
+  "Sheelni-CONTACT": {
+    "title2": "Contact Us",
+    "desc": "Have questions or need assistance? Reach out to our friendly team today. We're here to help and provide the information you need.",
+    "btn-obten": "Get an Estimate",
+    "ContactForm": {
+      "title2": "Contact Form",
+      "title1": "Get in Touch",
+      "desc": "Fill out the form below and our team will get back to you as soon as possible.",
+      "textAresse": "Address Line 1",
+      "textAress": "Address Line 2",
+      "email": "Email",
+      "Adresse": "Address",
+      "btnSend": "Send Message",
+      "placeholder": "Type your message here...",
+      "nom": "Name",
+      "phone": "Phone Number",
+      "emaile": "Email Address",
+      "Message": "Message"
+    }
   }
 }

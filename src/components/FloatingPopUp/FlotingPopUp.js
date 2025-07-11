@@ -24,16 +24,7 @@ const FlotingPopUp = () => {
         <i class="fa-regular fa-comment-dots"></i>
       </a>
 
-      {/* <div class="adminButtons">
-        <a href="#" title="whatsapp" onClick={() => setshow2(!show2)}>
-          <i class="fa-solid fa-envelope"></i>
-        </a>
-
-        <a href="#" title="appeler" onClick={() => setshow(!show)}>
-          <i class="fa-solid fa-phone fa-lg"></i>
-          <p className={show ? "appeler" : "appelerOff"}>+216 36 848 020</p>
-        </a>
-      </div> */}
+     
     </div>
   );
 };

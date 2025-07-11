@@ -6,12 +6,20 @@ import Path from "../../assets/icons/Path.png";
 import Pat from "../../assets/icons/mail.svg";
 import Pa from "../../assets/icons/Path.svg";
 import Fb from "../../assets/icons/fborange.svg";
-import logo from "../../assets/icons/sheelniorange.svg";
+import logo from "../../assets/images/Group1.png";
 import Inst from "../../assets/icons/orangeinsta.svg";
-import Twit from "../../assets/icons/twitterorange.svg";
+import TikTok from "../../assets/icons/tiktok.svg";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import { FaFacebookF, FaInstagram, FaTiktok } from "react-icons/fa";
 // import { Link } from "react-router-dom";
+
+const TopDivider = styled.div`
+  width: 100%;
+  height: 2px;
+  background: #fff;
+  margin-bottom: 0;
+`;
 
 export const Footer = () => {
   const { t, i18n } = useTranslation();
@@ -19,12 +27,13 @@ export const Footer = () => {
   const year = CopyRight.getFullYear(); // returns 100
   return (
     <FooterContainer dir="auto">
-      <div style={{ paddingBottom: "30px" }}> </div>
-      <Hr></Hr>
+      <TopDivider />
+      <div style={{ paddingBottom: "30px",borderTop:5,borderColor:"#fff" }}> </div>
+     
 
       <Box>
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <Image src={logo} alt="sheelni logo"></Image>
+          <Image src={logo} style={{width:"20%"}} alt="tawsilet logo"></Image>
         </div>
         <Container>
           <MENU style={{}}>
@@ -70,49 +79,35 @@ export const Footer = () => {
                     {t("ACCEUILE.CONTACT.Adresse.addresses")}
                   </FooterLinkk>
                 </Ligne>
-   <br></br>
-                <Ligne>
-                  {" "}
-                  <Paths alt="sheelni path" src={Pa}></Paths>
-                  <FooterLinkk    dir="auto"
-        
-          isRtl={i18n.language.startsWith("ar")}> +216 36 848 020 </FooterLinkk>
-                </Ligne>{" "}
+ 
+              
    <br></br>
                 <Ligne>
                   <Paths src={Pat} alt="pa"></Paths>
                   <FooterLinkk   dir="auto"
         
-        isRtl={i18n.language.startsWith("ar")}>contact@sheelni.com</FooterLinkk>
+        isRtl={i18n.language.startsWith("ar")}>contact@tawsilet.com</FooterLinkk>
                 </Ligne>
               </ContentService>{" "}
             </Content>
           </Container>
-          {/* 
-        <Container>
-          <Heading>{t("FOOTER.Légale")}</Heading>
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <FooterLink href="/Conditions">{t("FOOTER.Last1")}</FooterLink>
-            <FooterLink href="/Politiques">{t("FOOTER.Last2")}</FooterLink>
-            <FooterLink href="/CookiesPolitique">
-              Politique de Cookies
-            </FooterLink>
-            <FooterLink href="#">
-              {t("FOOTER.FooterLink.FooterLink3")}
-            </FooterLink> 
-          </div>
-        </Container> */}
+         
 
           <Contacts>
-            <a href="#" target="_blank">
-              <img alt="facebook sheelni" src={Fb}></img>
+            <a href="https://www.facebook.com/people/Tawsilet/61576659811297/?sk=about_contact_and_basic_info" target="_blank" rel="noopener noreferrer">
+              <SocialIconWrapper>
+                <FaFacebookF color="#fff" style={{width: 22,height: 22}} size={10} />
+              </SocialIconWrapper>
             </a>
-            <a href="#" target="_blank">
-              <img alt="x Sheelni" src={Twit}></img>
+            <a href="https://www.tiktok.com/@tawsilet" target="_blank" rel="noopener noreferrer">
+              <SocialIconWrapper>
+                <FaTiktok color="#fff" style={{width: 22,height: 22}}  size={10} />
+              </SocialIconWrapper>
             </a>
-            <a href="#" target="_blank">
-              {" "}
-              <img alt="Instagram Sheelni" src={Inst}></img>
+            <a href="https://www.instagram.com/tawsilet.tn/" target="_blank" rel="noopener noreferrer">
+              <SocialIconWrapper>
+                <FaInstagram color="#fff" style={{width: 22,height: 22}}  size={10} />
+              </SocialIconWrapper>
             </a>
           </Contacts>
         </LAST>
@@ -139,12 +134,16 @@ export const Footer = () => {
 export default Footer;
 
 const FooterContainer = styled.div`
-  background-color: ${(props) => props.theme.SECONDARY_COLOR};
+  background-color: "#0c0c0c";
   margin-top: 10%;
   justify-content: center;
   display: flex;
-
+   
   flex-wrap: wrap;
+
+      border-color: #fff;
+    
+    border-width: 10px;
 `;
 
 export const LAST = styled.div`
@@ -167,8 +166,9 @@ export const Box = styled.section`
   bottom: 0;
   margin: 0 auto;
   /* position: absolute; */
-  background-color: ${(props) => props.theme.SECONDARY_COLOR};
+  background-color:#0c0c0c;
   display: flex;
+  
   flex-wrap: wrap;
   /* justify-content: center; */
   align-items: flex-start;
@@ -621,5 +621,24 @@ const Description = styled.div`
   @media (max-width: 744px) {
     line-height: 10px;
     font-size: 0.6875rem;
+  }
+`;
+
+const SocialIconWrapper = styled.div`
+  width: 50px;
+  height: 50px;
+  background: #DEBC73;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  &:hover {
+    background: #c9a85e;
+  }
+  svg {
+    width: 44px;
+    height: 44px;
+    display: block;
   }
 `;

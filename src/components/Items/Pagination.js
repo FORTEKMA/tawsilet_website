@@ -14,7 +14,7 @@ const PageButton = styled.button`
   padding: 5px 10px;
   margin: 0 2px;
   border: none;
-  background-color: ${({ active }) => (active ? "#F37A1D" : "#ddd")};
+  background-color: ${({ active }) => (active ? "#d8b56c" : "#ddd")};
   color: ${({ active }) => (active ? "#333" : "#333")};
   cursor: ${({ active }) => (active ? "default" : "pointer")};
   border-radius: 50%;

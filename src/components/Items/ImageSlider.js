@@ -147,7 +147,7 @@ const ImageSlider = () => {
 
   return (
     <SliderOuter>
-      <Tampon src={orangeTampon} alt="Sheelni Tampon" />
+      <Tampon src={orangeTampon} alt="Tawsilt Tampon" />
       <SliderContainer>
         {images.map((img, index) => (
           <div key={index}>

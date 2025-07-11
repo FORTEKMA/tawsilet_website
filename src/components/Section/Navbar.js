@@ -6,56 +6,36 @@ import Menu from "../Navigation/Menu";
 import { Button } from "../Items/Button";
 import { Link, useNavigate } from "react-router-dom";
 import React, { useEffect, useRef, useState } from "react";
-// import LoginCard from "../Items/LoginCard";
-// import Modale from "../Items/Modale";
 import burgernavbar from "../../assets/icons/menuetogle.svg";
 import SecondNav from "../Navigation/SecondNav";
-import Xicon from "../../assets/icons/ix.svg";
+import { AiOutlineClose } from "react-icons/ai";
 import Profile from "../../assets/images/mann.png";
-// import i18n from "../../i18n";
-// import { withNamespaces } from 'react-i18next';
-// import { withI18n } from "react-i18next";
 import { useTranslation } from "react-i18next";
-// import { FiGlobe } from "react-icons/fi";
-// import Flag, { ReactCountryFlag } from "react-country-flag";
-// import arrow from "../../assets/icons/down-solid.svg";
 import frFlag from "../../assets/icons/falg-fr.svg";
-// import arrFlag from "../../assets/icons/flag-tn.svg";
 import arFlag from "../../assets/icons/saudi-arabia.svg";
 import enFlag from "../../assets/icons/US_icon.svg";
-
 import historyIcon from "../../assets/icons/iconhistoryprofileclient.svg";
 import detailsIcon from "../../assets/icons/icondetaildecompte.svg";
 import icondeconnecternav from "../../assets/icons/icondeconnecternav.svg";
-
-// import globe from "../../assets/icons/globe-solid.svg";
-// import { FaLanguage } from "react-icons/fa";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import googlePlayIcon from "../../assets/icons/googleplay.svg";
+import appStoreIcon from "../../assets/icons/appstore.svg";
 
 const Navbar = ({ navigationValues, currentUser }) => {
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
 
-  // Language Dropdown State
   const [isOpen, setIsOpen] = useState(false);
   const refDropLanguage = useRef();
-
-  const [selectedLanguage, setSelectedLanguage] = useState("Français");
-
   const [showMenu, setShowMenu] = useState(false);
   const [showDropDrop, setShowDropDrop] = useState(false);
 
-  // Open/Close Language Dropdown
-  const toggleDropdown = () => setIsOpen(!isOpen);
-
-  // Handle Language Change
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
-    localStorage.setItem('i18nextLng', lng); // Save language in localStorage
+    localStorage.setItem('i18nextLng', lng);
     window.location.reload();
   };
 
-  // Get Flag Based on Language
   const getFlag = (language) => {
     switch (language) {
       case "fr-FR":
@@ -71,40 +51,46 @@ const Navbar = ({ navigationValues, currentUser }) => {
         return enFlag;
     }
   };
-  
 
   useEffect(() => {
     if (isOpen) refDropLanguage.current?.focus();
   }, [isOpen]);
 
   return (
-    <Nav showmenu={showMenu.toString} dir="auto">
-      <div style={{ display: "flex", alignItems: "center" }}>
-        {showMenu ? (
-          <img
-            src={Xicon}
-            id="x"
-            onClick={() => setShowMenu(false)}
-            alt="close"
-          ></img>
-        ) : (
-          <Burger
-            onClick={() => setShowMenu(true)}
-            src={burgernavbar}
-            alt="open"
-          />
-        )}
-        <LogoImg
-          alt="sheelnilogo"
-          showshow={showMenu}
-          onClick={() => navigate("/")}
-          src={showMenu ? LogoBlue : Logo}
-          // srcSet={
-          //   !showMenu
-          //     ? "assets/images/YellowLogo-d289153b718ec79bcef3_f1zimc_c_scale-w_200.png 200w,assets/images/YellowLogo-d289153b718ec79bcef3_f1zimc_c_scale-w_1400.png 1400w"
-          //     : ""
-          // }
-        />
+    <Nav showmenu={showMenu.toString()} dir="auto">
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          {showMenu ? (
+            <AiOutlineClose
+              id="x"
+              onClick={() => setShowMenu(false)}
+              style={{ color: "#d8b56c", cursor: "pointer", fontSize: 36 }}
+              aria-label="close"
+            />
+          ) : (
+            <Burger
+              onClick={() => setShowMenu(true)}
+              src={burgernavbar}
+              alt="open"
+            />
+          )}
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <LogoImg
+              alt="Tawsiltlogo"
+              showshow={showMenu}
+              onClick={() => navigate("/")}
+              src={Logo}
+            />
+            <StoreBadges>
+              <a href="https://play.google.com/store/apps/details?id=com.fortekma.tawsilet" target="_blank" rel="noopener noreferrer">
+                <StoreIcon src={googlePlayIcon} alt="Google Play" />
+              </a>
+              <a href="https://apps.apple.com/us/app/tawsilet/id6745802311" target="_blank" rel="noopener noreferrer">
+                <StoreIcon src={appStoreIcon} alt="App Store" />
+              </a>
+            </StoreBadges>
+          </div>
+        </div>
       </div>
       {showMenu && (
         <SecondNav
@@ -113,7 +99,6 @@ const Navbar = ({ navigationValues, currentUser }) => {
         />
       )}
       <Menu navigationValues={navigationValues} />
-      {/* Language */}
       <Side>
         <DropdownContainer directionglobe={i18n.language === "ar-AR"} dir="auto">
           <DropdownButton
@@ -122,9 +107,7 @@ const Navbar = ({ navigationValues, currentUser }) => {
             }}
           >
             <FlagIcon src={getFlag(i18n.language)} alt={i18n.language} />
-            {/* <span>{t("languageSelector." + i18n.language)}</span> */}
           </DropdownButton>
-
           {isOpen ? (
             <DropdownMenu
               ref={refDropLanguage}
@@ -133,24 +116,12 @@ const Navbar = ({ navigationValues, currentUser }) => {
               isOpen={isOpen}
               directionglobe={true}
             >
-              <DropdownItem onClick={() => changeLanguage("ar-AR")}>
-                <FlagIcon src={arFlag} alt="ar" />
-                العربية{" "}
-              </DropdownItem>
-              <DropdownItem onClick={() => changeLanguage("fr-FR")}>
-                <FlagIcon src={frFlag} alt="fr" />
-                Français
-              </DropdownItem>
-
-              <DropdownItem onClick={() => changeLanguage("en-EN")}>
-                <FlagIcon src={enFlag} alt="en" />
-                Anglais
-              </DropdownItem>
+              <DropdownItem onClick={() => changeLanguage("ar-AR")}> <FlagIcon src={arFlag} alt="ar" /> العربية </DropdownItem>
+              <DropdownItem onClick={() => changeLanguage("fr-FR")}> <FlagIcon src={frFlag} alt="fr" /> Français </DropdownItem>
+              <DropdownItem onClick={() => changeLanguage("en-EN")}> <FlagIcon src={enFlag} alt="en" /> Anglais </DropdownItem>
             </DropdownMenu>
           ) : null}
         </DropdownContainer>
-
-        {/* Language */}
         {currentUser ? (
           <div
             style={{
@@ -180,16 +151,10 @@ const Navbar = ({ navigationValues, currentUser }) => {
             />
             {showDropDrop ? (
               <DropDownProfile
-                // autoFocus
-                onFocus={() => {
-                  refDrop.current.focus();
-                }}
                 onMouseLeave={() => setShowDropDrop(false)}
                 isDirectionLeft={i18n.language === "ar-AR"}
               >
                 <div
-                
-                
                   style={{
                     display: "flex",
                     gap: 10,
@@ -200,7 +165,6 @@ const Navbar = ({ navigationValues, currentUser }) => {
                     textAlign: "center",
                   }}
                 >
-                  {/* <img src="" /> */}
                   <p className="bonjour">
                   {t("Dropdown.bonjour")} {currentUser?.firstName}
                   </p>
@@ -211,7 +175,6 @@ const Navbar = ({ navigationValues, currentUser }) => {
                     x
                   </p>
                 </div>
-                {/* <NavLink to="/ClientProfile/details"> */}
                 <NavItem
                   onClick={() => {
                     navigate("/ClientProfile/details");
@@ -226,8 +189,6 @@ const Navbar = ({ navigationValues, currentUser }) => {
                   <img src={detailsIcon} style={{ width: "25px" }} />
                   <p style={{ marginLeft: "5px" }}> {t("Dropdown.compte")}</p>
                 </NavItem>
-                {/* </NavLink> */}
-                {/* <NavLink to="/ClientProfile/history"> */}
                 <NavItem
                   onClick={() => {
                     navigate("/ClientProfile/history");
@@ -246,8 +207,6 @@ const Navbar = ({ navigationValues, currentUser }) => {
                   />
                   <p style={{ paddingLeft: "5px" }}>{t("Dropdown.historique")}</p>
                 </NavItem>
-                {/* </NavLink> */}
-
                 <NavItem
                   style={{
                     display: "flex",
@@ -266,18 +225,6 @@ const Navbar = ({ navigationValues, currentUser }) => {
                 </NavItem>
               </DropDownProfile>
             ) : null}
-
-            {/* <Button
-            onClick={() => {
-              localStorage.removeItem("token");
-              localStorage.removeItem("user");
-              window.location.replace("/");
-            }}
-            style={{ margin: 0 }}
-            hasborder
-          >
-            {t("NAVBAR.Deconnecte")}
-          </Button> */}
           </div>
         ) : (
           <div>
@@ -290,15 +237,10 @@ const Navbar = ({ navigationValues, currentUser }) => {
               style={{ margin: 0, padding: "8px 16px" }}
               onClick={() => navigate("/SinsecrireClient")}
               hasborder="true"
+              className="sinscrire-btn"
             >
               {t("NAVBAR.Sinscrire")}
             </Button>
-            {/* <Modale
-            openModal={openModal}
-            closeModal={closeModal}
-            setShow={setShow}
-            show={show}
-          /> */}
           </div>
         )}
       </Side>
@@ -307,76 +249,34 @@ const Navbar = ({ navigationValues, currentUser }) => {
 };
 
 export default Navbar;
-// select Language
-const LanguageSelectorContainer = styled.div`
-  display: flex;
 
-  align-items: center;
-`;
-const Dropdown = styled.select`
-  height: 50px;
-  border-radius: 10px;
-  border: transparent;
-  width: 75px;
-`;
 const Side = styled.div`
   display: flex;
-  gap: 10px;
-`;
-const LanguageOption = styled.div`
-  cursor: pointer;
-  margin-right: 10px;
-  font-size: 16px;
-  color: ${({ isSelected }) => (isSelected ? "blue" : "black")};
-
-  &:hover {
-    color: blue;
-  }
+  gap: 0px;
 `;
 const Burger = styled.img`
   width: auto;
   height: auto;
+  filter: brightness(0) saturate(100%) invert(88%) sepia(24%) saturate(464%) hue-rotate(7deg) brightness(97%) contrast(85%);
   @media (min-width: 1151px) {
     display: none;
   }
 `;
-
-const Avatar = styled(LazyLoadImage)`
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: none;
-  object-fit: cover;
-  object-position: top;
-  cursor: pointer;
-`;
-export const SwitcherContent = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
 export const LogoImg = styled.img`
   margin-left: ${style.spacing.MARGIN_LARGE};
-  /* padding: ${style.spacing.PADDING_LARGE}; */
-  /* width: 160px; */
   width: auto;
-  height: 41px;
-  /* align-self: start; */
+  height: 60px;
   cursor: pointer;
-
   @media (max-width: 1151px) {
-    height: 30px;
-    /* margin-left: 16px; */
+    height: 44px;
     filter: ${(props) =>
       props.showshow
         ? "brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(1%)hue-rotate(3deg) brightness(104%) contrast(101%)"
         : "none"};
   }
 `;
-
 export const Nav = styled.header`
   flex: 1;
-  /* border: 1px solid red; */
   z-index: 1000;
   position: fixed;
   display: flex;
@@ -384,31 +284,22 @@ export const Nav = styled.header`
   justify-content: space-between;
   width: 100%;
   height: 80px;
-  padding: 0 32px;
+  padding: 0 5px;
   box-shadow: -4px 12px 5px -11px #e0e0e0;
-  background-color: ${(props) =>
-    props.showmenu === "true" ? "white" : props.theme.BACKGROUND_COLOR};
-  /* @media (min-width: 360px) and (max-width: 1151px) {
-    display: none;
-  }
-  @media (max-width: 360px) {
-    display: none;
-  } */
-  /* #x {
-    filter: ${(props) =>
-    props.showmenu
-      ? "brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(1%) hue-rotate(3deg) brightness(104%) contrast(101%)"
-      : "none"};
-  } */
+  background-color: #0c0c0c;
   @media (max-width: 1151px) {
     border-bottom: 1px solid ${(props) => props.theme.PRIMARY_COLOR};
-    /* background-color: white; */
     max-width: 100vw;
-    padding: 0 18px;
+    padding: 0 5px;
   }
   .connexion-btn {
     @media (max-width: 1151px) {
       display: none;
+    }
+  }
+  .sinscrire-btn {
+    @media (max-width: 600px) {
+      display: none !important;
     }
   }
   .avatar {
@@ -421,19 +312,14 @@ export const Nav = styled.header`
     cursor: pointer;
   }
 `;
-// Language settings
 const DropdownContainer = styled.div`
-  /* border:1px solid red; */
   width: auto !important;
   width: auto;
   padding: 10px;
   position: relative;
   display: inline-block;
-
   color: #fff;
-  /* left: 16px; */
 `;
-
 const DropdownButton = styled.button`
   background-color: transparent;
   color: #fff;
@@ -441,12 +327,8 @@ const DropdownButton = styled.button`
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 5px;
-  /* &:hover {
-    color: #F37A1D;
-  } */
+  gap: 0px;
 `;
-
 const DropdownMenu = styled.ul`
   position: absolute;
   top: 100%;
@@ -454,38 +336,32 @@ const DropdownMenu = styled.ul`
   right: 0;
   list-style: none;
   background-color: #18365a;
-  /* border: 1px solid #ccc; */
   padding: 0;
   margin: 0;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   display: ${({ isOpen }) => (isOpen ? "block" : "none")};
-
-  gap: 5px;
+  gap: 0px;
 `;
-
 const DropdownItem = styled.li`
   padding: 8px;
   cursor: pointer;
   display: flex;
   align-items: center;
-  /* justify-content:center; */
-  gap: 5px;
+  gap: 0px;
   &:hover {
-    color: #f37a1d;
+    color: #d8b56c;
   }
 `;
 const FlagIcon = styled.img`
   width: 20px;
   height: 18px;
 `;
-
 const NavItem = styled.div`
   display: flex;
   align-items: flex-end;
   cursor: pointer;
   width: fit-content;
 `;
-
 const DropDownProfile = styled.div`
   width: 210px;
   display: flex;
@@ -496,37 +372,74 @@ const DropDownProfile = styled.div`
   top: 84px;
   left: ${({ isDirectionLeft }) => (isDirectionLeft ? "1vw" : "unset")};
   right: ${({ isDirectionLeft }) => (isDirectionLeft ? "unset" : "1vw")};
-
   padding: 20px;
   background-color: #18365a;
   border-radius: 20px;
   border-bottom: 4px solid rgba(220, 220, 220, 0.6);
-  /* &:focus {
-    outline: none;
-  }
-  ${NavItem}:hover img {
-    filter: brightness(0) saturate(100%) invert(87%) sepia(21%) saturate(5238%)
-      hue-rotate(360deg) brightness(104%) contrast(104%);
-  } */
   &:hover {
-    color: #f37a1d;
+    color: #d8b56c;
   }
   a {
     color: white;
     text-decoration: none;
     &:hover {
-      color: #f37a1d;
+      color: #d8b56c;
     }
   }
   p {
     color: white;
     &:hover {
-      color: #f37a1d;
+      color: #d8b56c;
     }
   }
   .bonjour {
     &:hover {
       color: white;
     }
+  }
+`;
+const StoreBadges = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+  margin-left: 10px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  margin-right: 2px;
+  justify-content: center;
+  align-items: flex-start;
+  @media (max-width: 1151px) {
+    gap: 4px;
+    margin-left: 6px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    margin-right: 1px;
+  }
+  @media (max-width: 600px) {
+    gap: 2px;
+    margin-left: 2px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-right: 0px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+`;
+const StoreIcon = styled.img`
+  height: 22px;
+  width: auto;
+  transition: transform 0.15s;
+  cursor: pointer;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.08));
+  &:hover {
+    transform: scale(1.08);
+    filter: brightness(0.95) drop-shadow(0 2px 4px rgba(0,0,0,0.12));
+  }
+  @media (max-width: 1151px) {
+    height: 18px;
+  }
+  @media (max-width: 600px) {
+    height: 14px;
   }
 `;

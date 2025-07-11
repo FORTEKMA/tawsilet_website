@@ -86,7 +86,7 @@ export const StepperForm = styled.div`
   /* padding-inline: calc(${style.spacing.PADDING_LARGE} * 2); */
 
   .activeCard {
-    background-color: #F37A1D;
+    background-color: #d8b56c;
     height: 9.5vw;
     @media (max-width: 1150px) {
       height: 100%;
@@ -156,7 +156,7 @@ export const StepperForm = styled.div`
     justify-content: flex-end;
   }
   .nextButton {
-    background: #F37A1D;
+    background: #d8b56c;
 
     padding: 12px 24px 12px 24px;
     border-radius: 12px;

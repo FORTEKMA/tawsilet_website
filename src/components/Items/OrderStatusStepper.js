@@ -3,313 +3,242 @@ import { makeStyles } from "@material-ui/core/styles";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
-import StepContent from "@material-ui/core/StepContent";
 import Typography from "@material-ui/core/Typography";
 import { useTranslation } from "react-i18next";
+
+const statusSteps = [
+  "Pending",
+  "Go_to_pickup",
+  "Arrived_at_pickup",
+  "Picked_up",
+  "Rate",
+];
 
 const getStatusConfig = (t) => ({
   Pending: {
     step: 0,
-    title: t("ClientProfile.Commande.status.pending"),
-    description: t("ClientProfile.Commande.Message.pending"),
+    title: t("ClientProfile.Commande.status.pending") || "Pending",
+    description: t("ClientProfile.Commande.Message.pending") || "Order is pending and waiting to be processed.",
+  },
+  Go_to_pickup: {
+    step: 1,
+    title: t("ClientProfile.Commande.status.go_to_pickup") || "Go to Pickup",
+    description: t("ClientProfile.Commande.Message.go_to_pickup") || "Driver is on the way to pickup location.",
+  },
+  Arrived_at_pickup: {
+    step: 2,
+    title: t("ClientProfile.Commande.status.arrived_at_pickup") || "Arrived at Pickup",
+    description: t("ClientProfile.Commande.Message.arrived_at_pickup") || "Driver has arrived at the pickup location.",
+  },
+  Picked_up: {
+    step: 3,
+    title: t("ClientProfile.Commande.status.picked_up") || "Picked Up",
+    description: t("ClientProfile.Commande.Message.picked_up") || "Order has been picked up.",
+  },
+  Completed: {
+    step: 4,
+    title: t("ClientProfile.Commande.status.completed") || "Completed",
+    description: t("ClientProfile.Commande.Message.completed") || "Order is completed.",
+  },
+  Canceled_by_partner: {
+    step: 0,
+    title: t("ClientProfile.Commande.status.canceled_by_partner") || "Canceled by Partner",
+    description: t("ClientProfile.Commande.Message.canceled_by_partner") || "Order was canceled by the partner.",
+    isCanceled: true,
   },
   Canceled_by_client: {
     step: 0,
-    title: t("ClientProfile.Commande.status.canceled_by_client"),
-    description: t("ClientProfile.Commande.Message.canceled_by_client"),
-    isError: true
-  },
-  Dispatched_to_partner: {
-    step: 1,
-    title: t("ClientProfile.Commande.status.dispatched_to_partner"),
-    description: t("ClientProfile.Commande.Message.dispatched_to_partner"),
-  },
-  Canceled_by_partner: {
-    step: 1,
-    title: t("ClientProfile.Commande.status.canceled_by_partner"),
-    description: t("ClientProfile.Commande.Message.canceled_by_partner"),
-    isError: true
-  },
-  Assigned_to_driver: {
-    step: 2,
-    title: t("ClientProfile.Commande.status.assigned_to_driver"),
-    description: t("ClientProfile.Commande.Message.assigned_to_driver"),
-  },
-  Driver_on_route_to_pickup: {
-    step: 3,
-    title: t("ClientProfile.Commande.status.driver_on_route_to_pickup"),
-    description: t("ClientProfile.Commande.Message.driver_on_route_to_pickup"),
-  },
-  Arrived_at_pickup: {
-    step: 4,
-    title: t("ClientProfile.Commande.status.arrived_at_pickup"),
-    description: t("ClientProfile.Commande.Message.arrived_at_pickup"),
-  },
-  Picked_up: {
-    step: 5,
-    title: t("ClientProfile.Commande.status.picked_up"),
-    description: t("ClientProfile.Commande.Message.picked_up"),
-  },
-  Failed_pickup: {
-    step: 5,
-    title: t("ClientProfile.Commande.status.failed_pickup"),
-    // description: t("ClientProfile.Commande.Message.failed_pickup"),
-    isError: true
-  },
-  On_route_to_delivery: {
-    step: 6,
-    title: t("ClientProfile.Commande.status.on_route_to_delivery"),
-    description: t("ClientProfile.Commande.Message.on_route_to_delivery"),
-  },
-  Arrived_at_delivery: {
-    step: 7,
-    title: t("ClientProfile.Commande.status.arrived_at_delivery"),
-    description: t("ClientProfile.Commande.Message.arrived_at_delivery"),
-  },
-  Delivered: {
-    step: 8,
-    title: t("ClientProfile.Commande.status.delivered"),
-    description: t("ClientProfile.Commande.Message.delivered"),
-  },
-  Failed_delivery: {
-    step: 8,
-    title: t("ClientProfile.Commande.status.failed_delivery"),
-    description: t("ClientProfile.Commande.Message.failed_delivery"),
-    isError: true
-  },
-  Completed: {
-    step: 9,
-    title: t("ClientProfile.Commande.status.completed"),
-    description: t("ClientProfile.Commande.Message.completed"),
+    title: t("ClientProfile.Commande.status.canceled_by_client") || "Canceled by Client",
+    description: t("ClientProfile.Commande.Message.canceled_by_client") || "Order was canceled by the client.",
+    isCanceled: true,
   },
 });
 
-export const statusSteps = [
-  "Pending",
-  "Dispatched_to_partner",
-  "Assigned_to_driver",
-  "Driver_on_route_to_pickup",
-  "Arrived_at_pickup",
-  "Picked_up",
-  "On_route_to_delivery",
-  "Arrived_at_delivery",
-  "Delivered",
-  "Completed",
-];
-
-const errorStatuses = [
-  "Canceled_by_client",
-  "Canceled_by_partner",
-  "Failed_pickup",
-  "Failed_delivery"
-];
-
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "90%",
+    width: "100%",
     margin: "auto",
     padding: theme.spacing(3, 0),
-    [theme.breakpoints.down(1592)]: {
-      width: "90%",
+    background: "#fff",
+    borderRadius: 16,
+    boxShadow: "0 4px 24px rgba(24,54,90,0.08)",
+    [theme.breakpoints.down(744)]: {
+      padding: theme.spacing(2, 0),
+      borderRadius: 10,
     },
   },
-  fullStepper: {
-    display: "block",
-    [theme.breakpoints.down(1592)]: {
-      display: "none",
+  stepper: {
+    background: "transparent",
+    padding: 0,
+    [theme.breakpoints.down(744)]: {
+      flexDirection: "column",
+    },
+  },
+  stepLabel: {
+    fontWeight: 700,
+    fontSize: 18,
+    color: "#18365a",
+    [theme.breakpoints.down(744)]: {
+      fontSize: 15,
+    },
+  },
+  activeStep: {
+    color: "#ff9800 !important",
+    fontWeight: 700,
+    '& .MuiStepIcon-root': {
+      color: "#ff9800 !important",
+      fontSize: 36,
+    },
+  },
+  completedStep: {
+    color: "#4caf50 !important",
+    '& .MuiStepIcon-root': {
+      color: "#4caf50 !important",
+      fontSize: 32,
+    },
+  },
+  inactiveStep: {
+    color: "#bdbdbd !important",
+    '& .MuiStepIcon-root': {
+      color: "#bdbdbd !important",
+      fontSize: 28,
+    },
+  },
+  stepDescription: {
+    marginTop: theme.spacing(1),
+    color: "#666",
+    textAlign: "center",
+    fontSize: 16,
+    [theme.breakpoints.down(744)]: {
+      fontSize: 13,
     },
   },
   mobileStep: {
     display: "none",
-    [theme.breakpoints.down(1592)]: {
+    [theme.breakpoints.down(744)]: {
       display: "block",
       textAlign: "center",
+      marginTop: theme.spacing(2),
     },
   },
-  activeStep: {
-    color: "#18365a",
-    fontWeight: "bold",
-    "& .MuiStepIcon-root": {
-      marginLeft: "7px",
-      color: "#18365a",
+  desktopStep: {
+    display: "block",
+    [theme.breakpoints.down(744)]: {
+      display: "none",
     },
-    "& .MuiStepIcon-text": {
-      fill: theme.palette.common.white,
-    },
-    "& .MuiStepContent-root": { 
-      borderLeftColor: theme.palette.common.white,
-    },
-  },
-  completedStep: {
-    color: "#ffc9a0",
-    "& .MuiStepIcon-root": {
-      marginLeft: "7px",
-      color: "#ffc9a0",
-    },
-  },
-  inactiveStep: {
-    color: theme.palette.grey[500],
-    "& .MuiStepIcon-root": {
-      marginLeft: "7px",
-      color: theme.palette.grey[300],
-    },
-  },
-  errorStep: {
-    color: theme.palette.error.main,
-    "& .MuiStepIcon-root": {
-      marginLeft: "7px",
-      color: theme.palette.error.main,
-    },
-  },
-  errorText: {
-    color: theme.palette.error.main,
-  },
-  stepDescription: {
-    marginTop: theme.spacing(1),
-    color: theme.palette.text.secondary,
-    textAlign: "center",
-  },
-  mobileStepLabel: {
-    fontSize: "1.1rem",
-    fontWeight: "bold",
-    color: "#18365a",
-  },
-  mobileStepDescription: {
-    color: theme.palette.text.secondary,
-    marginTop: theme.spacing(1),
-  },
-  rtlStepper: {
-    direction: "rtl",
   },
 }));
 
-const OrderStatusStepper = ({ commandStatus }) => {
+const OrderStatusStepper = ({ commandStatus, onRateClick, isRated }) => {
+  console.log("isRated",isRated)
   const { t, i18n } = useTranslation();
   const classes = useStyles();
   const statusConfig = getStatusConfig(t);
-  const statusInfo = statusConfig[commandStatus] || statusConfig.Pending;
-  const activeStep = statusInfo.step;
+  const statusInfo = statusConfig[commandStatus] || statusConfig.Go_to_pickup;
+  // Update activeStep logic to mark all steps as completed if isRated is true
+  const activeStep = isRated ? statusSteps.length : statusInfo.step;
   const isRTL = i18n.language === "ar-AR";
-  const isErrorStatus = errorStatuses.includes(commandStatus);
+  const isCanceled = statusInfo.isCanceled;
 
-  const getErrorStepPosition = () => {
-    switch(commandStatus) {
-      case "Canceled_by_client":
-        return 0;
-      case "Canceled_by_partner":
-        return 1; 
-      case "Failed_pickup":
-        return 5; 
-      case "Failed_delivery":
-        return 8; 
-      default:
-        return -1;
-    }
-  };
-
-  const errorStepPosition = getErrorStepPosition();
+  if (isCanceled) {
+    // Custom stepper/message for canceled statuses
+    return (
+      <div className={classes.root} dir={isRTL ? "rtl" : "ltr"}>
+        <Stepper activeStep={0} alternativeLabel className={classes.stepper}>
+          <Step>
+            <StepLabel
+              StepIconProps={{ style: { color: "#f44336", fontSize: 36 } }}
+              classes={{ label: classes.stepLabel, root: classes.activeStep }}
+            >
+              {statusInfo.title}
+            </StepLabel>
+          </Step>
+        </Stepper>
+        <Typography className={classes.stepDescription} style={{ color: "#f44336", fontWeight: 700 }}>
+          {statusInfo.description}
+        </Typography>
+      </div>
+    );
+  }
 
   return (
     <div className={classes.root} dir={isRTL ? "rtl" : "ltr"}>
-      {/* Full stepper - shown on large screens */}
-      <div className={`${classes.fullStepper} ${isRTL ? classes.rtlStepper : ""}`}>
+      {/* Desktop Stepper */}
+      <div className={classes.desktopStep}>
         <Stepper
-          activeStep={isErrorStatus ? errorStepPosition : activeStep}
-          orientation="horizontal"
-          className={isRTL ? classes.rtlStepper : ""}
+          activeStep={activeStep}
+          alternativeLabel
+          className={classes.stepper}
         >
-          {statusSteps.map((statusKey, index) => {
-            const status = statusConfig[statusKey];
-            const labelProps = {};
-            let stepContent = null;
-
-            if (isErrorStatus && index === errorStepPosition) {
-              labelProps.className = classes.errorStep;
-              labelProps.optional = (
-                <Typography variant="caption" className={classes.errorText}>
-                  {statusInfo.description}
-                </Typography>
-              );
-              stepContent = (
-                <StepContent style={{borderLeftColor:"transparent"}}>
-                  <Typography className={`${classes.stepDescription} ${classes.errorText}`}>
-                    {/* {statusInfo.description} */}
-                  </Typography>
-                </StepContent>
-              );
-            } else if (index < activeStep) {
-              labelProps.className = classes.completedStep;
-            } else if (index === activeStep) {
-              labelProps.className = classes.activeStep;
-              stepContent = (
-                <StepContent style={{borderLeftColor:"transparent"}}>
-                  <Typography className={classes.stepDescription}>
-                    {statusInfo.description}
-                  </Typography>
-                </StepContent>
-              );
-            } else {
-              labelProps.className = classes.inactiveStep;
+          {statusSteps.map((statusKey, idx) => {
+            let labelClass = classes.inactiveStep;
+            // Mark last step as completed if isRated is true
+            if (isRated && idx === statusSteps.length - 1) {
+              labelClass = classes.completedStep;
+            } else if (idx < activeStep) {
+              labelClass = classes.completedStep;
+            } else if (idx === activeStep) {
+              labelClass = classes.activeStep;
             }
-
+            let isLast = idx === 4;
             return (
-              <Step key={statusKey} style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}>
-                <StepLabel style={{paddingLeft: 10, textAlign: "center", display: "flex", flexDirection: "column", gap:8}} {...labelProps}>
-                  {isRTL ? getArabicLabel(
-                    isErrorStatus && index === errorStepPosition 
-                      ? statusInfo.title 
-                      : status.title
-                  ) : (
-                    isErrorStatus && index === errorStepPosition 
-                      ? statusInfo.title 
-                      : status.title
-                  )}
+              <Step key={statusKey}>
+                <StepLabel
+                  classes={{ label: classes.stepLabel, root: labelClass }}
+                  StepIconProps={{ style: { fontSize: 32, cursor: isLast && !isRated ? 'pointer' : 'default' } }}
+                  onClick={isLast && !isRated ? onRateClick : undefined}
+                  style={isLast && !isRated ? { cursor: 'pointer', color: '#d8b56c' } : {}}
+                >
+                  {isLast ? (isRated ? t("ClientProfile.Commande.status.completed") : t("ClientProfile.Commande.status.rate") || "Rate") : statusConfig[statusKey]?.title}
                 </StepLabel>
-                {stepContent}
               </Step>
             );
           })}
         </Stepper>
       </div>
-
-      {/* Mobile view - shown only on small screens */}
+      {/* Mobile Stepper */}
       <div className={classes.mobileStep}>
-        <Typography 
-          variant="h6" 
-          className={`${classes.mobileStepLabel} ${isErrorStatus ? classes.errorText : ""}`}
-        >
-          {isRTL ? getArabicLabel(statusInfo.title) : statusInfo.title}
+        <Typography variant="h6" style={{ color: "#18365a", fontWeight: 700 }}>
+          {statusInfo.title}
         </Typography>
-        <Typography 
-          className={`${classes.mobileStepDescription} ${isErrorStatus ? classes.errorText : ""}`}
+        <Stepper
+          activeStep={activeStep}
+          alternativeLabel
+          className={classes.stepper}
         >
+          {statusSteps.map((statusKey, idx) => {
+            let iconColor = "#bdbdbd";
+            // Mark last step as completed if isRated is true
+            if (isRated && idx === statusSteps.length - 1) {
+              iconColor = "#4caf50";
+            } else if (idx < activeStep) {
+              iconColor = "#4caf50";
+            } else if (idx === activeStep) {
+              iconColor = "#ff9800";
+            }
+            let isLast = idx === 4;
+            return (
+              <Step key={statusKey}>
+                <StepLabel
+                  StepIconProps={{ style: { color: iconColor, fontSize: 28, cursor: isLast && !isRated ? 'pointer' : 'default' } }}
+                  onClick={isLast && !isRated ? onRateClick : undefined}
+                  style={isLast && !isRated ? { cursor: 'pointer', color: '#d8b56c' } : {}}
+                />
+              </Step>
+            );
+          })}
+        </Stepper>
+        <Typography className={classes.stepDescription}>
           {statusInfo.description}
         </Typography>
-        {!isErrorStatus && (
-          <Typography variant="caption" display="block">
-            {isRTL
-              ? `الخطوة ${activeStep + 1} من ${statusSteps.length}`
-              : `Step ${activeStep + 1} of ${statusSteps.length}`}
-          </Typography>
-        )}
+        <Typography variant="caption" display="block" style={{ marginTop: 8, color: "#888" }}>
+          {isRTL
+            ? `الخطوة ${activeStep + 1} من ${statusSteps.length}`
+            : `Step ${activeStep + 1} of ${statusSteps.length}`}
+        </Typography>
       </div>
     </div>
   );
-};
-
-const getArabicLabel = (label) => {
-  const arabicLabels = {
-    "Order Received": "تم استلام الطلب",
-    Processing: "قيد المعالجة",
-    Dispatched: "تم الشحن",
-    "In Transit": "قيد التوصيل",
-    Delivered: "تم التسليم",
-  };
-  return arabicLabels[label] || label;
 };
 
 export default OrderStatusStepper;

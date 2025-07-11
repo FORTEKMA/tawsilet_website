@@ -64,7 +64,7 @@ const ParentContainer = styled.div`
 const DraggableDiv = styled.div`
   width: 150px;
   height: 100px;
-  background-color: #f37a1d;
+  background-color: #d8b56c;
   border-radius: 8px;
   position: absolute;
   cursor: grab;

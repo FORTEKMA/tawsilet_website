@@ -1,349 +1,246 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import { getLocationById } from "../../redux/locationSlice/locationSlice";
-import { Rating, RoundedStar } from "@smastrom/react-rating";
+import { getCommandById } from "../../redux/ordersSlice/OrderSlice";
 import styled from "styled-components";
-import Profile from "../../assets/images/avatardriver.png";
-import {
-  createReview,
-  getRviewByCommandId,
-  updateReview,
-} from "../../redux/reviewSlice/reviewSlice";
+import { createReview } from "../../redux/reviewSlice/reviewSlice";
 import Loader from "../../components/Items/Loader";
 import { message } from "antd";
-import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { FaStar } from "react-icons/fa";
+import ReactStars from "react-rating-stars-component";
 
-const DriverRating = () => {
-  const { t, i18n } = useTranslation();
+const DriverRating = ({ onClose }) => {
+  const { t } = useTranslation();
+
+  const COMMENT_OPTIONS = [
+    t('DriverRating.options.professional'),
+    t("DriverRating.options.ontime"),
+    t("DriverRating.options.talksTooMuch"),
+    t("DriverRating.options.other"),
+  ];
+
   const params = useParams();
   const dispatch = useDispatch();
-
-  const command = useSelector((store) => store?.location?.command);
-  const driver = useSelector((store) => store.location?.command?.driver_id);
-
+  const command = useSelector((store) => store?.orders?.currentCommand);
   const currentUser = useSelector((store) => store?.user?.currentUser);
-  const currentReview = useSelector(
-    (store) => store.location?.command?.review || null
-  );
-
   const [rating, setRating] = useState(null);
-  const [messageText, setMessageText] = useState(null);
+  const [selectedComment, setSelectedComment] = useState(null);
   const [forceLoader, setForceLoader] = useState(true);
+  const [otherComment, setOtherComment] = useState("");
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      dispatch(getLocationById({ id: params.id }));
-      // dispatch(getRviewByCommandId({ id: params.id })).then(() =>
+      dispatch(getCommandById({ id: params.id }));
       setForceLoader(false);
-      // );
     } else {
       setForceLoader(false);
     }
   }, []);
 
   const handleReview = () => {
-    // alredyReviewed ====> update review by reviewID
-    // Not Reviewed ===> create new review
-
-    // ===============================================
     if (!rating) {
-      message.error(
-        "Veuillez attribuer une note à votre livreur ou passer cette étape."
-      );
+      message.error("Veuillez attribuer une note à votre livreur ou passer cette étape.");
+      return;
     }
-    //  else {
-    //   if (!!currentReview[0]) {
-    //     dispatch(
-    //       updateReview({
-    //         id: currentReview[0].id,
-    //         body: {
-    //           data: {
-    //             messageText: messageText,
-    //             note: rating,
-    //           },
-    //         },
-    //       })
-    //     );
-    //   }
-    else {
-      dispatch(
-        createReview({
-          body: {
-            data: {
-              note: messageText,
-              score: rating,
-              command: command.id,
-              driver: driver.id,
-              client: currentUser.id,
-            },
+    let note = selectedComment === t('DriverRating.options.other') ? otherComment : selectedComment;
+    dispatch(
+      createReview({
+        body: {
+          data: {
+            note,
+            score: rating,
+            command: command.id,
+            client: currentUser.id,
+            driver:command.driver.id
           },
-        })
-      );
-    }
-    // }
+        },
+      })
+    );
+    if (onClose) onClose();
   };
 
-  // const isLoading = useSelector((store) => store?.location?.isLoading);
-  // const isLoading2 = useSelector((store) => store?.user?.isLoading);
+  if (forceLoader) return <Loader />;
 
-  if (forceLoader) {
-    return <Loader />;
-  }
-
-  if (
-    !currentUser?.id ||
-    (command?.client_id?.id && !(command?.client_id?.id === currentUser?.id))
-  ) {
-    return (
-      <RatingContainer>
-        <h1>{t("ClientProfile.Commande.Message.unauthorized")}</h1>
-        <h3>{t("ClientProfile.Commande.Message.span")}</h3>
-        <Link to="/" className="retour">
-          {t("ClientProfile.Commande.Message.button")}
-        </Link>
-      </RatingContainer>
-    );
-  }
-
-  return command?.commandStatus === "Completed" ? (
-    <RatingContainer>
-      <Div>
-        <h1> {t("ClientProfile.Commande.Message.completed")}</h1>
-        <img
-          className="profile-picture"
-          src={
-            driver?.profilePicture ? `${driver?.profilePicture?.url}` : Profile
-          }
-          alt="driver picture"
-        />
-        <h1
-          style={{
-            fontSize: "20px",
-            fontWeight: "600",
-            color: "grey",
-            color: "#f37a1d",
-          }}
-        >
-          {driver?.firstName}
-          {driver?.lastName}
-        </h1>
-
-        {/* <h5>Commande livré avec succès</h5> */}
-        {currentReview?.length ? (
-          <p>{t("ClientProfile.Commande.Message.note")}</p>
-        ) : (
-          <>
-            {/* <p>{t("ClientProfile.Commande.Message.ratting")}</p> */}
-
-            <h2>{t("ClientProfile.Commande.Message.rattinge")}</h2>
-          </>
+  return (
+    <ModalOverlay>
+      <ModalContent>
+        <CloseModalButton onClick={onClose}>&times;</CloseModalButton>
+        <Title>{t('DriverRating.title')}</Title>
+        <Subtitle>{t('DriverRating.subtitle')}</Subtitle>
+        <RatingBox>
+          <ReactStars
+            count={5}
+            value={rating || 0}
+            onChange={setRating}
+            size={48}
+            activeColor="#222"
+            color="#ccc"
+            isHalf={false}
+          />
+        </RatingBox>
+        <CommentSubtitle>{t('DriverRating.leaveComment')}</CommentSubtitle>
+        <CommentOptions>
+          {COMMENT_OPTIONS.map((option) => (
+            <CommentButton
+              key={option}
+              selected={selectedComment === option}
+              onClick={() => setSelectedComment(option)}
+            >
+              {option}
+            </CommentButton>
+          ))}
+        </CommentOptions>
+        {selectedComment === t('DriverRating.options.other') && (
+          <OtherTextarea
+            placeholder={t('DriverRating.otherPlaceholder')}
+            value={otherComment}
+            onChange={e => setOtherComment(e.target.value)}
+          />
         )}
-        <Rating
-          readOnly={currentReview?.length || false}
-          className="my-rating-class"
-          // style={{ maxWidth: 350 }}
-          value={currentReview ? currentReview?.score : rating} ////// ================== a verifier
-          onChange={setRating}
-          // halfFillMode="box"
-          itemStyles={{
-            itemShapes: RoundedStar,
-            activeFillColor: "#f37a1d",
-            inactiveFillColor: "#ccc",
-          }}
-        />
-        {currentReview ? (
-          <p
-            style={{
-              border: "1px solid rgba(250,250,250,0.3)",
-              padding: 16,
-              borderRadius: 16,
-              width: "fit-content",
-            }}
-          >
-            {currentReview?.note}
-          </p>
-        ) : (
-          <textarea
-            placeholder={t("ClientProfile.Commande.Message.comment")}
-            rows={5}
-            cols={50}
-            onChange={(e) => setMessageText(e.target.value)}
-          ></textarea>
-        )}
-
-        {/* <span>
-        {!currentReview?.length ? "" : "Vous avez déjà évalué cette commande."}
-      </span> */}
-        <Buttons>
-          {!currentReview ? (
-            <button onClick={handleReview} className="saveRating">
-              {t("ClientProfile.Commande.Message.envoyer")}
-            </button>
-          ) : null}
-
-          <Link to="/ClientProfile/history" className="passer">
-            {!currentReview
-              ? t("ClientProfile.Commande.Message.passer")
-              : t("ClientProfile.Commande.Message.dejanote")}
-          </Link>
-        </Buttons>
-      </Div>
-    </RatingContainer>
-  ) : (
-    <RatingContainer>
-      <h2 className="h2message">
-        {t("ClientProfile.Commande.Message.invitation")}
-      </h2>
-      <h3>{t("ClientProfile.Commande.Message.invitspan")}</h3>
-    </RatingContainer>
+        <EvaluerButton onClick={handleReview}>
+          <FaStar style={{ marginRight: 8 }} /> {t('DriverRating.button')}
+        </EvaluerButton>
+      </ModalContent>
+    </ModalOverlay>
   );
 };
 
 export default DriverRating;
-const Buttons = styled.div`
+
+const ModalOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const ModalContent = styled.div`
+  background: #fff;
+  border-radius: 28px;
+  box-shadow: 0 8px 32px rgba(24,54,90,0.10), 0 1.5px 6px rgba(216,181,108,0.08);
+  padding: 40px 32px 32px 32px;
+  min-width: 350px;
+  max-width: 95vw;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const CloseModalButton = styled.button`
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #222;
+  cursor: pointer;
+  z-index: 10;
+`;
+
+const Title = styled.h1`
+  color: #222;
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 18px;
+`;
+
+const Subtitle = styled.h2`
+  color: #222;
+  font-size: 1.25rem;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 28px;
+`;
+
+const RatingBox = styled.div`
+  background: #f5f5f5;
+  border-radius: 18px;
+  padding: 24px 32px;
+  margin-bottom: 32px;
+  display: flex;
+  justify-content: center;
+`;
+
+const CommentSubtitle = styled.div`
+  color: #bdbdbd;
+  font-size: 1.1rem;
+  text-align: center;
+  margin-bottom: 18px;
+`;
+
+const CommentOptions = styled.div`
   display: flex;
   flex-wrap: wrap;
+  gap: 16px;
   justify-content: center;
-  gap: 30px;
-  align-items: baseline;
+  margin-bottom: 40px;
 `;
-const Div = styled.div`
-  background-color: #18365a;
 
-  margin-top: 30;
-  padding-top: 5vh;
-  width: 50%;
-  min-height: 80vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: white;
-  border-radius: 30px;
-
-  justify-content: flex-start;
-  gap: 10px;
-  @media (max-width: 744px) {
-    padding-top: 20px;
-    justify-content: center;
-    width: 90vw;
-    min-height: 90vh;
+const CommentButton = styled.button`
+  background: ${({ selected }) => (selected ? "#222" : "#fff")};
+  color: ${({ selected }) => (selected ? "#fff" : "#bdbdbd")};
+  border: 2px solid #ededed;
+  border-radius: 16px;
+  padding: 14px 28px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  min-width: 160px;
+  transition: all 0.2s;
+  &:hover {
+    border-color: #d8b56c;
+    color: #222;
   }
 `;
-const RatingContainer = styled.div`
-  background-color: #18365a;
-  padding-top: 10vh;
-  padding-bottom: 30px;
+
+const EvaluerButton = styled.button`
+  background: #111;
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  padding: 16px 0;
+  width: 90%;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(24,54,90,0.08);
+  transition: background 0.2s;
+  &:hover {
+    background: #222;
+  }
+`;
+
+const OtherTextarea = styled.textarea`
   width: 100%;
-  min-height: 95vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: white;
-  justify-content: flex-start;
-  gap: 10px;
-  @media (max-width: 744px) {
-    padding-top: 20px;
-    justify-content: center;
-  }
-
-  h2 {
-    color: #f0f0f0;
-    padding-top: 5%;
-    width: 50%;
-    text-align: center;
-    @media (max-width: 744px) {
-      width: 90%;
-      font-size: 16px;
-    }
-  }
-
-  .h2message {
-    @media (max-width: 744px) {
-      margin-top: -15vh;
-    }
-  }
-  h3 {
-    color: #f37a1d;
-    font-weight: 300;
-  }
-
-  p {
-    padding: 0px 20px;
-    color: #f0f0f0;
-    width: 40%;
-    text-align: center;
-    @media (max-width: 1100px) {
-      width: 80%;
-    }
-  }
-
-  h1 {
-    text-transform: capitalize;
-    text-align: center;
-    color: #f0f0f0;
-  }
-
-  .profile-picture {
-    width: 20vh;
-    height: 20vh;
-    border-radius: 50%;
-    object-fit: cover;
-  }
-  .my-rating-class {
-    /* background-color: #f37a1d; */
-    width: 20vw;
-    margin-bottom: 10px;
-    @media (max-width: 744px) {
-      width: 150px;
-    }
-  }
-  textarea {
-    padding: 8px 12px;
-    border-radius: 20px;
-    resize: none;
-    font-size: 16px;
-    @media (max-width: 744px) {
-      width: 80vw;
-      resize: vertical;
-    }
-  }
-  .saveRating {
-    cursor: pointer;
-    font-size: 18px;
-    padding: 12px 30px;
-    border-radius: 16px;
-    background-color: #f37a1d;
-    border: none;
-    color: white;
-    box-shadow: 1px 1px 5px 1px #405a6ea1;
-    margin-top: 20px;
-  }
-  .passer {
-    cursor: pointer;
-    text-decoration: none;
-    color: #f37a1d;
-    cursor: pointer;
-    font-size: 18px;
-    padding: 12px 30px;
-    border-radius: 16px;
-    background-color: #f0f0f0;
-    border: none;
-
-    margin-top: 20px;
-  }
-  .retour {
-    margin-top: 20px;
-    border: 1px solid white;
-    border-radius: 16px;
-    padding: 8px 16px;
-    cursor: pointer;
-    text-decoration: none;
-    color: white;
-    &:hover {
-      color: #f37a1d;
-    }
+  min-height: 80px;
+  margin-top: 16px;
+  border-radius: 12px;
+  border: 1.5px solid #ededed;
+  padding: 12px 16px;
+  font-size: 1rem;
+  color: #222;
+  background: #fafafa;
+  resize: vertical;
+  outline: none;
+  transition: border 0.2s;
+  &:focus {
+    border-color: #d8b56c;
   }
 `;

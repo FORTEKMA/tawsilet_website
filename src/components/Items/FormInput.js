@@ -402,11 +402,11 @@ export const Buttonn = styled.button`
   border-radius: 7px;
   color: white;
   font-size: 16px;
-  background-color: #f37a1d;
+  background-color: #d8b56c;
   margin-top: 20px;
   @media (max-width: 1050px) {
     color: white;
-    background-color: #f37a1d;
+    background-color: #d8b56c;
     border: none;
     height: 60px;
     width: 100%;
@@ -422,7 +422,7 @@ export const Buttonb = styled.button`
   border-radius: 7px;
   color: white;
   font-size: 16px;
-  background-color: #f37a1d;
+  background-color: #d8b56c;
   margin-top: 20px;
   @media (max-width: 1050px) {
     color: #18365a;
@@ -450,7 +450,7 @@ export const Pi = styled.p`
     color: white;
   }
   a {
-    color: #f37a1d;
+    color: #d8b56c;
     text-decoration: none;
   }
 `;

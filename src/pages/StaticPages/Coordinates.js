@@ -19,7 +19,7 @@ const Coordinates = () => {
           <div className="heading_up_map"> TÉLÉCHARGER</div>
           <div className="heading_map">Téléchargez
 notre application</div>
-<div className="description_map">Simplifiez votre expérience de transport avec l'application Sheelni. Réservez, suivez et gérez les livraisons sans effort. Commencez dès maintenant et profitez d'une logistique transparente à portée de main.
+<div className="description_map">Simplifiez votre expérience de transport avec l'application Tawsilet. Réservez, suivez et gérez les livraisons sans effort. Commencez dès maintenant et profitez d'une logistique transparente à portée de main.
 </div>
 <div className="contacts">
       <div className="address">
@@ -32,7 +32,7 @@ notre application</div>
       </div>
       <div className="address">
       <img src={Email} />
-        <p className="text">Sheelni@contact.com</p>
+        <p className="text">Tawsilet@contact.com</p>
       </div>
     </div>
          

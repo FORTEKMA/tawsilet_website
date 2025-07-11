@@ -1,11 +1,12 @@
 import StepperLayout from "./StepperContainer";
+import { styled } from "styled-components";
 
 import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
-import Step4 from "./Step4";
+import Step4 from "./Step4"
 import Step5 from "./Step5";
-import { styled } from "styled-components";
+import Step6 from "./Step6";
 
 const GetEstimate = ({
   handleMouseDown,
@@ -22,7 +23,7 @@ const GetEstimate = ({
   return (
     <div
       onMouseDown={handleMouseDown}
-      style={{ ...customTransform, ...(step === 5 && { zIndex: 9999999999 }) }}
+      style={{ ...customTransform, ...(step === 6 && { zIndex: 9999999999 }) }}
       ref={dragRef}
     >
       <StepperLayout step={step} setStep={setStep}>
@@ -39,11 +40,15 @@ const GetEstimate = ({
           directionsResponse={directionsResponse}
         />
         <Step3 setStep={setStep} />
+       
         <Step4 setStep={setStep} />
         <Step5 setStep={setStep} />
+       
+
+       
+        <Step6 setStep={setStep} />
       </StepperLayout>
-      {/* <EstimateStep1 /> */}
-      {/* <Stepper /> */}
+      
     </div>
   );
 };
@@ -73,33 +78,32 @@ export const StepContainerLayout = styled.div`
   position: relative;
   flex-wrap: wrap;
   // width: 45%;
-  max-width: 400px;
-  min-width: 350px;
+   min-width: 350px;
   /* height: 500px; */
   /* overflow: hidden; */
   background-color: white;
   /* border: 1px solid rgba(0, 0, 0, 0.4); */
   border-radius: 6px 6px 0px 0px;
   -webkit-box-shadow: 7px 7px 0px 2px
-    ${(props) => props.shadowColor || "#F37A1D"};
-  -moz-box-shadow: 7px 7px 0px 2px ${(props) => props.shadowColor || "#F37A1D"};
-  box-shadow: 7px 7px 0px 2px ${(props) => props.shadowColor || "#F37A1D"};
+    ${(props) => props.shadowColor || "#0c0c0c90"};
+  -moz-box-shadow: 7px 7px 0px 2px ${(props) => props.shadowColor || "#0c0c0c90"};
+  box-shadow: 7px 7px 0px 2px ${(props) => props.shadowColor || "#0c0c0c90"};
   transition: height 0.5s ease-in-out; /* Add animation transition */
   @media (max-width: 1150px) {
     cursor: auto;
     width: 90%;
     max-width: 100%;
     -webkit-box-shadow: 4px 4px 0px 1px
-      ${(props) => props.shadowColor || "#F37A1D"};
+      ${(props) => props.shadowColor || "#0c0c0c90"};
     -moz-box-shadow: 4px 4px 0px 1px
-      ${(props) => props.shadowColor || "#F37A1D"};
-    box-shadow: 4px 4px 0px 1px ${(props) => props.shadowColor || "#F37A1D"};
+      ${(props) => props.shadowColor || "#0c0c0c90"};
+    box-shadow: 4px 4px 0px 1px ${(props) => props.shadowColor || "#0c0c0c90"};
   }
 `;
 
 export const StepContainerInfor = styled.div`
-  background-color: ${(props) => (props?.selectedCard ? "#050b32" : "white")};
-  color: ${(props) => (props?.selectedCard ? "#F37A1D" : "gray")};
+  background-color: ${(props) => (props?.selectedCard ? "#0c0c0c" : "white")};
+  color: ${(props) => (props?.selectedCard ? "#0c0c0c" : "gray")};
   position: absolute;
   height: 100%;
   /* background-color: red; */
@@ -160,13 +164,13 @@ export const StepContainerHeader = styled.div`
 export const StepContainerHeaderTitle = styled.h2`
   text-transform: uppercase;
   /* color: black; */
-  color: ${(props) => (!props.selected ? "white" : "#18365a")};
+  color: ${(props) => (!props.selected ? "white" : "#0c0c0c")};
   /* -webkit-text-shadow: ${(props) =>
-    !props.selected ? "none" : "1px 1px 0px #F37A1D"};
+    !props.selected ? "none" : "1px 1px 0px #0c0c0c90"};
   -moz-text-shadow: ${(props) =>
-    !props.selected ? "none" : "1px 1px 0px #F37A1D"};
+    !props.selected ? "none" : "1px 1px 0px #0c0c0c90"};
   text-shadow: ${(props) =>
-    !props.selected ? "none" : "1px 1px 0px #F37A1D"}; */
+    !props.selected ? "none" : "1px 1px 0px #0c0c0c90"}; */
   font-size: 20px;
   img {
     padding-right: 20px;
@@ -220,7 +224,7 @@ export const StepContainerBody = styled.div`
     color: gray;
   }
   .card-body-title {
-    color: ${(props) => (props.selected ? "black" : "gray")};
+    color: ${(props) => (props.selected ? "#0c0c0c" : "gray")};
   }
 `;
 
@@ -231,9 +235,9 @@ export const StepContainerButtonRight = styled.button`
   cursor: pointer;
   padding: 12px 24px;
   z-index: 99;
-  color: ${(props) => (props.selectedCard ? "black" : "white")};
+  color: ${(props) => (props.enabled ? "#0c0c0c" : "white")};
   background-color: ${(props) =>
-    props.selectedCard ? "#F37A1D" : "rgba(200,200,200)"};
+    props.enabled ? "#0c0c0c" : "rgba(200,200,200)"};
   border-radius: 12px;
   -webkit-box-shadow: 2px 2px 0px 1px rgba(37, 36, 58, 1);
   -moz-box-shadow: 2px 2px 0px 1px rgba(37, 36, 58, 1);
@@ -256,7 +260,7 @@ export const StepContainerButtonRight = styled.button`
 
 export const StepContainerButton = styled.button`
   padding: 12px 24px;
-  background-color: #f37a1d;
+  background-color: #0c0c0c;
   color: white;
   border-radius: 5px;
   -webkit-box-shadow: 2px 2px 0px 1px rgba(37, 36, 58, 1);
@@ -309,13 +313,13 @@ export const AccesBlocConatiner = styled.div`
 
   justify-content: space-between;
   @media (max-width: 1150px) {
-    // flex-direction: ${(props) => props.direction || "row"};
+    
     flex-direction: row;
     width: 100%;
-    /* justify-content: center; */
+    
     align-items: flex-start;
     gap: ${(props) => (props.direction ? "20px" : 0)};
-    /* background-color: red; */
+    
     h2 {
       display: none !important;
     }
@@ -330,7 +334,7 @@ export const ButtonContainer = styled.div`
   transform: scale(1.2);
   .btn {
     cursor: pointer;
-    color: black;
+    color: #0c0c0c;
     padding: 8px 16px;
     border-radius: 8px;
     border: none;
@@ -345,80 +349,6 @@ export const ButtonContainer = styled.div`
     background-color: white;
   }
   .orange-btn {
-    background-color: #f37a1d;
+    background-color: #0c0c0c;
   }
 `;
-
-// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-// async function calculateRoute({ originRef, destiantionRef }) {
-//   if (originRef === "" || destiantionRef === "") {
-//     return;
-//   }
-//   // eslint-disable-next-line no-undef
-//   const directionsService = new google.maps.DirectionsService();
-//   Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
-//   // let originPositionAddress = originPosition
-//   //   ? Geocode.fromLatLng(originPosition.lat, originPosition.lng)
-//   //   : null;
-
-//   // Geocode.fromLatLng(destinationPosition.lat, destinationPosition.lng).then(
-//   //   (response) =>
-//   //     setDestinationPositionAddress(response.results[0].formatted_address)
-//   // );
-//   // console.log(originRef, "++++++", destiantionRef);
-//   // console.log(destinationPositionAddress);
-
-//   const results = await directionsService.route({
-//     origin: originRef, //|| originPosition,
-//     destination: destiantionRef, // || destinationPosition ,
-//     // eslint-disable-next-line no-undef
-//     travelMode: google.maps.TravelMode.DRIVING,
-//   });
-//   // console.log(results);
-//   setCommand({
-//     ...command,
-//     data: {
-//       ...command?.data,
-//       distance: results.routes[0].legs[0].distance.value,
-//       duration: results.routes[0].legs[0].duration.text,
-//       pickUpAddress: {
-//         ...command?.data?.pickUpAddress,
-//         coordonne: {
-//           lat: results.routes[0].legs[0].start_location.lat(),
-//           lng: results.routes[0].legs[0].start_location.lng(),
-//         },
-//       },
-//       dropOfAddress: {
-//         ...command?.data?.dropOfAddress,
-//         coordonne: {
-//           lat: results.routes[0].legs[0].end_location.lat(),
-//           lng: results.routes[0].legs[0].end_location.lng(),
-//         },
-//       },
-//     },
-//   });
-//   setDirectionsResponse(results);
-//   setDistance(results.routes[0].legs[0].distance.value);
-//   setDuration(results.routes[0].legs[0].duration.text);
-
-//   setOriginPosition({
-//     lat: results.routes[0].legs[0].start_location.lat(),
-//     lng: results.routes[0].legs[0].start_location.lng(),
-//   });
-
-//   setDestinationPosition({
-//     lat: results.routes[0].legs[0].end_location.lat(),
-//     lng: results.routes[0].legs[0].end_location.lng(),
-//   });
-
-//   // results.routes[0].legs[0].end_location.lat();        end location lat
-//   // results.routes[0].legs[0].end_location.lng();        end location lng
-
-//   // results.routes[0].legs[0].start_location.lat();         start location lat
-//   // results.routes[0].legs[0].start_location.lng();          start location lng
-
-//   // results.request.destination.query;
-//   // results.request.origin.query;
-//   // console.log(originPosition, destinationPosition);
-// }

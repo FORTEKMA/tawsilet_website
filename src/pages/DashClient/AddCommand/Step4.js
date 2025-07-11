@@ -15,14 +15,62 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { getCurrentUser, loginUser } from "../../../redux/userSlice/userSlice";
 
+const LOGS = [
+  "Recherche de chauffeur...",
+  "Envoi de l'invitation au chauffeur...",
+  "En attente de la réponse du chauffeur...",
+  "Chauffeur trouvé !"
+];
+
 const Step4 = ({ setStep, command, setCommand, setLoading, setPing, ping }) => {
   const currentUser = useSelector((store) => store.user.currentUser);
+  const [logStep, setLogStep] = useState(0);
+  const [loading, setLoadingState] = useState(true);
+  const [showDetails, setShowDetails] = useState(false);
+  const [driver, setDriver] = useState(null);
+  const [price, setPrice] = useState(null);
+
+  useEffect(() => {
+    let timeouts = [];
+    setLogStep(0);
+    setShowDetails(false);
+    setLoadingState(true);
+    setDriver(null);
+    setPrice(null);
+
+    // Step 1: Searching driver
+    timeouts.push(setTimeout(() => setLogStep(1), 2000));
+    // Step 2: Sending invitation
+    timeouts.push(setTimeout(() => setLogStep(2), 4000));
+    // Step 3: Waiting for reply
+    timeouts.push(setTimeout(() => setLogStep(3), 6000));
+    // Step 4: Driver found, show details and price
+    timeouts.push(setTimeout(() => {
+      setDriver({
+        name: "Ali Ben Salah",
+        phone: "+216 12 345 678",
+        vehicle: command?.data?.TansportType?.Type || "-",
+      });
+      setPrice(150); // fake price
+      setLoadingState(false);
+      setTimeout(() => setShowDetails(true), 2000); // Show details after 2s
+    }, 8000));
+
+    return () => timeouts.forEach(clearTimeout);
+  }, [command?.data?.TansportType?.Type]);
+
+  // Get values
+  const start = command?.data?.pickUpAddress?.Address || "-";
+  const end = command?.data?.dropOfAddress?.Address || "-";
+  const type = command?.data?.TansportType?.Type || "-";
+  const date = command?.data?.departDate || command?.data?.date || null;
+
   const myPromise = (data) => Promise.resolve(dispatch(loginUser(data)));
   const { register, handleSubmit } = useForm();
 
   const [LogType, setLogType] = useState("initial");
   currentUser
-    ? (setCommand({ data: { ...command.data, client_id: currentUser.id } }),
+    ? (setCommand({ data: { ...command.data, client: currentUser.id } }),
       setStep(5))
     : null;
 
@@ -38,7 +86,57 @@ const Step4 = ({ setStep, command, setCommand, setLoading, setPing, ping }) => {
   return (
     //------------------ main page ------------------------------////////
     <Container>
-      <img className="mainImg" src={MainImage} />
+      <img className="mainImg" src={MainImage} alt="main" />
+
+      {!showDetails ? (
+        <LogsBlock>
+          {LOGS.slice(0, logStep + 1).map((log, idx) => (
+            <LogLine key={idx} active={idx === logStep}>
+              {log}
+              {idx === logStep && loading && <Spinner />} 
+            </LogLine>
+          ))}
+        </LogsBlock>
+      ) : (
+        <DetailsBlock>
+          <DetailRow>
+            <Label>Départ:</Label>
+            <Value>{start}</Value>
+          </DetailRow>
+          <DetailRow>
+            <Label>Arrivée:</Label>
+            <Value>{end}</Value>
+          </DetailRow>
+          <DetailRow>
+            <Label>Véhicule:</Label>
+            <Value>{type}</Value>
+          </DetailRow>
+          {date && (
+            <DetailRow>
+              <Label>Date:</Label>
+              <Value>{date}</Value>
+            </DetailRow>
+          )}
+          {driver && (
+            <DetailRow>
+              <Label>Chauffeur:</Label>
+              <Value>{driver.name}</Value>
+            </DetailRow>
+          )}
+          {driver && (
+            <DetailRow>
+              <Label>Téléphone:</Label>
+              <Value>{driver.phone}</Value>
+            </DetailRow>
+          )}
+          {price && (
+            <DetailRow>
+              <Label>Prix:</Label>
+              <Value>{price} DT</Value>
+            </DetailRow>
+          )}
+        </DetailsBlock>
+      )}
 
       {LogType === "initial" && (
         <White>
@@ -166,7 +264,7 @@ export const White = styled.section`
   flex-direction: column;
   box-sizing: border-box;
 
-  // border: 2px solid #F37A1D;
+  // border: 2px solid #d8b56c;
   // border-radius: 24px;
 `;
 
@@ -469,4 +567,49 @@ export const HR = styled.p`
   @media (max-width: 744px) {
     display: none;
   }
+`;
+
+const LogsBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 60px;
+  margin-bottom: 16px;
+`;
+const LogLine = styled.div`
+  font-size: 18px;
+  margin-bottom: 16px;
+  color: ${({ active }) => (active ? '#d8b56c' : '#888')};
+  font-weight: ${({ active }) => (active ? 600 : 400)};
+  display: flex;
+  align-items: center;
+`;
+const Spinner = styled.div`
+  margin-left: 8px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #d8b56c;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  animation: spin 1s linear infinite;
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+`;
+const DetailsBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 40px;
+  gap: 18px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  padding: 32px 40px;
+`;
+const DetailRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
 `;

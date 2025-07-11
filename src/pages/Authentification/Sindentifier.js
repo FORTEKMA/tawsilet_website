@@ -94,7 +94,7 @@ const Sindentifier = ({ setLoading, ping, setPing }) => {
         </Link> */}
           <LogoSection>
             {/* <div className="logo_partner_wrapper"> */}
-            <img src={logo} alt="logosheelni" onClick={() => navigate("/")} />
+            <img src={logo} alt="logoTawsilet" onClick={() => navigate("/")} />
             <p onClick={() => navigate("/")}>x</p>
             {/* </div> */}
           </LogoSection>
@@ -280,12 +280,12 @@ export const Buttonn = styled.button`
   color: ${(props) => (props?.disabled ? "rgba(120,120,120,8)" : "white")};
   font-size: 16px;
   background-color: ${(props) =>
-    props?.disabled ? "#f2c09a" : "#F37A1D"};
+    props?.disabled ? "#f2c09a" : "#d8b56c"};
   margin-top: 10px;
   @media (max-width: 1050px) {
     color: ${(props) => (props?.disabled ? "rgba(120,120,120,8)" : "white")};
     background-color: ${(props) =>
-      props?.disabled ? "#f2c09a" : "#F37A1D"};
+      props?.disabled ? "#f2c09a" : "#d8b56c"};
     border: none;
     width: 100%;
     /* font-weight: 400; */

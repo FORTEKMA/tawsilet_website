@@ -64,6 +64,6 @@ const CloseModalButton = styled.button`
   font-size: 20px;
   color: white;
   background-color: transparent;
-  border: 2px solid "#F37A1D";
+  border: 2px solid "#d8b56c";
   border-radius: 10px;
 `;

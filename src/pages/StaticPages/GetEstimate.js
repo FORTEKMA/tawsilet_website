@@ -41,7 +41,7 @@ const GetEstimate = ({ setLoading, setPing, ping }) => {
         },
       },
       items: [],
-      client_id: null,
+      client: null,
       TansportType: {
         Type: "",
         Quantity: 1,

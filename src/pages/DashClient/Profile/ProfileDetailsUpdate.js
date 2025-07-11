@@ -380,7 +380,7 @@ const ButtonImage = styled.button`
                 &:hover {
                   background-color: ${props.theme.PRIMARY_COLOR};
                   color: ${(props) =>
-                    props.variant !== "outline" ? "#18365a" : "#F37A1D"};
+                    props.variant !== "outline" ? "#18365a" : "#d8b56c"};
                 }
               `
             : css`
@@ -393,8 +393,8 @@ const ButtonImage = styled.button`
               `}
         `}/* &:hover {
     background-color: ${(props) =>
-    props.variant !== "outline" ? "#F37A1D" : "#18365a"};
-    color: ${(props) => (props.variant !== "outline" ? "#18365a" : "#F37A1D")};
+    props.variant !== "outline" ? "#d8b56c" : "#18365a"};
+    color: ${(props) => (props.variant !== "outline" ? "#18365a" : "#d8b56c")};
   } */
 `;
 
@@ -514,7 +514,7 @@ const Profile_name = styled.h2`
 //   height: 2.5rem;
 //   border-width: 2px;
 //   background-color: ${(props) => props.theme.PRIMARY_COLOR};
-//   border-color: #F37A1D;
+//   border-color: #d8b56c;
 //   font-family: ${style.font.FONT_FAMILY};
 //   font-weight: 600;
 //   font-size: 0.75rem;
@@ -551,7 +551,7 @@ const Button = styled.button`
   height: 3rem;
   border-width: 2px;
   background-color: ${(props) => props.theme.PRIMARY_COLOR};
-  border-color: #f37a1d;
+  border-color: #d8b56c;
   font-family: ${style.font.FONT_FAMILY};
   font-weight: 600;
   font-size: 0.875rem;

@@ -12,7 +12,7 @@ const CircleButton = styled.button`
   height: 36px;
   border-radius: 50%;
   background-color: ${({ isMinus }) =>
-    isMinus ? "#F37A1D" : "#F37A1D"};
+    isMinus ? "#d8b56c" : "#d8b56c"};
   color: black;
   border: none;
   cursor: pointer;

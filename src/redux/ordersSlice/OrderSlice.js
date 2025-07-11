@@ -39,7 +39,7 @@ export const getOrderById = createAsyncThunk(
       const token = localStorage.getItem("token");
       const url = `${
         process.env.REACT_APP_DOMAIN_URL
-      }/api/commands?filters[client_id]=${id}${commandStatuses}&populate[0]=items&populate[1]=items.item&populate[2]=dropOfAddress&populate[3]=pickUpAddress&sort=createdAt:desc&pagination[pageSize]=${pageSize}&pagination[page]=${currentPage}${
+      }/api/commands?filters[client]=${id}${commandStatuses}&populate[1]=dropOfAddress&populate[2]=pickUpAddress&sort=createdAt:desc&pagination[pageSize]=${pageSize}&pagination[page]=${currentPage}${
         text !== ""
           ? // Use $containsi for case-insensitive search on refNumber (matches mobile behavior)
             `&filters[$or][0][pickUpAddress][Address][$contains]=${text}&filters[$or][1][dropOfAddress][Address][$contains]=${text}&filters[$or][2][id][$eq]=${text}&filters[$or][3][refNumber][$containsi]=${text}&filters[$or][4][commandStatus][$contains]=${text}&filters[$or][5][departDate][$contains]=${text}`
@@ -66,7 +66,7 @@ export const getOrderById = createAsyncThunk(
 //       const response = await axios.get(
 //         `${
 //           process.env.REACT_APP_DOMAIN_URL
-//         }/api/commands?filters[client_id]=${id}&populate=*&sort=createdAt:desc&pagination[pageSize]=${pageSize}&pagination[page]=${currentPage}${
+//         }/api/commands?filters[client]=${id}&populate=*&sort=createdAt:desc&pagination[pageSize]=${pageSize}&pagination[page]=${currentPage}${
 //           text !== ""
 //             ? `&filters[$or][0][pickUpAddress][Address][$contains]=${text}&filters[$or][1][dropOfAddress][Address][$contains]=${text}&filters[$or][2][id][$eq]=${text}&filters[$or][3][refNumber][$contains]=${text}&filters[$or][4][commandStatus][$contains]=${text}&filters[$or][5][departDate][$contains]=${text}`
 //             : ""
@@ -107,8 +107,7 @@ export const updateReservation = createAsyncThunk(
 export const createNewOrder = createAsyncThunk(
   "order/neworder",
   async (order) => {
-    // console.log("ffffffffffffffffffffff,order", order);
-
+ 
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
@@ -120,26 +119,39 @@ export const createNewOrder = createAsyncThunk(
           },
         }
       );
-      // console.log(response.data);
-      // if (response.status === 200) {
-      //   console.log(response?.data?.data?.attributes);
-      //   if (response?.data?.data?.attributes?.payType === "Credit") {
-      //     window.location.href(response?.data?.data?.attributes?.paymentUrl);
-      //   }
-      // }
+     
       return response.data;
     } catch (error) {
-      // console.log(
-      //   "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
-      //   error
-      // );
+     console.log("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",error)
       throw error;
     }
   }
 );
+
+export const getCommandById = createAsyncThunk(
+  "order/getCommandById",
+  async ({ id }) => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.get(
+`${process.env.REACT_APP_BASE_URL}/commands/${id}?populate[driver][populate][profilePicture]=true&populate[pickUpAddress][populate]=coordonne&populate[dropOfAddress][populate]=coordonne&populate[client]=true&populate[review]=true&populate[vehicule_id][populate]=vehiculePictureface1`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+);
+
 const initialState = {
   orders: [],
   newOrder: null,
+  currentCommand: null,
   status: null,
   error: null,
   isLoading: false,
@@ -149,7 +161,13 @@ const initialState = {
 export const orderSlice = createSlice({
   name: "orders",
   initialState,
-  reducers: {},
+  reducers: {
+    setCurrentCommandStatus: (state, action) => {
+      if (state.currentCommand) {
+        state.currentCommand.commandStatus = action.payload;
+      }
+    },
+  },
   extraReducers: {
     [getOrderById.pending]: (state) => {
       state.status = "pending";
@@ -200,7 +218,23 @@ export const orderSlice = createSlice({
       state.isLoading = false;
       state.error = "fail";
     },
+    [getCommandById.pending]: (state) => {
+      state.status = "pending";
+      state.isLoading = true;
+    },
+    [getCommandById.fulfilled]: (state, action) => {
+      state.status = "success";
+      state.isLoading = false;
+      state.currentCommand = action.payload?.data;
+    },
+    [getCommandById.rejected]: (state) => {
+      state.status = "fail";
+      state.isLoading = false;
+      state.error = "fail";
+    },
   },
 });
+
+export const { setCurrentCommandStatus } = orderSlice.actions;
 
 export default orderSlice.reducer;

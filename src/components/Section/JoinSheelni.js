@@ -154,7 +154,7 @@ const Span = styled.span`
 
   line-height: 160%;
 
-  color: #f37a1d;
+  color: #d8b56c;
 
   @media (max-width: 744px) {
     padding-top: 20px;

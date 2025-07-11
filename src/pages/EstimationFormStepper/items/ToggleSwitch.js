@@ -75,9 +75,9 @@ export default ToggleSwitch;
 // Colors
 const labelColor = "#bbb";
 const disabledColor = "#ddd";
-const toggleColor = "#F37A1D";
+const toggleColor = "#d8b56c";
 const whiteColor = "#fff";
-const focusColor = "#F37A1D";
+const focusColor = "#d8b56c";
 
 export const ToggleContainer = styled.div`
   transform: ${props=>props.directionLanguage ? "scale(-0.75)" : "scale(0.75)"} ;

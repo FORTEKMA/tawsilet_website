@@ -43,7 +43,7 @@ export const Button = styled.button`
                 &:hover {
                   background-color: ${props.theme.SECONDARY_COLOR};
                   color: ${(props) =>
-                    props.variant !== "outline" ? "#FFFFFF" : "#F37A1D"};
+                    props.variant !== "outline" ? "#FFFFFF" : "#d8b56c"};
                 }
               `
             : css`
@@ -56,7 +56,7 @@ export const Button = styled.button`
               `}
         `}/* &:hover {
     background-color: ${(props) =>
-    props.variant !== "outline" ? "#F37A1D" : "#18365a"};
-    color: ${(props) => (props.variant !== "outline" ? "#18365a" : "#F37A1D")};
+    props.variant !== "outline" ? "#d8b56c" : "#18365a"};
+    color: ${(props) => (props.variant !== "outline" ? "#18365a" : "#d8b56c")};
   } */
 `;

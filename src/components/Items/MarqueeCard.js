@@ -30,7 +30,7 @@ function MarqueeCard({ description, title, tag, imageSrc, span }) {
   flex-direction: column;
   max-width: 450px;
   max-height: 300px;
-  box-shadow: 3.11px 3.11px 0px 0px rgba(24, 54, 90, 1);
+  box-shadow: 3.11px 3.11px 0px 0px #0c0c0c;
   background-color: #fff;
 
 
