@@ -2,17 +2,9 @@ import styled from "styled-components";
 import React, { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import google from "../../assets/icons/appstoree.svg";
-import video from "../../assets//images/video.png";
-import app from "../../assets/icons/playstore.svg";
-import LightTypo from "../../constants/LightTypo";
-import appvideo from "../../assets/videos/appvideo.mp4";
-import appvideowebm from "../../assets/videos/appvideo.webm";
-import mute from "../../assets/icons/mute.png";
-import unmute from "../../assets/icons/unmute.png";
+ 
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
-import googleIcon from "../../assets/images/google.png";
+ import googleIcon from "../../assets/images/google.png";
 import appleIcon from "../../assets/images/apple.png";
 import logoapp from "../../assets/images/logoapp.png";
 
