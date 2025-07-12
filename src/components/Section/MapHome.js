@@ -292,7 +292,7 @@ const MapHome = (props) => {
     const fetchVehicleTypes = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_BASE_URL}settings?populate[0]=map_icon`
+          `${process.env.REACT_APP_BASE_URL}/settings?populate[0]=map_icon`
         );
         setVehicleTypes(response.data.data || []);
       } catch (error) {
