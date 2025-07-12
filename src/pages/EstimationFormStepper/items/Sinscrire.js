@@ -95,7 +95,7 @@ const SignUp = ({  setStep }) => {
     >
       <DISP>
         {/* <div> */}
-        <Container>
+        <Container isRtl={i18n.language.startsWith("ar")}>
           <In
             errorBorder={errors.firstName}
             {...register("firstName", {
@@ -121,7 +121,7 @@ const SignUp = ({  setStep }) => {
             <ErrorMessage errors={errors} name="firstName" />
           </span>
         </div> */}
-        <Container>
+        <Container isRtl={i18n.language.startsWith("ar")}>
           <In
             {...register("lastName", {
               required: t("SINSCRIRE.validation.nom"),
@@ -149,14 +149,14 @@ const SignUp = ({  setStep }) => {
         <Controller
           name="phoneNumber"
           control={control}
-          rules={{ required: true, minLength: 7, message: "ffffffffff" }}
+          rules={{ required: true, minLength: 7, message: t("SINSCRIRE.validation.phone") }}
           render={({ field: { onChange } }) => (
             <PhoneInput
               enableSearch={true}
               preferredCountries={["tn", "ae", "fr"]}
               excludeCountries={["il"]}
               defaultMask={".. ... ..."}
-              placeholder="Numéro de téléphone"
+              placeholder={t("SINSCRIRE.FormInput.phone")}
               inputRef={register}
               inputStyle={{
                 width: "100%",
@@ -176,7 +176,7 @@ const SignUp = ({  setStep }) => {
               inputProps={{
                 name: "phoneNumber",
                 required: true,
-                message: "test",
+                message: t("SINSCRIRE.validation.phone"),
                 // autoFocus: true,
               }}
               id="phoneNumber"
@@ -186,7 +186,7 @@ const SignUp = ({  setStep }) => {
               onChange={(value) => onChange(value)}
               error={!!errors.phoneNumber}
               helperText={
-                errors.phoneNumber && "Un numéro valide est obligatoire"
+                errors.phoneNumber && t("SINSCRIRE.validation.phone")
               }
               country="tn"
               // regions={"europe"}
@@ -224,7 +224,7 @@ const SignUp = ({  setStep }) => {
         )}
       </Container>
 
-      <Container>
+      <Container isRtl={i18n.language.startsWith("ar")}>
         <Input
           errorBorder={errors.email}
           {...register("email", {
@@ -236,7 +236,7 @@ const SignUp = ({  setStep }) => {
             required: t("SINSCRIRE.validation.email"),
           })}
           type="text"
-          placeholder="example@email.com "
+          placeholder={t("SINSCRIRE.FormInput.email")}
           id="adr"
         />
         {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
@@ -248,15 +248,14 @@ const SignUp = ({  setStep }) => {
       </Container>
 
       <DISPA>
-        <Container>
+        <Container isRtl={i18n.language.startsWith("ar")}>
           <Input
             type={passwordVisible ? "text" : "password"}
             {...register("password", {
               pattern: {
                 value:
                   /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*()_+{}\[\]:;<>,.?~\\-]{8,}$/,
-                message:
-                  "Mot de passe invalide. Longueur minimale de 8 caractères requise, avec au moins une lettre et un chiffre.",
+                message: t("SINSCRIRE.validation.pswdRequirements"),
               },
 
               required: t("SINSCRIRE.validation.pswd"),
@@ -285,7 +284,7 @@ const SignUp = ({  setStep }) => {
             <Label right={false}>{t("SINSCRIRE.FormInput.pswd")}</Label>
           )}
         </Container>
-        <Container>
+        <Container isRtl={i18n.language.startsWith("ar")}>
           <Input
             type={validatePasswordVisible ? "text" : "password"}
             {...register(
@@ -472,7 +471,7 @@ const Container = styled.div`
   margin-bottom: 14px;
   justify-content: center;
   align-items: flex-start;
-  direction: ltr;
+  direction: ${props => props.isRtl ? 'rtl' : 'ltr'};
   display: flex;
   flex-direction: column;
   width: 100%;

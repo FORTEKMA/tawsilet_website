@@ -14,22 +14,22 @@ const Inpuut = () => {
     <>
     <div style={{display:"flex", gap:"20px"}}>
       <InputContainer >
-        <Innput type="text" placeholder="Your Name" value={inputValue} onChange={handleInputChange}  />
-        <Label hasValue={inputValue.length > 0}>{t("Sheelni-CONTACT.ContactForm.nom")}</Label>
+        <Innput type="text" placeholder={t("FormPlaceholders.name")} value={inputValue} onChange={handleInputChange}  />
+        <Label hasValue={inputValue.length > 0}>{t("FormPlaceholders.name")}</Label>
       </InputContainer>
       <InputContainer>
-        <Innput type="text" placeholder="Your Name" value={inputValue} onChange={handleInputChange} />
-        <Label hasValue={inputValue.length > 0}>{t("Sheelni-CONTACT.ContactForm.phone")}</Label>
+        <Innput type="text" placeholder={t("FormPlaceholders.phone")} value={inputValue} onChange={handleInputChange} />
+        <Label hasValue={inputValue.length > 0}>{t("FormPlaceholders.phone")}</Label>
       </InputContainer>
     </div>
       <InputContainer>
-        <Input type="text" placeholder="Yourname@mail.com"value={inputValue} onChange={handleInputChange} />
-        <Label hasValue={inputValue.length > 0}>{t("Sheelni-CONTACT.ContactForm.emaile")}</Label>
+        <Input type="text" placeholder={t("FormPlaceholders.email")} value={inputValue} onChange={handleInputChange} />
+        <Label hasValue={inputValue.length > 0}>{t("FormPlaceholders.email")}</Label>
       </InputContainer>
       <InputContainer>
  
-        <Input  type="text" placeholder="dd/mm/yyyy" value={inputValue} onChange={handleInputChange} />
-        <Label hasValue={inputValue.length > 0}>{t("Sheelni-CONTACT.ContactForm.Message")}</Label>
+        <Input  type="text" placeholder={t("FormPlaceholders.message")} value={inputValue} onChange={handleInputChange} />
+        <Label hasValue={inputValue.length > 0}>{t("FormPlaceholders.message")}</Label>
       </InputContainer>
     </>
   );
@@ -47,13 +47,13 @@ const Innput = styled.input`
   font-size: 16px;
   border: 1px solid #bdbdbd;
   border-radius: 3px;
-  background-color: transparent;
-  color: white;
+  background-color: white;
+  color: #333;
   margin-bottom: 10px;
   transition: border-color 0.3s ease-in-out;
   &::placeholder {
     font-size: 14px;
-   color:#959EAD
+    color: #959EAD;
   }
   @media (min-width: 360px) and (max-width: 1055px) {
     width: 100%;
@@ -73,13 +73,12 @@ const Input = styled.input`
   font-size: 16px;
   border: 1px solid #bdbdbd;
   border-radius: 3px;
-  background-color: transparent;
-  color: white;
-
+  background-color: white;
+  color: #333;
   transition: border-color 0.3s ease-in-out;
   &::placeholder {
     font-size: 14px;
-    color:#959EAD
+    color: #959EAD;
   }
   @media (min-width: 360px) and (max-width: 1055px) {
     width: 100%;
@@ -93,11 +92,14 @@ const Input = styled.input`
   }
 `;
 const Label = styled.label`
-   text-align:left;
+  text-align: left;
   position: absolute;
-  top: ${({ hasValue }) => (hasValue ? "-12px" : "-28px")};
-  left: 3px; 
-  font-size: ${({ hasValue }) => (hasValue ? "14px" : "14px")};
-  color: ${({ hasValue }) => (hasValue ? "#5F6269" : "#5F6269")};
+  top: ${({ hasValue }) => (hasValue ? "-8px" : "-8px")};
+  left: 10px; 
+  font-size: 14px;
+  color: #5F6269;
+  background-color: white;
+  padding: 0 4px;
   transition: all 0.3s ease-in-out;
+  z-index: 1;
 `;

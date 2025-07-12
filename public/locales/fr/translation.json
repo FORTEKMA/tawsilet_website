@@ -55,7 +55,19 @@
     "obtenir": "Obtenir une estimation",
     "ex": "Ex : Berline Standard",
     "remarque": "Remarque:",
-    "textarea": "Laissez vos remarques ici..."
+    "textarea": "Laissez vos remarques ici...",
+    "selectCar": "Sélectionner une voiture",
+    "selectVehicleError": "Veuillez sélectionner un type de véhicule avant de continuer.",
+    "bookNow": "Réserver maintenant",
+    "selectDateTime": "Choisissez la date et l'heure de départ",
+    "cancel": "Annuler",
+    "confirm": "Confirmer",
+    "carSelection": {
+      "loading": "Chargement des types de véhicules...",
+      "error": "Erreur lors du chargement des types de véhicules.",
+      "comingSoon": "Bientôt disponible",
+      "people": "personnes"
+    }
   },
   "Step4": {
     "info": "Vos Informations",
@@ -77,7 +89,34 @@
     },
     "loadingTime": "Cela peut prendre un certain temps",
     "swipeLeftToCancel": "Faites glisser vers la gauche pour annuler",
-    "back": "Retour"
+    "back": "Retour",
+    "confirmRide": "Confirmer la course",
+    "departurePoint": "Point de départ",
+    "arrivalPoint": "Point d'arrivée",
+    "date": "Date :",
+    "priceIncludesReservation": "Le prix inclut les frais de réservation",
+    "reservationSuccess": "Votre réservation a été créée avec succès !",
+    "checkHistoryProfile": "Vous pouvez consulter l'historique de vos réservations dans votre profil.",
+    "goToHistory": "Aller à mon historique",
+    "unknownType": "Type inconnu",
+    "unknownVehicleType": "Type de véhicule non reconnu",
+    "carTypes": {
+      "eco": {
+        "title": "Éco",
+        "description": "Véhicule économique"
+      },
+      "classe": {
+        "title": "Classe",
+        "description": "Classe confortable"
+      },
+      "xl": {
+        "title": "XL",
+        "description": "Grande capacité"
+      }
+    },
+    "back": "Retour",
+    "notAvailable": "N/A",
+    "car": "Voiture"
   },
   "Step5": {
     "alert1": "Veuillez choisir la méthode de paiement",
@@ -92,6 +131,86 @@
     "PayerC": "Cartes de crédit/débit",
     "PayerCD": "Payer avec votre carte de crédit/débit"
   },
+  "Step6": {
+    "connectToAccount": "Connexion à votre compte",
+    "createAccount": "Créer un compte",
+    "signIn": "Se connecter",
+    "signUp": "S'inscrire",
+    "reservationSuccess": "Votre réservation a été créée avec succès!",
+    "checkHistoryProfile": "Vous pouvez consulter l'historique de vos réservations dans votre profil.",
+    "goToHistory": "Aller à mon historique"
+  },
+  "DOWNLOAD": {
+    "USER_LABEL": "Télécharger l'App Utilisateur",
+    "USER_HEADING": "Application Tawsilet Utilisateur",
+    "USER_DESCRIPTION": "Téléchargez notre application utilisateur pour réserver des courses, suivre les livraisons et gérer vos besoins de transport en toute simplicité.",
+    "USER_FEATURE_1": "🚗 Réservez des courses instantanément",
+    "USER_FEATURE_2": "📦 Suivez les livraisons en temps réel",
+    "USER_FEATURE_3": "💳 Options de paiement sécurisées",
+    "USER_FEATURE_4": "⭐ Évaluez et commentez les chauffeurs",
+    "DRIVER_LABEL": "Télécharger l'App Chauffeur",
+    "DRIVER_HEADING": "Application Tawsilet Chauffeur",
+    "DRIVER_DESCRIPTION": "Rejoignez notre réseau de chauffeurs et commencez à gagner en fournissant des services de transport et de livraison fiables.",
+    "DRIVER_FEATURE_1": "💰 Gagnez des tarifs compétitifs",
+    "DRIVER_FEATURE_2": "📊 Suivez vos gains",
+    "DRIVER_FEATURE_3": "🎯 Horaires de travail flexibles",
+    "DRIVER_FEATURE_4": "🛡️ Couverture d'assurance",
+    "GOOGLE_PLAY_ALT": "Google Play",
+    "APP_STORE_ALT": "App Store",
+    "USER_APP_ALT": "Logo Application Utilisateur",
+    "DRIVER_APP_ALT": "Logo Application Chauffeur",
+    "DOWNLOAD_NOW": "Télécharger Maintenant",
+    "JOIN_NETWORK": "Rejoindre Notre Réseau"
+  },
+  "FormInputAgent": {
+    "steps": {
+      "accountInformation": "Informations du compte",
+      "contactInformation": "Informations de contact", 
+      "carInformation": "Informations du véhicule",
+      "vehiclePictures": "Photos du véhicule",
+      "vehicleValidation": "Validation du véhicule"
+    },
+    "buttons": {
+      "next": "Suivant",
+      "back": "Retour",
+      "register": "S'inscrire"
+    },
+    "messages": {
+      "uploadAllRequiredDocuments": "Veuillez télécharger tous les documents requis",
+      "selectAllRequiredDates": "Veuillez sélectionner toutes les dates requises",
+      "uploadAllRequiredImages": "Veuillez ajouter toutes les images requises",
+      "registrationSuccess": "Inscription réussie !",
+      "registrationFailed": "Échec de l'inscription"
+    },
+    "contactInfo": {
+      "cinFront": "Recto de la CIN",
+      "cinBack": "Verso de la CIN", 
+      "licenseFront": "Recto du permis",
+      "licenseBack": "Verso du permis",
+      "uploadPhoto": "Appuyez pour ajouter une photo"
+    },
+    "carInfo": {
+      "mark": "Marque",
+      "model": "Modèle",
+      "year": "Année",
+      "color": "Couleur",
+      "matriculation": "Immatriculation"
+    },
+    "vehiclePictures": {
+      "frontPhoto": "Photo avant du véhicule",
+      "backPhoto": "Photo arrière du véhicule", 
+      "leftPhoto": "Photo côté gauche du véhicule",
+      "rightPhoto": "Photo côté droit du véhicule",
+      "uploadPhoto": "Appuyez pour ajouter une photo"
+    },
+    "vehicleValidation": {
+      "insuranceCertificate": "Attestation d'assurance",
+      "grayCardFront": "Carte grise (recto)",
+      "grayCardBack": "Carte grise (verso)",
+      "insuranceExpiryDate": "Date d'expiration de l'assurance",
+      "uploadPhoto": "Appuyez pour ajouter une photo"
+    }
+  },
   "ACCEUILE": {
     "TRUSTUS": {
       "title2": "Ils nous ont fait confiance"
@@ -100,6 +219,7 @@
     "EFFICACITE": "Rapidité, Fiabilité et Sécurité",
     "descrip": "Tawsilet est votre partenaire de confiance pour vos déplacements. Nous sommes engagés à offrir un service rapide, fiable et sécurisé. Grâce à une efficacité remarquable, nous vous transportons en un temps record. Nous appliquons des normes de sécurité rigoureuses où chaque trajet est soigneusement surveillé pour garantir votre sécurité. Avec Tawsilet, vous bénéficiez d'une solution de transport complète, entre les mains qualifiées de nos chauffeurs professionnels.",
     "btnSavoir": "EN SAVOIR PLUS",
+    "teamTagline": "Traité avec soin — Livré avec confiance<br/>Équipe Tawsilet",
     "Delai": {
       "title": "Arrivée Rapide",
       "desc": "Nos chauffeurs sont à votre service en moins de 10 minutes selon l'adresse que vous avez indiquée."
@@ -211,7 +331,49 @@
   "ABOUT": {
     "Review": {
       "title": "Avis récents",
-      "desc": "Rejoignez notre communauté et découvrez de quoi tout le monde parle."
+      "desc": "Rejoignez notre communauté et découvrez de quoi tout le monde parle.",
+      "reviews": {
+        "review1": {
+          "description": "Service impeccable, le chauffeur est arrivé à l'heure et le transport s'est fait sans souci. Je recommande vivement Tawsilet",
+          "title": "Mohamed Ben Amor",
+          "tag": "Client"
+        },
+        "review2": {
+          "description": "Déménagement rapide et efficace, merci à l'équipe Tawsilet pour leur professionnalisme",
+          "title": "Sarra Khelifi",
+          "tag": "Client"
+        },
+        "review3": {
+          "description": "Facile à réserver, chauffeur professionnel et prix très correct. Excellente expérience",
+          "title": "Hichem Laabidi",
+          "tag": "Client"
+        },
+        "review4": {
+          "description": "Un service qui manquait en Tunisie ! Très pratique et simple à utiliser. Merci Tawsilet",
+          "title": "Firas Messaoudi",
+          "tag": "Client"
+        },
+        "review5": {
+          "description": "Je ne connaissais pas Tawsilet avant, mais maintenant je l'utilise à chaque besoin. Service fiable et sérieux",
+          "title": "Amira Dhouibi",
+          "tag": "Client"
+        },
+        "review6": {
+          "description": "Chauffeurs sérieux et service client réactif. Expérience parfaite du début à la fin",
+          "title": "Oussama Tlili",
+          "tag": "Client"
+        },
+        "review7": {
+          "description": "Tawsilet, c'est la solution idéale pour un transport sans stress. Service professionnel et rapide",
+          "title": "Anis Khouini",
+          "tag": "Client"
+        },
+        "review8": {
+          "description": "Application intuitive, chauffeur sérieux et prix compétitif. Je recommande vivement",
+          "title": "Houssem Jaziri",
+          "tag": "Client"
+        }
+      }
     },
     "Apropos": {
       "title1": "À propos Tawsilet",
@@ -408,6 +570,7 @@
       "email": "Veuillez saisir votre e-mail.",
       "testemail": "email invalide",
       "pswd": "S'il vous plait entrez votre mot de passe.",
+      "pswdRequirements": "Le mot de passe doit contenir au moins 8 caractères avec au moins une lettre et un chiffre.",
       "confpswd": "Les mots de passe doivent correspondre !"
     }
   },
@@ -632,9 +795,25 @@
       "description": "Équipe Tawsilet"
     }
   },
+  "FormErrors": {
+    "invalidEmail": "Adresse e-mail invalide",
+    "emailRequired": "Veuillez saisir votre e-mail",
+    "passwordRequired": "Veuillez saisir votre mot de passe",
+    "passwordsMismatch": "Les mots de passe doivent correspondre !"
+  },
+  "FormPlaceholders": {
+    "name": "Nom",
+    "email": "Adresse e-mail",
+    "date": "jj/mm/aaaa",
+    "selectDate": "Sélectionner la date",
+    "selectTime": "Sélectionner l'heure",
+    "phone": "Numéro de téléphone",
+    "message": "Message"
+  },
   "Bulletin": {
     "title": "Abonnez-vous à notre newsletter",
-    "button": "ENVOYER"
+    "button": "ENVOYER",
+    "emailPlaceholder": "Votre Email"
   },
   "JoinSeeelni": {
     "title": "Rejoignez ",
@@ -978,11 +1157,7 @@
       }
     }
   },
-  "DOWNLOAD": {
-    "LABEL": "TÉLÉCHARGER",
-    "HEADING": "Téléchargez notre application",
-    "DESCRIPTION": "Simplifiez votre expérience de transport avec l'application Tawsilet. Réservez, suivez et gérez vos courses sans effort. Commencez dès maintenant et profitez d'une mobilité transparente à portée de main."
-  },
+
   "regions": {
     "Ariana": "Ariana",
     "Beja": "Béja",

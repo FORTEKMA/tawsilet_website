@@ -90,6 +90,12 @@ const Step6 = ({ setStep }) => {
         <StepContainerHeaderTitle
           selected={true}
           directionflesh={i18n.language === "ar-AR"}
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            flexDirection: i18n.language === "ar-AR" ? "row-reverse" : "row"
+          }}
         >
           <img 
             src={previousFleshIcon} 
@@ -99,20 +105,20 @@ const Step6 = ({ setStep }) => {
             }} 
             alt="flesh" 
           />
-          {switchValue ? t("Connexion à votre compte") : t("Créer un compte")}
+          {switchValue ? t("Step6.connectToAccount") : t("Step6.createAccount")}
         </StepContainerHeaderTitle>
         <SwitchContainer>
           <SwitchButton
             active={switchValue}
             onClick={() => setSwitchValue(true)}
           >
-            {t("Se connecter")}
+            {t("Step6.signIn")}
           </SwitchButton>
           <SwitchButton
             active={!switchValue}
             onClick={() => setSwitchValue(false)}
           >
-            {t("S'inscrire")}
+            {t("Step6.signUp")}
           </SwitchButton>
         </SwitchContainer>
         <div style={{ margin: "20px" }}></div>
@@ -134,12 +140,12 @@ const Step6 = ({ setStep }) => {
       </div>
       {showSuccessModal && (
         <BillModal>
-          <BillContent>
-            <h2>{t('Votre réservation a été créée avec succès!')}</h2>
+          <BillContent dir={i18n.language === "ar-AR" ? "rtl" : "ltr"}>
+            <h2>{t('Step6.reservationSuccess')}</h2>
             <ul>
-              <li>{t('Vous pouvez consulter l\'historique de vos réservations dans votre profil.')}</li>
+              <li>{t('Step6.checkHistoryProfile')}</li>
             </ul>
-            <CloseBtn onClick={handleGoToHistory}>{t('Aller à mon historique')}</CloseBtn>
+            <CloseBtn onClick={handleGoToHistory}>{t('Step6.goToHistory')}</CloseBtn>
           </BillContent>
         </BillModal>
       )}

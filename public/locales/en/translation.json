@@ -55,7 +55,19 @@
     "obtenir": "Get an estimate",
     "ex": "Ex: 1 Table",
     "remarque": "Remark:",
-    "textarea": "Leave your remarks here..."
+    "textarea": "Leave your remarks here...",
+    "selectCar": "Select a Car",
+    "selectVehicleError": "Please select a vehicle type before continuing.",
+    "bookNow": "Book Now",
+    "selectDateTime": "Choose departure date and time",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "carSelection": {
+      "loading": "Loading vehicle types...",
+      "error": "Error loading vehicle types.",
+      "comingSoon": "Coming Soon",
+      "people": "people"
+    }
   },
   "Step4": {
     "info": "Your Information",
@@ -77,7 +89,34 @@
     },
     "loadingTime": "This may take some time",
     "swipeLeftToCancel": "Swipe left to cancel",
-    "back": "Back"
+    "back": "Back",
+    "confirmRide": "Confirm the ride",
+    "departurePoint": "Departure point",
+    "arrivalPoint": "Arrival point",
+    "date": "Date:",
+    "priceIncludesReservation": "The price includes reservation fees",
+    "reservationSuccess": "Your reservation has been created successfully!",
+    "checkHistoryProfile": "You can check your reservation history in your profile.",
+    "goToHistory": "Go to my history",
+    "unknownType": "Unknown type",
+    "unknownVehicleType": "Unknown vehicle type",
+    "carTypes": {
+      "eco": {
+        "title": "Eco",
+        "description": "Economic vehicle"
+      },
+      "classe": {
+        "title": "Class",
+        "description": "Comfortable class"
+      },
+      "xl": {
+        "title": "XL",
+        "description": "Large capacity"
+      }
+    },
+    "back": "Back",
+    "notAvailable": "N/A",
+    "car": "Car"
   },
   "Step5": {
     "alert1": "Please choose the payment method",
@@ -91,6 +130,86 @@
     "PayerLD": "Pay in cash on delivery",
     "PayerC": "Credit/Debit Cards",
     "PayerCD": "Pay with your credit/debit card"
+  },
+  "Step6": {
+    "connectToAccount": "Connect to your account",
+    "createAccount": "Create an account",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "reservationSuccess": "Your reservation has been created successfully!",
+    "checkHistoryProfile": "You can check your reservation history in your profile.",
+    "goToHistory": "Go to my history"
+  },
+  "DOWNLOAD": {
+    "USER_LABEL": "Download User App",
+    "USER_HEADING": "Tawsilet User App",
+    "USER_DESCRIPTION": "Download our user app to book rides, track deliveries, and manage your transportation needs with ease.",
+    "USER_FEATURE_1": "🚗 Book rides instantly",
+    "USER_FEATURE_2": "📦 Track deliveries in real-time",
+    "USER_FEATURE_3": "💳 Secure payment options",
+    "USER_FEATURE_4": "⭐ Rate and review drivers",
+    "DRIVER_LABEL": "Download Driver App",
+    "DRIVER_HEADING": "Tawsilet Driver App",
+    "DRIVER_DESCRIPTION": "Join our driver network and start earning by providing reliable transportation and delivery services.",
+    "DRIVER_FEATURE_1": "💰 Earn competitive rates",
+    "DRIVER_FEATURE_2": "📊 Track your earnings",
+    "DRIVER_FEATURE_3": "🎯 Flexible working hours",
+    "DRIVER_FEATURE_4": "🛡️ Insurance coverage",
+    "GOOGLE_PLAY_ALT": "Google Play",
+    "APP_STORE_ALT": "App Store",
+    "USER_APP_ALT": "User App Logo",
+    "DRIVER_APP_ALT": "Driver App Logo",
+    "DOWNLOAD_NOW": "Download Now",
+    "JOIN_NETWORK": "Join Our Network"
+  },
+  "FormInputAgent": {
+    "steps": {
+      "accountInformation": "Account Information",
+      "contactInformation": "Contact Information", 
+      "carInformation": "Car Information",
+      "vehiclePictures": "Vehicle Pictures",
+      "vehicleValidation": "Vehicle Validation"
+    },
+    "buttons": {
+      "next": "Next",
+      "back": "Back",
+      "register": "Register"
+    },
+    "messages": {
+      "uploadAllRequiredDocuments": "Please upload all required documents",
+      "selectAllRequiredDates": "Please select all required dates",
+      "uploadAllRequiredImages": "Please upload all required images",
+      "registrationSuccess": "Registration successful!",
+      "registrationFailed": "Registration failed"
+    },
+    "contactInfo": {
+      "cinFront": "CIN Front",
+      "cinBack": "CIN Back", 
+      "licenseFront": "License Front",
+      "licenseBack": "License Back",
+      "uploadPhoto": "Click to add a photo"
+    },
+    "carInfo": {
+      "mark": "Mark",
+      "model": "Model",
+      "year": "Year",
+      "color": "Color",
+      "matriculation": "Matriculation"
+    },
+    "vehiclePictures": {
+      "frontPhoto": "Front photo of vehicle",
+      "backPhoto": "Back photo of vehicle", 
+      "leftPhoto": "Left side photo of vehicle",
+      "rightPhoto": "Right side photo of vehicle",
+      "uploadPhoto": "Click to add a photo"
+    },
+    "vehicleValidation": {
+      "insuranceCertificate": "Insurance Certificate",
+      "grayCardFront": "Gray Card (Front)",
+      "grayCardBack": "Gray Card (Back)",
+      "insuranceExpiryDate": "Insurance Expiry Date",
+      "uploadPhoto": "Click to add a photo"
+    }
   },
   "ACCEUILE": {
     "TRUSTUS": {
@@ -110,6 +229,7 @@
     "EFFICACITE": "Efficiency, Reliability, and Convenience",
     "descrip": "When it comes to transportation, Tawsilet is your trusted partner. We understand the importance of dependable logistics solutions, which is why we prioritize efficiency, reliability, and convenience in everything we do. With cutting-edge technology and extensive experience, we offer seamless transport services you can rely on. Experience peace of mind knowing that your items are in safe hands with Tawsilet.",
     "btnSavoir": "Learn More",
+    "teamTagline": "Handled with Care — Delivered with Trust<br/>Tawsilet Team",
     "Delai": {
       "title": "Delivery Time",
       "desc": "Tawsilet ensures short-term delivery for your transportation needs."
@@ -215,7 +335,49 @@
   "ABOUT": {
     "Review": {
       "title": "Recent Reviews",
-      "desc": "Join our community and see what the hype is all about."
+      "desc": "Join our community and see what the hype is all about.",
+      "reviews": {
+        "review1": {
+          "description": "Impeccable service, the driver arrived on time and the transport went smoothly. I highly recommend Tawsilet",
+          "title": "Mohamed Ben Amor",
+          "tag": "Client"
+        },
+        "review2": {
+          "description": "Fast and efficient moving, thank you to the Tawsilet team for their professionalism",
+          "title": "Sarra Khelifi",
+          "tag": "Client"
+        },
+        "review3": {
+          "description": "Easy to book, professional driver and very reasonable price. Excellent experience",
+          "title": "Hichem Laabidi",
+          "tag": "Client"
+        },
+        "review4": {
+          "description": "A service that was missing in Tunisia! Very practical and simple to use. Thank you Tawsilet",
+          "title": "Firas Messaoudi",
+          "tag": "Client"
+        },
+        "review5": {
+          "description": "I didn't know Tawsilet before, but now I use it for every need. Reliable and serious service",
+          "title": "Amira Dhouibi",
+          "tag": "Client"
+        },
+        "review6": {
+          "description": "Serious drivers and responsive customer service. Perfect experience from start to finish",
+          "title": "Oussama Tlili",
+          "tag": "Client"
+        },
+        "review7": {
+          "description": "Tawsilet is the ideal solution for stress-free transport. Professional and fast service",
+          "title": "Anis Khouini",
+          "tag": "Client"
+        },
+        "review8": {
+          "description": "Intuitive application, serious driver and competitive price. I highly recommend",
+          "title": "Houssem Jaziri",
+          "tag": "Client"
+        }
+      }
     },
     "Apropos": {
       "title1": "HISTORY",
@@ -411,6 +573,7 @@
       "email": "Please enter your email address.",
       "testemail": "Invalid email address.",
       "pswd": "Please enter your password.",
+      "pswdRequirements": "Password must be at least 8 characters long with at least one letter and one number.",
       "confpswd": "Passwords must match!"
     }
   },
@@ -677,9 +840,25 @@
       "description": "Tawsilet Team"
     }
   },
+  "FormErrors": {
+    "invalidEmail": "Invalid email address",
+    "emailRequired": "Please enter your email",
+    "passwordRequired": "Please enter your password",
+    "passwordsMismatch": "Passwords should match!"
+  },
+  "FormPlaceholders": {
+    "name": "Name",
+    "email": "Email Address",
+    "date": "dd/mm/yyyy",
+    "selectDate": "Select date",
+    "selectTime": "Select time",
+    "phone": "Phone Number",
+    "message": "Message"
+  },
   "Bulletin": {
     "title": "Subscribe to Our Newsletter",
-    "button": "SEND"
+    "button": "SEND",
+    "emailPlaceholder": "Your Email"
   },
   "JoinSeeelni": {
     "title": "Join ",
@@ -1023,11 +1202,7 @@
       }
     }
   },
-  "DOWNLOAD": {
-    "LABEL": "DOWNLOAD",
-    "HEADING": "Download Our App",
-    "DESCRIPTION": "Simplify your transport experience with the Tawsilet app. Book, track, and manage deliveries effortlessly. Start now and enjoy seamless logistics at your fingertips."
-  },
+
   "regions": {
     "Ariana": "Ariana",
     "Beja": "Beja",

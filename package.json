@@ -75,7 +75,10 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "setup-env": "./scripts/setup-env.sh",
+    "prestart": "npm run setup-env",
     "start": "react-scripts start",
+    "prebuild": "npm run setup-env",
     "build": "set \"GENERATE_SOURCEMAP=false\" && react-scripts build",
     "postbuild": "rimraf build/static/**/*.map",
     "test": "react-scripts test",

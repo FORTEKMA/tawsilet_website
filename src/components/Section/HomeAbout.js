@@ -23,7 +23,7 @@ const HomeAbout = () => {
             <Overlay>
               <OverlayTitle>{t("ACCEUILE.APROPOSdeNous")}</OverlayTitle>
               <OverlayDesc>{t("ACCEUILE.EFFICACITE")}</OverlayDesc>
-              <OverlayTeam>Handled with Care — Delivered with Trust<br/>Tawsilet Team</OverlayTeam>
+              <OverlayTeam dangerouslySetInnerHTML={{ __html: t("ACCEUILE.teamTagline") }}></OverlayTeam>
             </Overlay>
           </ImageContainer>
         </ImageBlock>

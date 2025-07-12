@@ -5,6 +5,7 @@ import Buttonobtenez from "../Items/buttonobtenez";
 import Arrow from "./../../assets/icons/arrowdown.svg";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { useTranslation } from "react-i18next";
 // import Autocomplete from "react-google-autocomplete";
 import {
   useJsApiLoader,
@@ -20,6 +21,7 @@ import Geocode from "react-geocode";
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 const MapHome = (props) => {
+  const { t } = useTranslation();
   const currentDate = new Date();
   const currentTime = new Date();
   currentTime.setHours(currentTime.getHours() + 1);
@@ -290,7 +292,7 @@ const MapHome = (props) => {
               name="date"
               type="date"
               className="input_calender"
-              placeholder="Select date"
+              placeholder={t("FormPlaceholders.selectDate")}
               min={currentDate.toISOString().split("T")[0]}
               value={selectedDate}
               onChange={handleDateChange}
@@ -299,7 +301,7 @@ const MapHome = (props) => {
               name="time"
               type="time"
               className="input_calender"
-              placeholder="Select time"
+              placeholder={t("FormPlaceholders.selectTime")}
               min={() => formatTime(currentTime)}
               value={selectedTime}
               onChange={handleTimeChange}

@@ -15,7 +15,7 @@ const REQUIRED_FIELDS = [
   "licence_back_picture",
 ];
 
-const ContactInfoStep = ({ pictures, picturesErrors, createUploadProps, prevStep, setPicturesErrors, nextStep }) => {
+const ContactInfoStep = ({ t, pictures, picturesErrors, createUploadProps, prevStep, setPicturesErrors, nextStep }) => {
   const [localError, setLocalError] = React.useState(false);
 
   const handleNext = (e) => {
@@ -42,50 +42,50 @@ const ContactInfoStep = ({ pictures, picturesErrors, createUploadProps, prevStep
     <>
       <CardGrid>
         <UploadCard
-          label="Recto de la CIN"
+          label={t("FormInputAgent.contactInfo.cinFront")}
           picture={pictures.cin_recto_picture}
           error={picturesErrors.cin_recto_picture}
           onUploadProps={createUploadProps("cin_recto_picture")}
-          placeholderText="Appuyez pour ajouter une photo"
+          placeholderText={t("FormInputAgent.contactInfo.uploadPhoto")}
           placeholderImg={cinFrontPlaceholder}
           style={{ width: 220, height: 170 }}
         />
         <UploadCard
-          label="Verso de la CIN"
+          label={t("FormInputAgent.contactInfo.cinBack")}
           picture={pictures.cin_verso_picture}
           error={picturesErrors.cin_verso_picture}
           onUploadProps={createUploadProps("cin_verso_picture")}
-          placeholderText="Appuyez pour ajouter une photo"
+          placeholderText={t("FormInputAgent.contactInfo.uploadPhoto")}
           placeholderImg={cinBackPlaceholder}
           style={{ width: 220, height: 170 }}
         />
         <UploadCard
-          label="Recto du permis"
+          label={t("FormInputAgent.contactInfo.licenseFront")}
           picture={pictures.licence_front_picture}
           error={picturesErrors.licence_front_picture}
           onUploadProps={createUploadProps("licence_front_picture")}
-          placeholderText="Appuyez pour ajouter une photo"
+          placeholderText={t("FormInputAgent.contactInfo.uploadPhoto")}
           placeholderImg={licenceFrontPlaceholder}
           style={{ width: 220, height: 170 }}
         />
         <UploadCard
-          label="Verso du permis"
+          label={t("FormInputAgent.contactInfo.licenseBack")}
           picture={pictures.licence_back_picture}
           error={picturesErrors.licence_back_picture}
           onUploadProps={createUploadProps("licence_back_picture")}
-          placeholderText="Appuyez pour ajouter une photo"
+          placeholderText={t("FormInputAgent.contactInfo.uploadPhoto")}
           placeholderImg={licenceBackPlaceholder}
           style={{ width: 220, height: 170 }}
         />
       </CardGrid>
       {localError && (
-        <ErrorMessage>Veuillez ajouter toutes les images requises.</ErrorMessage>
+        <ErrorMessage>{t("FormInputAgent.messages.uploadAllRequiredImages")}</ErrorMessage>
       )}
       <div className="registerBtn">
         <button className="retourBtn" type="button" onClick={prevStep}>
-          Retour
+          {t("FormInputAgent.buttons.back")}
         </button>
-        <Buttonn type="button" onClick={handleNext}>{"Suivant"}</Buttonn>
+        <Buttonn type="button" onClick={handleNext}>{t("FormInputAgent.buttons.next")}</Buttonn>
       </div>
     </>
   );

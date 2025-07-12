@@ -1,16 +1,16 @@
 import styled from "styled-components";
 
 
-function MarqueeCard({ description, title, tag, imageSrc, span }) {
+function MarqueeCard({ description, title, tag, imageSrc, span, dir }) {
     return (
       <>
        
-      <CardContainer>
-        <CardDescription>{description}</CardDescription>
-        <BottomSection>
-          <TitleTagContainer>
-            <Title>{title}</Title>
-            <Tag>{tag}</Tag>
+      <CardContainer dir={dir}>
+        <CardDescription dir={dir}>{description}</CardDescription>
+        <BottomSection dir={dir}>
+          <TitleTagContainer dir={dir}>
+            <Title dir={dir}>{title}</Title>
+            <Tag dir={dir}>{tag}</Tag>
            
           </TitleTagContainer>
           <Image src={imageSrc} alt={title} />
@@ -23,7 +23,6 @@ function MarqueeCard({ description, title, tag, imageSrc, span }) {
   export default MarqueeCard;
 
   const CardContainer = styled.div`
-
   border-radius: 8px;
   padding: 20px;
   display: flex;
@@ -32,14 +31,12 @@ function MarqueeCard({ description, title, tag, imageSrc, span }) {
   max-height: 300px;
   box-shadow: 3.11px 3.11px 0px 0px #0c0c0c;
   background-color: #fff;
-
-
-padding: 14px ;
-gap: 30px;
-border-radius: 5px;
-border: 1px solid rgba(24, 54, 90, 1);
-opacity: 0px;
-
+  padding: 14px;
+  gap: 30px;
+  border-radius: 5px;
+  border: 1px solid rgba(24, 54, 90, 1);
+  opacity: 0px;
+  direction: ${props => props.dir || 'ltr'};
 `;
 
 // Description paragraph
@@ -48,9 +45,9 @@ font-family: Inter;
 font-size: 16px;
 font-weight: 400;
 line-height: 22.4px;
-text-align: left;
- color: rgba(24, 54, 90, 1);
- /* margin-bottom: 30px; */
+text-align: ${props => props.dir === 'rtl' ? 'right' : 'left'};
+color: rgba(24, 54, 90, 1);
+direction: ${props => props.dir || 'ltr'};
 `;
 
 // Bottom section that holds the title, tag, and image
@@ -58,59 +55,57 @@ const BottomSection = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-direction: ${props => props.dir === 'rtl' ? 'row-reverse' : 'row'};
 `;
 
 // Title and tag container (aligned to the left)
 const TitleTagContainer = styled.div`
   display: flex;
   flex-direction: column;
+  text-align: ${props => props.dir === 'rtl' ? 'right' : 'left'};
 `;
 
 // Title styling
 const Title = styled.h3`
-
   color: rgba(7, 33, 48, 1);
   margin: 0;
   font-family: Inter;
-font-size: 16px;
-font-weight: 700;
-line-height: 22.4px;
-text-align: left;
-
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 22.4px;
+  text-align: ${props => props.dir === 'rtl' ? 'right' : 'left'};
+  direction: ${props => props.dir || 'ltr'};
 `;
 
 // Tag styling
 const Tag = styled.span`
-
   color: #888;
   margin-top: 4px;
   font-family: Inter;
-font-size: 14px;
-font-weight: 400;
-line-height: 16.8px;
-text-align: left;
-
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16.8px;
+  text-align: ${props => props.dir === 'rtl' ? 'right' : 'left'};
+  direction: ${props => props.dir || 'ltr'};
 `;
+
 const Span = styled.span`
-
   color: #888;
   margin-top: 4px;
   font-family: Inter;
-font-size: 14px;
-font-weight: 400;
-line-height: 16.8px;
-text-align: left;
-
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16.8px;
+  text-align: ${props => props.dir === 'rtl' ? 'right' : 'left'};
+  direction: ${props => props.dir || 'ltr'};
 `;
+
 // Image styling (aligned to the right)
 const Image = styled.img`
-
-
   object-fit: cover;
   width: 64px;
-height: 64px;
-gap: 0px;
-border-radius: 32px ;
-opacity: 0px;
-
+  height: 64px;
+  gap: 0px;
+  border-radius: 32px;
+  opacity: 0px;
 `;

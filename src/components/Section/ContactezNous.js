@@ -80,6 +80,7 @@ const Lineone = styled.div`
 
   text-align: ${({ isRtl }) => (isRtl ? "right" : "left")};
   flex-direction: row;
+      margin-bottom: 16px;
   @media (max-width: 744px) {
   }
 `;
@@ -109,7 +110,7 @@ const ImgService = styled.div`
   flex-direction: column;
   width: 30%;
   border-radius: 32px;
-
+    align-self: center;
   @media (max-width: 744px) {
     flex-direction: column-reverse;
     width: 60%;

@@ -15,73 +15,71 @@ import client8 from '../../assets/images/client8.png';
 const MarqueAbout = () => {
 
   const { t, i18n } = useTranslation();
+  
+  // Determine text direction based on current language
+  const isRTL = i18n.language.startsWith('ar');
+  const textDirection = isRTL ? 'rtl' : 'ltr';
 
-
-    const fakeData1 = [
-      {
-        description: "Service impeccable , Le chauffeur est arrivé à l'heure et le transport s'est fait sans souci. Jerecommande vivement Tawsilet",
-        title: "Mohamed Ben Amor",
-        tag: "Client ",
-
-        imageSrc:  client7,
-      },
-      {
-        description: "Déménagement rapide et efficace, merci à l'équipe Tawsilet pour leur professionnalisme ",
-        title: "Sarra Khelifi ",
-        tag: "Client",
-        imageSrc: client3,
-      },
-      {
-        description: "Facile à réserver , chauffeur professionnel et prix très correct. Excellente expérience",
-        title: "Hichem Laabidi ",
-        tag: "Client",
-        imageSrc: client1,
-      },
-      {
-        description: "Un service qui manquait en Tunisie ! Très pratique et simple à utiliser. Merci Tawsilet ",
-        title: "Firas Messaoudi ",
-        tag: "Client",
-
-        imageSrc: client4,
-      },
-       
-      ];
+  const fakeData1 = [
+    {
+      description: t("ABOUT.Review.reviews.review1.description"),
+      title: t("ABOUT.Review.reviews.review1.title"),
+      tag: t("ABOUT.Review.reviews.review1.tag"),
+      imageSrc: client7,
+    },
+    {
+      description: t("ABOUT.Review.reviews.review2.description"),
+      title: t("ABOUT.Review.reviews.review2.title"),
+      tag: t("ABOUT.Review.reviews.review2.tag"),
+      imageSrc: client3,
+    },
+    {
+      description: t("ABOUT.Review.reviews.review3.description"),
+      title: t("ABOUT.Review.reviews.review3.title"),
+      tag: t("ABOUT.Review.reviews.review3.tag"),
+      imageSrc: client1,
+    },
+    {
+      description: t("ABOUT.Review.reviews.review4.description"),
+      title: t("ABOUT.Review.reviews.review4.title"),
+      tag: t("ABOUT.Review.reviews.review4.tag"),
+      imageSrc: client4,
+    },
+  ];
       
-      const fakeData2 = [
-        {
-          description: "Je ne connaissais pas Tawsilet avant, mais maintenant je l'utilise à chaque besoin. Service fiable et sérieux",
-          title: "Amira Dhouibi",
-          tag: "Client ",
- 
-          imageSrc: client8,
-        },
-        {
-          description: "Chauffeurs sérieux et service client réactif. Expérience parfaite du début à la fin ",
-          title: "Oussama Tlili ",
-          tag: "Client",
-          imageSrc: client2,
-        },
-        {
-          description: "Tawsilet, c'est la solution idéale pour un transport sans stress. Service professionnel et rapide ",
-          title: "Anis Khouini ",
-          tag: "Client",
-          imageSrc: client6,
-        },
-        {
-          description: "Application intuitive, chauffeur sérieux et prix compétitif. Je recommande vivement",
-          title: "Houssem Jaziri",
-          tag: "Client",
-
-          imageSrc: client5,
-        },
-      ];
+  const fakeData2 = [
+    {
+      description: t("ABOUT.Review.reviews.review5.description"),
+      title: t("ABOUT.Review.reviews.review5.title"),
+      tag: t("ABOUT.Review.reviews.review5.tag"),
+      imageSrc: client8,
+    },
+    {
+      description: t("ABOUT.Review.reviews.review6.description"),
+      title: t("ABOUT.Review.reviews.review6.title"),
+      tag: t("ABOUT.Review.reviews.review6.tag"),
+      imageSrc: client2,
+    },
+    {
+      description: t("ABOUT.Review.reviews.review7.description"),
+      title: t("ABOUT.Review.reviews.review7.title"),
+      tag: t("ABOUT.Review.reviews.review7.tag"),
+      imageSrc: client6,
+    },
+    {
+      description: t("ABOUT.Review.reviews.review8.description"),
+      title: t("ABOUT.Review.reviews.review8.title"),
+      tag: t("ABOUT.Review.reviews.review8.tag"),
+      imageSrc: client5,
+    },
+  ];
   return (
     <Wrapper>
         <Middle>
-      <HeadingUp>
+      <HeadingUp dir={textDirection}>
       {t("ABOUT.Review.title")}
       </HeadingUp>
-      <Description>
+      <Description dir={textDirection}>
       {t("ABOUT.Review.desc")}
          </Description>
          </Middle>
@@ -94,6 +92,7 @@ const MarqueAbout = () => {
             title={face.title}
             tag={face.tag}
             imageSrc={face.imageSrc}
+            dir={textDirection}
           />
         ))}
       </Marquee>
@@ -108,6 +107,7 @@ const MarqueAbout = () => {
               title={face.title}
               tag={face.tag}
               imageSrc={face.imageSrc}
+              dir={textDirection}
             />
           ))}
         </Marquee>
@@ -139,6 +139,7 @@ color: #0c0c0c;
 line-height: 30px;
 width: 65%;
 text-align: center;
+direction: ${props => props.dir || 'ltr'};
 @media (max-width: 744px) {
   font-size: 16px;
   width: 280px;
@@ -147,11 +148,10 @@ text-align: center;
 `;
 export const HeadingUp = styled.div`
 font-weight: 700;
-
 font-size: 2.8125rem;
 color: #0c0c0c;
-
 text-align: center;
+direction: ${props => props.dir || 'ltr'};
 @media (max-width: 744px) {
   font-size: 24px;
 }

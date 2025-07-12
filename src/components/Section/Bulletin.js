@@ -18,7 +18,7 @@ const Bulletin = () => {
         <Subtitle>{t("Bulletin.title")}</Subtitle>
       </InfoContainer>
       <FormContainer>
-        <EmailInput type="email" placeholder="Your Email" />
+        <EmailInput type="email" placeholder={t("Bulletin.emailPlaceholder")} />
         <SendButton>
         {t("Bulletin.button")} <Icon><img src={Send}/></Icon>
         </SendButton>

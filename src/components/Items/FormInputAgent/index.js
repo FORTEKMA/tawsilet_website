@@ -85,11 +85,11 @@ const FormInputAgent = () => {
     };
     setPicturesErrors({ ...documentErrors, ...dateErrors });
     if (Object.values(documentErrors).some(Boolean)) {
-      message.error("Please upload all required documents");
+      message.error(t("FormInputAgent.messages.uploadAllRequiredDocuments"));
       return;
     }
     if (Object.values(dateErrors).some(Boolean)) {
-      message.error("Please select all required dates");
+      message.error(t("FormInputAgent.messages.selectAllRequiredDates"));
       return;
     }
     setLoading(true);
@@ -152,11 +152,11 @@ const FormInputAgent = () => {
       const userResult = await userRes.json();
       if (!userRes.ok) throw new Error(userResult?.error?.message || "User registration failed");
 
-      message.success(t("registration_success_short"));
+      message.success(t("FormInputAgent.messages.registrationSuccess"));
       setSuccessModalVisible(true);
       // window.location.replace(process.env.REACT_APP_DASH_URL);
     } catch (error) {
-      message.error(error.message || "Registration failed");
+      message.error(error.message || t("FormInputAgent.messages.registrationFailed"));
     } finally {
       setLoading(false);
     }
@@ -164,11 +164,11 @@ const FormInputAgent = () => {
 
   // Stepper titles
   const steps = [
-    { title: "Account Information" },
-    { title: "Contact Information" },
-    { title: "Car Information" },
-    { title: "Vehicle Pictures" },
-    { title: "Vehicle Validation" },
+    { title: t("FormInputAgent.steps.accountInformation") },
+    { title: t("FormInputAgent.steps.contactInformation") },
+    { title: t("FormInputAgent.steps.carInformation") },
+    { title: t("FormInputAgent.steps.vehiclePictures") },
+    { title: t("FormInputAgent.steps.vehicleValidation") },
   ];
 
   // Render current step
@@ -199,6 +199,7 @@ const FormInputAgent = () => {
       case 2:
         return (
           <ContactInfoStep
+            t={t}
             pictures={pictures}
             picturesErrors={picturesErrors}
             createUploadProps={(field) => createUploadProps(field, setPictures, setPicturesErrors)}
@@ -220,6 +221,7 @@ const FormInputAgent = () => {
       case 4:
         return (
           <VehiclePicturesStep
+            t={t}
             pictures={pictures}
             picturesErrors={picturesErrors}
             createUploadProps={(field) => createUploadProps(field, setPictures, setPicturesErrors)}
@@ -264,8 +266,8 @@ const FormInputAgent = () => {
           closable={false}
         >
           <div style={{ textAlign: 'center' }}>
-            <h2>{t("registration_success_title")}</h2>
-            <p>{t("registration_success_message")}</p>
+            <h2>{t("FormInputAgent.messages.registrationSuccess")}</h2>
+            <p>{t("FormInputAgent.messages.registrationSuccess")}</p>
             <button
               style={{
                 marginTop: 16,
@@ -284,7 +286,7 @@ const FormInputAgent = () => {
                 navigate("/");
               }}
             >
-              {t("go_home")}
+              {t("FormInputAgent.buttons.back")}
             </button>
           </div>
         </Modal>

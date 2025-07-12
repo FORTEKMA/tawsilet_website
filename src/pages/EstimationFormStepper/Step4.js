@@ -27,31 +27,6 @@ export const calculatePrice = async (formData, driver = null) => {
   return response.data;
 };
 
-// Car types config for dynamic rendering
-const carTypes = [
-  {
-    id: '1',
-    title: 'Éco',
-    description: 'Véhicule économique',
-    image: require("../../assets/images/ecoCar.png"),
-    capacity: 4
-  },
-  {
-    id: '2',
-    title: 'classe',
-    description: 'Classe confortable',
-    image: require("../../assets/images/classeCar.png"),
-    capacity: 4
-  },
-  {
-    id: '3',
-    title: 'XL',
-    description: 'Grande capacité',
-    image: require("../../assets/images/xlCar.png"),
-    capacity: 7
-  }
-];
-
 const Step4 = ({ setStep }) => {
   const command = useSelector((store) => store?.newCommand?.command);
   const { t, i18n } = useTranslation();
@@ -65,6 +40,31 @@ const Step4 = ({ setStep }) => {
   const [buttonLoading, setButtonLoading] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const navigate = useNavigate();
+
+  // Car types config for dynamic rendering
+  const carTypes = [
+    {
+      id: '1',
+      title: t('Step4.carTypes.eco.title'),
+      description: t('Step4.carTypes.eco.description'),
+      image: require("../../assets/images/ecoCar.png"),
+      capacity: 4
+    },
+    {
+      id: '2',
+      title: t('Step4.carTypes.classe.title'),
+      description: t('Step4.carTypes.classe.description'),
+      image: require("../../assets/images/classeCar.png"),
+      capacity: 4
+    },
+    {
+      id: '3',
+      title: t('Step4.carTypes.xl.title'),
+      description: t('Step4.carTypes.xl.description'),
+      image: require("../../assets/images/xlCar.png"),
+      capacity: 7
+    }
+  ];
 
   useEffect(() => {
     const fetchPrice = async () => {
@@ -80,7 +80,7 @@ const Step4 = ({ setStep }) => {
           const calculatedPrice = await calculatePrice(formData, driver);
           setPrice(calculatedPrice?.price);
         } catch (error) {
-          setPrice("N/A");
+          setPrice(t("Step4.notAvailable"));
         } finally {
           setLoadingState(false);
         }
@@ -171,8 +171,8 @@ const Step4 = ({ setStep }) => {
     <StepContainerLayout dir="auto">
       <StepContainerHeader directionflesh={i18n.language === "ar-AR"}>
         <StepContainerHeaderTitle selected={true} directionflesh={i18n.language === "ar-AR"}>
-          <img src={previousFleshIcon} onClick={() => setStep(3)} alt="retour" />
-          {t("Confirmer la course")}
+          <img src={previousFleshIcon} onClick={() => setStep(3)} alt={t("Step4.back")} />
+          {t("Step4.confirmRide")}
         </StepContainerHeaderTitle>
         {isResponsive && <StepContainerHeaderTitle selected={true} />}
       </StepContainerHeader>
@@ -184,10 +184,10 @@ const Step4 = ({ setStep }) => {
             return (
               <>
                 <VehicleTypeCard>
-                  <VehicleTypeIcon src={tansportType?.image || carIcon} alt={tansportType?.title || 'car'} />
+                  <VehicleTypeIcon src={tansportType?.image || carIcon} alt={tansportType?.title || t('Step4.car')} />
                   <VehicleTypeDetails>
-                    <VehicleTypeName>{tansportType?.title || t('Type inconnu')}</VehicleTypeName>
-                    {/* <VehicleTypeDescription>{tansportType?.description || t('Type de véhicule non reconnu')}</VehicleTypeDescription> */}
+                    <VehicleTypeName>{tansportType?.title || t('Step4.unknownType')}</VehicleTypeName>
+                    {/* <VehicleTypeDescription>{tansportType?.description || t('Step4.unknownVehicleType')}</VehicleTypeDescription> */}
                   </VehicleTypeDetails>
                 </VehicleTypeCard>
                 
@@ -199,7 +199,7 @@ const Step4 = ({ setStep }) => {
               <AddressRowContainer>
                 <AddressIconCircle />
                 <AddressDetails>
-                  <AddressLabel>{t("Point de départ")}</AddressLabel>
+                  <AddressLabel>{t("Step4.departurePoint")}</AddressLabel>
                   <AddressValue>{command?.pickUpAddress?.Address}</AddressValue>
                 </AddressDetails>
               </AddressRowContainer>
@@ -207,14 +207,14 @@ const Step4 = ({ setStep }) => {
               <AddressRowContainer>
                 <AddressIconSquare />
                 <AddressDetails>
-                  <AddressLabel>{t("Point d'arrivée")}</AddressLabel>
+                  <AddressLabel>{t("Step4.arrivalPoint")}</AddressLabel>
                   <AddressValue>{command?.dropOfAddress?.Address}</AddressValue>
                 </AddressDetails>
               </AddressRowContainer>
             </AddressContainer>
             {date && (
               <CarTypeRow>
-                <CarTypeLabel>Date :</CarTypeLabel>
+                <CarTypeLabel>{t("Step4.date")}</CarTypeLabel>
                 <CarTypeValue>{date}</CarTypeValue>
               </CarTypeRow>
             )}
@@ -222,7 +222,7 @@ const Step4 = ({ setStep }) => {
         </ContentWrapper>
         {date && (
                   <ReservationFeeInfo>
-                    {t('Le prix inclut les frais de réservation')}
+                    {t('Step4.priceIncludesReservation')}
                     {command.tansportType?.reservation_price && (
                       <> : <strong>{tansportType.reservation_price} DT</strong></>
                     )}
@@ -243,17 +243,17 @@ const Step4 = ({ setStep }) => {
             ) : (
               <PriceText>{price ? `${price} DT` : '...'}</PriceText>
             )}
-            <ConfirmText>{t("Confirmer")}</ConfirmText>
+            <ConfirmText>{t("Step4.confirmer")}</ConfirmText>
           </ConfirmButton>
         </ConfirmButtonWrapper>
         {showSuccessModal && (
           <BillModal>
             <BillContent>
-              <h2>{t('Votre réservation a été créée avec succès!')}</h2>
+              <h2>{t('Step4.reservationSuccess')}</h2>
               <ul>
-                <li>{t('Vous pouvez consulter l\'historique de vos réservations dans votre profil.')}</li>
+                <li>{t('Step4.checkHistoryProfile')}</li>
               </ul>
-              <CloseBtn onClick={handleGoToHistory}>{t('Aller à mon historique')}</CloseBtn>
+              <CloseBtn onClick={handleGoToHistory}>{t('Step4.goToHistory')}</CloseBtn>
             </BillContent>
           </BillModal>
         )}

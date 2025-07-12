@@ -128,7 +128,7 @@ export const registerUserEstimation = createAsyncThunk(
   async (credentials) => {
     try {
       const response = await axios.post(
-        `${AuthService.apiUrl}/register`,
+        `${AuthService.apiUrl}/register/client`,
         credentials
       );
 

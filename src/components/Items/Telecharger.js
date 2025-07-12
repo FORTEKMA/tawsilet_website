@@ -4,247 +4,377 @@ import AOS from "aos";
 import "aos/dist/aos.css";
  
 import { useTranslation } from "react-i18next";
- import googleIcon from "../../assets/images/google.png";
+import googleIcon from "../../assets/images/google.png";
 import appleIcon from "../../assets/images/apple.png";
 import logoapp from "../../assets/images/logoapp.png";
+import driverLogo from "../../assets/images/driverLogo.png";
 
 const Telecharger = () => {
   useEffect(() => {
     AOS.init({
       duration: 1000,
+      once: true,
+      offset: 100,
     });
   }, []);
 
-  // Remove all video/mute/isPlaying related state and effects
-
   const { t, i18n } = useTranslation();
 
-  // Remove toggleMute function
-
   return (
-    <Section id="download">
-      <Content data-aos="zoom-in" data-aos-delay={300}>
-        <ContentService dir="auto">
-          <YellowLabel>{t('DOWNLOAD.LABEL')}</YellowLabel>
-          <MainHeading>{t('DOWNLOAD.HEADING')}</MainHeading>
-          <Description>
-            {t('DOWNLOAD.DESCRIPTION')}
-          </Description>
-          <Download>
-            <StoreButton href="https://play.google.com/store/apps/details?id=com.fortekma.tawsiletDriver&pli=1" target="_blank" rel="noopener noreferrer">
-              <StoreIcon src={googleIcon} alt="Google Play" />
-              
-            </StoreButton>
-            <StoreButton href="https://apps.apple.com/us/app/tawsilet-driver/id6745764731" target="_blank" rel="noopener noreferrer">
-              <StoreIcon src={appleIcon} alt="App Store" />
-              
-            </StoreButton>
-          </Download>
-        </ContentService>
-        <ImgService>
-          <img src={logoapp} alt="App Logo" style={{ width: '100%', height: 'auto', borderRadius: '16px' }} />
-        </ImgService>
-      </Content>
-    </Section>
+    <Container>
+      {/* User App Section */}
+      <Section id="download-user">
+        <BackgroundGradient />
+        <Content data-aos="fade-up" data-aos-delay={200}>
+          <ContentService dir="auto">
+            <Badge>{t('DOWNLOAD.USER_LABEL')}</Badge>
+            <MainHeading>{t('DOWNLOAD.USER_HEADING')}</MainHeading>
+            <Description>
+              {t('DOWNLOAD.USER_DESCRIPTION')}
+            </Description>
+            
+            <DownloadContainer>
+              <StoreButton 
+                href="https://play.google.com/store/apps/details?id=com.fortekma.tawsilet" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                data-aos="zoom-in"
+                data-aos-delay={400}
+              >
+                <StoreIcon src={googleIcon} alt={t('DOWNLOAD.GOOGLE_PLAY_ALT')} />
+              </StoreButton>
+              <StoreButton 
+                href="https://apps.apple.com/us/app/tawsilet/id6745802311" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                data-aos="zoom-in"
+                data-aos-delay={500}
+              >
+                <StoreIcon src={appleIcon} alt={t('DOWNLOAD.APP_STORE_ALT')} />
+              </StoreButton>
+            </DownloadContainer>
+          </ContentService>
+          <ImageContainer data-aos="fade-left" data-aos-delay={300}>
+            <AppImage src={logoapp} alt={t('DOWNLOAD.USER_APP_ALT')} />
+            <FloatingCard>
+              <CardIcon>📱</CardIcon>
+              <CardText>{t('DOWNLOAD.DOWNLOAD_NOW')}</CardText>
+            </FloatingCard>
+          </ImageContainer>
+        </Content>
+      </Section>
+
+      {/* Driver App Section */}
+      <Section id="download-driver">
+        <BackgroundGradient />
+        <Content data-aos="fade-up" data-aos-delay={200}>
+          <ImageContainer data-aos="fade-right" data-aos-delay={300}>
+            <AppImage src={driverLogo} alt={t('DOWNLOAD.DRIVER_APP_ALT')} />
+            <FloatingCard>
+              <CardIcon>🚗</CardIcon>
+              <CardText>{t('DOWNLOAD.JOIN_NETWORK')}</CardText>
+            </FloatingCard>
+          </ImageContainer>
+          <ContentService dir="auto">
+            <Badge>{t('DOWNLOAD.DRIVER_LABEL')}</Badge>
+            <MainHeading>{t('DOWNLOAD.DRIVER_HEADING')}</MainHeading>
+            <Description>
+              {t('DOWNLOAD.DRIVER_DESCRIPTION')}
+            </Description>
+           
+            <DownloadContainer>
+              <StoreButton 
+                href="https://play.google.com/store/apps/details?id=com.fortekma.tawsiletDriver&pli=1" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                data-aos="zoom-in"
+                data-aos-delay={400}
+              >
+                <StoreIcon src={googleIcon} alt={t('DOWNLOAD.GOOGLE_PLAY_ALT')} />
+              </StoreButton>
+              <StoreButton 
+                href="https://apps.apple.com/us/app/tawsilet-driver/id6745764731" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                data-aos="zoom-in"
+                data-aos-delay={500}
+              >
+                <StoreIcon src={appleIcon} alt={t('DOWNLOAD.APP_STORE_ALT')} />
+              </StoreButton>
+            </DownloadContainer>
+          </ContentService>
+        </Content>
+      </Section>
+    </Container>
   );
 };
 
 export default Telecharger;
 
-const Icons = styled.img`
-  cursor: pointer;
-  width: 8vw;
-  min-width: 150px;
-  margin: 20px;
-  margin-top: 2vw;
-  /* padding: 16px; */
-  @media (max-width: 1050px) {
-    width: 140px;
-    min-width: 100px;
-    padding: 10px;
-    margin-bottom: 20px;
-    margin: 0px;
-    margin-top: 15px;
+const Container = styled.div`
+  width: 100%;
+  overflow-x: hidden;
+`;
+
+const BackgroundGradient = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #0a0c12 0%, #1a1d2a 50%, #0a0c12 100%);
+  z-index: -1;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 20%, rgba(255, 209, 102, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(255, 209, 102, 0.05) 0%, transparent 50%);
   }
 `;
+
+const Section = styled.section`
+  position: relative;
+  background: #0a0c12;
+  color: #fff;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  overflow: hidden;
+  
+  @media (max-width: 768px) {
+    padding: 2rem 1rem;
+    min-height: auto;
+  }
+`;
+
 const Content = styled.div`
   display: flex;
   width: 100%;
-  /* padding: 5rem 0rem 5rem; */
-
-  justify-content: center;
-  gap: 5%;
+  max-width: 1200px;
+  justify-content: space-between;
+  gap: 4rem;
   align-items: center;
+  position: relative;
+  z-index: 1;
 
   @media (max-width: 1050px) {
     flex-direction: column;
-    padding-top: 0px;
-    padding-bottom: 0px;
-  }
-`;
-export const Hr = styled.hr`
-  width: 80%;
-  align-self: center;
-  justify-content: center;
-  display: flex;
-
-  align-items: center;
-  margin-inline: auto;
-`;
-
-const Download = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  gap: 30px;
-  flex-direction: row;
-  @media (max-width: 1050px) {
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    gap: 20px;
+    gap: 3rem;
+    text-align: center;
   }
 `;
 
 const ContentService = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 600px;
-  width: 40%;
-  height: 70%;
-  justify-content: space-around;
-  border-radius: 32px;
+  max-width: 550px;
+  width: 100%;
+  gap: 2rem;
+  
   @media (max-width: 1050px) {
-    padding: 2.75rem 1.75rem 0rem 1.75rem;
-    width: 100%;
-
-    align-self: center;
-    text-align: justify;
+    order: 2;
+    max-width: 100%;
   }
 `;
-const ImgService = styled.div`
+
+const Badge = styled.div`
+  display: inline-block;
+  background: linear-gradient(135deg, #ffd166 0%, #ffb347 100%);
+  color: #0a0c12;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 1.5px;
+  padding: 0.5rem 1.5rem;
+  border-radius: 25px;
+  width: fit-content;
+  text-transform: uppercase;
+  box-shadow: 0 4px 15px rgba(255, 209, 102, 0.3);
+  
+  @media (max-width: 1050px) {
+    align-self: center;
+  }
+`;
+
+const MainHeading = styled.h1`
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin: 0;
+  color: #fff;
+  line-height: 1.1;
+  background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+  }
+`;
+
+const Description = styled.p`
+  font-size: 1.2rem;
+  color: #b0b0b0;
+  margin: 0;
+  line-height: 1.6;
+  max-width: 100%;
+  
+  @media (max-width: 768px) {
+    font-size: 1.1rem;
+  }
+`;
+
+const FeatureList = styled.div`
   display: flex;
   flex-direction: column;
-  height: 38vw;
-  overflow: hidden;
-  width: 35vw;
-  gap: 8.125rem;
-  border-radius: 32px;
-  text-align: "center";
-  position: relative;
-  // border-radius: 17px !important;
-  border: none;
-
-  @media (max-width: 1050px) {
-    flex-direction: column-reverse;
-    width: 100%;
-    height: 100%;
-    padding: 0 5%;
-    overflow: visible;
-    // border: 1px solid red;
-  }
-   video {
-    width: 35.1vw;
-    height: 140%;
-    display: block;
-    right: -1px;
-    outline: 0px;
-     
-
-    @media (max-width: 1050px) {
-      width: 100%;
-      height: 100%;
-      // border: none;
-      // border:1px solid red;
-  border-radius: 16px;
-
-    }
-  }
-    
-  img.mute {
-    position: absolute;
-    height: 20px;
-    width: 20px;
-    bottom: 20px;
-    right: 20px;
-    @media (max-width: 1050px) {
-      bottom: 16px;
-      right: calc(5% + 16px);
-      width: 16px;
-      height:16px;
-      z-index: 9999999999;
-    }
-  } 
-
-  img{
-    width: 35vw;
-    height: 140%;
-    display: block;
-
-    @media (max-width: 1050px) {
-      width: 100%;
-    }
-  }
+  gap: 0.8rem;
+  margin: 1rem 0;
 `;
 
-const Section = styled.section`
-  background: #0a0c12;
-  color: #fff;
-  width: 100vw;
-  min-height: 100vh;
+const FeatureItem = styled.div`
+  font-size: 1rem;
+  color: #d0d0d0;
   display: flex;
   align-items: center;
+  gap: 0.5rem;
+  
+  @media (max-width: 1050px) {
+    justify-content: center;
+  }
+`;
+
+const DownloadContainer = styled.div`
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1rem;
   justify-content: center;
-  padding: 0;
+  flex-wrap: wrap;
+
+  @media (max-width: 480px) {
+    gap: 0.5rem;
+  }
 `;
-const YellowLabel = styled.div`
-  color: #ffd166;
-  font-weight: 700;
-  font-size: 1.1rem;
-  letter-spacing: 1.5px;
-  margin-bottom: 1.5rem;
-`;
-const MainHeading = styled.h1`
-  font-size: 2.8rem;
-  font-weight: 800;
-  margin: 0 0 1.2rem 0;
-  color: #fff;
-`;
-const Description = styled.p`
-  font-size: 1.1rem;
-  color: #d3d3d3;
-  margin-bottom: 2.5rem;
-  max-width: 420px;
-`;
+
 const StoreButton = styled.a`
   display: flex;
   align-items: center;
-  border-radius: 12px;
-  padding: 0.7rem 1.2rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  padding: 1rem 1.5rem;
   text-decoration: none;
-  margin-right: 1.2rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-  transition: background 0.2s;
+  transition: all 0.3s ease;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
   
-  color: #181a20;
- 
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s;
+  }
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 209, 102, 0.3);
+    border-color: rgba(255, 209, 102, 0.5);
+    
+    &::before {
+      left: 100%;
+    }
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
 `;
+
 const StoreIcon = styled.img`
-  width: 110px;
-  height: 38px;
-  margin-right: 0.9rem;
+  width: 120px;
+  height: 40px;
+  object-fit: contain;
+  
+  @media (max-width: 480px) {
+    width: 100px;
+    height: 35px;
+  }
 `;
-const StoreText = styled.div`
+
+const ImageContainer = styled.div`
+  position: relative;
   display: flex;
-  flex-direction: column;
-  color: #fff;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 500px;
+  
+  @media (max-width: 1050px) {
+    order: 1;
+    max-width: 400px;
+  }
 `;
-const Small = styled.span`
-  font-size: 0.8rem;
-  color: #bdbdbd;
+
+const AppImage = styled.img`
+  width: 100%;
+  height: auto;
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: scale(1.02);
+  }
 `;
-const Bold = styled.span`
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #fff;
+
+const FloatingCard = styled.div`
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  background: linear-gradient(135deg, #ffd166 0%, #ffb347 100%);
+  color: #0a0c12;
+  padding: 1rem 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(255, 209, 102, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  animation: float 3s ease-in-out infinite;
+  
+  @media (max-width: 768px) {
+    bottom: -15px;
+    right: -15px;
+    padding: 0.8rem 1.2rem;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+`;
+
+const CardIcon = styled.span`
+  font-size: 1.2rem;
+`;
+
+const CardText = styled.span`
+  font-weight: 600;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+  }
 `;

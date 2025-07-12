@@ -13,27 +13,27 @@ const VehicleValidationStep = ({ t, i18n, pictures, picturesErrors, setPictures,
   <>
     <CardGrid>
       <UploadCard
-        label="Attestation d'assurance"
+        label={t("FormInputAgent.vehicleValidation.insuranceCertificate")}
         picture={pictures.assurance_picture}
         error={picturesErrors.assurance_picture}
         onUploadProps={createUploadProps("assurance_picture")}
-        placeholderText="Appuyez pour ajouter une photo"
+        placeholderText={t("FormInputAgent.vehicleValidation.uploadPhoto")}
         placeholderImg={assurancePlaceholder}
       />
       <UploadCard
-        label="Carte grise (recto)"
+        label={t("FormInputAgent.vehicleValidation.grayCardFront")}
         picture={pictures.gray_card_picture_front}
         error={picturesErrors.gray_card_picture_front}
         onUploadProps={createUploadProps("gray_card_picture_front")}
-        placeholderText="Appuyez pour ajouter une photo"
+        placeholderText={t("FormInputAgent.vehicleValidation.uploadPhoto")}
         placeholderImg={grayCardFrontPlaceholder}
       />
       <UploadCard
-        label="Carte grise (verso)"
+        label={t("FormInputAgent.vehicleValidation.grayCardBack")}
         picture={pictures.gray_card_picture_back}
         error={picturesErrors.gray_card_picture_back}
         onUploadProps={createUploadProps("gray_card_picture_back")}
-        placeholderText="Appuyez pour ajouter une photo"
+        placeholderText={t("FormInputAgent.vehicleValidation.uploadPhoto")}
         placeholderImg={grayCardBackPlaceholder}
       />
     </CardGrid>
@@ -42,7 +42,7 @@ const VehicleValidationStep = ({ t, i18n, pictures, picturesErrors, setPictures,
         <DatePicker
           locale="fr"
           className="In"
-          placeholderText={t("SINSCRIREpartenaire.FormInput.Date expiration assurance rc pro")}
+          placeholderText={t("FormInputAgent.vehicleValidation.insuranceExpiryDate")}
           selected={pictures.assurance_date}
           onChange={(date) => setPictures({ ...pictures, assurance_date: date })}
           dateFormat="yyyy-MM-dd"
@@ -54,28 +54,28 @@ const VehicleValidationStep = ({ t, i18n, pictures, picturesErrors, setPictures,
           </ErrorMessage>
         )}
         <Label right={i18n.language === "ar-AR"}>
-          {t("SINSCRIREpartenaire.FormInput.Date expiration assurance rc pro")}
+          {t("FormInputAgent.vehicleValidation.insuranceExpiryDate")}
         </Label>
       </Container>
     </DISP>
     <div className="registerBtn" style={{ display: 'flex', justifyContent: 'center', gap: 16, marginTop: 32 }}>
-      <button
-        className="retourBtn"
-        type="button"
-        onClick={prevStep}
-        style={{
-          padding: '8px 24px',
-          borderRadius: 6,
-          border: '1px solid #d9d9d9',
-          background: '#fff',
-          color: '#333',
-          fontWeight: 500,
-          cursor: 'pointer',
-          transition: 'background 0.2s',
-        }}
-      >
-        {t("SINSCRIREpartenaire.FormInput.Retour") || 'Retour'}
-      </button>
+              <button
+          className="retourBtn"
+          type="button"
+          onClick={prevStep}
+          style={{
+            padding: '8px 24px',
+            borderRadius: 6,
+            border: '1px solid #d9d9d9',
+            background: '#fff',
+            color: '#333',
+            fontWeight: 500,
+            cursor: 'pointer',
+            transition: 'background 0.2s',
+          }}
+        >
+          {t("FormInputAgent.buttons.back")}
+        </button>
       <Buttonn
         type="submit"
         style={{
@@ -94,7 +94,7 @@ const VehicleValidationStep = ({ t, i18n, pictures, picturesErrors, setPictures,
         }}
         disabled={loading}
       >
-        {loading ? <Spin size="small" style={{ color: '#fff' }} /> : t("SINSCRIREpartenaire.FormInput.Inscrire")}
+        {loading ? <Spin size="small" style={{ color: '#fff' }} /> : t("FormInputAgent.buttons.register")}
       </Buttonn>
     </div>
   </>

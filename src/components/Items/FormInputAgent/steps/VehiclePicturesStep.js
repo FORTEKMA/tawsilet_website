@@ -15,7 +15,7 @@ const REQUIRED_FIELDS = [
   "car_picture_right",
 ];
 
-const VehiclePicturesStep = ({ pictures, picturesErrors, createUploadProps, prevStep, setPicturesErrors, nextStep }) => {
+const VehiclePicturesStep = ({ t, pictures, picturesErrors, createUploadProps, prevStep, setPicturesErrors, nextStep }) => {
   const [localError, setLocalError] = useState(false);
 
   const handleNext = (e) => {
@@ -42,46 +42,46 @@ const VehiclePicturesStep = ({ pictures, picturesErrors, createUploadProps, prev
     <>
       <CardGrid>
         <UploadCard
-          label="Photo avant du véhicule"
+          label={t("FormInputAgent.vehiclePictures.frontPhoto")}
           picture={pictures.car_picture_front}
           error={picturesErrors.car_picture_front}
           onUploadProps={createUploadProps("car_picture_front")}
-          placeholderText="Appuyez pour ajouter une photo"
+          placeholderText={t("FormInputAgent.vehiclePictures.uploadPhoto")}
           placeholderImg={carFrontPlaceholder}
         />
         <UploadCard
-          label="Photo arrière du véhicule"
+          label={t("FormInputAgent.vehiclePictures.backPhoto")}
           picture={pictures.car_picture_back}
           error={picturesErrors.car_picture_back}
           onUploadProps={createUploadProps("car_picture_back")}
-          placeholderText="Appuyez pour ajouter une photo"
+          placeholderText={t("FormInputAgent.vehiclePictures.uploadPhoto")}
           placeholderImg={carBackPlaceholder}
         />
         <UploadCard
-          label="Photo côté gauche du véhicule"
+          label={t("FormInputAgent.vehiclePictures.leftPhoto")}
           picture={pictures.car_picture_left}
           error={picturesErrors.car_picture_left}
           onUploadProps={createUploadProps("car_picture_left")}
-          placeholderText="Appuyez pour ajouter une photo"
+          placeholderText={t("FormInputAgent.vehiclePictures.uploadPhoto")}
           placeholderImg={carLeftPlaceholder}
         />
         <UploadCard
-          label="Photo côté droit du véhicule"
+          label={t("FormInputAgent.vehiclePictures.rightPhoto")}
           picture={pictures.car_picture_right}
           error={picturesErrors.car_picture_right}
           onUploadProps={createUploadProps("car_picture_right")}
-          placeholderText="Appuyez pour ajouter une photo"
+          placeholderText={t("FormInputAgent.vehiclePictures.uploadPhoto")}
           placeholderImg={carRightPlaceholder}
         />
       </CardGrid>
       {localError && (
-        <ErrorMessage>Veuillez ajouter toutes les images requises.</ErrorMessage>
+        <ErrorMessage>{t("FormInputAgent.messages.uploadAllRequiredImages")}</ErrorMessage>
       )}
       <div className="registerBtn">
         <button className="retourBtn" type="button" onClick={prevStep}>
-          Retour
+          {t("FormInputAgent.buttons.back")}
         </button>
-        <Buttonn type="button" onClick={handleNext}>{"Suivant"}</Buttonn>
+        <Buttonn type="button" onClick={handleNext}>{t("FormInputAgent.buttons.next")}</Buttonn>
       </div>
     </>
   );

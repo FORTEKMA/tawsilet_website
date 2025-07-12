@@ -22,7 +22,7 @@ import {
 import downFlesh from "../../assets/icons/fleshrightblue.svg";
 import { useMediaQuery } from "react-responsive";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClock, faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import { faClock, faLocationDot, faCalendar, faXmark } from '@fortawesome/free-solid-svg-icons';
 import DateTimeInput from "./items/DateTimeInput";
 
 export async function calculateDistanceAndTime(startCoords, endCoords) {
@@ -85,8 +85,24 @@ const Step3 = ({ setStep }) => {
   const distance = command?.distance ? `${(command.distance / 1000).toFixed(2)} km` : '0 km';
   const duration = command?.duration || '0 min';
 
+  // Format duration as 'X hours Y mins' for display
+  let durationDisplay = duration;
+  if (duration && duration.includes('hour')) {
+    // e.g. '3 hours 33 mins' or '1 hour 5 mins'
+    durationDisplay = duration.replace(/(\d+)\s*hours?\s*(\d+)?\s*mins?/, (match, h, m) => `${h} hours${m ? ` ${m} mins` : ''}`);
+  }
+
   const handleClockButtonClick = () => {
-    setShowDateModal(true);
+    if (selectedTime) {
+      // If time is selected, clear it
+      setSelectedTime(null);
+      setSelectedDate(null);
+      dispatch(updateDepartDate(null));
+      dispatch(updateDeparTime(null));
+    } else {
+      // If no time is selected, open the modal
+      setShowDateModal(true);
+    }
   };
 
   const handleCloseDateModal = () => {
@@ -110,7 +126,7 @@ const Step3 = ({ setStep }) => {
       setStep(4);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      setCarError(t("Veuillez sélectionner un type de véhicule avant de continuer."));
+      setCarError(t("Step3.selectVehicleError"));
     }
   };
 
@@ -124,7 +140,7 @@ const Step3 = ({ setStep }) => {
           directionflesh={i18n.language === "ar-AR"}
         >
           <img src={previousFleshIcon} onClick={(e) => {e.stopPropagation(); setStep(2);}} alt="flesh" />
-          {t("Sélectionner une voiture")}
+          {t("Step3.selectCar")}
         </StepContainerHeaderTitle>
         {isResponsive && (
           <StepContainerHeaderTitle selected={true}>
@@ -153,7 +169,7 @@ const Step3 = ({ setStep }) => {
             </InfoItem>
             <InfoItem>
               <FontAwesomeIcon icon={faClock} />
-              {duration}
+              {durationDisplay}
             </InfoItem>
             {selectedDate && selectedTime && (
               <InfoItem>
@@ -165,10 +181,11 @@ const Step3 = ({ setStep }) => {
           {selectedCar && (
             <BookButtonContainer>
               <ClockButton onClick={handleClockButtonClick}>
-                <FontAwesomeIcon icon={faClock} />
+                <FontAwesomeIcon icon={selectedTime ? faXmark : faClock} />
               </ClockButton>
               <ReserveButton onClick={handleNextStep}>
-                {t("Réserver maintenant")}
+              {t("Step3.bookNow")}
+
               </ReserveButton>
             </BookButtonContainer>
           )}
@@ -182,26 +199,15 @@ const Step3 = ({ setStep }) => {
         <DateModalOverlay onClick={handleCloseDateModal}>
           <DateModalContent onClick={(e) => e.stopPropagation()}>
             <CloseButton onClick={handleCloseDateModal}>&times;</CloseButton>
-            <ModalTitle>{t("Choisissez la date et l'heure de départ")}</ModalTitle>
+            <ModalTitle>{t("Step3.selectDateTime")}</ModalTitle>
             <DateTimeInput
               defaultDate={selectedDate}
               defaultTime={selectedTime}
               onDateTimeChange={handleDateTimeChange}
             />
             <ModalButtonRow>
-              <ModalResetButton
-                onClick={() => {
-                  setSelectedDate(null);
-                  setSelectedTime(null);
-                  dispatch(updateDepartDate(null));
-                  dispatch(updateDeparTime(null));
-                  setShowDateModal(false);
-                }}
-              >
-                {t("Réinitialiser")}
-              </ModalResetButton>
-              <ModalCancelButton onClick={handleCloseDateModal}>{t("Annuler")}</ModalCancelButton>
-              <ModalConfirmButton onClick={handleConfirmDate}>{t("Confirmer")}</ModalConfirmButton>
+              <ModalCancelButton onClick={handleCloseDateModal}>{t("Step3.cancel")}</ModalCancelButton>
+              <ModalConfirmButton onClick={handleConfirmDate}>{t("Step3.confirm")}</ModalConfirmButton>
             </ModalButtonRow>
           </DateModalContent>
         </DateModalOverlay>
@@ -214,23 +220,36 @@ export default Step3;
 
 const InfoContainer = styled.div`
   display: flex;
-  justify-content: space-around;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
   background-color: #f0f0f0;
-  padding: 15px 20px;
-  border-radius: 12px;
+  padding: 12px 10px;
+  border-radius: 16px;
+  gap: 18px;
+  @media (max-width: 600px) {
+    padding: 8px 4px;
+    gap: 8px;
+  }
 `;
 
 const InfoItem = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px;
-  color: #333;
-  font-size: 1rem;
-  font-weight: 500;
+  gap: 6px;
+  color: #222;
+  font-size: 1.05rem;
+  font-weight: 600;
   svg {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
+    @media (max-width: 600px) {
+      width: 15px;
+      height: 15px;
+    }
+  }
+  @media (max-width: 600px) {
+    font-size: 0.92rem;
   }
 `;
 
@@ -317,22 +336,6 @@ const ModalButtonRow = styled.div`
   justify-content: space-between;
   gap: 12px;
   margin-top: 8px;
-`;
-
-const ModalResetButton = styled.button`
-  flex: 1;
-  background: #fff3cd;
-  color: #856404;
-  padding: 12px 20px;
-  border-radius: 10px;
-  border: 1px solid #ffeeba;
-  font-size: 1.08rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.2s;
-  &:hover {
-    background: #ffeeba;
-  }
 `;
 
 const ModalCancelButton = styled.button`

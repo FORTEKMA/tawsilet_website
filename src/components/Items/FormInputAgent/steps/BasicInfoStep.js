@@ -124,7 +124,7 @@ const BasicInfoStep = ({
                 enableSearch={true}
                 preferredCountries={["tn", "ae", "fr"]}
                 excludeCountries={["il"]}
-                placeholder="Numéro de téléphone"
+                placeholder={t("SINSCRIREpartenaire.FormInput.phone")}
                 inputStyle={{
                   width: "100%",
                   height: 45,
@@ -262,7 +262,7 @@ const BasicInfoStep = ({
         </Container>
       </DISPA>
       <div style={{ display: "flex", gap: 8, width: "70%" }}>
-        <BTNn type="submit" onClick={handleLocalSubmit}>{"Next"}</BTNn>
+        <BTNn type="submit" onClick={handleLocalSubmit}>{t("FormInputAgent.buttons.next")}</BTNn>
       </div>
     </>
   );

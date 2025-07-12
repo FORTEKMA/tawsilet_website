@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
 import AuthService from "../../services/auth.service";
 import { red } from "@mui/material/colors";
@@ -10,6 +11,7 @@ import { registerUser } from "../../redux/userSlice/userSlice";
 import { useDispatch } from "react-redux";
 
 const FormInputEstimation = ({ setStep, setLoading }) => {
+  const { t } = useTranslation();
   const location = useLocation();
   const dispatch = useDispatch();
   // const [inputValue, setInputValue] = useState("");
@@ -129,10 +131,10 @@ const FormInputEstimation = ({ setStep, setLoading }) => {
           {...register("email", {
             pattern: {
               value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
-              message: "invalid email",
+              message: t("FormErrors.invalidEmail"),
             },
 
-            required: "Please enter your email.",
+            required: t("FormErrors.emailRequired"),
           })}
           type="text"
           placeholder="example@email.com "
@@ -152,7 +154,7 @@ const FormInputEstimation = ({ setStep, setLoading }) => {
               //   message: "invalid email",
               // },
 
-              required: "Please enter your password.",
+              required: t("FormErrors.passwordRequired"),
             })}
             errorBorder={errors.password}
             // value={inputValue}
@@ -173,7 +175,7 @@ const FormInputEstimation = ({ setStep, setLoading }) => {
               {
                 validate: (value) => {
                   const { password } = getValues();
-                  return password === value || "Passwords should match!";
+                  return password === value || t("FormErrors.passwordsMismatch");
                 },
               }
               //  {
@@ -322,7 +324,8 @@ const Input = styled.input`
   border: ${(props) =>
     props.errorBorder ? "1px solid #ff6961" : "2px solid #000"};
   outline: none;
-  background-color: transparent;
+  background-color: white;
+  color: #333;
   border-radius: 8px;
   transition: border-bottom-color 0.3s;
   @media (max-width: 744px) {
@@ -341,16 +344,15 @@ const Input = styled.input`
 
 const Label = styled.label`
   position: absolute;
-  top: 10px;
+  top: -8px;
   left: 10px;
-  font-size: 16px;
-  color: #999;
+  font-size: 14px;
+  color: #5F6269;
   pointer-events: none;
-  transition: transform 0.3s, color 0.3s;
-  transform: translateY(-100%) translateX(-10%) scale(0.75);
-  color: #000;
+  transition: all 0.3s ease-in-out;
   background-color: white;
-  padding: 0px 12px;
+  padding: 0 4px;
+  z-index: 1;
   @media (max-width: 744px) {
     color: white;
     background-color: #18365a;
@@ -358,21 +360,18 @@ const Label = styled.label`
 `;
 const Labell = styled.label`
   position: absolute;
-  top: 10px;
+  top: -8px;
   left: 10px;
-  font-size: 16px;
-  color: #999;
+  font-size: 14px;
+  color: #5F6269;
   pointer-events: none;
-  transition: transform 0.3s, color 0.3s;
-  transform: translateY(-100%) translateX(-10%) scale(0.75);
-  color: #000;
+  transition: all 0.3s ease-in-out;
   background-color: white;
-  padding: 0px 12px;
+  padding: 0 4px;
+  z-index: 1;
   @media (max-width: 744px) {
     color: white;
     background-color: #18365a;
-    top: 10px;
-    left: 12px;
   }
 `;
 export const DISP = styled.section`
@@ -392,7 +391,8 @@ const In = styled.input`
     props.errorBorder ? "1px solid #ff6961" : "2px solid #000"};
   border-top: ${(props) =>
     props.errorBorder ? "1px solid #ff6961" : "2px solid #000"};
-  background-color: transparent;
+  background-color: white;
+  color: #333;
   border-radius: 8px;
   transition: border-bottom-color 0.3s;
   @media (max-width: 744px) {
@@ -409,16 +409,15 @@ const In = styled.input`
 `;
 const Prénom = styled.label`
   position: absolute;
-  top: 10px;
+  top: -8px;
   left: 10px;
-  font-size: 16px;
-  color: #999;
+  font-size: 14px;
+  color: #5F6269;
   pointer-events: none;
-  transition: transform 0.3s, color 0.3s;
-  transform: translateY(-100%) translateX(-10%) scale(0.75);
-  color: #000;
+  transition: all 0.3s ease-in-out;
   background-color: white;
-  padding: 0px 12px;
+  padding: 0 4px;
+  z-index: 1;
   @media (max-width: 744px) {
     color: white;
     background-color: #18365a;
