@@ -85,11 +85,73 @@ jobs:
             exit 1
           fi
 
+      - name: Set GENERATE_SOURCEMAP environment variable
+        run: |
+          echo "GENERATE_SOURCEMAP=false" >> $GITHUB_ENV
+
+      - name: Export environment variables from .env file
+        run: |
+          echo "📤 Exporting environment variables from .env file..."
+          export $(grep -v '^#' .env | xargs)
+          echo "REACT_APP_BASE_URL=$REACT_APP_BASE_URL" >> $GITHUB_ENV
+          echo "REACT_APP_DOMAIN_URL=$REACT_APP_DOMAIN_URL" >> $GITHUB_ENV
+          echo "REACT_APP_FRONT_URL=$REACT_APP_FRONT_URL" >> $GITHUB_ENV
+          echo "REACT_APP_DASH_URL=$REACT_APP_DASH_URL" >> $GITHUB_ENV
+          echo "REACT_APP_GOOGLE_MAPS_API_KEY=$REACT_APP_GOOGLE_MAPS_API_KEY" >> $GITHUB_ENV
+          echo "REACT_APP_PASSWORD=$REACT_APP_PASSWORD" >> $GITHUB_ENV
+
       - name: Install dependencies
         run: npm ci --force
 
       - name: Build app
-        run: npm run build
+        run: |
+          echo "🔨 Building app with environment variables:"
+          echo "REACT_APP_BASE_URL: $REACT_APP_BASE_URL"
+          echo "REACT_APP_DOMAIN_URL: $REACT_APP_DOMAIN_URL"
+          echo "REACT_APP_FRONT_URL: $REACT_APP_FRONT_URL"
+          echo "GENERATE_SOURCEMAP: $GENERATE_SOURCEMAP"
+          npm run build
+
+      - name: Verify built files contain correct URLs
+        run: |
+          echo "🔍 Verifying built files contain correct environment URLs..."
+          if [[ "${GITHUB_REF##*/}" == "dev" ]]; then
+            echo "Checking for dev URLs in built files..."
+            if grep -r "dev.tawsilet.com" build/; then
+              echo "✅ Found dev URLs in built files"
+            else
+              echo "❌ No dev URLs found in built files!"
+              exit 1
+            fi
+            # Check that production URLs are NOT present
+            if grep -r "api.tawsilet.com\|tawsilet.com" build/; then
+              echo "❌ Found production URLs in dev build!"
+              exit 1
+            else
+              echo "✅ No production URLs found in dev build"
+            fi
+          elif [[ "${GITHUB_REF##*/}" == "main" ]]; then
+            echo "Checking for production URLs in built files..."
+            if grep -r "api.tawsilet.com\|tawsilet.com" build/; then
+              echo "✅ Found production URLs in built files"
+            else
+              echo "❌ No production URLs found in built files!"
+              exit 1
+            fi
+            # Check that dev URLs are NOT present
+            if grep -r "dev.tawsilet.com" build/; then
+              echo "❌ Found dev URLs in production build!"
+              exit 1
+            else
+              echo "✅ No dev URLs found in production build"
+            fi
+          fi
+          
+          echo "📋 Service worker verification:"
+          if [[ -f "build/service-worker.js" ]]; then
+            echo "Service worker found, checking URLs:"
+            grep -o "dev.tawsilet.com\|api.tawsilet.com\|tawsilet.com" build/service-worker.js || echo "No URLs found in service worker"
+          fi
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -99,7 +161,15 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Sync build to S3
-        run: aws s3 sync build/ s3://$S3_BUCKET/ --delete
+        run: |
+          echo "🚀 Syncing build to S3 bucket: $S3_BUCKET"
+          aws s3 sync build/ s3://$S3_BUCKET/ --delete --cache-control "no-cache, no-store, must-revalidate"
+          
+          # Force update service worker to clear any cached URLs
+          if [[ -f "build/service-worker.js" ]]; then
+            echo "🔄 Forcing service worker update..."
+            aws s3 cp build/service-worker.js s3://$S3_BUCKET/service-worker.js --cache-control "no-cache, no-store, must-revalidate"
+          fi
 
       - name: Invalidate CloudFront cache
         run: |
