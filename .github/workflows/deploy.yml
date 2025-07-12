@@ -123,8 +123,8 @@ jobs:
               echo "❌ No dev URLs found in built files!"
               exit 1
             fi
-            # Check that production URLs are NOT present
-            if grep -r "api.tawsilet.com\|tawsilet.com" build/; then
+            # Check that production URLs are NOT present (excluding email addresses)
+            if grep -r "api.tawsilet.com\|https://tawsilet.com\|http://tawsilet.com" build/; then
               echo "❌ Found production URLs in dev build!"
               exit 1
             else
@@ -132,7 +132,7 @@ jobs:
             fi
           elif [[ "${GITHUB_REF##*/}" == "main" ]]; then
             echo "Checking for production URLs in built files..."
-            if grep -r "api.tawsilet.com\|tawsilet.com" build/; then
+            if grep -r "api.tawsilet.com\|https://tawsilet.com\|http://tawsilet.com" build/; then
               echo "✅ Found production URLs in built files"
             else
               echo "❌ No production URLs found in built files!"
