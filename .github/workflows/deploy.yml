@@ -41,15 +41,48 @@ jobs:
 
       - name: Prepare environment file based on branch
         run: |
+          echo "Current branch: ${GITHUB_REF##*/}"
+          echo "Available environment files:"
+          ls -la .env*
+          
           if [[ "${GITHUB_REF##*/}" == "main" ]]; then
-            cp .env.production .env
-            echo "Using .env.production for main branch"
+            if [[ -f ".env.production" ]]; then
+              cp .env.production .env
+              echo "✅ Using .env.production for main branch"
+            else
+              echo "❌ .env.production file not found!"
+              exit 1
+            fi
           elif [[ "${GITHUB_REF##*/}" == "dev" ]]; then
-            cp .env.development .env
-            echo "Using .env.development for dev branch"
+            if [[ -f ".env.development" ]]; then
+              cp .env.development .env
+              echo "✅ Using .env.development for dev branch"
+            else
+              echo "❌ .env.development file not found!"
+              exit 1
+            fi
           else
-            cp .env .env
-            echo "Using default .env file"
+            if [[ -f ".env" ]]; then
+              echo "✅ Using existing .env file for branch: ${GITHUB_REF##*/}"
+            else
+              echo "❌ No .env file found for branch: ${GITHUB_REF##*/}"
+              exit 1
+            fi
+          fi
+          
+          echo "Final .env file contents (first 5 lines):"
+          head -5 .env
+
+      - name: Verify environment variables
+        run: |
+          echo "🔍 Verifying environment variables..."
+          if [[ -f ".env" ]]; then
+            echo "✅ .env file exists"
+            echo "📋 Environment variables loaded:"
+            grep -E "^REACT_APP_" .env | head -10
+          else
+            echo "❌ .env file does not exist!"
+            exit 1
           fi
 
       - name: Install dependencies
