@@ -114,11 +114,11 @@ const Navbar = ({ navigationValues, currentUser }) => {
               tabIndex={1}
               onBlur={() => setIsOpen(false)}
               isOpen={isOpen}
-              directionglobe={true}
+              directionglobe={i18n.language === "ar-AR"}
             >
-              <DropdownItem onClick={() => changeLanguage("ar-AR")}> <FlagIcon src={arFlag} alt="ar" /> العربية </DropdownItem>
-              <DropdownItem onClick={() => changeLanguage("fr-FR")}> <FlagIcon src={frFlag} alt="fr" /> Français </DropdownItem>
-              <DropdownItem onClick={() => changeLanguage("en-EN")}> <FlagIcon src={enFlag} alt="en" /> Anglais </DropdownItem>
+              <DropdownItem directionglobe={i18n.language === "ar-AR"} onClick={() => changeLanguage("ar-AR")}> <FlagIcon src={arFlag} alt="ar" /> العربية </DropdownItem>
+              <DropdownItem directionglobe={i18n.language === "ar-AR"} onClick={() => changeLanguage("fr-FR")}> <FlagIcon src={frFlag} alt="fr" /> Français </DropdownItem>
+              <DropdownItem directionglobe={i18n.language === "ar-AR"} onClick={() => changeLanguage("en-EN")}> <FlagIcon src={enFlag} alt="en" /> Anglais </DropdownItem>
             </DropdownMenu>
           ) : null}
         </DropdownContainer>
@@ -319,6 +319,7 @@ const DropdownContainer = styled.div`
   position: relative;
   display: inline-block;
   color: #fff;
+ 
 `;
 const DropdownButton = styled.button`
   background-color: transparent;
@@ -332,8 +333,7 @@ const DropdownButton = styled.button`
 const DropdownMenu = styled.ul`
   position: absolute;
   top: 100%;
-  width: auto !important;
-  right: 0;
+  left: 0;
   list-style: none;
   background-color: #18365a;
   padding: 0;
@@ -341,6 +341,10 @@ const DropdownMenu = styled.ul`
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   display: ${({ isOpen }) => (isOpen ? "block" : "none")};
   gap: 0px;
+  min-width: 120px;
+  z-index: 1001;
+  transform-origin: top left;
+  transform: ${props => props.directionglobe ? 'scaleX(1)' : 'scaleX(-1)'};
 `;
 const DropdownItem = styled.li`
   padding: 8px;
@@ -348,6 +352,7 @@ const DropdownItem = styled.li`
   display: flex;
   align-items: center;
   gap: 0px;
+  transform: ${props => props.directionglobe ? 'scaleX(1)' : 'scaleX(-1)'};
   &:hover {
     color: #d8b56c;
   }

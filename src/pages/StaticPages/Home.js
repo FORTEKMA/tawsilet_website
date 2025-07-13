@@ -8,12 +8,9 @@ const ContactezNous = lazy(() => import("../../components/Section/ContactezNous"
 const SuiviLivraision = lazy(() => import("../../components/Section/SuiviLivraision"));
 const ExelentService = lazy(() => import("../../components/Section/ExelentService"));
 const Telecharger = lazy(() => import("../../components/Items/Telecharger"));
-const TrrustUs = lazy(() => import("../../components/Section/TrrustUs"));
-const JoinSheelni = lazy(() => import("../../components/Section/JoinSheelni"));
-import MapHome from "../../components/Section/MapHome";
+ import MapHome from "../../components/Section/MapHome";
 const Footer = lazy(() => import("../../components/Section/Footer"));
-const GetEstimate = lazy(() => import("../EstimationFormStepper"));
-
+ 
 const Home = () => {
   const MapRef = useRef(null);
 
@@ -27,7 +24,7 @@ const Home = () => {
         <SuiviLivraision />
         <ExelentService />
         <Telecharger />
-        {/* <TrrustUs /> */}
+      
         <ContactezNous />
       </Container_Home>
       <Footer />

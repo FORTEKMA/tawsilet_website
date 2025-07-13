@@ -2,6 +2,7 @@ import styled from "styled-components";
 import React, { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { useNavigate } from "react-router-dom";
  
 import { useTranslation } from "react-i18next";
 import googleIcon from "../../assets/images/google.png";
@@ -9,7 +10,36 @@ import appleIcon from "../../assets/images/apple.png";
 import logoapp from "../../assets/images/logoapp.png";
 import driverLogo from "../../assets/images/driverLogo.png";
 
+// Device detection utility
+const detectDevice = () => {
+  const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+  
+  if (/android/i.test(userAgent)) {
+    return 'android';
+  }
+  if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+    return 'ios';
+  }
+  return 'desktop';
+};
+
+// App store URLs
+const APP_STORE_URLS = {
+  user: {
+    android: "https://play.google.com/store/apps/details?id=com.fortekma.tawsilet",
+    ios: "https://apps.apple.com/us/app/tawsilet/id6745802311",
+    desktop: "https://play.google.com/store/apps/details?id=com.fortekma.tawsilet"
+  },
+  driver: {
+    android: "https://play.google.com/store/apps/details?id=com.fortekma.tawsiletDriver&pli=1",
+    ios: "https://apps.apple.com/us/app/tawsilet-driver/id6745764731",
+    desktop: "https://play.google.com/store/apps/details?id=com.fortekma.tawsiletDriver&pli=1"
+  }
+};
+
 const Telecharger = () => {
+  const navigate = useNavigate();
+  
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -20,6 +50,16 @@ const Telecharger = () => {
 
   const { t, i18n } = useTranslation();
 
+  const handleDownloadClick = (appType) => {
+    const device = detectDevice();
+    const url = APP_STORE_URLS[appType][device];
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
+  const handleJoinNetwork = () => {
+    navigate('/Sidentifierpartenaire');
+  };
+
   return (
     <Container>
       {/* User App Section */}
@@ -27,7 +67,7 @@ const Telecharger = () => {
         <BackgroundGradient />
         <Content data-aos="fade-up" data-aos-delay={200}>
           <ContentService dir="auto">
-            <Badge>{t('DOWNLOAD.USER_LABEL')}</Badge>
+            {/* <Badge>{t('DOWNLOAD.USER_LABEL')}</Badge> */}
             <MainHeading>{t('DOWNLOAD.USER_HEADING')}</MainHeading>
             <Description>
               {t('DOWNLOAD.USER_DESCRIPTION')}
@@ -56,7 +96,10 @@ const Telecharger = () => {
           </ContentService>
           <ImageContainer data-aos="fade-left" data-aos-delay={300}>
             <AppImage src={logoapp} alt={t('DOWNLOAD.USER_APP_ALT')} />
-            <FloatingCard>
+            <FloatingCard 
+              onClick={() => handleDownloadClick('user')}
+              clickable
+            >
               <CardIcon>📱</CardIcon>
               <CardText>{t('DOWNLOAD.DOWNLOAD_NOW')}</CardText>
             </FloatingCard>
@@ -70,13 +113,16 @@ const Telecharger = () => {
         <Content data-aos="fade-up" data-aos-delay={200}>
           <ImageContainer data-aos="fade-right" data-aos-delay={300}>
             <AppImage src={driverLogo} alt={t('DOWNLOAD.DRIVER_APP_ALT')} />
-            <FloatingCard>
+            <FloatingCard 
+              onClick={handleJoinNetwork}
+              clickable
+            >
               <CardIcon>🚗</CardIcon>
               <CardText>{t('DOWNLOAD.JOIN_NETWORK')}</CardText>
             </FloatingCard>
           </ImageContainer>
           <ContentService dir="auto">
-            <Badge>{t('DOWNLOAD.DRIVER_LABEL')}</Badge>
+            {/* <Badge>{t('DOWNLOAD.DRIVER_LABEL')}</Badge> */}
             <MainHeading>{t('DOWNLOAD.DRIVER_HEADING')}</MainHeading>
             <Description>
               {t('DOWNLOAD.DRIVER_DESCRIPTION')}
@@ -352,6 +398,19 @@ const FloatingCard = styled.div`
   align-items: center;
   gap: 0.5rem;
   animation: float 3s ease-in-out infinite;
+  cursor: ${props => props.clickable ? 'pointer' : 'default'};
+  transition: all 0.3s ease;
+  
+  ${props => props.clickable && `
+    &:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 12px 35px rgba(255, 209, 102, 0.6);
+    }
+    
+    &:active {
+      transform: translateY(-2px) scale(1.02);
+    }
+  `}
   
   @media (max-width: 768px) {
     bottom: -15px;
