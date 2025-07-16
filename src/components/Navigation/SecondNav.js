@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 // import Lg from "../../assets/icons/logo.png";
 import styled from "styled-components";
@@ -7,6 +8,7 @@ import * as style from "../../constants/StyleSheets";
 // import Cr from "../../assets/icons/Component 43.png";
 
 export const SecondNav = ({ setShowMenu, navigationValues }) => {
+  const { t } = useTranslation();
   return (
     <Section>
    
@@ -17,6 +19,13 @@ export const SecondNav = ({ setShowMenu, navigationValues }) => {
             <P>{item.label}</P>
           </Link>
         ))}
+        {/* Connexion and S'inscrire buttons */}
+        <Button as={Link} to="/SidentifierClient" onClick={() => setShowMenu(false)} style={{ margin: 0 }}>
+          {t("NAVBAR.Connexion")}
+        </Button>
+        <Button as={Link} to="/SinsecrireClient" onClick={() => setShowMenu(false)} style={{ margin: 0, padding: "8px 16px" }} hasborder="true">
+          {t("NAVBAR.Sinscrire")}
+        </Button>
  
       </DIV>
     </Section>
