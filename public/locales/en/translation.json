@@ -933,27 +933,27 @@
       "description": "Name of the Officer: Alaeddine Rezgani, Email of the Officer: alaeddine.rezgani@fortekma.com."
     },
     "dataPurposes": {
-      "title": "3. Purposes of Data Processing",
+      "title": "2. Purposes of Data Processing",
       "description": "Personal data is collected for the purposes of: Managing orders and contracts, Personalizing services and communications, Improving user experience, Sending marketing and promotional information, Conducting statistical studies."
     },
     "legalBasis": {
-      "title": "4. Legal Basis for Processing",
+      "title": "3. Legal Basis for Processing",
       "description": "Processing is based on: The execution of a contract (e.g., when placing an order), The user's consent for marketing communications, Compliance with legal obligations (e.g., invoicing)."
     },
     "rights": {
-      "title": "5. Rights of Data Subjects",
+      "title": "4. Rights of Data Subjects",
       "description": "In accordance with Tunisian Law No. 2004-63 on the protection of personal data, data subjects have the right to: Access their personal data, Rectify inaccurate data, Delete their data under certain circumstances, Restrict the processing of their data, Object to processing for legitimate reasons."
     },
     "dataRetention": {
-      "title": "6. Data Retention Period",
+      "title": "5. Data Retention Period",
       "description": "Personal data is retained for the duration necessary to fulfill the purposes for which it was collected. This period may vary depending on the purpose of the processing."
     },
     "securityMeasures": {
-      "title": "7. Security Measures",
+      "title": "6. Security Measures",
       "description": "FORTEKMA implements appropriate technical and organizational security measures to protect your personal data against unauthorized access, disclosure, alteration, and destruction."
     },
     "dpd": {
-      "title": "8. Data Protection Officer (DPO)",
+      "title": "7. Data Protection Officer (DPO)",
       "mrc": "For any questions regarding our legal notice, please contact us at: contact@fortekma.com.",
       "description": "FORTEKMA has appointed a Data Protection Officer (DPO). You can contact them at the following email address: alaeddine.rezgani@fortekma.com."
     }

@@ -18,10 +18,10 @@ const Conditions = () => {
             {t('Conditions.identity.description')}
           </Description>
 
-          <Title_Description>{t('Conditions.dataProcessing.title')}</Title_Description>
-          <Description>
-            {t('Conditions.dataProcessing.description')}
-          </Description>
+            {/* <Title_Description>{t('Conditions.dataProcessing.title')}</Title_Description>
+            <Description>
+              {t('Conditions.dataProcessing.description')}
+            </Description> */}
 
           <Title_Description>{t('Conditions.dataPurposes.title')}</Title_Description>
           <Description>

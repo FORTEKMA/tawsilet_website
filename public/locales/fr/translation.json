@@ -888,27 +888,27 @@
       "description": "Nom du responsable : Alaeddine Rezgani, Adresse e-mail du responsable : alaeddine.rezgani@tawsilet.com."
     },
     "dataPurposes": {
-      "title": "3. Finalités du Traitement des Données",
+      "title": "2. Finalités du Traitement des Données",
       "description": "Les données personnelles sont collectées aux fins de : Gestion des courses et des contrats, Personnalisation des services et des communications, Amélioration de l'expérience utilisateur, Envoi d'informations marketing et promotionnelles, Réalisation d'études statistiques."
     },
     "legalBasis": {
-      "title": "4. Base Juridique du Traitement",
+      "title": "3. Base Juridique du Traitement",
       "description": "Le traitement est fondé sur : L'exécution d'un contrat (par exemple, lors d'une course), Le consentement de l'utilisateur pour les communications marketing, Le respect d'obligations légales (par exemple, facturation)."
     },
     "rights": {
-      "title": "5. Droits des Personnes Concernées",
+      "title": "4. Droits des Personnes Concernées",
       "description": "Conformément à la loi tunisienne n°2004-63 relative à la protection des données personnelles, les personnes concernées ont le droit : D'accéder à leurs données personnelles, De les rectifier en cas d'inexactitude, De les supprimer dans certaines circonstances, De limiter leur traitement, De s'opposer au traitement pour des motifs légitimes."
     },
     "dataRetention": {
-      "title": "6. Durée de Conservation des Données",
+      "title": "5. Durée de Conservation des Données",
       "description": "Les données personnelles sont conservées pendant la durée nécessaire aux finalités pour lesquelles elles ont été collectées. Cette durée peut varier en fonction de la finalité du traitement."
     },
     "securityMeasures": {
-      "title": "7. Mesures de Sécurité",
+      "title": "6. Mesures de Sécurité",
       "description": "Tawsilet met en place des mesures de sécurité techniques et organisationnelles appropriées pour protéger vos données personnelles contre tout accès non autorisé, toute divulgation, toute altération, et toute destruction."
     },
     "dpd": {
-      "title": "8. Délégué à la Protection des Données (DPD)",
+      "title": "7. Délégué à la Protection des Données (DPD)",
       "mrc": "Pour toute question relative à nos mentions légales, veuillez nous contacter à l'adresse suivante : contact@tawsilet.com.",
       "description": "Tawsilet a désigné un Délégué à la Protection des Données (DPD). Vous pouvez le contacter à l'adresse e-mail suivante : alaeddine.rezgani@tawsilet.com."
     }
