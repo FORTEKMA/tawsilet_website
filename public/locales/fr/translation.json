@@ -883,10 +883,7 @@
       "title": "1. Identité de l'entreprise",
       "description": "Raison sociale : Tawsilet\nForme juridique : Société à Responsabilité Limitée (SARL)\nCapital social : 10 000 TND\nAdresse postale du siège social : Immeuble YASMINE, avenue de la Bourse, Berge du Lac 2 1053, Tunisie\nTéléphone : +216 36848020\nE-mail : contact@tawsilet.com\nImmatriculation au Registre de Commerce : 1906853H\nNuméro d'identification fiscale : 1906853H\nCode APE : 74.13"
     },
-    "dataProcessing": {
-      "title": "2. Responsable du Traitement des Données",
-      "description": "Nom du responsable : Alaeddine Rezgani, Adresse e-mail du responsable : alaeddine.rezgani@tawsilet.com."
-    },
+   
     "dataPurposes": {
       "title": "2. Finalités du Traitement des Données",
       "description": "Les données personnelles sont collectées aux fins de : Gestion des courses et des contrats, Personnalisation des services et des communications, Amélioration de l'expérience utilisateur, Envoi d'informations marketing et promotionnelles, Réalisation d'études statistiques."
@@ -906,12 +903,7 @@
     "securityMeasures": {
       "title": "6. Mesures de Sécurité",
       "description": "Tawsilet met en place des mesures de sécurité techniques et organisationnelles appropriées pour protéger vos données personnelles contre tout accès non autorisé, toute divulgation, toute altération, et toute destruction."
-    },
-    "dpd": {
-      "title": "7. Délégué à la Protection des Données (DPD)",
-      "mrc": "Pour toute question relative à nos mentions légales, veuillez nous contacter à l'adresse suivante : contact@tawsilet.com.",
-      "description": "Tawsilet a désigné un Délégué à la Protection des Données (DPD). Vous pouvez le contacter à l'adresse e-mail suivante : alaeddine.rezgani@tawsilet.com."
-    }
+    } 
   },
   "Maintenance": {
     "title": "Site en Maintenance",
