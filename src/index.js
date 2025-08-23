@@ -17,7 +17,7 @@ root.render(
   <Provider store={store}>
     <BrowserRouter>
       <LoadScript
-        googleMapsApiKey={"AIzaSyA8oEc5WKQqAXtSKpSH4igelH5wlPDaowE"}
+        googleMapsApiKey={"AIzaSyA0JbWwMvbJ7IYcL4_cagsFQLyLqXHA7xs"}
         libraries={["places"]}
       >
         <Suspense fallbackLng="loading">

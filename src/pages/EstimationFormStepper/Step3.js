@@ -26,7 +26,7 @@ import { faClock, faLocationDot, faCalendar, faXmark } from '@fortawesome/free-s
 import DateTimeInput from "./items/DateTimeInput";
 
 export async function calculateDistanceAndTime(startCoords, endCoords) {
-  const apiKey = 'AIzaSyA8oEc5WKQqAXtSKpSH4igelH5wlPDaowE';
+  const apiKey = 'AIzaSyA0JbWwMvbJ7IYcL4_cagsFQLyLqXHA7xs';
   const url = `https://maps.googleapis.com/maps/api/directions/json?origin=${startCoords.latitude},${startCoords.longitude}&destination=${endCoords.latitude},${endCoords.longitude}&key=${apiKey}&language=fr`;
   try {
     const response = await axios.get(url);

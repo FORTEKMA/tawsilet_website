@@ -15,7 +15,7 @@ The system uses environment-specific files and automatically copies the appropri
 ### `.env.development`
 ```
 GENERATE_SOURCEMAP=false
-REACT_APP_GOOGLE_MAPS_API_KEY=AIzaSyA8oEc5WKQqAXtSKpSH4igelH5wlPDaowE
+REACT_APP_GOOGLE_MAPS_API_KEY=AIzaSyA0JbWwMvbJ7IYcL4_cagsFQLyLqXHA7xs
 REACT_APP_BASE_URL=https://dev-api.tawsilet.com/api
 REACT_APP_FRONT_URL=http://dev.tawsilet.com/
 REACT_APP_DOMAIN_URL=https://dev-api.tawsilet.com
@@ -26,7 +26,7 @@ REACT_APP_PASSWORD=Sheelni12345678910
 ### `.env.production`
 ```
 GENERATE_SOURCEMAP=false
-REACT_APP_GOOGLE_MAPS_API_KEY=AIzaSyA8oEc5WKQqAXtSKpSH4igelH5wlPDaowE
+REACT_APP_GOOGLE_MAPS_API_KEY=AIzaSyA0JbWwMvbJ7IYcL4_cagsFQLyLqXHA7xs
 REACT_APP_BASE_URL=https://api.tawsilet.com/api
 REACT_APP_FRONT_URL=http://tawsilet.com/
 REACT_APP_DOMAIN_URL=https://api.tawsilet.com

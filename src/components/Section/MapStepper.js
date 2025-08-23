@@ -54,7 +54,7 @@ const MapHome = (props) => {
   };
 
   // const { isLoaded } = useJsApiLoader({
-  //   googleMapsApiKey: "AIzaSyA8oEc5WKQqAXtSKpSH4igelH5wlPDaowE", //  process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+  //   googleMapsApiKey: "AIzaSyA0JbWwMvbJ7IYcL4_cagsFQLyLqXHA7xs", //  process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
   //   libraries: ["places"],
   // });
 
@@ -69,7 +69,7 @@ const MapHome = (props) => {
   const destiantionRef = useRef();
 
   async function calculateRouteAgain(A, B) {
-    // Geocode.setApiKey("AIzaSyA8oEc5WKQqAXtSKpSH4igelH5wlPDaowE"); //(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
+    // Geocode.setApiKey("AIzaSyA0JbWwMvbJ7IYcL4_cagsFQLyLqXHA7xs"); //(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
 
     let originPositionAddress = await Geocode.fromLatLng(A.lat, A.lng);
 
@@ -100,7 +100,7 @@ const MapHome = (props) => {
     }
     // eslint-disable-next-line no-undef
     const directionsService = new google.maps.DirectionsService();
-    // Geocode.setApiKey("AIzaSyA8oEc5WKQqAXtSKpSH4igelH5wlPDaowE"); // (process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
+    // Geocode.setApiKey("AIzaSyA0JbWwMvbJ7IYcL4_cagsFQLyLqXHA7xs"); // (process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
     // let originPositionAddress = originPosition
     //   ? Geocode.fromLatLng(originPosition.lat, originPosition.lng)
     //   : null;
@@ -165,8 +165,8 @@ const MapHome = (props) => {
     <PlienMap ref={props.MapRef}>
       {/* <GoogleMapReact 
         
-        apiKey="AIzaSyA8oEc5WKQqAXtSKpSH4igelH5wlPDaowE"
-        // bootstrapURLKeys={{ key: "AIzaSyA8oEc5WKQqAXtSKpSH4igelH5wlPDaowE" }}
+        apiKey="AIzaSyA0JbWwMvbJ7IYcL4_cagsFQLyLqXHA7xs"
+        // bootstrapURLKeys={{ key: "AIzaSyA0JbWwMvbJ7IYcL4_cagsFQLyLqXHA7xs" }}
         defaultCenter={defaultProps.center}
         defaultZoom={defaultProps.zoom}
         yesIWantToUseGoogleMapApiInternals
@@ -174,7 +174,7 @@ const MapHome = (props) => {
       >
         <AnyReactComponent lat={59.955413} lng={30.337844} text="My Marker" />
         <Autocomplete
-          apiKey={"AIzaSyA8oEc5WKQqAXtSKpSH4igelH5wlPDaowE"}
+          apiKey={"AIzaSyA0JbWwMvbJ7IYcL4_cagsFQLyLqXHA7xs"}
           onPlaceSelected={(place) => {
             console.log(place);
           }}

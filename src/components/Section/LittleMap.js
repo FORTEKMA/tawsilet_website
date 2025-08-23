@@ -9,8 +9,8 @@ const LittleMap = (props) => {
   return (
     <PlienMap>
       <GoogleMapReact
-        apiKey="AIzaSyA8oEc5WKQqAXtSKpSH4igelH5wlPDaowE"
-        bootstrapURLKeys={{ key: "AIzaSyA8oEc5WKQqAXtSKpSH4igelH5wlPDaowE" }}
+        apiKey="AIzaSyA0JbWwMvbJ7IYcL4_cagsFQLyLqXHA7xs"
+        bootstrapURLKeys={{ key: "AIzaSyA0JbWwMvbJ7IYcL4_cagsFQLyLqXHA7xs" }}
         defaultCenter={defaultProps.center}
         defaultZoom={defaultProps.zoom}
         yesIWantToUseGoogleMapApiInternals

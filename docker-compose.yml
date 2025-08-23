@@ -9,7 +9,7 @@ services:
       dockerfile: Dockerfile
       args:
         GENERATE_SOURCEMAP: false;
-        REACT_APP_GOOGLE_MAPS_API_KEY: AIzaSyA8oEc5WKQqAXtSKpSH4igelH5wlPDaowE
+        REACT_APP_GOOGLE_MAPS_API_KEY: AIzaSyA0JbWwMvbJ7IYcL4_cagsFQLyLqXHA7xs
         REACT_APP_BASE_URL: https://api.sheelni.dev/api
         REACT_APP_FRONT_URL: https://sheelni.dev
         REACT_APP_DOMAIN_URL: https://api.sheelni.dev
