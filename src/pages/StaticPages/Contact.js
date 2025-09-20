@@ -1,58 +1,40 @@
-import styled from "styled-components";
-import * as style from "../../constants/StyleSheets";
-import contact from "../../assets/images/contact-cover.png";
-import phone from "../../assets/icons/phone.svg";
-import message from "../../assets/icons/Line.svg";
+import styled, { keyframes } from "styled-components";
 import Inpuut from "../../components/Items/Inpuut";
 import Footer from "../../components/Section/Footer";
-import {lazy} from "react"
+import { lazy } from "react";
 import { useTranslation } from "react-i18next";
-import WhiteJoin from "../../components/Section/WhiteJoin";
+import { useNavigate } from "react-router";
+import { Button } from "../../components/Items/Button";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 const TrrustUs = lazy(() => import("../../components/Section/TrrustUs"));
 
-import { useNavigate } from "react-router";
 const Contact = () => {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   return (
     <>
-      <Sect dir="auto">
-        <img
-           
-          sizes="(max-width: 400px) 400px, (max-width: 600px) 600px, (max-width: 800px) 800px, (max-width: 1000px) 1000px, (min-width: 1001px) 1200px"
-          src={contact}
-          alt="contact sheelni"
-          loading="lazy"
-        />
-        <ContactHero style={{ position: "absolute" }}>
-         
-          <SideTitle>{t("Sheelni-CONTACT.title2")}</SideTitle>
-          <LastTitle>{t("Sheelni-CONTACT.desc")}</LastTitle>{" "}
-          <BUT onClick={() => navigate("/")}>{t("Sheelni-CONTACT.btn-obten")}</BUT>
-        </ContactHero>{" "}
-      </Sect>
-      <ContactForm dir="auto">
+      <Hero>
+        <HeroInner data-aos="fade-up">
+          <HeroTitle>{t("Sheelni-CONTACT.title2")}</HeroTitle>
+          <HeroDesc>{t("Sheelni-CONTACT.desc")}</HeroDesc>
+          <Button hasBackground onClick={() => navigate("/")}>{t("Sheelni-CONTACT.btn-obten")}</Button>
+        </HeroInner>
+      </Hero>
+
+      <ContactForm dir="auto" data-aos="fade-up">
         <section>
           <DIV style={{ display: "flex", gap: "10px", marginBottom: "10px" }}>
-          
             <Titlle> {t("Sheelni-CONTACT.ContactForm.title2")} </Titlle>
           </DIV>
           <TI>{t("Sheelni-CONTACT.ContactForm.title1")}</TI>
           <PA>{t("Sheelni-CONTACT.ContactForm.desc")}</PA>
-          <IM src={message} alt="message"></IM>
-          <div
-            style={{
-              marginTop: "20px",
-              display: "flex",
-              flexDirection: "column",
-              gap: "5px",
-            }}
-          >
+          <div style={{ marginTop: 20, display: "flex", flexDirection: "column", gap: 5 }}>
             <NU>{t("Sheelni-CONTACT.ContactForm.textAresse")}</NU>
             <NU>{t("Sheelni-CONTACT.ContactForm.textAress")}</NU>
-            <div style={{ display: "flex", gap: "20px" }}></div>
           </div>
-          <DIVE dir="auto" isRtl={i18n.language.startsWith("ar")}>            
+          <DIVE dir="auto" isRtl={i18n.language.startsWith("ar")}>
             <Te>{t("Sheelni-CONTACT.ContactForm.email")}</Te>
             <Te>{t("Sheelni-CONTACT.ContactForm.Adresse")}</Te>
           </DIVE>
@@ -62,32 +44,67 @@ const Contact = () => {
             <TIR>{t("Sheelni-CONTACT.ContactForm.btnSend")} </TIR>
           </SEND>
           <Inpuut />
-          <div
-            style={{
-              marginTop: "50px",
-              marginLeft: "5px",
-              marginBottom: "90px",
-            }}
-          >
-            <BUTT>{t("Sheelni-CONTACT.ContactForm.placeholder")}</BUTT>
+          <div style={{ marginTop: 50, marginLeft: 5, marginBottom: 90 }}>
+            <Button hasBackground>{t("Sheelni-CONTACT.ContactForm.placeholder")}</Button>
           </div>
         </Section>
       </ContactForm>
-      <Sec></Sec>
-    
       <Footer />
     </>
   );
 };
 
 export default Contact;
+
+const fadeUp = keyframes`
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+`;
+
+const Hero = styled.section`
+  width: 100%;
+  padding: 36px 16px 36px;
+  background: radial-gradient(1000px 520px at 85% -10%, #EEF2F7 0%, rgba(238,242,247,0) 60%),
+              linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
+  border-bottom: 1px solid #f3f3f3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const HeroInner = styled.div`
+  max-width: 1140px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  animation: ${fadeUp} 420ms ease both;
+  text-align: center;
+`;
+
+const HeroTitle = styled.h1`
+  font-size: 44px;
+  font-weight: 900;
+  color: #111;
+  letter-spacing: -0.02em;
+  @media (max-width: 744px) { font-size: 32px; }
+`;
+
+const HeroDesc = styled.p`
+  color: #555;
+  font-size: 16px;
+  max-width: 820px;
+  margin: 0 auto 6px;
+`;
+
 export const Section = styled.section`
   padding-left: 30px;
   padding-right: 30px;
-  border: 2px solid #DCB33E;
+  border: 1px solid #ececec;
   border-radius: 10px;
   width: 430px;
   height: 500px;
+  background: #fff;
   @media (max-width: 1050px) {
     width: 330px;
     height: auto;
@@ -95,61 +112,56 @@ export const Section = styled.section`
     height: 450px;
   }
 `;
-const Sect = styled.div`
-  position: relative;
-  width: 100%;
-  img {
-    width: 100%;
-    height: calc(100vh - 80px);
-    object-fit: cover;
-  }
-  @media (max-width: 744px) {
-    img {
-      object-fit: cover;
-      object-position: right;
-      width: 150%;
-    }
+
+export const Titlle = styled.h1`
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #111;
+`;
+
+export const TI = styled.h2`
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 155.56%;
+  color: #111;
+  @media (max-width: 760px) {
+    font-size: 24px;
   }
 `;
 
-export const BUT = styled.button`
-  margin-top: 20px;
-  width: 200px;
-  height: 45px;
-  border-radius: 7px;
-  border: 1px solid #18365a;
-  color: white;
-  font-size: 15px;
-  text-align: center;
-  cursor: pointer;
-  background-color: #d8b56c;
-  box-shadow: 2px 2px 0px 0px #18365a;
-  @media (max-width: 1050px) {
-    width: 200px;
-    font-weight: 900;
-    height: 55px;
-  }
+export const PA = styled.h1`
+  margin-top: 10px;
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 30px;
+  letter-spacing: 0.01em;
+  color:#333;
 `;
 
-export const BUTT = styled.button`
-  margin-top: 50px;
-  width: 370px;
-  height: 45px;
-  border-radius: 7px;
-  border: 1px solid #18365a;
-  color: white;
-  font-size: 15px;
-  text-align: center;
-  cursor: pointer;
-  background-color: #d8b56c;
-  box-shadow: 2px 2px 0px 0px #18365a;
-  @media (max-width: 1050px) {
-    width: 260px;
-    font-weight: 900;
-    height: 55px;
-    margin-top: 20px;
-  }
+export const Te = styled.p`
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 200;
+  font-size: 16px;
+  line-height: 30px;
+  letter-spacing: 0.01em;
+  color: #111;
 `;
+
+export const NU = styled.p`
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 155.56%;
+  color: #111;
+`;
+
 export const SEND = styled.div`
   margin-bottom: 35px;
   display: flex;
@@ -161,14 +173,9 @@ export const SEND = styled.div`
     align-self: flex-start;
   }
 `;
-export const DIV = styled.div`
-  @media (max-width: 760px) {
-    display: flex;
-    justify-content: center;
-    align-self: center;
-    text-align: center;
-  }
-`;
+
+export const DIV = styled.div``;
+
 export const DIVE = styled.div`
   margin-top: 20px;
   direction: ltr;
@@ -176,68 +183,9 @@ export const DIVE = styled.div`
   display: flex;
   flex-direction: column;
   gap: 5px;
-  @media (max-width: 760px) {
-    margin-top: 0px;
-  }
-`;
-const ContactHero = styled.div`
-  top: 0;
-  height: calc(100vh - 80px);
-  width: 100%;
-  background-color: rgba(24, 54, 90, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 20px;
 `;
 
-const Sec = styled.div``;
-export const Title = styled.h1`
-  font-family: "Inter", sans-serif;
-  font-size: 14px;
-  font-weight: 300;
-  color: white;
-`;
-export const Titlle = styled.h1`
-  font-family: "Inter", sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  color: #0c0c0c;
-`;
-export const SideTitle = styled.h1`
-  font-family: "Inter", sans-serif;
-  font-weight: 600;
-  font-size: 50px;
-  color: white;
-  @media (max-width: 760px) {
-    font-size: 28px;
-  }
-`;
-const Div = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
-  @media (max-width: 744px) {
-    gap: 2rem;
-  }
-`;
-export const LastTitle = styled.h2`
-  font-family: "Inter", sans-serif;
-  font-weight: 300;
-  font-size: 16px;
-  color: white;
-  width: 50%;
-  text-align: center;
-  line-height: 30px;
-  @media (max-width: 760px) {
-    font-size: 14px;
-    width: 90%;
-    line-height: 30px;
-  }
-`;
-
-const ContactForm = styled.section`
+export const ContactForm = styled.section`
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
@@ -246,140 +194,24 @@ const ContactForm = styled.section`
   margin-top: 20px;
   padding: 30px 30px;
   margin-bottom: 150px;
-  section:first-child {
-    width: 45%;
-    @media (max-width: 760px) {
-      width: 100%;
-    }
-  }
+  background-color: #fff;
+  border-radius: 15px;
+  section:first-child { width: 45%; }
   @media (max-width: 760px) {
     padding: 30px 20px;
     width: 100%;
     margin-bottom: 0px;
     gap: 50px;
+    section:first-child { width: 100%; }
   }
-        background-color: #fff;
-    border-radius: 15px;
 `;
 
-export const TI = styled.h2`
-  font-family: "Inter", sans-serif;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 35px;
-  line-height: 155.56%;
-  color: #0c0c0c;
-  @media (max-width: 760px) {
-    font-size: 28px;
-  }
-`;
-export const PA = styled.h1`
-  margin-top: 10px;
-  font-family: "Inter", sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 30px;
-  letter-spacing: 0.01em;
-  color:#0c0c0c;
-  @media (max-width: 760px) {
-  }
-`;
-export const Te = styled.p`
-  font-family: "Inter", sans-serif;
-  font-style: normal;
-  font-weight: 200;
-  font-size: 16px;
-  line-height: 30px;
-  letter-spacing: 0.01em;
-  color: #0c0c0c;
-`;
-export const NU = styled.p`
-  font-family: "Inter", sans-serif;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 155.56%;
-  color: #0c0c0c;
-`;
-export const IM = styled.img`
-  width: 200px;
-  height: 15px;
-  margin-top: 20px;
-`;
-export const IMa = styled.img`
-  width: 18px;
-  height: 20px;
-`;
-
-export const Divder = styled.hr`
-  width: 420px;
-  height: 0px;
-`;
 export const TIR = styled.h1`
   font-family: "Inter", sans-serif;
   font-style: normal;
   font-weight: 600;
-  font-size: 28px;
+  font-size: 24px;
   line-height: 155.56%;
   margin-bottom: 10px;
-  color: #0c0c0c;
-  @media (max-width: 760px) {
-    text-align: start;
-    font-size: 20px;
-  }
-`;
-export const Cor = styled.p`
-  font-family: "Inter", sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 80px;
-  letter-spacing: 0.03em;
-  color: ${(props) => props.theme.SECONDARY_COLOR};
-`;
-export const IO = styled.img`
-  margin-top: 44px;
-  margin-left: -31px;
-`;
-const Text = styled.div`
-  font-family: ${style.font.FONT_FAMILY};
-  color: #020111;
-  font-size: 14px;
-  margin-left: -72px;
-`;
-
-export const Button404 = styled.button`
-  font-family: ${style.font.FONT_FAMILY};
-  font-weight: 700;
-  font-size: 16px;
-  color: white;
-  background-color: #d8b56c;
-  border: none;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 12px 24px;
-  border-radius: 12px;
-  width: 360px;
-  height: 55.14px;
-  margin-top: 40px;
-  .icon-arrow {
-    width: 20px;
-    height: 20px;
-  }
-`;
-
-export const Fram = styled.img``;
-export const YU = styled.h1`
-  padding-top: 30px;
-  font-family: "Inter", sans-serif;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  color: #d8b56c;
-`;
-export const JU = styled.img`
-  width: 20px;
+  color: #111;
 `;
