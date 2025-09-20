@@ -29,7 +29,7 @@ export const Footer = () => {
           <SocialRow>
             <a href="https://www.facebook.com/people/Tawsilet/61576659811297/?sk=about_contact_and_basic_info" target="_blank" rel="noopener noreferrer">
               <SocialIcon>
-                <FaFacebookF color="#111" size={16} />
+                <FaFacebookF color="#1877F2" size={16} />
               </SocialIcon>
             </a>
             <a href="https://www.tiktok.com/@tawsilet" target="_blank" rel="noopener noreferrer">
@@ -39,7 +39,7 @@ export const Footer = () => {
             </a>
             <a href="https://www.instagram.com/tawsilet.tn/" target="_blank" rel="noopener noreferrer">
               <SocialIcon>
-                <FaInstagram color="#111" size={16} />
+                <FaInstagram color="#E4405F" size={16} />
               </SocialIcon>
             </a>
           </SocialRow>
@@ -130,8 +130,7 @@ const Stores = styled.div`
 `;
 
 const StoreIcon = styled.img`
-  height: 28px; width: auto; filter: grayscale(10%);
-  &:hover { filter: none; }
+  height: 36px; width: auto;
 `;
 
 const SocialRow = styled.div`
