@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import logo from "../../assets/images/Group1.png";
 import { FaFacebookF, FaInstagram, FaTiktok } from "react-icons/fa";
+import googlePlayIcon from "../../assets/icons/googleplay.svg";
+import appStoreIcon from "../../assets/icons/appstore.svg";
 
 export const Footer = () => {
   const { t } = useTranslation();
@@ -16,6 +18,14 @@ export const Footer = () => {
             <Brand src={logo} alt="tawsilet logo" />
             <Tagline>{t("ACCEUILE.EFFICACITE")}</Tagline>
           </BrandRow>
+          <Stores>
+            <a href="https://play.google.com/store/apps/details?id=com.fortekma.tawsilet" target="_blank" rel="noopener noreferrer">
+              <StoreIcon src={googlePlayIcon} alt="Google Play" />
+            </a>
+            <a href="https://apps.apple.com/us/app/tawsilet/id6745802311" target="_blank" rel="noopener noreferrer">
+              <StoreIcon src={appStoreIcon} alt="App Store" />
+            </a>
+          </Stores>
           <SocialRow>
             <a href="https://www.facebook.com/people/Tawsilet/61576659811297/?sk=about_contact_and_basic_info" target="_blank" rel="noopener noreferrer">
               <SocialIcon>
@@ -113,6 +123,15 @@ const Tagline = styled.p`
   color: #444;
   font-size: 14px;
   line-height: 1.5;
+`;
+
+const Stores = styled.div`
+  display: flex; gap: 8px; margin-top: 2px; flex-wrap: wrap;
+`;
+
+const StoreIcon = styled.img`
+  height: 28px; width: auto; filter: grayscale(10%);
+  &:hover { filter: none; }
 `;
 
 const SocialRow = styled.div`
