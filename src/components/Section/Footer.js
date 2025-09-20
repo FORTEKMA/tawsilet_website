@@ -17,7 +17,7 @@ import { FaFacebookF, FaInstagram, FaTiktok } from "react-icons/fa";
 const TopDivider = styled.div`
   width: 100%;
   height: 2px;
-  background: #fff;
+  background: #eee;
   margin-bottom: 0;
 `;
 
@@ -134,17 +134,13 @@ export const Footer = () => {
 export default Footer;
 
 const FooterContainer = styled.div`
-  background-color: #000000;
+  background-color: #FFFFFF;
   margin-top: 10%;
   justify-content: center;
   display: flex;
-   
   flex-wrap: wrap;
-
-      border-color: #fff;
-    
-    border-width: 10px;
 `;
+
 
 export const LAST = styled.div`
   display: flex;
@@ -166,7 +162,7 @@ export const Box = styled.section`
   bottom: 0;
   margin: 0 auto;
   /* position: absolute; */
-  background-color:#000000;
+  background-color:#FFFFFF;
   display: flex;
   
   flex-wrap: wrap;
@@ -304,7 +300,7 @@ export const FooterLink = styled.a`
   font-size: 14px;
   text-decoration: none;
   letter-spacing: 0.02em;
-  color: #ffff;
+  color: #111;
   line-height: 25px;
   &:hover {
     color: ${(props) => props.theme.PRIMARY_COLOR};
@@ -326,7 +322,7 @@ export const FooterLinkk = styled.span`
   font-size: 14px;
   text-decoration: none;
   letter-spacing: 0.02em;
-  color: #ffff;
+  color: #111;
   line-height: 25px;
   &:hover {
     color: ${(props) => props.theme.PRIMARY_COLOR};
@@ -353,7 +349,7 @@ export const FooterLinkk = styled.span`
 //   font-size: ${style.font.FONT_SIZE_MEDIUM};
 //   text-decoration: none;
 //   letter-spacing: 0.02em;
-//   color: #ffff;
+//   color: #111;
 //   line-height: 25px;
 //   &:hover {
 //     color: ${(props) => props.theme.PRIMARY_COLOR};
@@ -490,7 +486,7 @@ export const Last = styled.p`
   font-size: ${style.font.FONT_SIZE_SMALL};
   text-decoration: none;
   letter-spacing: 0.02em;
-  color: #ffff;
+  color: #111;
   line-height: 25px;
 
   &:hover {
@@ -615,7 +611,9 @@ const Description = styled.div`
   font-family: ${style.font.FONT_FAMILY};
   font-weight: 400;
   font-size: 1rem;
+
   color: #111;
+
   line-height: 30px;
   padding: 10px;
   @media (max-width: 744px) {
@@ -627,14 +625,14 @@ const Description = styled.div`
 const SocialIconWrapper = styled.div`
   width: 50px;
   height: 50px;
-  background: #111111;
+  background: #f5f5f5;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: background 0.2s;
   &:hover {
-    background: #1a1a1a;
+    background: #e9e9e9;
   }
   svg {
     width: 44px;

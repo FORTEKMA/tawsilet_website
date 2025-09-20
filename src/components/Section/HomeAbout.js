@@ -91,7 +91,7 @@ export default HomeAbout;
 
 const SectionWrapper = styled.section`
   width: 100%;
-  background: #0c0c0c;
+  background: #FFFFFF;
   padding: 48px 0 0 0;
   display: flex;
   flex-direction: column;
@@ -147,7 +147,7 @@ const Overlay = styled.div`
   bottom: 0;
   width: 100%;
   background: rgba(24, 24, 24, 0.7);
-  color: #fff;
+  color: #111;
   padding: 18px 20px 12px 20px;
   border-radius: 0 0 20px 20px;
 `;
@@ -155,18 +155,18 @@ const Overlay = styled.div`
 const OverlayTitle = styled.div`
   font-size: 1rem;
   font-weight: 600;
-  color: #fff;
+  color: #111;
 `;
 const OverlayDesc = styled.div`
   font-size: 1.1rem;
   font-weight: 400;
   margin-top: 2px;
-  color: #ffe082;
+  color: #111;
 `;
 const OverlayTeam = styled.div`
   font-size: 0.9rem;
   margin-top: 8px;
-  color: #e0e0e0;
+  color: #555;
 `;
 
 const TextBlock = styled.div`
@@ -175,14 +175,14 @@ const TextBlock = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   gap: 18px;
-  color: #fff;
+  color: #111;
   @media (max-width: 900px) {
     width: 100%;
     align-items: flex-start;
   }
 `;
 const AboutLabel = styled.div`
-  color: #ffe082;
+  color: #111;
   font-size: 0.95rem;
   font-weight: 700;
   letter-spacing: 1.5px;
@@ -192,11 +192,11 @@ const AboutHeading = styled.h2`
   font-size: 2.1rem;
   font-weight: 800;
   margin: 0;
-  color: #fff;
+  color: #111;
 `;
 const AboutDesc = styled.p`
   font-size: 1.08rem;
-  color: #e0e0e0;
+  color: #555;
   line-height: 1.7;
   margin: 0 0 12px 0;
 `;
@@ -296,14 +296,14 @@ const HowWeWorkLabel = styled.div`
   margin-bottom: 10px;
 `;
 const HowWeWorkTitle = styled.h2`
-  color: #fff;
+  color: #111;
   font-size: 2.7rem;
   font-weight: 800;
   margin: 0 0 10px 0;
   text-align: center;
 `;
 const HowWeWorkSubtitle = styled.div`
-  color: #e0e0e0;
+  color: #555;
   font-size: 1.1rem;
   margin-bottom: 40px;
   text-align: center;
@@ -334,8 +334,8 @@ const StepCardAos = styled.div`
 const StepCircle = styled.div`
   width: 100px;
   height: 100px;
-  background: #e6c14b;
-  color: #fff;
+  background: #111;
+  color: #111;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -345,20 +345,20 @@ const StepCircle = styled.div`
   margin-bottom: 24px;
 `;
 const StepTitle = styled.div`
-  color: #fff;
+  color: #111;
   font-size: 1.15rem;
   font-weight: 700;
   margin-bottom: 10px;
   text-align: center;
 `;
 const StepDesc = styled.div`
-  color: #e0e0e0;
+  color: #555;
   font-size: 1rem;
   text-align: center;
   margin-bottom: 10px;
 `;
 const HowWeWorkFooter = styled.div`
-  color: #e0e0e0;
+  color: #555;
   font-size: 1rem;
   margin-top: 18px;
   text-align: center;

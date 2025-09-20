@@ -285,8 +285,10 @@ export const Nav = styled.header`
   width: 100%;
   height: 80px;
   padding: 0 5px;
+
   border-bottom: 1px solid #eeeeee;
   background-color: #ffffff;
+
   @media (max-width: 1151px) {
     border-bottom: 1px solid ${(props) => props.theme.PRIMARY_COLOR};
     max-width: 100vw;
@@ -335,7 +337,9 @@ const DropdownMenu = styled.ul`
   top: 100%;
   left: 0;
   list-style: none;
+ 
   background-color: #ffffff;
+ 
   padding: 0;
   margin: 0;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
@@ -355,7 +359,9 @@ const DropdownItem = styled.li`
   transform: ${props => props.directionglobe ? 'scaleX(1)' : 'scaleX(-1)'};
   &:hover {
     background: #f5f5f5;
+ 
     color: #111;
+ 
   }
 `;
 const FlagIcon = styled.img`
@@ -379,24 +385,30 @@ const DropDownProfile = styled.div`
   left: ${({ isDirectionLeft }) => (isDirectionLeft ? "1vw" : "unset")};
   right: ${({ isDirectionLeft }) => (isDirectionLeft ? "unset" : "1vw")};
   padding: 20px;
+ 
   background-color: #ffffff;
+ 
   border-radius: 20px;
   border-bottom: 4px solid rgba(220, 220, 220, 0.6);
   &:hover {
     background: #f5f5f5;
+ 
     color: #111;
+ 
   }
   a {
     color: #111;
     text-decoration: none;
     &:hover {
-      color: #e6e6e6;
+      background: #f5f5f5;
+      color: #111;
     }
   }
   p {
     color: #111;
     &:hover {
-      color: #e6e6e6;
+      background: #f5f5f5;
+      color: #111;
     }
   }
   .bonjour {
