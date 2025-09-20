@@ -1,4 +1,4 @@
-import { lazy } from "react";
+import { lazy, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import Footer from "../../components/Section/Footer";
 import { useTranslation } from "react-i18next";
@@ -15,6 +15,7 @@ const HomeAbout = lazy(() => import("../../components/Section/HomeAbout"));
 const Services = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  useEffect(() => { AOS.init({ duration: 700, once: true, offset: 120 }); }, []);
 
   return (
     <>
