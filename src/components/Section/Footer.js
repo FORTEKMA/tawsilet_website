@@ -1,642 +1,184 @@
 import React from "react";
-// import Logo from "../../assets/images/YellowLogo.png";
 import styled from "styled-components";
-import * as style from "../../constants/StyleSheets";
-import Path from "../../assets/icons/Path.png";
-import Pat from "../../assets/icons/mail.svg";
-import Pa from "../../assets/icons/Path.svg";
-import Fb from "../../assets/icons/fborange.svg";
-import logo from "../../assets/images/Group1.png";
-import Inst from "../../assets/icons/orangeinsta.svg";
-import TikTok from "../../assets/icons/tiktok.svg";
-import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import logo from "../../assets/images/Group1.png";
 import { FaFacebookF, FaInstagram, FaTiktok } from "react-icons/fa";
-// import { Link } from "react-router-dom";
-
-const TopDivider = styled.div`
-  width: 100%;
-  height: 2px;
-  background: #eee;
-  margin-bottom: 0;
-`;
 
 export const Footer = () => {
-  const { t, i18n } = useTranslation();
-  const CopyRight = new Date();
-  const year = CopyRight.getFullYear(); // returns 100
+  const { t } = useTranslation();
+  const year = new Date().getFullYear();
   return (
-    <FooterContainer dir="auto">
-      <TopDivider />
-      <div style={{ paddingBottom: "30px",borderTop:5,borderColor:"#fff" }}> </div>
-     
-
-      <Box>
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <Image src={logo} style={{width:"20%"}} alt="tawsilet logo"></Image>
-        </div>
-        <Container>
-          <MENU style={{}}>
-            <HEE>
-              <Heading>{t("FOOTER.Menu")}</Heading>
-            </HEE>
-            <CONT>
-              <LINKK>
-                <FooterLink href="/about">
-                  {t("FOOTER.FooterLink.FooterLink1")}
-                </FooterLink>
-                <FooterLink href="/services">
-                  {t("FOOTER.FooterLink.FooterLink2")}
-                </FooterLink>
-                <FooterLink href="/contact">
-                  {t("FOOTER.FooterLink.FooterLink3")}
-                </FooterLink>
-                <FooterLink href="/Sidentifierpartenaire">
-                  {t("FOOTER.FooterLink.FooterLink5")}
-                </FooterLink>
-              </LINKK>
-              <div style={{ display: "flex", flexDirection: "column" }}>
-                <FooterLink href="#">
-                  {t("FOOTER.FooterLink.FooterLink4")}
-                </FooterLink>
-                
-              </div>
-            </CONT>
-          </MENU>
-        </Container>
-        <LAST>
-          <Container dir="auto">
-            <Heading>{t("FOOTER.Container.HeadingLast")}</Heading>
-            <Content dir="auto">
-              {" "}
-              <ContentService>
-                <Ligne>
-                  {" "}
-                  <Paths src={Path} alt="logo"></Paths>
-                  <FooterLinkk   dir="auto"
-        
-        isRtl={i18n.language.startsWith("ar")}>
-                    {t("ACCEUILE.CONTACT.Adresse.addresses")}
-                  </FooterLinkk>
-                </Ligne>
- 
-              
-   <br></br>
-                <Ligne>
-                  <Paths src={Pat} alt="pa"></Paths>
-                  <FooterLinkk   dir="auto"
-        
-        isRtl={i18n.language.startsWith("ar")}>contact@tawsilet.com</FooterLinkk>
-                </Ligne>
-              </ContentService>{" "}
-            </Content>
-          </Container>
-         
-
-          <Contacts>
+    <Wrap dir="auto">
+      <Inner>
+        <Col>
+          <BrandRow>
+            <Brand src={logo} alt="tawsilet logo" />
+            <Tagline>{t("ACCEUILE.EFFICACITE")}</Tagline>
+          </BrandRow>
+          <SocialRow>
             <a href="https://www.facebook.com/people/Tawsilet/61576659811297/?sk=about_contact_and_basic_info" target="_blank" rel="noopener noreferrer">
-              <SocialIconWrapper>
-                <FaFacebookF color="#111" style={{width: 22,height: 22}} size={10} />
-              </SocialIconWrapper>
+              <SocialIcon>
+                <FaFacebookF color="#111" size={16} />
+              </SocialIcon>
             </a>
             <a href="https://www.tiktok.com/@tawsilet" target="_blank" rel="noopener noreferrer">
-              <SocialIconWrapper>
-                <FaTiktok color="#111" style={{width: 22,height: 22}}  size={10} />
-              </SocialIconWrapper>
+              <SocialIcon>
+                <FaTiktok color="#111" size={16} />
+              </SocialIcon>
             </a>
             <a href="https://www.instagram.com/tawsilet.tn/" target="_blank" rel="noopener noreferrer">
-              <SocialIconWrapper>
-                <FaInstagram color="#111" style={{width: 22,height: 22}}  size={10} />
-              </SocialIconWrapper>
+              <SocialIcon>
+                <FaInstagram color="#111" size={16} />
+              </SocialIcon>
             </a>
-          </Contacts>
-        </LAST>
-      </Box>
-      <Ends>
-        <Last>
+          </SocialRow>
+        </Col>
+
+        <Col>
+          <GroupTitle>{t("FOOTER.Menu")}</GroupTitle>
+          <Links>
+            <a href="/about">{t("FOOTER.FooterLink.FooterLink1")}</a>
+            <a href="/services">{t("FOOTER.FooterLink.FooterLink2")}</a>
+            <a href="/contact">{t("FOOTER.FooterLink.FooterLink3")}</a>
+            <a href="/Sidentifierpartenaire">{t("FOOTER.FooterLink.FooterLink5")}</a>
+          </Links>
+        </Col>
+
+        <Col>
+          <GroupTitle>{t("FOOTER.Container.HeadingLast")}</GroupTitle>
+          <ContactList>
+            <li>{t("ACCEUILE.CONTACT.Adresse.addresses")}</li>
+            <li>contact@tawsilet.com</li>
+          </ContactList>
+        </Col>
+      </Inner>
+
+      <BottomRow>
+        <Small>
           {t("FOOTER.Copyright")} © {year} {t("FOOTER.Tous-réservés")}
-        </Last>
-        <DIIV style={{}}>
+        </Small>
+        <RightLinks>
           <Link to="/Conditions" target="_blank">
-            {" "}
-            <Last> {t("FOOTER.Last1")}</Last>{" "}
+            <Small>{t("FOOTER.Last1")}</Small>
           </Link>
           <Link to="/Politiques" target="_blank">
-            {" "}
-            <Last>{t("FOOTER.Last2")}</Last>
-          </Link>{" "}
-        </DIIV>
-      </Ends>
-    </FooterContainer>
+            <Small>{t("FOOTER.Last2")}</Small>
+          </Link>
+        </RightLinks>
+      </BottomRow>
+    </Wrap>
   );
 };
 
 export default Footer;
 
-const FooterContainer = styled.div`
-  background-color: #FFFFFF;
-  margin-top: 10%;
-  justify-content: center;
-  display: flex;
-  flex-wrap: wrap;
+const Wrap = styled.footer`
+  background: #ffffff;
+  border-top: 1px solid #ececec;
+  margin-top: 64px;
 `;
 
-
-export const LAST = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 50px;
-  @media (min-width: 919px) and (max-width: 1268px) {
-    display: flex;
-    flex-direction: column;
-    gap: 0px;
-  }
-  @media (min-width: 360px) and (max-width: 920px) {
-    display: flex;
-    flex-direction: row;
-    gap: 30px;
-  }
-`;
-export const Div = styled.div``;
-export const Box = styled.section`
-  bottom: 0;
+const Inner = styled.div`
+  max-width: 1200px;
   margin: 0 auto;
-  /* position: absolute; */
-  background-color:#FFFFFF;
-  display: flex;
-  
-  flex-wrap: wrap;
-  /* justify-content: center; */
-  align-items: flex-start;
-  justify-content: center;
-  gap: 10%;
-  width: 100%;
-  padding: 40px 40px 20px;
-  /* min-height: 350px; */
-  /* @media (min-width: 1060px) and (max-width: 1270px) {
-  
-gap:4%;
-  } */
-  @media (min-width: 360px) and (max-width: 895px) {
-    gap: 100%;
-  }
-  .logo {
-    margin: 0;
-    @media (min-width: 360px) and (max-width: 812px) {
-      order: -1;
-    }
+  padding: 40px 16px 28px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  gap: 24px;
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
   }
 `;
 
-const MENU = styled.div`
+const Col = styled.div`
   display: flex;
   flex-direction: column;
-
-  /* padding-bottom: 20px; */
-
-  @media (min-width: 895px) and (max-width: 1268px) {
-    width: 100%;
-    gap: 10px;
-  }
-  @media (min-width: 360px) and (max-width: 920px) {
-    width: 100%;
-    gap: 10px;
-  }
-  /* @media  (min-width: 789px) and (max-width: 920px) {
-    width: 100%;
-    gap: 10px
-    
-  } */
+  gap: 14px;
 `;
-const HEE = styled.div`
-  /* padding-bottom: 20px; */
-  @media (min-width: 360px) and (max-width: 920px) {
-    display: flex;
-    gap: 30px;
-  }
-  @media (min-width: 919px) and (max-width: 1268px) {
-    display: flex;
-    gap: 30px;
-  }
-  /* @media  (min-width: 789px) and (max-width: 920px) {
-    display: flex;
-    gap: 30px;
-    
-  } */
-`;
-const CONT = styled.div`
-  /* padding-bottom: 20px; */
 
-  /* @media  (min-width: 919px) and (max-width: 1061px) {
-   
-   /* display: flex;
-   gap: 50px 
-   
-    } */
-
-  /* @media  (min-width: 789px) and (max-width: 920px) {
-        display: flex;
-        gap: 50px
-      
-    } */
-  @media (min-width: 360px) and (max-width: 895px) {
-    display: flex;
-    gap: 50px;
-  }
-`;
-const ContainerLink = styled.div`
+const BrandRow = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: auto;
-  align-items: flex-start;
-
-  /* padding-bottom: 20px; */
-  @media (min-width: 360px) and (max-width: 812px) {
-    width: 80%;
-    justify-content: space-around;
-    flex-direction: row;
-    align-items: baseline;
-  }
-`;
-
-export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 10px;
-
-  padding-bottom: 20px;
-  @media (min-width: 360px) and (max-width: 920px) {
-    /* width: 100%; */
-    gap: 4px;
-
-    /* display: none; */
-  }
-`;
-export const Image = styled.img`
-  display: flex;
-  align-self: start;
-  width: 100%;
-  @media (min-width: 360px) and (max-width: 812px) {
-    margin-bottom: 30px;
-  }
-`;
-export const Containerr = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 0 auto;
   align-items: center;
-  gap: 10px;
-  padding-bottom: 20px;
+  gap: 14px;
 `;
 
-export const FooterLink = styled.a`
-  font-family: "Inter", sans-serif;
-  font-style: normal;
-  font-weight: 400;
+const Brand = styled.img`
+  width: 120px;
+  height: auto;
+`;
+
+const Tagline = styled.p`
+  margin: 0;
+  color: #444;
   font-size: 14px;
-  text-decoration: none;
-  letter-spacing: 0.02em;
-  color: #111;
-  line-height: 25px;
-  &:hover {
-    color: ${(props) => props.theme.PRIMARY_COLOR};
-    transition: 200ms ease-in;
-  }
-  @media (min-width: 360px) and (max-width: 812px) {
-    font-size: 14px;
-    width: 100%;
-  }
+  line-height: 1.5;
 `;
 
-export const FooterLinkk = styled.span`
-  font-family: "Inter", sans-serif;
-      direction:ltr;
-
-            text-Align: ${({ isRtl }) => (isRtl ? "right" : "left")};
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  text-decoration: none;
-  letter-spacing: 0.02em;
-  color: #111;
-  line-height: 25px;
-  &:hover {
-    color: ${(props) => props.theme.PRIMARY_COLOR};
-    transition: 200ms ease-in;
-  }
-  @media (min-width: 360px) and (max-width: 812px) {
-    font-size: 14px;
-  }
-`;
-
-
-//   @media (max-width: 732px) and (min-width: 360px) {
-//     display: flex;
-//     flex-direction: row;
-//   }
-//   @media (max-width: 361px) {
-
-//   }
-// `;
-// export const FooterLinks = styled.a`
-//   font-family: "Inter", sans-serif;
-//   font-style: normal;
-//   font-weight: ${style.font.FONT_WEIGHT_NORMAL};
-//   font-size: ${style.font.FONT_SIZE_MEDIUM};
-//   text-decoration: none;
-//   letter-spacing: 0.02em;
-//   color: #111;
-//   line-height: 25px;
-//   &:hover {
-//     color: ${(props) => props.theme.PRIMARY_COLOR};
-//     transition: 200ms ease-in;
-//   }
-//   @media (max-width: 732px) and (min-width: 360px) {
-
-//   }
-// `;
-/* 
-  @media (min-width: 360px) and (max-width: 812px) {
-    font-size: 2.3vw;
-  }
-`; */
-
-const HeadingLast = styled.h2`
-  margin-bottom: 20px;
-
-  font-family: "Inter", sans-serif;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  color: #111;
-  @media (min-width: 360px) and (max-width: 812px) {
-    display: none;
-  }
-`;
-export const Heading = styled.h2`
-  margin-bottom: 20px;
-
-  font-family: "Inter", sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-  color: #111;
-  @media (min-width: 360px) and (max-width: 895px) {
-    font-size: 16px;
-
-    margin-top: 20px;
-  }
-`;
-//   @media (max-width: 732px) and (min-width: 360px) {
-//     display: flex;
-//     flex-direction: row;
-//   }
-//   @media (max-width: 361px) {
-
-//     flex-direction: column;
-//   }
-// `;
-// export const He = styled.h1`
-//   margin-bottom: 20px;
-
-//   font-family: "Inter", sans-serif;
-//   font-style: normal;
-//   font-weight: 500;
-//   font-size: 23px;
-//   color: #aaaaaa;
-//   @media (max-width: 732px) and (min-width: 360px) {
-//     display: none;
-/* 
-  @media (min-width: 360px) and (max-width: 812px) {
-    font-size: 12px;
-
-  }
-`; */
-
-export const LogoImg = styled.img`
-  width: 128px;
-  height: 28px;
-
-  /* //   @media (max-width: 732px) and (min-width: 360px) {
-  //     flex-direction: row;
-  //   }
-  //   @media (max-width: 361px) {
-  //     align-items: flex-start; */
-
-  @media (min-width: 360px) and (max-width: 812px) {
-    width: 15vw;
-    height: 3vw;
-  }
-`;
-export const Ligne = styled.div`
-  width: 200px;
-  gap: 20px;
+const SocialRow = styled.div`
   display: flex;
-  justify-content: flex-start;
+  gap: 10px;
+  margin-top: 6px;
+`;
 
-  /* //   @media (max-width: 732px) and (min-width: 360px) {
-  //     flex-direction: row; } */
+const SocialIcon = styled.div`
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #f3f3f3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease, background 0.15s ease;
+  &:hover { transform: translateY(-2px); background: #eaeaea; }
+`;
 
-  @media (min-width: 360px) and (max-width: 812px) {
-    margin-left: 20px;
+const GroupTitle = styled.h4`
+  margin: 0 0 4px 0;
+  color: #111;
+  font-size: 16px;
+  font-weight: 600;
+`;
+
+const Links = styled.nav`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  a { color: #444; text-decoration: none; font-size: 14px; }
+  a:hover { color: #111; text-decoration: underline; }
+`;
+
+const ContactList = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  li { color: #444; font-size: 14px; }
+`;
+
+const BottomRow = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 14px 16px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #f3f3f3;
+  @media (max-width: 600px) {
+    flex-direction: column;
+    gap: 10px;
   }
 `;
 
-export const Contacts = styled.div`
+const Small = styled.p`
+  color: #666;
+  font-size: 12px;
+  margin: 0;
+`;
+
+const RightLinks = styled.div`
   display: flex;
   gap: 16px;
-  flex-direction: row;
-  margin-left: 150px;
-  @media (min-width: 919px) and (max-width: 1268px) {
-    flex-direction: row;
-    gap: 8px;
-    margin-left: 0;
-    padding-top: 30px;
-  }
-  @media (min-width: 360px) and (max-width: 920px) {
-    flex-direction: column;
-    gap: 8px;
-    margin-left: 0;
-    padding-top: 30px;
-  }
-
-  /* @media (min-width: 1060px) and (max-width: 1117px) {
-    flex-direction: row;
-  
-    margin-left: 0;
-    
-  } */
-`;
-export const Paths = styled.img`
-  display: flex;
-  justify-content: flex-start;
-  width: 12px;
-  height: 12px;
-  margin-top: 5px;
-  object-fit: contain;
-`;
-export const Last = styled.p`
-  font-family: "Inter", sans-serif;
-  font-style: normal;
-  font-weight: ${style.font.FONT_WEIGHT_NORMAL};
-  font-size: ${style.font.FONT_SIZE_SMALL};
-  text-decoration: none;
-  letter-spacing: 0.02em;
-  color: #111;
-  line-height: 25px;
-
-  &:hover {
-    color: ${(props) => props.theme.PRIMARY_COLOR};
-    transition: 200ms ease-in;
-  }
-`;
-export const Ends = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  padding: 20px 50px;
-  gap: 430px;
-  /* //   //   @media (max-width: 732px) and (min-width: 360px) { */
-
-  justify-content: space-between;
-  /* gap: 430px; */
-  @media (min-width: 360px) and (max-width: 812px) {
-    /* display: none; */
-    flex-direction: column;
-    gap: 10px;
-    padding: 10px 20px;
-  }
-  @media (max-width: 360px) {
-    /* display: none; */
-  }
-`;
-export const DIIV = styled.div`
-  display: flex;
-  gap: 30px;
-  width: 30%;
-  @media (min-width: 360px) and (max-width: 812px) {
-    width: 100%;
-  }
-  @media (max-width: 360px) {
-    width: 100%;
-  }
-`;
-export const LINKK = styled.div`
-  display: flex;
-  flex-direction: column;
-  @media (min-width: 360px) and (max-width: 812px) {
-    display: flex;
-    flex-direction: column;
-  }
-  /* @media  (min-width: 789px) and (max-width: 920px) {
-      display: flex;
-      flex-direction: column;
-    
-  } */
-`;
-export const Hr = styled.hr`
-  display: none;
-  @media (min-width: 360px) and (max-width: 812px) {
-    width: 80%;
-    align-self: center;
-    justify-content: center;
-    display: block;
-
-    align-items: center;
-
-    margin-inline: auto;
-  }
-`;
-
-const Content = styled.div`
-  display: flex;
-  width: 100%;
-  flex-wrap: wrap;
-  /* justify-content: space-evenly; */
-  align-items: center;
-
-  @media (max-width: 744px) {
-    flex-direction: column;
-    gap: 30px;
-  }
-`;
-const Lineone = styled.div`
-  display: flex;
-  flex-direction: row;
-  @media (max-width: 744px) {
-  }
-`;
-
-const ContentService = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 30%;
-
-  border-radius: 32px;
-  @media (max-width: 744px) {
-    width: 80%;
-  }
-  .icon-cercle {
-    width: 40px;
-    /* margin: 10px; */
-    object-fit: contain;
-  }
-`;
-const ImgService = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 30%;
-  border-radius: 32px;
-
-  @media (max-width: 744px) {
-    flex-direction: column-reverse;
-    width: 60%;
-    /* display: none; */
-    height: 100%;
-    justify-content: start;
-    text-align: start;
-    iframe {
-      width: 290px;
-      height: 290px;
-      margin-left: -30px;
-    }
-  }
-`;
-const Description = styled.div`
-  font-family: ${style.font.FONT_FAMILY};
-  font-weight: 400;
-  font-size: 1rem;
-
-  color: #111;
-
-  line-height: 30px;
-  padding: 10px;
-  @media (max-width: 744px) {
-    line-height: 10px;
-    font-size: 0.6875rem;
-  }
-`;
-
-const SocialIconWrapper = styled.div`
-  width: 50px;
-  height: 50px;
-  background: #f5f5f5;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s;
-  &:hover {
-    background: #e9e9e9;
-  }
-  svg {
-    width: 44px;
-    height: 44px;
-    display: block;
-  }
 `;
