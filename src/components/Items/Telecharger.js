@@ -5,8 +5,6 @@ import "aos/dist/aos.css";
 import { useNavigate } from "react-router-dom";
  
 import { useTranslation } from "react-i18next";
-import googleIcon from "../../assets/images/google.png";
-import appleIcon from "../../assets/images/apple.png";
 import logoapp from "../../assets/images/logoapp.png";
 import driverLogo from "../../assets/images/driverLogo.png";
 
@@ -81,7 +79,7 @@ const Telecharger = () => {
                 data-aos="zoom-in"
                 data-aos-delay={400}
               >
-                <StoreIcon src={googleIcon} alt={t('DOWNLOAD.GOOGLE_PLAY_ALT')} />
+                <StoreIcon src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt={t('DOWNLOAD.GOOGLE_PLAY_ALT')} />
               </StoreButton>
               <StoreButton 
                 href="https://apps.apple.com/us/app/tawsilet/id6745802311" 
@@ -90,7 +88,7 @@ const Telecharger = () => {
                 data-aos="zoom-in"
                 data-aos-delay={500}
               >
-                <StoreIcon src={appleIcon} alt={t('DOWNLOAD.APP_STORE_ALT')} />
+                <StoreIcon src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt={t('DOWNLOAD.APP_STORE_ALT')} />
               </StoreButton>
             </DownloadContainer>
           </ContentService>
@@ -136,7 +134,7 @@ const Telecharger = () => {
                 data-aos="zoom-in"
                 data-aos-delay={400}
               >
-                <StoreIcon src={googleIcon} alt={t('DOWNLOAD.GOOGLE_PLAY_ALT')} />
+                <StoreIcon src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt={t('DOWNLOAD.GOOGLE_PLAY_ALT')} />
               </StoreButton>
               <StoreButton 
                 href="https://apps.apple.com/us/app/tawsilet-driver/id6745764731" 
@@ -145,7 +143,7 @@ const Telecharger = () => {
                 data-aos="zoom-in"
                 data-aos-delay={500}
               >
-                <StoreIcon src={appleIcon} alt={t('DOWNLOAD.APP_STORE_ALT')} />
+                <StoreIcon src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt={t('DOWNLOAD.APP_STORE_ALT')} />
               </StoreButton>
             </DownloadContainer>
           </ContentService>
@@ -289,10 +287,9 @@ const DownloadContainer = styled.div`
 const StoreButton = styled.a`
   display: flex;
   align-items: center;
-  background: #ffffff;
-  border: 1px solid #e5e5e5;
-  border-radius: 16px;
-  padding: 1rem 1.5rem;
+
+  
+ 
   text-decoration: none;
   transition: all 0.3s ease;
   cursor: pointer;
@@ -326,9 +323,9 @@ const StoreButton = styled.a`
 `;
 
 const StoreIcon = styled.img`
-  width: 120px;
-  height: 40px;
-  object-fit: contain;
+ width: 200px;
+    height: 56px;
+    object-fit: cover;
   
   @media (max-width: 480px) {
     width: 100px;

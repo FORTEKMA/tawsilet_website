@@ -115,7 +115,7 @@ const HeroContainer = styled.div`
   width: 100vw;
   height: calc(100vh - 80px);
   padding-inline: 60px;
-  padding-top: 10.75rem;
+padding-top: 10.75rem;
 
   @media (max-width: 744px) {
     margin-top: 20px;

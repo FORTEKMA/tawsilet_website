@@ -30,14 +30,8 @@ const Contact = () => {
           </DIV>
           <TI>{t("Sheelni-CONTACT.ContactForm.title1")}</TI>
           <PA>{t("Sheelni-CONTACT.ContactForm.desc")}</PA>
-          <div style={{ marginTop: 20, display: "flex", flexDirection: "column", gap: 5 }}>
-            <NU>{t("Sheelni-CONTACT.ContactForm.textAresse")}</NU>
-            <NU>{t("Sheelni-CONTACT.ContactForm.textAress")}</NU>
-          </div>
-          <DIVE dir="auto" isRtl={i18n.language.startsWith("ar")}>
-            <Te>{t("Sheelni-CONTACT.ContactForm.email")}</Te>
-            <Te>{t("Sheelni-CONTACT.ContactForm.Adresse")}</Te>
-          </DIVE>
+          
+          
         </section>
         <Section>
           <SEND>

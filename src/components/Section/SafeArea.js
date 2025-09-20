@@ -11,7 +11,7 @@ export const Area = styled.div`
 const SafeArea = ({ children, padTop }) => {
   // console.log(padTop)
   return (
-    <Area style={{ paddingTop: padTop ? "80px" : "0px" }}>{children}</Area>
+    <Area style={{ paddingTop: "0px" }}>{children}</Area>
   );
 };
 

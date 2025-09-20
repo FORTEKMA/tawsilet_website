@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import logo from "../../assets/images/Group1.png";
 import { FaFacebookF, FaInstagram, FaTiktok } from "react-icons/fa";
-import googlePlayIcon from "../../assets/icons/googleplay.svg";
-import appStoreIcon from "../../assets/icons/appstore.svg";
 
 export const Footer = () => {
   const { t } = useTranslation();
@@ -20,10 +18,10 @@ export const Footer = () => {
           </BrandRow>
           <Stores>
             <a href="https://play.google.com/store/apps/details?id=com.fortekma.tawsilet" target="_blank" rel="noopener noreferrer">
-              <StoreIcon src={googlePlayIcon} alt="Google Play" />
+              <StoreIcon src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" />
             </a>
             <a href="https://apps.apple.com/us/app/tawsilet/id6745802311" target="_blank" rel="noopener noreferrer">
-              <StoreIcon src={appStoreIcon} alt="App Store" />
+              <StoreIcon src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="App Store" />
             </a>
           </Stores>
           <SocialRow>

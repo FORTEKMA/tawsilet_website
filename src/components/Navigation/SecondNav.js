@@ -47,7 +47,7 @@ const Section = styled.section`
     position: absolute;
     top: 0;
     left: 0;
-    margin-top: 80px;
+     
   }
 `;
 const Div = styled.div`

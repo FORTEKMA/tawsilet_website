@@ -335,7 +335,7 @@ const StepCircle = styled.div`
   width: 100px;
   height: 100px;
   background: #111;
-  color: #111;
+  color: #fff;
   border-radius: 50%;
   display: flex;
   align-items: center;
