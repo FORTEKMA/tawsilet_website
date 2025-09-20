@@ -115,12 +115,14 @@ const floatIn = keyframes`
 
 const Hero = styled.section`
   width: 100%;
-  background: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 110px 24px 36px;
   border-bottom: 1px solid #f3f3f3;
+  background: radial-gradient(1000px 520px at 85% -10%, #EEF2F7 0%, rgba(238,242,247,0) 60%),
+              linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
+  background-repeat: no-repeat;
 `;
 
 const HeroInner = styled.div`
