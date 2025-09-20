@@ -412,7 +412,7 @@ console.log("maintenanceStatus",maintenanceStatus)
                     cookieName="hz_idm_key"
                     style={{
                       position: "fixed",
-                      background: "#18365a",
+                      background: "#111111",
                       zIndex: 9999999999,
                     }}
                     buttonStyle={{

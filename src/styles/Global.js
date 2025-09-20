@@ -59,7 +59,7 @@ font-size:calc(0.8vw + 12px)}
 
 body{
 
-    /* color: ${(props) => props.theme.TEXT_COLOR}; */
+    color: ${(props) => props.theme.TEXT_COLOR};
     background-color: ${(props) => props.theme.BACKGROUND_COLOR};
     font-family:  "Inter", "sans-serif" ;
 

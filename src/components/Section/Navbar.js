@@ -64,7 +64,7 @@ const Navbar = ({ navigationValues, currentUser }) => {
             <AiOutlineClose
               id="x"
               onClick={() => setShowMenu(false)}
-              style={{ color: "#d8b56c", cursor: "pointer", fontSize: 36 }}
+              style={{ color: "#fff", cursor: "pointer", fontSize: 36 }}
               aria-label="close"
             />
           ) : (
@@ -257,7 +257,7 @@ const Side = styled.div`
 const Burger = styled.img`
   width: auto;
   height: auto;
-  filter: brightness(0) saturate(100%) invert(88%) sepia(24%) saturate(464%) hue-rotate(7deg) brightness(97%) contrast(85%);
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
   @media (min-width: 1151px) {
     display: none;
   }
@@ -285,8 +285,8 @@ export const Nav = styled.header`
   width: 100%;
   height: 80px;
   padding: 0 5px;
-  box-shadow: -4px 12px 5px -11px #e0e0e0;
-  background-color: #0c0c0c;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  background-color: #000000;
   @media (max-width: 1151px) {
     border-bottom: 1px solid ${(props) => props.theme.PRIMARY_COLOR};
     max-width: 100vw;
@@ -335,7 +335,7 @@ const DropdownMenu = styled.ul`
   top: 100%;
   left: 0;
   list-style: none;
-  background-color: #18365a;
+  background-color: #111111;
   padding: 0;
   margin: 0;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
@@ -378,7 +378,7 @@ const DropDownProfile = styled.div`
   left: ${({ isDirectionLeft }) => (isDirectionLeft ? "1vw" : "unset")};
   right: ${({ isDirectionLeft }) => (isDirectionLeft ? "unset" : "1vw")};
   padding: 20px;
-  background-color: #18365a;
+  background-color: #111111;
   border-radius: 20px;
   border-bottom: 4px solid rgba(220, 220, 220, 0.6);
   &:hover {
@@ -388,13 +388,13 @@ const DropDownProfile = styled.div`
     color: white;
     text-decoration: none;
     &:hover {
-      color: #d8b56c;
+      color: #e6e6e6;
     }
   }
   p {
     color: white;
     &:hover {
-      color: #d8b56c;
+      color: #e6e6e6;
     }
   }
   .bonjour {

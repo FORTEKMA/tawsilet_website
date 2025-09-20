@@ -134,7 +134,7 @@ export const Footer = () => {
 export default Footer;
 
 const FooterContainer = styled.div`
-  background-color: "#0c0c0c";
+  background-color: #000000;
   margin-top: 10%;
   justify-content: center;
   display: flex;
@@ -166,7 +166,7 @@ export const Box = styled.section`
   bottom: 0;
   margin: 0 auto;
   /* position: absolute; */
-  background-color:#0c0c0c;
+  background-color:#000000;
   display: flex;
   
   flex-wrap: wrap;
@@ -627,14 +627,14 @@ const Description = styled.div`
 const SocialIconWrapper = styled.div`
   width: 50px;
   height: 50px;
-  background: #DEBC73;
+  background: #111111;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: background 0.2s;
   &:hover {
-    background: #c9a85e;
+    background: #1a1a1a;
   }
   svg {
     width: 44px;
