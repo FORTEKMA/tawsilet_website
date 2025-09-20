@@ -6,10 +6,12 @@ import { useNavigate } from "react-router";
 import { Button } from "../../components/Items/Button";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 const About = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  useEffect(() => { AOS.init({ duration: 700, once: true, offset: 120 }); }, []);
 
   return (
     <>
