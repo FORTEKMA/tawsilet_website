@@ -64,7 +64,7 @@ const Navbar = ({ navigationValues, currentUser }) => {
             <AiOutlineClose
               id="x"
               onClick={() => setShowMenu(false)}
-              style={{ color: "#fff", cursor: "pointer", fontSize: 36 }}
+              style={{ color: "#111", cursor: "pointer", fontSize: 36 }}
               aria-label="close"
             />
           ) : (
@@ -257,7 +257,7 @@ const Side = styled.div`
 const Burger = styled.img`
   width: auto;
   height: auto;
-  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+  filter: none;
   @media (min-width: 1151px) {
     display: none;
   }
@@ -271,7 +271,7 @@ export const LogoImg = styled.img`
     height: 44px;
     filter: ${(props) =>
       props.showshow
-        ? "brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(1%)hue-rotate(3deg) brightness(104%) contrast(101%)"
+        ? "none"
         : "none"};
   }
 `;
@@ -285,8 +285,8 @@ export const Nav = styled.header`
   width: 100%;
   height: 80px;
   padding: 0 5px;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-  background-color: #000000;
+  border-bottom: 1px solid #eeeeee;
+  background-color: #ffffff;
   @media (max-width: 1151px) {
     border-bottom: 1px solid ${(props) => props.theme.PRIMARY_COLOR};
     max-width: 100vw;
@@ -318,12 +318,12 @@ const DropdownContainer = styled.div`
   padding: 10px;
   position: relative;
   display: inline-block;
-  color: #fff;
+  color: #111;
  
 `;
 const DropdownButton = styled.button`
   background-color: transparent;
-  color: #fff;
+  color: #111;
   border: none;
   cursor: pointer;
   display: flex;
@@ -335,7 +335,7 @@ const DropdownMenu = styled.ul`
   top: 100%;
   left: 0;
   list-style: none;
-  background-color: #111111;
+  background-color: #ffffff;
   padding: 0;
   margin: 0;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
@@ -354,7 +354,8 @@ const DropdownItem = styled.li`
   gap: 0px;
   transform: ${props => props.directionglobe ? 'scaleX(1)' : 'scaleX(-1)'};
   &:hover {
-    color: #d8b56c;
+    background: #f5f5f5;
+    color: #111;
   }
 `;
 const FlagIcon = styled.img`
@@ -378,28 +379,29 @@ const DropDownProfile = styled.div`
   left: ${({ isDirectionLeft }) => (isDirectionLeft ? "1vw" : "unset")};
   right: ${({ isDirectionLeft }) => (isDirectionLeft ? "unset" : "1vw")};
   padding: 20px;
-  background-color: #111111;
+  background-color: #ffffff;
   border-radius: 20px;
   border-bottom: 4px solid rgba(220, 220, 220, 0.6);
   &:hover {
-    color: #d8b56c;
+    background: #f5f5f5;
+    color: #111;
   }
   a {
-    color: white;
+    color: #111;
     text-decoration: none;
     &:hover {
       color: #e6e6e6;
     }
   }
   p {
-    color: white;
+    color: #111;
     &:hover {
       color: #e6e6e6;
     }
   }
   .bonjour {
     &:hover {
-      color: white;
+      color: #111;
     }
   }
 `;

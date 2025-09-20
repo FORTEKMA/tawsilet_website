@@ -163,30 +163,13 @@ const Container = styled.div`
 `;
 
 const BackgroundGradient = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, #0a0c12 0%, #1a1d2a 50%, #0a0c12 100%);
-  z-index: -1;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at 30% 20%, rgba(255, 209, 102, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 70% 80%, rgba(255, 209, 102, 0.05) 0%, transparent 50%);
-  }
+  display: none;
 `;
 
 const Section = styled.section`
   position: relative;
-  background: #0a0c12;
-  color: #fff;
+  background: #ffffff;
+  color: #111111;
   width: 100%;
   min-height: 100vh;
   display: flex;
@@ -233,8 +216,8 @@ const ContentService = styled.div`
 
 const Badge = styled.div`
   display: inline-block;
-  background: linear-gradient(135deg, #ffd166 0%, #ffb347 100%);
-  color: #0a0c12;
+  background: #111111;
+  color: #ffffff;
   font-weight: 700;
   font-size: 0.9rem;
   letter-spacing: 1.5px;
@@ -250,24 +233,19 @@ const Badge = styled.div`
 `;
 
 const MainHeading = styled.h1`
-  font-size: 3.5rem;
+  font-size: 3rem;
   font-weight: 800;
   margin: 0;
-  color: #fff;
+  color: #111;
   line-height: 1.1;
-  background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  
   @media (max-width: 768px) {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
   }
 `;
 
 const Description = styled.p`
   font-size: 1.2rem;
-  color: #b0b0b0;
+  color: #555555;
   margin: 0;
   line-height: 1.6;
   max-width: 100%;
@@ -311,9 +289,8 @@ const DownloadContainer = styled.div`
 const StoreButton = styled.a`
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
   border-radius: 16px;
   padding: 1rem 1.5rem;
   text-decoration: none;
@@ -335,8 +312,8 @@ const StoreButton = styled.a`
   
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(255, 209, 102, 0.3);
-    border-color: rgba(255, 209, 102, 0.5);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.07);
+    border-color: #111;
     
     &::before {
       left: 100%;
@@ -377,7 +354,7 @@ const AppImage = styled.img`
   width: 100%;
   height: auto;
   border-radius: 24px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.08);
   transition: transform 0.3s ease;
   
   &:hover {
@@ -389,11 +366,11 @@ const FloatingCard = styled.div`
   position: absolute;
   bottom: -20px;
   right: -20px;
-  background: linear-gradient(135deg, #ffd166 0%, #ffb347 100%);
-  color: #0a0c12;
+  background: #111111;
+  color: #ffffff;
   padding: 1rem 1.5rem;
   border-radius: 16px;
-  box-shadow: 0 8px 25px rgba(255, 209, 102, 0.4);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.10);
   display: flex;
   align-items: center;
   gap: 0.5rem;
