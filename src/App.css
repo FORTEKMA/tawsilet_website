@@ -34,7 +34,7 @@ body::-webkit-scrollbar {
   background-color: transparent;
 }
 body::-webkit-scrollbar-thumb {
-  background-color: #ffd50093;
+  background-color: #333333;
 }
 
 input:-webkit-autofill,
@@ -45,7 +45,7 @@ input:-webkit-autofill:focus {
 }
 
 .tawk-message-body .tawk-agent-chat-bubble {
-  background-color: #d8b56c !important;
+  background-color: #FFFFFF !important;
 }
 
 .home_content {
@@ -130,7 +130,7 @@ input:-webkit-autofill:focus {
   border: transparent;
   margin: 0px 0px 0px 8px;
   width: 95%;
-  background-color: #d8b56c;
+  background-color: #FFFFFF;
 }
 
 .bot-car {
@@ -191,7 +191,7 @@ input:-webkit-autofill:focus {
   border: transparent;
 
   color: 20111;
-  background-color: #d8b56c;
+  background-color: #FFFFFF;
   font-weight: 600;
   font-size: 14px;
   line-height: 30px;
@@ -377,7 +377,7 @@ color: #ffffff;
 .service {
   display: flex;
   flex-wrap: wrap;
-  background-color: #18365a;
+  background-color: #111111;
   width: 100%;
   border-radius: 20px;
   justify-content: center;
@@ -397,7 +397,7 @@ color: #ffffff;
 
   width: 150px;
   color: 20111;
-  background-color: #d8b56c;
+  background-color: #FFFFFF;
   font-weight: 600;
   font-size: 14px;
 }
@@ -467,7 +467,7 @@ color: #ffffff;
   border-radius: 20px;
   justify-content: center;
 
-  background-color: #18365a;
+  background-color: #111111;
 }
 .img_downlaod {
   width: 50%;
@@ -484,7 +484,7 @@ color: #ffffff;
 
   width: 150px;
   color: 20111;
-  background-color: #d8b56c;
+  background-color: #FFFFFF;
   font-weight: 600;
   font-size: 14px;
 }
@@ -521,7 +521,7 @@ color: #ffffff;
   border-radius: 20px;
   justify-content: center;
 
-  background-color: #18365a;
+  background-color: #111111;
 }
 .img_map {
   width: 50%;
@@ -538,7 +538,7 @@ color: #ffffff;
 
   width: 150px;
   color: 20111;
-  background-color: #d8b56c;
+  background-color: #FFFFFF;
   font-weight: 600;
   font-size: 14px;
 }
@@ -649,7 +649,7 @@ color: #ffffff;
     width: 100%;
   }
   .retourBtn {
-    color: #18365a;
+    color: #111111;
     background-color: white;
     border: none;
     height: 60px;

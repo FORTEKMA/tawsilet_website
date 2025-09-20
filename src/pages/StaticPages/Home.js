@@ -1,4 +1,4 @@
-import React, { useRef, lazy } from "react";
+import React, { lazy } from "react";
 import styled from "styled-components";
 import { LazyLoadComponent } from "react-lazy-load-image-component";
 
@@ -8,23 +8,18 @@ const ContactezNous = lazy(() => import("../../components/Section/ContactezNous"
 const SuiviLivraision = lazy(() => import("../../components/Section/SuiviLivraision"));
 const ExelentService = lazy(() => import("../../components/Section/ExelentService"));
 const Telecharger = lazy(() => import("../../components/Items/Telecharger"));
- import MapHome from "../../components/Section/MapHome";
 const Footer = lazy(() => import("../../components/Section/Footer"));
- 
-const Home = () => {
-  const MapRef = useRef(null);
 
+const Home = () => {
   return (
     <>
       <Container_Home>
-        <MapHome MapRef={MapRef} />
         <ContentWhiteBox>
           <HomeAbout />
         </ContentWhiteBox>
         <SuiviLivraision />
         <ExelentService />
         <Telecharger />
-      
         <ContactezNous />
       </Container_Home>
       <Footer />

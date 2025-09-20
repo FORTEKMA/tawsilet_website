@@ -32,7 +32,7 @@ export const Button = styled.button`
           ${props.hasborder
             ? css`
                 border-width: 2px;
-                box-shadow: 2px 2px 0px 0px rgba(24, 54, 90, 1);
+                box-shadow: none;
 
                 background-color: ${(props) => props.theme.BACKGROUND_COLOR};
                 border-color: ${(props) =>
@@ -43,7 +43,7 @@ export const Button = styled.button`
                 &:hover {
                   background-color: ${props.theme.SECONDARY_COLOR};
                   color: ${(props) =>
-                    props.variant !== "outline" ? "#FFFFFF" : "#d8b56c"};
+                    props.variant !== "outline" ? "#FFFFFF" : "#E6E6E6"};
                 }
               `
             : css`
@@ -56,7 +56,7 @@ export const Button = styled.button`
               `}
         `}/* &:hover {
     background-color: ${(props) =>
-    props.variant !== "outline" ? "#d8b56c" : "#18365a"};
-    color: ${(props) => (props.variant !== "outline" ? "#18365a" : "#d8b56c")};
+    props.variant !== "outline" ? "#E6E6E6" : "#18365a"};
+    color: ${(props) => (props.variant !== "outline" ? "#18365a" : "#E6E6E6")};
   } */
 `;
