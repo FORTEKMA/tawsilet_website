@@ -1,7 +1,10 @@
-import React, { lazy } from "react";
+import React, { lazy, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import { Link } from "react-router-dom";
 import { Button } from "../../components/Items/Button";
+import { useTranslation } from "react-i18next";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import decathlon from "../../assets/images/decathlon.png";
 import geant from "../../assets/images/geant.png";
 import carrefour from "../../assets/images/carrefour.png";
@@ -15,42 +18,52 @@ const Telecharger = lazy(() => import("../../components/Items/Telecharger"));
 const Footer = lazy(() => import("../../components/Section/Footer"));
 
 const Home = () => {
+  const { t } = useTranslation();
+
+  useEffect(() => {
+    AOS.init({ duration: 700, once: true, offset: 120 });
+  }, []);
+
   return (
     <>
       <Hero>
-        <HeroInner>
+        <HeroInner data-aos="fade-up">
           <Left>
-            <Kicker>TAWSILET</Kicker>
-            <HeroHeading>Seamless rides and deliveries</HeroHeading>
-            <HeroSub>Reliable, transparent and fast — built for everyday transport needs.</HeroSub>
+            <Kicker>{t("ACCEUILE.TRUSTUS_HERO.title.2")}</Kicker>
+            <HeroHeading>
+              {t("ACCEUILE.TRUSTUS_HERO.title.1")} {t("ACCEUILE.TRUSTUS_HERO.title.2")} — {t("ACCEUILE.TRUSTUS_HERO.title.3")} {t("ACCEUILE.TRUSTUS_HERO.title.4")}
+            </HeroHeading>
+            <HeroSub>{t("ACCEUILE.TRUSTUS_HERO.desc")}</HeroSub>
             <Actions>
-              <Link to="/estimation"><Button hasBackground>Get an estimate</Button></Link>
-              <Link to="/Sidentifierpartenaire"><Button hasborder="true">Become a partner</Button></Link>
+              <Link to="/estimation"><Button hasBackground>{t("ABOUT.Apropos.btn-obten")}</Button></Link>
+              <Link to="/Sidentifierpartenaire"><Button hasborder="true">{t("NAVBAR.DEVENIR")}</Button></Link>
             </Actions>
             <Stats>
-              <Stat><b>24/7</b> support</Stat><Dot /><Stat><b>Transparent</b> pricing</Stat><Dot /><Stat><b>Trusted</b> drivers</Stat>
+              <Stat>{t("ACCEUILE.Delai.title")}</Stat><Dot />
+              <Stat>{t("ACCEUILE.Coût.title")}</Stat><Dot />
+              <Stat>{t("ACCEUILE.PRESTATION-SERVICE-2.title2")}</Stat>
             </Stats>
           </Left>
           <Right>
-            <CardFloat delay={80}>
-              <CardTitle>Instant booking</CardTitle>
-              <CardDesc>Request a ride or delivery in seconds.</CardDesc>
+            <CardFloat delay={80} data-aos="fade-up">
+              <CardTitle>{t("ACCEUILE.PRESTATION-SERVICE-2.Cards.card2.title")}</CardTitle>
+              <CardDesc>{t("ACCEUILE.PRESTATION-SERVICE-2.Cards.card2.desc")}</CardDesc>
             </CardFloat>
-            <CardFloat delay={160}>
-              <CardTitle>Real‑time tracking</CardTitle>
-              <CardDesc>Follow your driver live on the map.</CardDesc>
+            <CardFloat delay={160} data-aos="fade-up">
+              <CardTitle>{t("ACCEUILE.PRESTATION-SERVICE-2.Cards.card3.title")}</CardTitle>
+              <CardDesc>{t("ACCEUILE.PRESTATION-SERVICE-2.Cards.card3.desc")}</CardDesc>
             </CardFloat>
-            <CardFloat delay={240}>
-              <CardTitle>Fair pricing</CardTitle>
-              <CardDesc>No surprises, clear fees every time.</CardDesc>
+            <CardFloat delay={240} data-aos="fade-up">
+              <CardTitle>{t("ACCEUILE.PRESTATION-SERVICE-2.Cards.card4.title")}</CardTitle>
+              <CardDesc>{t("ACCEUILE.PRESTATION-SERVICE-2.Cards.card4.desc")}</CardDesc>
             </CardFloat>
           </Right>
         </HeroInner>
       </Hero>
 
       <Trusted>
-        <TrustedInner>
-          <TrustedText>Trusted by</TrustedText>
+        <TrustedInner data-aos="fade-up">
+          <TrustedText>{t("ACCEUILE.TRUSTUS.title2")}</TrustedText>
           <LogoRow>
             <LogoItem><img src={decathlon} alt="Decathlon" /></LogoItem>
             <LogoItem><img src={carrefour} alt="Carrefour" /></LogoItem>
@@ -59,42 +72,44 @@ const Home = () => {
         </TrustedInner>
       </Trusted>
 
-      <FeatureStrip>
-        <Feature><DotLarge />Fast pickup</Feature>
-        <Feature><DotLarge />Professional drivers</Feature>
-        <Feature><DotLarge />Secure payments</Feature>
-        <Feature><DotLarge />Support that cares</Feature>
+      <FeatureStrip data-aos="fade-up">
+        <Feature><DotLarge />{t("ACCEUILE.PRESTATION-SERVICE-2.Cards.card1.title")}</Feature>
+        <Feature><DotLarge />{t("ACCEUILE.PRESTATION-SERVICE-2.Cards.card2.title")}</Feature>
+        <Feature><DotLarge />{t("ACCEUILE.PRESTATION-SERVICE-2.Cards.card3.title")}</Feature>
+        <Feature><DotLarge />{t("ACCEUILE.PRESTATION-SERVICE-2.Cards.card4.title")}</Feature>
       </FeatureStrip>
 
-      <HowItWorks>
-        <HowHead>How it works</HowHead>
+      <HowItWorks data-aos="fade-up">
+        <HowHead>{t("ACCEUILE.ÉTAPES.title2")}</HowHead>
         <Steps>
           <Step>
             <StepNo>01</StepNo>
-            <StepTitle>Enter details</StepTitle>
-            <StepDesc>Set pickup, drop‑off and time.</StepDesc>
+            <StepTitle>{t("SERVICES-Tawsilet.ÉTAPES-FACILES.etap1.title")}</StepTitle>
+            <StepDesc>{t("SERVICES-Tawsilet.ÉTAPES-FACILES.etap1.desc")}</StepDesc>
           </Step>
           <Step>
             <StepNo>02</StepNo>
-            <StepTitle>Get your price</StepTitle>
-            <StepDesc>Transparent quote before you confirm.</StepDesc>
+            <StepTitle>{t("SERVICES-Tawsilet.ÉTAPES-FACILES.etap2.title")}</StepTitle>
+            <StepDesc>{t("SERVICES-Tawsilet.ÉTAPES-FACILES.etap2.desc")}</StepDesc>
           </Step>
           <Step>
             <StepNo>03</StepNo>
-            <StepTitle>Track & arrive</StepTitle>
-            <StepDesc>Follow progress and arrive smoothly.</StepDesc>
+            <StepTitle>{t("SERVICES-Tawsilet.ÉTAPES-FACILES.etap3.title")}</StepTitle>
+            <StepDesc>{t("SERVICES-Tawsilet.ÉTAPES-FACILES.etap3.desc")}</StepDesc>
           </Step>
         </Steps>
       </HowItWorks>
 
       <Container_Home>
-        <ContentWhiteBox>
-          <HomeAbout />
-        </ContentWhiteBox>
-        <SuiviLivraision />
-        <ExelentService />
-        <Telecharger />
-        <ContactezNous />
+        <div data-aos="fade-up">
+          <ContentWhiteBox>
+            <HomeAbout />
+          </ContentWhiteBox>
+        </div>
+        <div data-aos="fade-up"><SuiviLivraision /></div>
+        <div data-aos="fade-up"><ExelentService /></div>
+        <div data-aos="fade-up"><Telecharger /></div>
+        <div data-aos="fade-up"><ContactezNous /></div>
       </Container_Home>
       <Footer />
     </>
@@ -118,7 +133,7 @@ const Hero = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 110px 24px 36px;
+  padding: 36px 24px 36px;
   border-bottom: 1px solid #f3f3f3;
   background: radial-gradient(1000px 520px at 85% -10%, #EEF2F7 0%, rgba(238,242,247,0) 60%),
               linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
