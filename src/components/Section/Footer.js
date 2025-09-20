@@ -96,17 +96,17 @@ export const Footer = () => {
           <Contacts>
             <a href="https://www.facebook.com/people/Tawsilet/61576659811297/?sk=about_contact_and_basic_info" target="_blank" rel="noopener noreferrer">
               <SocialIconWrapper>
-                <FaFacebookF color="#fff" style={{width: 22,height: 22}} size={10} />
+                <FaFacebookF color="#111" style={{width: 22,height: 22}} size={10} />
               </SocialIconWrapper>
             </a>
             <a href="https://www.tiktok.com/@tawsilet" target="_blank" rel="noopener noreferrer">
               <SocialIconWrapper>
-                <FaTiktok color="#fff" style={{width: 22,height: 22}}  size={10} />
+                <FaTiktok color="#111" style={{width: 22,height: 22}}  size={10} />
               </SocialIconWrapper>
             </a>
             <a href="https://www.instagram.com/tawsilet.tn/" target="_blank" rel="noopener noreferrer">
               <SocialIconWrapper>
-                <FaInstagram color="#fff" style={{width: 22,height: 22}}  size={10} />
+                <FaInstagram color="#111" style={{width: 22,height: 22}}  size={10} />
               </SocialIconWrapper>
             </a>
           </Contacts>
@@ -372,7 +372,7 @@ const HeadingLast = styled.h2`
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
-  color: white;
+  color: #111;
   @media (min-width: 360px) and (max-width: 812px) {
     display: none;
   }
@@ -611,7 +611,9 @@ const Description = styled.div`
   font-family: ${style.font.FONT_FAMILY};
   font-weight: 400;
   font-size: 1rem;
-  color: #555;
+
+  color: #111;
+
   line-height: 30px;
   padding: 10px;
   @media (max-width: 744px) {

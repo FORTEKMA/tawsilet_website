@@ -25,8 +25,7 @@ export const ListItem = styled.li`
 
   /* padding: ${style.spacing.PADDING_SMALL}; */
   &:hover {
-    color: "red";
-    /* ${(props) => props.theme.PRIMARY_COLOR}; */
+    color: #111;
   }
   a {
     padding: 8px;
@@ -37,7 +36,9 @@ export const ListItem = styled.li`
     color: ${(props) => props.theme.PRIMARY_COLOR};
   }
   a.active {
-    color: #d8b56c;
+    color: #111;
+    font-weight: 600;
+    border-bottom: 2px solid #111;
   }
   /* a:visited {
     color: ${(props) => props.theme.TEXT_COLOR};
