@@ -49,7 +49,7 @@ const Heading = styled.div`
 
   line-height: 160%;
 
-  color: #fff;
+  color: #111;
 
   @media (max-width: 744px) {
     padding: 0px;
@@ -78,7 +78,7 @@ const Headinge = styled.div`
 `;
 const Title = styled.div`
   font-family: ${style.font.FONT_FAMILY};
-  color: var(--white, #fff);
+  color: #111;
   font-size: 2.5rem;
   font-style: normal;
   font-weight: 700;
@@ -98,7 +98,7 @@ const Title = styled.div`
 const Titlee = styled.div`
   font-family: ${style.font.FONT_FAMILY};
   width: 100%;
-  color: var(--white, #fff);
+  color: #111;
   font-size: 2.5rem;
   font-style: normal;
   font-weight: 700;
@@ -149,7 +149,7 @@ const Descriptione = styled.div`
   font-family: ${style.font.FONT_FAMILY};
   width: 100%;
   font-size: 1rem;
-color:white;
+color:#555;
   font-weight: 300;
   line-height: 1.875rem; /* 187.5% */
   letter-spacing: 0;

@@ -40,7 +40,7 @@ const SectionWrapper = styled.div`
   min-height: 480px;
   justify-content: center;
   align-items: center;
-  background: #0a0b10;
+  background: #FFFFFF;
   border-radius: 32px;
   padding: 0 5vw;
   gap: 2vw;
@@ -75,7 +75,7 @@ const TextBlock = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;
-  color: #fff;
+  color: #111;
   @media (max-width: 900px) {
     width: 100%;
     align-items: center;
@@ -84,7 +84,7 @@ const TextBlock = styled.div`
 `;
 
 const Label = styled.div`
-  color: #e6c14b;
+  color: #111;
   font-size: 1.2rem;
   font-weight: 700;
   letter-spacing: 1.5px;
@@ -93,7 +93,7 @@ const Label = styled.div`
 `;
 
 const Heading = styled.h2`
-  color: #fff;
+  color: #111;
   font-size: 2.7rem;
   font-weight: 800;
   margin: 0 0 18px 0;
@@ -104,7 +104,7 @@ const Heading = styled.h2`
 `;
 
 const Description = styled.p`
-  color: #e0e0e0;
+  color: #666;
   font-size: 1.08rem;
   line-height: 1.7;
   margin: 0 0 24px 0;

@@ -131,7 +131,7 @@ const Description = styled.div`
   font-size: 1rem;
 
 
-  color: #fff;
+  color: #111;
   line-height: 30px;
   padding: 10px;
   @media (max-width: 744px) {
